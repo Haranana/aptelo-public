@@ -12,6 +12,18 @@ if (isset($WywolanyPlik) && $WywolanyPlik == 'strona_glowna') {
     $GLOBALS['stronaGlowna'] = true;
 }
 
+// !new! wpisywanie jaki szablon jest uzywany w error logach oraz w naglowku
+if (defined('DOMYSLNY_SZABLON')) {
+    error_log('DOMYSLNY_SZABLON=' . DOMYSLNY_SZABLON);
+}else{
+     error_log('DOMYSLNY_SZABLON is not defined!');
+}
+
+if (defined('DOMYSLNY_SZABLON')) {
+    header('X-Debug-Template: ' . DOMYSLNY_SZABLON);
+}
+
+
 // sprawdzi czy nie zmienil sie stan magazynowy produktu lub produkt nie jest wylaczony - musi wtedy zmienic wartosc koszyka
 if ( isset($_SESSION['koszyk']) && count($_SESSION['koszyk']) > 0 && $WywolanyPlik != 'zamowienie_podsumowanie' && $WywolanyPlik != 'zamowienia_szczegoly' ) {
     //
