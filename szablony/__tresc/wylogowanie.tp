@@ -1,0 +1,35 @@
+<!-- wyglad naglowka strony -->
+
+<h1 class="StrNaglowek">
+    <span>{__TLUMACZ:NAGLOWEK_WYLOGOWANIE}</span>
+</h1>
+
+<!-- tresc strony -->
+
+<section class="StrTresc">
+
+    <!-- informacja o wylogowaniu -->
+    
+    <?php if ( !isset($_SESSION['konto_usuniete']) ) { ?>
+
+    <p class="Informacja">
+        {__TLUMACZ:WYLOGOWANIE_SUKCES}
+    </p>
+    
+    <?php } else { ?>
+    
+    <p class="Informacja">
+        {__TLUMACZ:USUNIETE_KONTO_SUKCES}
+    </p>    
+    
+    <?php } ?>
+    
+    <!-- przycisk powrotu do strony glownej -->
+    
+    <a href="/" class="przycisk Prawy">{__TLUMACZ:PRZYCISK_DO_STRONY_GLOWNEJ}</a>   
+    
+    <div class="cl"></div>
+    
+</section>
+
+

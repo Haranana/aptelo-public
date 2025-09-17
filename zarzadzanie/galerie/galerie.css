@@ -1,0 +1,11 @@
+.PoleGalerii { margin-top:10px; margin-bottom:10px; }
+
+.NaglowekGalerii { margin:5px; margin-bottom:10px; text-align:left; padding:8px; background:#ebe9e9; font-weight:bold; color:#1e749d; text-decoration:none; }
+.NaglowekGalerii span { font-size:12px; color:#ff0000; }
+
+/* grupa klientow */
+.GrupaKlientow { display:inline-block; padding:5px; }
+
+.Miniaturki { display:inline-block; text-align:center; }
+.Miniaturki span { display:inline-block; text-align:center; border:1px solid #dbdbdb; margin-right:10px; padding:5px; border-radius:4px; }
+.Miniaturki img { display:block; margin:auto; margin-bottom:5px; }

@@ -1,0 +1,1 @@
+<?php define('WLACZENIE_SSL','tak');  ?>

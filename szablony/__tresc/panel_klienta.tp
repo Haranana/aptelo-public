@@ -1,0 +1,525 @@
+<!-- wyglad naglowka strony -->
+
+<h1 class="StrNaglowek">
+    <span>{__TLUMACZ:PANEL_KLIENTA}</span>
+</h1>
+
+<!-- tresc strony -->
+
+<section class="StrTresc">
+
+    <?php $IdKlienta = $__pA; ?>
+
+    <!-- informacja witaj w sklepie ... -->
+    
+    <div class="Rg">
+        
+        <a href="wylogowanie.html" class="przycisk" rel="nofollow">{__TLUMACZ:WYLOGUJ_SIE}</a>
+        
+    </div>
+    
+    <div class="cl"></div>
+
+    <p class="Informacja">
+        {__TLUMACZ:WITAJ_W_SKLEPIE_ZALOGOWANY} <?php echo $_SESSION['customer_firstname']; ?>
+    </p>
+
+    <!-- lista: moje dane, historia zamowien, reklamacje -->
+    
+    <!-- moje dane -->
+
+    <div class="RamkaProcentTrzy">
+    
+        <div class="Sekcja">
+        
+            <div class="TytulSekcji">
+                {__TLUMACZ:KLIENT_MOJE_DANE}
+            </div>
+            
+            <div class="TrescSekcji">
+                <a href="{__SSL:dane-adresowe.html}">{__TLUMACZ:KLIENT_DANE_ADRESOWE}</a>
+            </div>
+            
+            <div class="TrescSekcji">
+                <a href="{__SSL:adresy-dostawy.html}">{__TLUMACZ:KLIENT_ADRESY_DOSTAWY}</a>
+            </div>                
+            
+            <div class="TrescSekcji">
+                <a href="{__SSL:zmiana-hasla.html}">{__TLUMACZ:KLIENT_ZMIANA_HASLA}</a>
+            </div>
+            
+        </div>
+        
+    </div>
+    
+    <!-- historia zamowien -->
+
+    <div class="RamkaProcentTrzy">
+    
+        <div class="Sekcja">
+            <div class="TytulSekcji">{__TLUMACZ:KLIENT_HISTORIA_ZAMOWIEN}</div>
+            <div class="TrescSekcji"><a href="{__SSL:zamowienia-przegladaj.html}">{__TLUMACZ:KLIENT_LISTA_ZAMOWIEN}</a></div>
+            <div class="TrescSekcji"><a href="{__SSL:produkty-przegladaj.html}">{__TLUMACZ:KLIENT_KUPIONE_PRODUKTY}</a></div>
+        </div>
+
+    </div>
+    
+    <!-- reklamacje - tylko jezeli klient skladal zamowienia -->
+    
+    <?php if ( Klient::IloscZamowien($IdKlienta) > 0 && (REKLAMACJE_STATUS == 'tak' || ZWROTY_STATUS == 'tak') ) { ?>
+    
+    <div class="RamkaProcentTrzy">
+    
+        <?php if ( REKLAMACJE_STATUS == 'tak' ) { ?>
+    
+        <div class="Sekcja">
+        
+            <div class="TytulSekcji">
+                {__TLUMACZ:KLIENT_REKLAMACJE}
+            </div>
+            
+            <div class="TrescSekcji">
+                <a href="{__SSL:reklamacje-napisz.html}">{__TLUMACZ:NAPISZ_REKLAMACJE}</a>
+            </div>
+            
+            <div class="TrescSekcji">
+                <a href="{__SSL:reklamacje-przegladaj.html}">{__TLUMACZ:PRZEGLADAJ_REKLAMACJE}</a>
+            </div>
+            
+        </div>
+        
+        <?php } ?>
+        
+        <?php if ( ZWROTY_STATUS == 'tak' ) { ?>
+    
+        <div class="Sekcja" <?php echo ((REKLAMACJE_STATUS == 'tak') ? 'style="margin-top:30px"' : ''); ?>>
+        
+            <div class="TytulSekcji">
+                {__TLUMACZ:KLIENT_ZWROTY}
+            </div>
+            
+            <div class="TrescSekcji">
+                <a href="{__SSL:zwroty-produktow-napisz.html}">{__TLUMACZ:ZGLOS_ZWROT}</a>
+            </div>
+            
+            <div class="TrescSekcji">
+                <a href="{__SSL:zwroty-produktow-przegladaj.html}">{__TLUMACZ:PRZEGLADAJ_ZWROTY}</a>
+            </div>
+            
+        </div>
+        
+        <?php } ?>        
+        
+    </div>
+
+    <?php } ?>
+    
+    <div class="cl"></div>
+    
+    <!-- dodatkowe informacje dla klienta -->
+    
+    <?php     
+    $DodatkoweInformacje = $__pB; 
+    //
+    if ( count($DodatkoweInformacje) ) {
+    ?>
+    
+        <div class="Sekcja">
+        
+            <div class="TytulSekcji">
+                {__TLUMACZ:DODATKOWE_INFORMACJE}
+            </div>
+            
+            <?php foreach ( $DodatkoweInformacje as $Informacja ) { ?>
+            
+            <div class="TrescSekcji">
+                
+                <?php
+                if ( $Informacja['tytul'] != '' ) {
+                     //
+                     echo $Informacja['tytul'] . '<div>' . $Informacja['wartosc'] . '</div>';
+                     //
+                  } else {
+                     //
+                     echo $Informacja['wartosc'];
+                     //
+                }
+                ?>
+                
+            </div>
+            
+            <?php } ?>
+
+        </div> 
+
+    <?php     
+    }     
+    unset($DodatkoweInformacje);
+    ?>
+
+    <!-- zapisane koszyki -->
+    
+    <?php 
+    if ( KOSZYK_ZAPIS == 'tak' ) {
+    
+        $KoszykiKlienta = Klient::KoszykiKlienta($IdKlienta);
+        //
+        if ( count($KoszykiKlienta) > 0 ) {
+        ?>
+        
+            <div class="Sekcja" style="margin-top:30px">
+            
+                <div class="TytulSekcji">{__TLUMACZ:ZAPISANE_KOSZYKI}</div>
+
+                <div class="TabelaKlient">
+                
+                    <table>
+                    
+                        <tr class="Naglowek">
+                            <th>{__TLUMACZ:KOSZYK_NAZWA}</th>
+                            <th>{__TLUMACZ:KOSZYK_OPIS}</th>
+                            <th class="Centruj">{__TLUMACZ:KOSZYK_DATA_ZAPISANIA}</th>
+                            <th></th>
+                        </tr>
+                        
+                        <?php
+                        foreach ( $KoszykiKlienta as $KoszykKlienta ) {
+                            echo '<tr>
+                                      <td><span class="TabelaOpis">{__TLUMACZ:KOSZYK_NAZWA}:</span>' . $KoszykKlienta['nazwa'] . '</td>
+                                      <td><span class="TabelaOpis">{__TLUMACZ:KOSZYK_OPIS}:</span>' . $KoszykKlienta['opis'] . '</td>
+                                      <td class="Centruj"><span class="TabelaOpis">{__TLUMACZ:KOSZYK_DATA_ZAPISANIA}:</span>' . $KoszykKlienta['data'] . '</td>
+                                      <td class="Centruj">
+                                          <a href="koszyk-szczegoly-zk-' . $KoszykKlienta['id'] . '.html" class="przycisk">{__TLUMACZ:PRZYCISK_SZCZEGOLY}</a>
+                                          <span onclick="WczytajKoszyk(' . $KoszykKlienta['id'] . ')" class="przycisk">{__TLUMACZ:PRZYCISK_WCZYTAJ}</span>
+                                          <span onclick="UsunZapisanyKoszyk(' . $KoszykKlienta['id'] . ')" class="przycisk">{__TLUMACZ:PRZYCISK_USUN}</span>
+                                      </td>
+                                  </tr>';
+                        }
+                        ?>
+
+                    </table>
+
+                </div>
+         
+            </div>
+            
+        <?php    
+        }
+        unset($KoszykiKlienta);
+        
+    }
+    ?>      
+
+    <!-- program partnerski - jezeli jest wlaczony pp i punkty -->
+    
+    <?php if ( SYSTEM_PUNKTOW_STATUS == 'tak' && (PP_STATUS == 'tak' || PP_KOD_STATUS == 'tak') && Punkty::PunktyAktywneDlaKlienta() ) { ?>
+    
+        <div class="Sekcja" style="margin-top:30px">
+        
+            <div class="TytulSekcji">{__TLUMACZ:PP_NAGLOWEK}</div>
+            
+            <?php if ( PP_KOD_STATUS == 'tak' && $__pC != '' ) { ?>
+            
+            <div class="StatPp">
+                <span class="Informacja">{__TLUMACZ:PP_KOD_KUPONU} <b><?php echo $__pC; ?></b></span>
+            </div>            
+            
+            <?php } ?>
+            
+            <?php if ( PP_STATUS == 'tak' ) { ?>
+            
+            <div class="StatPp">
+                <span class="Informacja">{__TLUMACZ:PP_STATYSTYKA} <b>{__ILOSC_WEJSC_BANNERY}</b></span>
+            </div>
+            
+            <div class="TrescSekcji">
+                <a href="{__SSL:pp-bannery.html}">{__TLUMACZ:PP_BANNERY}</a>
+            </div>     
+            
+            <?php } ?>
+
+        </div>
+        
+    <?php } ?>
+     
+    <!-- nazwa grupy do jakiej nalezy klient -->
+    
+    <?php if ( KLIENT_WYSWIETLANIE_GRUPY == 'tak' ) { ?>
+    
+        <div class="Sekcja" style="margin-top:30px">
+        
+            <div class="TytulSekcji">{__TLUMACZ:KLIENT_GRUPA_KLIENTOW}</div>            
+        
+            <div class="StatPp">
+                <span class="Informacja">{__TLUMACZ:KLIENT_GRUPA_KLIENTOW_INFO} <b>{__NAZWA_GRUPY_KLIENTA}</b></span>
+            </div>
+            
+        </div>      
+
+    <?php } ?>
+    
+    <!-- znizki klienta - wyswietla informacje tylko jezeli klient ma znizki -->    
+
+    <?php
+    $ZnizkiKlienta = Klient::ZnizkiKlientaInfo($IdKlienta);
+    
+    if ( count($ZnizkiKlienta) > 0 ) {
+        ?>
+        
+        <div class="Sekcja" style="margin-top:30px">
+        
+            <div class="TytulSekcji">{__TLUMACZ:KLIENT_ZNIZKI}</div>            
+        
+            <div class="TabelaKlient">
+            
+                <table>
+                
+                    <tr class="Naglowek">
+                        <th>{__TLUMACZ:KLIENT_RODZAJ_ZNIZKI}</th>
+                        <th class="DoPrawej">{__TLUMACZ:KLIENT_NAZWA_ZNIZKI}</th>
+                        <th class="DoPrawej">{__TLUMACZ:KLIENT_WARTOSC_ZNIZKI}</th>
+                    </tr>
+                    
+                    <?php
+                    foreach ( $ZnizkiKlienta as $znizka ) {
+                        /*
+                        $znizka['0'] - rodzaj znizki
+                        $znizka['1'] - nazwa produktu lub opis znizki
+                        $znizka['2'] - wartosc znizki
+                        */
+                        echo '<tr>
+                                  <td><span class="TabelaOpis">{__TLUMACZ:KLIENT_RODZAJ_ZNIZKI}:</span>' . $znizka['0'] . '</td>
+                                  <td class="DoPrawej"><span class="TabelaOpis">{__TLUMACZ:KLIENT_NAZWA_ZNIZKI}:</span>' . $znizka['1'] . '</td>
+                                  <td class="DoPrawej"><span class="TabelaOpis">{__TLUMACZ:KLIENT_WARTOSC_ZNIZKI}:</span>' . $znizka['2'] . '%</td>
+                              </tr>';
+                    }
+                    ?>
+
+                </table>
+                
+                <br />
+                
+                <!-- informacje o znizkach -->    
+                
+                <p class="Informacja">
+                    {__INFO_SUMOWANIE_RABATOW}
+                </p>
+                
+                <p class="Informacja">
+                    {__INFO_MAKSYMALNA_WARTOSC_RABATOW}
+                </p>     
+
+                <p class="Informacja">
+                    {__INFO_PRODUKTY_PROMOCYJNE_RABATY}
+                </p>                   
+                
+            </div>
+            
+        </div>                
+        
+    <?php }
+    unset($ZnizkiKlienta);
+    ?>
+
+    <!-- indywidualne ceny produktow dla klienta - wyswietla informacje tylko jezeli klient ma przypisane indywidualne ceny dla produktow -->    
+
+    <?php
+    $IndywidualneCenyKlienta = Klient::IndywidualneCenyKlienta($IdKlienta);
+    
+    if ( count($IndywidualneCenyKlienta) > 0 ) {
+        ?>
+        
+        <div class="Sekcja" style="margin-top:30px">
+        
+            <div class="TytulSekcji">{__TLUMACZ:INDYWIDUALNE_CENY}</div>            
+        
+            <div class="TabelaKlient">
+            
+                <table>
+                
+                    <tr class="Naglowek">
+                        <th>{__TLUMACZ:NAZWA_PRODUKTU}</th>
+                        <th class="DoPrawej">{__TLUMACZ:CENA_NETTO}</th>                        
+                        <th class="DoPrawej">{__TLUMACZ:CENA_BRUTTO}</th>
+                    </tr>
+                    
+                    <?php
+                    foreach ( $IndywidualneCenyKlienta as $IndywidualnaCena ) {
+                        echo '<tr>
+                                  <td><span class="TabelaOpis">{__TLUMACZ:NAZWA_PRODUKTU}:</span>' . $IndywidualnaCena['link'] . '</td>
+                                  <td class="DoPrawej"><span class="TabelaOpis">{__TLUMACZ:CENA_NETTO}:</span>' . $IndywidualnaCena['cena_netto'] . '</td>
+                                  <td class="DoPrawej"><span class="TabelaOpis">{__TLUMACZ:CENA_BRUTTO}:</span>' . $IndywidualnaCena['cena_brutto'] . '</td>
+                              </tr>';
+                    }
+                    ?>
+
+                </table>
+
+            </div>
+            
+        </div>                
+        
+    <?php }
+    unset($IndywidualneCenyKlienta);
+    ?>    
+    
+    <!-- tabela systemu punktow -->    
+
+    <?php
+    if ( SYSTEM_PUNKTOW_STATUS == 'tak' && Punkty::PunktyAktywneDlaKlienta() ) {
+    
+        $Punkty = new Punkty($IdKlienta);
+        ?>
+        
+        <div class="Sekcja" style="margin-top:30px">
+        
+            <div class="TytulSekcji">{__TLUMACZ:NAGLOWEK_PUNKTY_KLIENTA}</div>
+
+            <?php
+            $PunktyKlienta = $Punkty->suma;
+            $ListaPunktow = Punkty::ListaPunktow($IdKlienta);
+
+            if ( $PunktyKlienta > 0 || count($ListaPunktow) > 0 ) {
+                ?>
+                <div class="SzczegolyData SzczegolyDataPunkty">
+                    <em class="DataZlozenia">{__TLUMACZ:STAN_NA_DZIEN}: <b><?php echo date('d-m-Y H:i:s',time()); ?></b></em> <br /> 
+                    <em class="StatusZamowienia">{__TLUMACZ:AKTUALNA_SUMA_PUNKTOW}: <b><?php echo $PunktyKlienta; ?></b></em>
+                    <em class="StatusZamowienia ">{__TLUMACZ:AKTUALNA_WARTOSC_PUNKTOW}: <b><?php echo $GLOBALS['waluty']->WyswietlFormatCeny($Punkty->wartosc, $_SESSION['domyslnaWaluta']['id'], true, false); ?></b></em>
+                </div>
+                
+                <!-- lista wyboru jakie maja byc wyswietlany punkty -->    
+                
+                <div class="cmxform SelectPunkty">
+                
+                    {__TLUMACZ:SELECT_PUNKTY}
+                    
+                    <select id="SelPkt">
+                        <option value="">{__TLUMACZ:SELECT_PUNKTY_WSZYSTKIE}</option>
+                        <option value="sp,sc">{__TLUMACZ:SELECT_PUNKTY_ZA_ZAKUPY}</option>
+                        <option value="rv">{__TLUMACZ:SELECT_PUNKTY_RECENZJE}</option>
+                        
+                        <!-- wyswietli dodatkowa opcje wyboru punktow z programu partnerskiego jezeli jest wlaczony pp -->    
+                        
+                        <?php if ( SYSTEM_PUNKTOW_STATUS == 'tak' && (PP_STATUS == 'tak' || PP_KOD_STATUS == 'tak') ) { ?>
+                        
+                        <option value="pp,pm">{__TLUMACZ:SELECT_PUNKTY_PP}</option>
+                        
+                        <?php } ?>
+                    </select> 
+                    
+                </div>
+
+                <div class="TabelaKlient">
+                
+                    <table id="TabelaPkt">
+                    
+                        <tr class="Naglowek">
+                            <th>{__TLUMACZ:DATA_PUNKTOW}</th>
+                            <th>{__TLUMACZ:DATA_ZATWIERDZENIA_PUNKTOW}</th>
+                            <th>{__TLUMACZ:SZCZEGOLY_ZDARZENIA}</th>
+                            <th>{__TLUMACZ:KLIENT_KOMENTARZ}</th>
+                            <th>{__TLUMACZ:STATUS_PUNKTOW}</th>
+                            <th>{__TLUMACZ:ILOSC_PUNKTOW}</th>
+                        </tr>
+                        
+                        <?php
+                        foreach ( $ListaPunktow as $Lista ) {
+                        
+                            echo '<tr class="' . strtolower((string)$Lista['typ']) . ' Centruj">';
+                            echo '<td><span class="TabelaOpis">{__TLUMACZ:DATA_PUNKTOW}:</span>' . $Lista['data_dodania'] . '</td>';
+                            echo '<td class="Centruj"><span class="TabelaOpis">{__TLUMACZ:DATA_ZATWIERDZENIA_PUNKTOW}:</span>' . $Lista['data_zatwierdzenia'] . '</td>';
+                            
+                            echo '<td>';
+                            $Szczegoly = '{__TLUMACZ:DODANE_RECZNIE}';
+                            // punkty za zamowienie - zarowno wydane jak i otrzymane oraz dane do programu partnerskiego
+                            if ( $Lista['id_zamowienia'] != '0' && ( $Lista['typ'] == 'SC' || $Lista['typ'] == 'SP' || $Lista['typ'] == 'PP') ) {
+                                //
+                                // jezeli jest to program partnerski to nie moze byc linku do zamowienia
+                                if ( $Lista['typ'] == 'PP' ) {
+                                     $Szczegoly = '{__TLUMACZ:KLIENT_NUMER_ZAMOWIENIA}: ' . $Lista['id_zamowienia'] . '<br />';
+                                    } else {
+                                     $Szczegoly = '{__TLUMACZ:KLIENT_NUMER_ZAMOWIENIA}: <a href="{__SSL:zamowienia-szczegoly-zs-' . $Lista['id_zamowienia'] . '.html}">' . $Lista['id_zamowienia'] . '</a><br />';
+                                }
+                                
+                                $Szczegoly .= '{__TLUMACZ:DATA_ZAMOWIENIA}: ' . $Lista['data_zamowienia'] . '<br />';
+                                $Szczegoly .= '{__TLUMACZ:KLIENT_STATUS_ZAMOWIENIA}: ' . $Lista['status_zamowienia'];
+                            }
+                            // punkty za recenzje
+                            if ( $Lista['id_recenzji'] != '0' && $Lista['typ'] == 'RV' ) {
+                                $Szczegoly = '{__TLUMACZ:RECENZJA_PRODUKTU}: <a href="{__SSL:recenzja-r-' . $Lista['id_recenzji'] . '.html}">{__TLUMACZ:PRZYCISK_SZCZEGOLY}</a><br />';
+                                $Szczegoly .= '{__TLUMACZ:DATA_NAPISANIA_RECEZNJI}: ' . $Lista['data_recenzji'] . '<br />';
+                            }
+                            // punty za rejestracje w sklepie
+                            if ( $Lista['typ'] == 'RJ' ) {
+                                $Szczegoly = '{__TLUMACZ:REJESTRACJA}<br />';
+                                $Szczegoly .= '{__TLUMACZ:KLIENT_DATA_REJESTRACJI}: ' . $Lista['data_rejestracji'] . '<br />';
+                            }   
+
+                            echo $Szczegoly;
+                            echo '</td>';
+                            
+                            // komentarz
+                            echo '<td><span class="TabelaOpis">{__TLUMACZ:KLIENT_KOMENTARZ}:</span>';
+                            switch ($Lista['typ']) {
+                                case "RJ":   // punkty za rejestracje
+                                    echo '{__TLUMACZ:PUNKTY_RJ}';
+                                    break;   
+                                case "RV":   // punkty za recenzje
+                                    echo '{__TLUMACZ:PUNKTY_RV}'; 
+                                    break;   
+                                case "SP":   // punkty za zamowienie
+                                    echo '{__TLUMACZ:PUNKTY_SP}';
+                                    break;                                       
+                                case "SC":   // punkty wykorzystane w zamowieniu
+                                    echo '{__TLUMACZ:PUNKTY_SC}';
+                                    break;   
+                                case "PP":   // program partnerski - punkty przyznane
+                                    echo '{__TLUMACZ:PUNKTY_PP}';
+                                    break;   
+                                default:
+                                    echo $Lista['komentarz'];
+                                    break;                 
+                            }                                
+                            echo '</td>';
+                            
+                            echo '<td class="Centruj"><span class="TabelaOpis">{__TLUMACZ:STATUS_PUNKTOW}:</span>' . $Lista['status'] . '</td>';
+                            echo '<td class="DoPrawej"><span class="TabelaOpis">{__TLUMACZ:ILOSC_PUNKTOW}:</span>' . $Lista['ilosc_punktow'] . '</td>';
+                            echo '</tr>';
+                        }
+                        
+                        unset($Szczegoly);
+                        ?>
+                        
+                        <tr class="Centruj" id="Brak" style="display:none"><td colspan="6">{__TLUMACZ:BRAK_DANYCH_DO_WYSWIETLENIA}</td></tr>
+                        
+                    </table>
+                    
+                </div>
+
+            <?php } else { ?>
+                
+                <p class="Informacja">
+                    {__TLUMACZ:BRAK_PUNKTOW}
+                </p>
+                
+                <?php
+            }
+
+            unset($ListaPunktow, $PunktyKlienta);
+            ?>
+        </div>
+        <?php
+    }
+    
+    unset($IdKlienta);
+    ?>
+    
+    <!-- przycisk powrotu do strony glownej -->
+
+    <a href="/" class="przycisk Prawy">{__TLUMACZ:PRZYCISK_DO_STRONY_GLOWNEJ}</a>   
+    
+    <div class="cl"></div>
+
+</section>
+
+{__INTEGRACJA_KLAVIYO}

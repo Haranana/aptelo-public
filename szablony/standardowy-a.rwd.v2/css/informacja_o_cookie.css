@@ -1,0 +1,15 @@
+/* informacje o cookie - modul staly - przyklejony */
+#InfoCookie { position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.6); z-index:10002; }
+#InfoCookieProste { color:var(--kolor-czarny); position:fixed; left:50%; top:50%; transform:translate(-50%, -50%); background:var(--kolor-bialy); z-index:10003; border-radius:var(--zaokraglenie-5-px); box-shadow: 0 3px 15px rgba(0,0,0,0.2), 0 0 5px rgba(0,0,0,0.2); }
+
+#InfoCookieProste a { color:var(--kolor-czarny); text-decoration:underline; }
+#InfoCookieProste .CookieTekst { text-align:left; line-height:1.5; max-height:250px; overflow-y:auto; }
+#InfoCookieProste .InfoCookiePrzycisk { text-align:center; padding-top:20px; }
+#InfoCookieProste .InfoCookiePrzycisk span { margin:0; }
+
+@media only screen and (max-width:799px) {
+  #InfoCookieProste { width:calc(90% - 30px); max-height:80%; overflow-y:auto; padding:15px; }
+}
+@media only screen and (min-width:800px) {
+  #InfoCookieProste { width:calc(50% - 50px); padding:25px; }
+}

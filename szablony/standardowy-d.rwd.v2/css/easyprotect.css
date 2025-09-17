@@ -1,0 +1,48 @@
+/* integracja z EasyProtect */
+
+.KontenerOchronaEasyProtect { display:none; }
+.OchronaEasyProtect { display:table-cell !important; }
+
+.OchronaEasyProtectWybor ul { list-style-type:none; padding:0; margin:0; display:flex; flex-wrap:wrap; justify-content:center; }
+.OchronaEasyProtectWybor ul li { padding:10px 20px 10px 20px; text-align:center; opacity:0.8; transition:all 0.30s ease-in-out; }
+.OchronaEasyProtectWybor ul li:hover, .OchronaEasyProtectWybor ul li:first-child { opacity:1; }
+.OchronaEasyProtectWybor ul li label { cursor:pointer; padding:0; }
+.OchronaEasyProtectWybor ul li input { padding:0; border:0; }
+.OchronaEasyProtectWybor ul li b { display:block; font-size:150%; padding:10px; }
+.OchronaEasyProtectWybor ul li span { display:block; border:0 !important; }
+
+.OchronaEasyProtectOpis { text-align:left; }
+.OchronaEasyProtectOpis b { display:block; font-size:140%; }
+.OchronaEasyProtectOpis img { max-width:250px !important; }
+.OchronaEasyProtectOpis p { padding:5px 0 5px 0; }
+.OchronaEasyProtectOpis a { display:block; font-weight:bold; padding-top:10px; }
+
+.OchronaEasyProtectOpis { display:flex; justify-content:center; align-items:center; }
+.OchronaEasyProtectImg { padding:5px 15px 5px 5px; }
+.OchronaEasyProtectTxt { padding:5px; }
+
+@media only screen and (max-width:1023px) {
+  .OchronaEasyProtectOpis { flex-wrap:wrap; text-align:center; }
+  .OchronaEasyProtectTxt { text-align:center; padding-top:0; }
+  .OchronaEasyProtectWybor ul li b { padding:3px; font-size:120%; }
+  .OchronaProduktOpis .UsunOchrone { margin:10px; }
+}
+@media only screen and (min-width:1024px) and (max-width:1279px) {
+  .OchronaEasyProtectOpis { flex-wrap:wrap; }
+  .OchronaEasyProtectImg { width:100%; }
+}
+@media only screen and (min-width:1024px) {
+  .OchronaEasyProtectTbl { display:flex; justify-content:center; align-items:center; }
+  .OchronaEasyProtectOpis, .OchronaEasyProtectWybor { width:50%; }
+}
+
+.OchronaProduktWybor ul { list-style-type:none; padding:0; margin:0; }
+.OchronaProduktWybor ul li { padding-bottom:5px; }
+.OchronaProduktWybor ul li b { font-size:120%; padding:5px; }
+.OchronaProduktOpis, .OchronaProduktWybor { padding:10px 0 0 0; }
+.OchronaProduktOpis { display:block; }
+.OchronaProduktOpis .UsunOchrone { margin-top:10px; }
+.OchronaProduktOpis b { margin:0; font-size:110%; } 
+
+/* potwierdzenie zamowienia */
+.PodsumowanieEasyProtect { display:block; font-size:110%; padding:10px 0 0 0; }

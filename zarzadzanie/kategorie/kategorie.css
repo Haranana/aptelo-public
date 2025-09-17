@@ -1,0 +1,47 @@
+/* obsluga okna kategorii */
+.Kateg { background: url("../obrazki/kat.gif") no-repeat left center; padding-left:20px; height:30px; line-height:30px; display:inline-block; }
+.KatGl { font-weight:bold; }
+
+/* ilosc kategorii */
+#IloscKat { font-weight:bold; clear:both; padding:7px; }
+#IloscKat span { font-size: 14px; font-weight:bold; color:#ff0000; clear:both; }
+
+/* tabela podkategorii */
+.ListinTblPodkategorie { width:100%; border-bottom:0px; border-right:1px solid #fff; }
+
+.ImgCursor img { cursor:pointer; }
+
+/* przycisk zapisania kategorii */
+#ZapiszKategorie { display:none; }
+
+.ListinTblPodkategorie td  { border-bottom:0px; }
+
+.KategorieKolor { width:17px; height:17px; display:inline-block; }
+
+/* tabela kategorii */
+.CssId { width:7%; }
+.CssZdjecie { width:7%; }
+.CssIkona { width:7%; }
+.CssIkona img { max-width:40px; height:auto; }
+.CssRozwin { width:6%; }
+.CssNazwa { width:19%; }
+.CssIlosc { width:6%; }
+.CssAktywne { width:6%; }
+.CssSort { width:6%; }
+.CssStatus { width:5%; }
+.CssWidocznosc { width:6%; }
+.CssFiltry { width:6%; }
+.CssKolor { width:4%; }
+.CssKolorTla { width:4%; }
+
+@media only screen and (max-width:1023px) { 
+  .CssZdjecie { display:none; }
+  .CssIkona { display:none; }
+  .CssKolor { display:none; }
+  .CssKolorTla { display:none; }
+  .CssAktywne { display:none; }
+}
+@media only screen and (min-width:1024px) and (max-width:1279px) {
+  .CssKolor { display:none; }
+  .CssKolorTla { display:none; }
+}

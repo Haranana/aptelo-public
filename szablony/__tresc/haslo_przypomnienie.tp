@@ -1,0 +1,76 @@
+<!-- wyglad naglowka strony -->
+
+<h1 class="StrNaglowek">
+    <span>{__TLUMACZ:NAGLOWEK_PRZYPOMNIENIE_HASLA}</span>
+</h1>
+
+<!-- tresc strony -->
+
+<section class="StrTresc">
+
+    <?php $Zalogowany = $__pA; ?>
+    
+    <!-- sprawdza czy klient jest nie jest zalogowany -->
+
+    <?php if ( $Zalogowany == 'nie' ) { ?>
+    
+    <div class="TabelaTbl">
+
+        <div class="error">
+            <span id="span_<?php echo uniqid(); ?>"></span>
+        </div>
+
+        <div class="RamkaProcent Ramka">
+        
+            <!-- tresc strony -->
+
+            <strong>{__TLUMACZ:ODZYSKIWANIE_HASLA}</strong>
+            
+            <br /><br />
+            
+            {__TLUMACZ:ODZYSKIWANIE_HASLA_TRESC}
+            
+            <br /><br />
+            
+            <form action="{__SSL:logowanie.html}" method="post" id="przypomnienie" class="cmxform"> 
+            
+                <p>
+                    <span>{__TLUMACZ:ADRES_EMAIL_PRZYPOMNIENIE} <em class="required" id="em_<?php echo uniqid(); ?>"></em></span>
+                    <input type="text" size="35" style="width:250px" name="emailprzypomnienie" id="emailprzypomnienie" />
+                </p>
+                    
+                <p>
+                    <input type="hidden" name="adres_ip" value="<?php echo $_SERVER['REMOTE_ADDR']; ?>" />
+                    <input type="hidden" name="nazwa_hosta" value="<?php echo gethostbyaddr($_SERVER['REMOTE_ADDR']); ?>" />
+                    <input type="submit" id="submitButtonHaslo" class="przyciskWylaczony" value="{__TLUMACZ:PRZYCISK_WYSLIJ}" disabled="disabled" />
+                </p>
+
+            </form>
+
+        </div>
+
+    </div>
+    
+    <?php } ?>
+    
+    <!-- jezeli klient jest zalogowany i uruchomi przypomnienie hasla to wyswietli sie komunikat -->
+
+    <?php if ( $Zalogowany == 'tak' ) { ?>
+        
+        <!-- informacja ze klient jest juz zalogowany -->
+    
+        <p class="Informacja">
+            {__TLUMACZ:ZALOGOWANY_OPIS}
+        </p>
+        
+        <!-- przycisk powrotu do strony glownej -->
+        
+        <a href="/" class="przycisk Prawy">{__TLUMACZ:PRZYCISK_DO_STRONY_GLOWNEJ}</a>   
+        
+        <div class="cl"></div>
+    
+    <?php } ?>
+    
+</section>
+
+

@@ -1,0 +1,411 @@
+$(document).ready(function() {
+
+  $("#potwierdzenie").on("keyup keypress", function(e) {
+    var code = e.keyCode || e.which; 
+    if (code === 13) {               
+        e.preventDefault();
+        return false;
+    }
+  });
+    
+  $("#potwierdzenie").validate({
+    rules: {
+      regulamin_santander: {required: true},
+      regulamin_mbank: {required: true},
+      regulamin: {required: true},
+      polityka_prywatnosci: {required: true},
+      produkty_uslugi: {required: true},
+      produkty_online: {required: true},
+      produkty_niestandardowe: {required: true},
+      produkty_zezwrotu: {required: true},
+      produkty_niekompletne: {required: true},
+      produkty_zdemontazu: {required: true},
+      produkty_refabrykowane: {required: true},
+      produkty_zodzysku: {required: true}
+    },
+    messages: {
+      regulamin_santander: { required: '{__TLUMACZ:BLAD_WYMAGANE_POLE}' },
+      regulamin_mbank: { required: '{__TLUMACZ:BLAD_WYMAGANE_POLE}' },
+      regulamin: { required: '{__TLUMACZ:BLAD_WYMAGANE_POLE}' },
+      polityka_prywatnosci: { required: '{__TLUMACZ:BLAD_WYMAGANE_POLE}' },
+      produkty_uslugi: { required: '{__TLUMACZ:BLAD_WYMAGANE_POLE}' },
+      produkty_online: { required: '{__TLUMACZ:BLAD_WYMAGANE_POLE}' },
+      produkty_niestandardowe: { required: '{__TLUMACZ:BLAD_WYMAGANE_POLE}' },
+      produkty_zezwrotu: { required: '{__TLUMACZ:BLAD_WYMAGANE_POLE}' },
+      produkty_niekompletne: { required: '{__TLUMACZ:BLAD_WYMAGANE_POLE}' },
+      produkty_zdemontazu: { required: '{__TLUMACZ:BLAD_WYMAGANE_POLE}' },
+      produkty_refabrykowane: { required: '{__TLUMACZ:BLAD_WYMAGANE_POLE}' },
+      produkty_zodzysku: { required: '{__TLUMACZ:BLAD_WYMAGANE_POLE}' }
+   },
+    errorPlacement: function(error, element) {
+      if (element.hasClass('usluga')){
+          error.appendTo('#error-usluga');
+      } else if (element.hasClass('online')){
+          error.appendTo('#error-online');
+      } else if (element.hasClass('raty')){
+          error.appendTo('#error-potwierdzenie-raty');
+      } else if (element.hasClass('niestandardowy')){
+          error.appendTo('#error-niestandardowy'); 
+      } else if (element.hasClass('zezwrotu')){
+          error.appendTo('#error-zezwrotu'); 
+      } else if (element.hasClass('niekompletne')){
+          error.appendTo('#error-niekompletne'); 
+      } else if (element.hasClass('zdemontazu')){
+          error.appendTo('#error-zdemontazu'); 
+      } else if (element.hasClass('refabrykowane')){
+          error.appendTo('#error-refabrykowane'); 
+      } else if (element.hasClass('zodzysku')){
+          error.appendTo('#error-zodzysku'); 
+      } else if (element.hasClass('polityka_prywatnosci')){
+          error.appendTo('#error-polityka_prywatnosci'); 
+      } else {      
+          error.appendTo('#error-potwierdzenie');
+      }
+    },
+    submitHandler: function(form) {
+      //
+      var zaznaczenieDokument = false;
+      var zaznaczonyPaczkomat = true;
+      var zaznaczonyDhl = true;
+      var zaznaczonyPunktOdbioruPoczta = true;
+      var zaznaczonyKiosk = true;
+      var zaznaczonyPunktOdbioruBliskaPaczka = true;
+      var zaznaczonyDPD = true;
+      var zaznaczonyGLS = true;
+      var zaznaczonypaczkomatWeekend = true;
+      
+      $("input:radio[name='dokument']").each(function() {
+           //
+           if ( $(this).prop('checked') ) {
+                zaznaczenieDokument = true;
+           }
+           //
+      });
+
+      if ( $('#kioskGlsu').length ) {
+           //
+           if ( $('#kioskGlsu').val() == '' ) {
+                //
+                zaznaczonyGLS = false;
+                //
+           }
+           //
+      }
+      
+      if ( $('#punktDhl').length ) {
+           //
+           if ( $('#punktDhl').val() == '' ) {
+                //
+                zaznaczonyDhl = false;
+                //
+           }
+           //
+      }
+      if ( $('#punktDPD').length ) {
+           //
+           if ( $('#punktDPD').val() == '' ) {
+                //
+                zaznaczonyDPD = false;
+                //
+           }
+           //
+      }
+      if ( $('#paczkomat').length ) {
+           //
+           if ( $('#paczkomat').val() == '' ) {
+                //
+                zaznaczonyPaczkomat = false;
+                //
+           }
+           //
+      }
+      
+      if ( $('#paczkomatInternational').length ) {
+           //
+           if ( $('#paczkomatInternational').val() == '' ) {
+                //
+                zaznaczonyPaczkomat = false;
+                //
+           }
+           //
+      }
+
+      if ( $('#punktPoczta').length ) {
+           //
+           if ( $('#punktPoczta').val() == '' ) {
+                //
+                zaznaczonyPunktOdbioruPoczta = false;
+                //
+           }
+           //
+      }   
+
+      if ( $('#kioskRuchu').length ) {
+           //
+           if ( $('#kioskRuchu').val() == '' ) {
+                //
+                zaznaczonyKiosk = false;
+                //
+           }
+           //
+      }         
+      
+      if ( $('#punktBliskaPaczka').length ) {
+           //
+           if ( $('#punktBliskaPaczka').val() == '' ) {
+                //
+                zaznaczonyPunktOdbioruBliskaPaczka = false;
+                //
+           }
+           //
+      }
+      
+      if ( $('#paczkomatWeekend').length ) {
+           //
+           if ( $('#paczkomatWeekend').val() == '' ) {
+                //
+                zaznaczonypaczkomatWeekend = false;
+                //
+           }
+           //
+      }         
+
+      if ( zaznaczenieDokument && zaznaczonyPaczkomat && zaznaczonyPunktOdbioruPoczta && zaznaczonyDhl && zaznaczonyDPD && zaznaczonyKiosk && zaznaczonyGLS && zaznaczonyPunktOdbioruBliskaPaczka && zaznaczonypaczkomatWeekend ) {
+           //
+           PreloadWlacz();
+           form.submit();
+           //
+        } else {
+           //
+           if ( zaznaczenieDokument == false ) {
+                //
+                $.post("inne/dokument_sprzedazy.php?tok={__TOKEN_ZAMOWIENIE_POTWIERDZENIE}", { data: 'dokument' }, function(data) { 
+                    var myModal = new jBox('Modal',{ 
+                        content : '<div class="message">'+data+'</div>',
+                        closeButton: false,
+                        closeOnEsc: false,
+                        closeOnMouseleave: false,
+                        closeOnClick: false,
+                        onOpen: function () {
+                            const popupElement = this.wrapper;
+                            setTimeout(function () {
+                                initFocusTrap(popupElement);
+                            }, 50);
+                        }      
+                    });
+                    myModal.open();
+                });
+                //
+           } else {
+                //
+                if ( zaznaczonyPaczkomat == false || zaznaczonypaczkomatWeekend == false ) {
+                     //
+                     PreloadWylaczSzybko();        
+                     $.scrollTo('#potwierdzenie',0);
+                     var myModal = new jBox('Modal',{ 
+                         content : '<div class="message"><div id="PopUpInfo">{__TLUMACZ:NIE_WYBRANY_PACZKOMAT}</div></div>',
+                     });
+                     myModal.open();
+                     //
+                }   
+                if ( zaznaczonyKiosk == false ) {
+                     //
+                     PreloadWylaczSzybko();        
+                     $.scrollTo('#potwierdzenie',0);
+                     var myModal = new jBox('Modal',{ 
+                         content : '<div class="message"><div id="PopUpInfo">{__TLUMACZ:NIE_WYBRANY_PUNKT_ODBIORU}</div></div>',
+                     });
+                     myModal.open();
+                     //
+                }              
+                if ( zaznaczonyPunktOdbioruPoczta == false ) {
+                     //
+                     PreloadWylaczSzybko();        
+                     $.scrollTo('#potwierdzenie',0);
+                     var myModal = new jBox('Modal',{ 
+                         content : '<div class="message"><div id="PopUpInfo">{__TLUMACZ:NIE_WYBRANY_PUNKT_ODBIORU}</div></div>',
+                     });
+                     myModal.open();
+                     //
+                }
+                if ( zaznaczonyDhl == false ) {
+                     //
+                     PreloadWylaczSzybko();        
+                     $.scrollTo('#potwierdzenie',0);
+                     var myModal = new jBox('Modal',{ 
+                         content : '<div class="message"><div id="PopUpInfo">{__TLUMACZ:NIE_WYBRANY_PUNKT_ODBIORU}</div></div>',
+                     });
+                     myModal.open();
+                     //
+                }              
+                if ( zaznaczonyDPD == false ) {
+                     //
+                     PreloadWylaczSzybko();        
+                     $.scrollTo('#potwierdzenie',0);
+                     var myModal = new jBox('Modal',{ 
+                         content : '<div class="message"><div id="PopUpInfo">{__TLUMACZ:NIE_WYBRANY_PUNKT_ODBIORU}</div></div>',
+                     });
+                     myModal.open();
+                     //
+                }              
+                if ( zaznaczonyPunktOdbioruBliskaPaczka == false ) {
+                     //
+                     PreloadWylaczSzybko();        
+                     $.scrollTo('#potwierdzenie',0);
+                     var myModal = new jBox('Modal',{ 
+                         content : '<div class="message"><div id="PopUpInfo">{__TLUMACZ:NIE_WYBRANY_PUNKT_ODBIORU}</div></div>',
+                     });
+                     myModal.open();
+                     //
+                }              
+                if ( zaznaczonyGLS == false ) {
+                     //
+                     PreloadWylaczSzybko();        
+                     $.scrollTo('#potwierdzenie',0);
+                     var myModal = new jBox('Modal',{ 
+                         content : '<div class="message"><div id="PopUpInfo">{__TLUMACZ:NIE_WYBRANY_PUNKT_ODBIORU}</div></div>',
+                     });
+                     myModal.open();
+                     //
+                }              
+                //
+           }
+           //
+      }
+      //
+    }    
+  });
+
+  $("#dokument_faktura, #dokument_paragon").on("change", function() {
+      if ( $("#dokument_faktura").prop('checked') ) {
+           $('.OknoFaktura').show(); 
+           $('.OknoNipParagon').hide();
+      }
+      if ( $("#dokument_paragon").prop('checked') ) {
+           $('.OknoFaktura').hide(); 
+           $('.OknoNipParagon').show();
+      }      
+  });
+
+  $('body').on('change', "input:radio[name='lokalizacjaOsobisty']", function() {
+	   var checked = $(this).prop('checked');
+	   if (checked) {
+         var value = $(this).val();
+         PreloadWlacz();
+         $.post("{__SSL:inne/zmiana_lokalizacji_dostawy.php}?tok={__TOKEN_ZAMOWIENIE_POTWIERDZENIE}", { rodzaj: 'wysylka_odbior_osobisty', koszyk:0, value:value, punktodbioru:'', punktopis:'', koszt:0 }, function(data) { PreloadWylaczSzybko() });
+     }
+	});
+
+  $('body').on('change', "input:radio[name='dokument']", function() {
+	   var checked = $(this).prop('checked');
+	   if (checked) {
+        var value = $(this).val();
+        PreloadWlacz();
+        $.post("{__SSL:inne/zmiana_dokumentu_zakupu.php}?tok={__TOKEN_ZAMOWIENIE_POTWIERDZENIE}", { value:value }, function(data) { PreloadWylaczSzybko() }); 
+     }
+	});
+
+  if ($('.datefields').length) {
+      $('input.datefields').Zebra_DatePicker({
+        format: 'd-m-Y',
+        inside: false,
+        readonly_element: true,
+        show_icon: true
+      });
+  }    
+
+  $('body').on('change', '#wybor_adresu', function() {
+    
+		var value = $('#wybor_adresu').val();
+    if ( parseInt(value) > 0 ) {
+      
+        $.post("{__SSL:inne/do_zmiany_adresu_dostawy.php}?tok={__TOKEN_ADRES_DOSTAWY}", { value:value }, function(data) { 
+            if ( data.length > 10 ) {  
+                var myModal = new jBox('Modal',{ 
+                    content : '<div class="message">'+data+'</div>',
+                    closeButton: false,
+                    closeOnEsc: false,
+                    closeOnMouseleave: false,
+                    closeOnClick: false,
+                    onOpen: function () {
+                        const popupElement = this.wrapper;
+                        setTimeout(function () {
+                            initFocusTrap(popupElement);
+                        }, 50);
+                    }      
+                });
+                myModal.open();
+
+            } else {
+                $(location).attr('href','zamowienie-potwierdzenie.html');
+            }
+        });    
+    }
+    
+	});  
+
+});
+
+function WgraniePliku(wartosc) {
+
+  var PoleId       = '#'+wartosc.id;
+  var files        = $(PoleId)[0].files;
+  var numberRegexG = /\d$/g;
+  var FieldId      = '#fields_'+wartosc.id.match(numberRegexG);
+  var PlikdId      = '#plik_'+wartosc.id.match(numberRegexG);
+  var PodgladId    = '#imgprev_'+wartosc.id.match(numberRegexG);
+  var idPola       = wartosc.id.match(numberRegexG);
+  var WynikId      = '.wynik_plik_'+wartosc.id.match(numberRegexG);
+
+  PreloadWlacz();
+
+  var fd           = new FormData();
+  if( files.length > 0 ) {
+      fd.append('file',files[0]);
+      fd.append('id',idPola);
+
+      $.ajax({
+          url:'inne/wgranieZamowienie.php?tok={__TOKEN_ZAMOWIENIE_POTWIERDZENIE}',
+          type:'post',
+          data:fd,
+          dataType: 'json',
+          contentType: false,
+          processData: false,
+          success:function(response) {
+              if( response.status == 1 ) {
+                  var extension = response.extension;
+                  var path = response.path;
+                              
+                  $(PodgladId).hide();
+                  if ( extension == 'jpg' || extension == 'png' || extension == 'gif' || extension == 'webp' ) {
+                      $(PodgladId).attr("src",path);
+                      $(PodgladId).show();
+                  } else {
+                      $(WynikId).html('<span class="InformacjaOk"></span>');
+                  }
+                  $(FieldId).val(path);
+                  PreloadWylaczSzybko();
+               } else {
+                  var blad = response.blad;
+                  var myModal = new jBox('Modal',{ 
+                      content : '<div class="message">'+blad+'</div>',
+                      closeButton: true,
+                      closeOnEsc: true,
+                      closeOnMouseleave: false,
+                      closeOnClick: true,
+                      onOpen: function () {
+                          const popupElement = this.wrapper;
+                          setTimeout(function () {
+                              initFocusTrap(popupElement);
+                          }, 50);
+                      }      
+                  });
+                  myModal.open();
+                  PreloadWylaczSzybko();
+                  $(PlikdId).val('');
+              }
+           }
+      });
+  }
+
+}

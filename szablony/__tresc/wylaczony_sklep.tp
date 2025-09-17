@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+<html lang="pl">
+<head>
+    <meta charset="utf-8" />
+    <title>{__META_TYTUL}</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&amp;subset=latin,latin-ext&amp;display=swap" rel="stylesheet" type="text/css" />
+
+    <meta name="Keywords" content="{__META_SLOWA_KLUCZOWE}" />
+    <meta name="Description" content="{__META_OPIS}" />
+    <meta name="robots" content="index,follow" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+        body { background-image:url('/images/sklep_wylaczony.webp'); background-repeat:no-repeat; background-position:center center; background-attachment:fixed; background-size:cover; color:#ffffff; font-family:Roboto, Arial, sans-serif; font-weight:normal; overflow:hidden; position:fixed; top:0; bottom:0; right:0; left:0; font-size:100%; }
+        a { color:#ffffff; text-decoration:none; }
+        .StrTresc { background-color:rgba(0,0,0,0.5); padding:50px; border:1px solid #000000; text-align:center; max-width:50%; }
+        .Informacja { padding:0; text-align:center; font-size:24px; }
+
+        .Odliczanie { display:block; font-size:24px; color:#fffffff; font-weight:normal; margin:40px 0px 0px 0px; }
+        .Odliczanie span { display:block; color:#ffffff; margin-bottom:15px; font-size:32px; font-weight:normal; }
+        .Odliczanie span em { display:inline-block; background:#000000; color:#ffffff; font-style:normal; padding:2px 5px 2px 5px; margin:1px; }
+        @media only screen and (max-width:799px) {
+          .StrTresc { max-width:90%; padding:20px; }
+          .Informacja, .Odliczanie { font-size:18px; }
+          .Odliczanie span { display:block; color:#ffffff; margin-bottom:15px; font-size:24px; }
+        }
+    </style>
+    <script src="javascript/jquery.js"></script>
+
+    <script>
+        // licznik do odliczania promocji
+        function odliczaj(o,sek,slowo_dni){
+
+            var dni = parseInt(sek / 86400);
+            var godziny = parseInt( sek / 3600 ) % 24;
+            var minuty = parseInt( sek / 60 ) % 60;
+            var sekundy = sek % 60;
+            var wynDni = '';
+            if (dni > 0) {
+                wynDni = dni + ' ' + slowo_dni + ' ';
+            }
+            
+            var wynik = wynDni + (godziny < 10 ? "0" + godziny : godziny) + ":" + (minuty < 10 ? "0" + minuty : minuty) + " " + (sekundy  < 10 ? "0" + sekundy : sekundy);
+            var wyn = '';
+            for (r = 0; r < wynik.length; r++) {
+                if (parseInt(wynik.charAt(r)) > -1) {
+                    wyn = wyn + '<em>'+wynik.charAt(r)+'</em>';
+                  } else {
+                    wyn = wyn + wynik.charAt(r);
+                }
+            }
+
+            $("#" + o).html(wyn);
+            if (sek > 0) { 
+                setTimeout(function(){odliczaj(o,--sek,slowo_dni)},1e3);
+              } else {
+                window.location.reload();
+            }
+
+        }
+    </script>
+    
+</head>
+
+<body>
+
+<div style="display:flex; flex-direction:column; flex-wrap:nowrap; justify-content:center; align-content:stretch; align-items:center; height:100%; ">
+
+    <div class="StrTresc">
+
+        <div class="Informacja">
+            {__TEKST_WYLACZENIA}
+        </div>
+        <?php if ( INFO_WYLACZ_SKLEP_DATA != '' && ( FunkcjeWlasnePHP::my_strtotime(INFO_WYLACZ_SKLEP_DATA) - time() > 0 ) ) { ?>
+        <div class="Odliczanie"><span id="sekundy_1"></span>{__TLUMACZ:POZOSTALO_DO_OTWARCIA_SKLEPU}</div>
+        <script> $(document).ready(function() { odliczaj("sekundy_1",{__DATA_WLACZENIA},'{__TLUMACZ:LICZNIK_PROMOCJI_DZIEN}') }); </script>
+        <?php } ?>
+    </div>
+</div>
+
+</body>
+</html>

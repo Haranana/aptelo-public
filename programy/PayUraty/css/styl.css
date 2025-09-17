@@ -1,0 +1,1443 @@
+
+/*---[ pulse 1 ]-----------------------------------------------------------------------*/
+@-webkit-keyframes pulse1 {
+  0% {-webkit-transform: scale(1);}
+  50% {-webkit-transform: scale(0.7);}
+  100% {-webkit-transform: scale(1);}
+}
+@-moz-keyframes pulse1 {
+  0% {-moz-transform: scale(1);}
+  50% {-moz-transform: scale(0.7);}
+  100% {-moz-transform: scale(1);}
+}
+@-ms-keyframes pulse1 {
+  0% {-ms-transform: scale(1);}
+  50% {-ms-transform: scale(0.7);}
+  100% {-ms-transform: scale(1);}
+}
+@-o-keyframes pulse1 {
+  0% {-o-transform: scale(1);}
+  50% {-o-transform: scale(0.7);}
+  100% {-o-transform: scale(1);}
+}
+@keyframes pulse1 {
+  0% {transform: scale(1);}
+  50% {transform: scale(0.7);}
+  100% {transform: scale(1);}
+}
+/*---[ pulse 2 ]-----------------------------------------------------------------------*/
+@-webkit-keyframes pulse2 {
+  0% {-webkit-transform: scale(1);}
+  50% {-webkit-transform: scale(0.8);}
+  100% {-webkit-transform: scale(1);}
+}
+@-moz-keyframes pulse2 {
+  0% {-moz-transform: scale(1);}
+  50% {-moz-transform: scale(0.8);}
+  100% {-moz-transform: scale(1);}
+}
+@-ms-keyframes pulse2 {
+  0% {-ms-transform: scale(1);}
+  50% {-ms-transform: scale(0.8);}
+  100% {-ms-transform: scale(1);}
+}
+@-o-keyframes pulse2 {
+  0% {-o-transform: scale(1);}
+  50% {-o-transform: scale(0.8);}
+  100% {-o-transform: scale(1);}
+}
+@keyframes pulse2 {
+  0% {transform: scale(1);}
+  50% {transform: scale(0.8);}
+  100% {transform: scale(1);}
+}
+/*---[ pulse 3 ]-----------------------------------------------------------------------*/
+@-webkit-keyframes pulse3 {
+  0% {-webkit-transform: scale(1);}
+  50% {-webkit-transform: scale(0.6);}
+  100% {-webkit-transform: scale(1);}
+}
+@-moz-keyframes pulse3 {
+  0% {-moz-transform: scale(1);}
+  50% {-moz-transform: scale(0.6);}
+  100% {-moz-transform: scale(1);}
+}
+@-ms-keyframes pulse3 {
+  0% {-ms-transform: scale(1);}
+  50% {-ms-transform: scale(0.6);}
+  100% {-ms-transform: scale(1);}
+}
+@-o-keyframes pulse3 {
+  0% {-o-transform: scale(1);}
+  50% {-o-transform: scale(0.6);}
+  100% {-o-transform: scale(1);}
+}
+@keyframes pulse3 {
+  0% {transform: scale(1);}
+  50% {transform: scale(0.6);}
+  100% {transform: scale(1);}
+}
+/*---[ pulse 4 ]-----------------------------------------------------------------------*/
+@-webkit-keyframes pulse4 {
+  0% {-webkit-transform: scale(1);}
+  50% {-webkit-transform: scale(0.5);}
+  100% {-webkit-transform: scale(1);}
+}
+@-moz-keyframes pulse4 {
+  0% {-moz-transform: scale(1);}
+  50% {-moz-transform: scale(0.5);}
+  100% {-moz-transform: scale(1);}
+}
+@-ms-keyframes pulse4 {
+  0% {-ms-transform: scale(1);}
+  50% {-ms-transform: scale(0.5);}
+  100% {-ms-transform: scale(1);}
+}
+@-o-keyframes pulse4 {
+  0% {-o-transform: scale(1);}
+  50% {-o-transform: scale(0.5);}
+  100% {-o-transform: scale(1);}
+}
+@keyframes pulse4 {
+  0% {transform: scale(1);}
+  50% {transform: scale(0.5);}
+  100% {transform: scale(1);}
+}
+/*---[ pulse 5 ]-----------------------------------------------------------------------*/
+@-webkit-keyframes pulse5 {
+  0% {-webkit-transform: scale(1);}
+  50% {-webkit-transform: scale(0.6);}
+  100% {-webkit-transform: scale(1);}
+}
+@-moz-keyframes pulse5 {
+  0% {-moz-transform: scale(1);}
+  50% {-moz-transform: scale(0.6);}
+  100% {-moz-transform: scale(1);}
+}
+@-ms-keyframes pulse5 {
+  0% {-ms-transform: scale(1);}
+  50% {-ms-transform: scale(0.6);}
+  100% {-ms-transform: scale(1);}
+}
+@-o-keyframes pulse5 {
+  0% {-o-transform: scale(1);}
+  50% {-o-transform: scale(0.6);}
+  100% {-o-transform: scale(1);}
+}
+@keyframes pulse5 {
+  0% {transform: scale(1);}
+  50% {transform: scale(0.6);}
+  100% {transform: scale(1);}
+}
+/*---[ pulse 6 ]-----------------------------------------------------------------------*/
+@-webkit-keyframes pulse6 {
+  0% {-webkit-transform: scale(1);}
+  50% {-webkit-transform: scale(0.4);}
+  100% {-webkit-transform: scale(1);}
+}
+@-moz-keyframes pulse6 {
+  0% {-moz-transform: scale(1);}
+  50% {-moz-transform: scale(0.4);}
+  100% {-moz-transform: scale(1);}
+}
+@-ms-keyframes pulse6 {
+  0% {-ms-transform: scale(1);}
+  50% {-ms-transform: scale(0.4);}
+  100% {-ms-transform: scale(1);}
+}
+@-o-keyframes pulse6 {
+  0% {-o-transform: scale(1);}
+  50% {-o-transform: scale(0.4);}
+  100% {-o-transform: scale(1);}
+}
+@keyframes pulse6 {
+  0% {transform: scale(1);}
+  50% {transform: scale(0.4);}
+  100% {transform: scale(1);}
+}
+/*---[ pulse 7 ]-----------------------------------------------------------------------*/
+@-webkit-keyframes pulse7 {
+  0% {-webkit-transform: scale(1);}
+  50% {-webkit-transform: scale(0.5);}
+  100% {-webkit-transform: scale(1);}
+}
+@-moz-keyframes pulse7 {
+  0% {-moz-transform: scale(1);}
+  50% {-moz-transform: scale(0.5);}
+  100% {-moz-transform: scale(1);}
+}
+@-ms-keyframes pulse7 {
+  0% {-ms-transform: scale(1);}
+  50% {-ms-transform: scale(0.5);}
+  100% {-ms-transform: scale(1);}
+}
+@-o-keyframes pulse7 {
+  0% {-o-transform: scale(1);}
+  50% {-o-transform: scale(0.5);}
+  100% {-o-transform: scale(1);}
+}
+@keyframes pulse7 {
+  0% {transform: scale(1);}
+  50% {transform: scale(0.5);}
+  100% {transform: scale(1);}
+}
+
+.holder {
+  display: block;
+  background: transparent url('http://www.raty.payu.pl/bundles/appfrontend/img/bg_holder.png') no-repeat center center;
+  width: 61px;
+  height: 61px;
+}
+.holder .ray-nmb {
+  position: relative;
+  z-index: 15;
+  width: 61px;
+  height: 61px;
+}
+.holder .ray-nmb span {
+  color: #fff;
+  font-family: 'AdobeCaslonProItalic', sans-serif;
+  font-size: 36px;
+  padding-top: 19px;
+  position: absolute;
+  width: 61px;
+  height: 61px;
+  top: 0;
+  left: 0;
+  text-align: center;
+}
+.holder .ray-circle {
+  margin: 0 auto;
+  position: absolute;
+  background-color: transparent;
+  border: 1px dashed #d1d2d4;
+  -webkit-border-radius: 100px;
+  -moz-border-radius: 100px;
+  -o-border-radius: 100px;
+  -ms-border-radius: 100px;
+  border-radius: 100px;
+  z-index: 10;
+}
+.lt-ie9 .holder .ray-circle {
+  display: none;
+}
+.holder .ray1 {
+  top: -31px;
+  left: -31px;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: pulse1 2s linear infinite;
+  -moz-animation: pulse1 2s linear infinite;
+  -ms-animation: pulse1 2s linear infinite;
+  -o-animation: pulse1 2s linear infinite;
+  animation: pulse1 2s linear infinite;
+  border-image: initial;
+}
+.holder .ray2 {
+  top: -31px;
+  left: -31px;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: pulse2 3s linear infinite;
+  -moz-animation: pulse2 3s linear infinite;
+  -ms-animation: pulse2 3s linear infinite;
+  -o-animation: pulse2 3s linear infinite;
+  animation: pulse2 3s linear infinite;
+  border-image: initial;
+}
+.holder .ray3 {
+  top: -42px;
+  left: -41px;
+  width: 138px;
+  height: 138px;
+  -webkit-animation: pulse3 6s linear infinite;
+  -moz-animation: pulse3 6s linear infinite;
+  -ms-animation: pulse3 6s linear infinite;
+  -o-animation: pulse3 6s linear infinite;
+  animation: pulse3 6s linear infinite;
+  border-image: initial;
+}
+.holder .ray4 {
+  top: -37px;
+  left: -37px;
+  width: 132px;
+  height: 132px;
+  -webkit-animation: pulse4 4s linear infinite;
+  -moz-animation: pulse4 4s linear infinite;
+  -ms-animation: pulse4 4s linear infinite;
+  -o-animation: pulse4 4s linear infinite;
+  animation: pulse4 4s linear infinite;
+  border-image: initial;
+}
+.holder .ray5 {
+  top: -27px;
+  left: -28px;
+  width: 114px;
+  height: 114px;
+  -webkit-animation: pulse5 3s linear infinite;
+  -moz-animation: pulse5 3s linear infinite;
+  -ms-animation: pulse5 3s linear infinite;
+  -o-animation: pulse5 3s linear infinite;
+  animation: pulse5 3s linear infinite;
+  border-image: initial;
+}
+.holder .ray6 {
+  top: -75px;
+  left: -74px;
+  width: 172px;
+  height: 172px;
+  -webkit-animation: pulse6 4s linear infinite;
+  -moz-animation: pulse6 4s linear infinite;
+  -ms-animation: pulse6 4s linear infinite;
+  -o-animation: pulse6 4s linear infinite;
+  animation: pulse6 4s linear infinite;
+  border-image: initial;
+}
+.holder .ray7 {
+  top: -123px;
+  left: -122px;
+  width: 268px;
+  height: 268px;
+  -webkit-animation: pulse7 5s linear infinite;
+  -moz-animation: pulse7 5s linear infinite;
+  -ms-animation: pulse7 5s linear infinite;
+  -o-animation: pulse7 5s linear infinite;
+  animation: pulse7 5s linear infinite;
+  border-image: initial;
+}
+
+/* Generated by Font Squirrel (http://www.fontsquirrel.com) on March 21, 2012 */
+
+
+
+@font-face {
+  font-family: 'AlwynPlRegular';
+  src: url('http://www.raty.payu.pl/bundles/appfrontend/css/fonts/alwynpl_regular-webfont.eot');
+  src: url('http://www.raty.payu.pl/bundles/appfrontend/css/fonts/alwynpl_regular-webfont.eot?#iefix') format('embedded-opentype'),
+  url('http://www.raty.payu.pl/bundles/appfrontend/css/fonts/alwynpl_regular-webfont.woff') format('woff'),
+  url('http://www.raty.payu.pl/bundles/appfrontend/css/fonts/alwynpl_regular-webfont.ttf') format('truetype'),
+  url('http://www.raty.payu.pl/bundles/appfrontend/css/fonts/alwynpl_regular-webfont.svg#AlwynPlRegular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+@font-face {
+  font-family: 'AlwynPlLight';
+  src: url('http://www.raty.payu.pl/bundles/appfrontend/css/fonts/alwynpl_light-webfont.eot');
+  src: url('http://www.raty.payu.pl/bundles/appfrontend/css/fonts/alwynpl_light-webfont.eot?#iefix') format('embedded-opentype'),
+  url('http://www.raty.payu.pl/bundles/appfrontend/css/fonts/alwynpl_light-webfont.woff') format('woff'),
+  url('http://www.raty.payu.pl/bundles/appfrontend/css/fonts/alwynpl_light-webfont.ttf') format('truetype'),
+  url('http://www.raty.payu.pl/bundles/appfrontend/css/fonts/alwynpl_light-webfont.svg#AlwynPlLight') format('svg');
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+@font-face {
+  font-family: 'AlwynPlMedium';
+  src: url('http://www.raty.payu.pl/bundles/appfrontend/css/fonts/alwynpl_medium-webfont.eot');
+  src: url('http://www.raty.payu.pl/bundles/appfrontend/css/fonts/alwynpl_medium-webfont.eot?#iefix') format('embedded-opentype'),
+  url('http://www.raty.payu.pl/bundles/appfrontend/css/fonts/alwynpl_medium-webfont.woff') format('woff'),
+  url('http://www.raty.payu.pl/bundles/appfrontend/css/fonts/alwynpl_medium-webfont.ttf') format('truetype'),
+  url('http://www.raty.payu.pl/bundles/appfrontend/css/fonts/alwynpl_medium-webfont.svg#AlwynPlMedium') format('svg');
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+@font-face {
+  font-family: 'AdobeCaslonProItalic';
+  src: url('http://www.raty.payu.pl/bundles/appfrontend/css/fonts/acaslonpro-italic-webfont.eot');
+  src: url('http://www.raty.payu.pl/bundles/appfrontend/css/fonts/acaslonpro-italic-webfont.eot?#iefix') format('embedded-opentype'),
+  url('http://www.raty.payu.pl/bundles/appfrontend/css/fonts/acaslonpro-italic-webfont.woff') format('woff'),
+  url('http://www.raty.payu.pl/bundles/appfrontend/css/fonts/acaslonpro-italic-webfont.ttf') format('truetype'),
+  url('http://www.raty.payu.pl/bundles/appfrontend/css/fonts/acaslonpro-italic-webfont.svg#AdobeCaslonProItalic') format('svg');
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+
+/* http://meyerweb.com/eric/tools/css/reset/ */
+/* v1.0 | 20080212 */
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+}
+body {
+  line-height: 1;
+}
+ol, ul {
+  list-style: none;
+}
+blockquote, q {
+  quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+/* remember to define focus styles! */
+:focus {
+  outline: 0;
+}
+
+/* remember to highlight inserts somehow! */
+ins {
+  text-decoration: none;
+}
+del {
+  text-decoration: line-through;
+}
+
+/* tables still need 'cellspacing="0"' in the markup */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+body {
+  background: #bebebe url("http://www.raty.payu.pl/bundles/appfrontend/img/background.jpg") 50% 0 repeat-y;
+  color: #4d4d4d;
+  font-family: 'AlwynPlLight', Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  text-align: center;
+}
+a {
+  color: #00AEEF;
+  text-decoration: none;
+  cursor: pointer;
+}
+a:hover {
+  color: #54a1c0;
+}
+p {
+  margin: 6px 0;
+}
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #b1b1b1;
+  margin: 1em 0;
+  padding: 0;
+}
+h2 {
+  font-family: 'AdobeCaslonProItalic', sans-serif;
+  font-size: 44px;
+  font-weight: normal;
+  display: block;
+  overflow: hidden;
+  padding: 10px;
+}
+h2 span {
+  display: block;
+  font-size: 32px;
+  margin: 10px 0 0 0;
+}
+h3 {
+  font-family: 'AdobeCaslonProItalic', sans-serif;
+  font-size: 20px;
+  font-weight: normal;
+  padding: 10px 0;
+  line-height: 32px;
+}
+
+/*
+ * uniwersalne klasy
+ */
+
+.clear {
+  clear: both;
+}
+.clearfix:after {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+}
+.clearfix {
+  display: inline-block;
+}
+html[xmlns] .clearfix {
+  display: block;
+}
+* html .clearfix {
+  height: 1%;
+}
+.display-block {
+  display: block;
+}
+.display-none {
+  display: none;
+}
+.text-indent-away {
+  text-indent: -4000px;
+}
+.text-transform-up {
+  text-transform: uppercase;
+}
+.no-border {
+  border: none !important;
+}
+.default-block-element {
+  display: block;
+  overflow: hidden;
+}
+.with-arr {
+  background: transparent url('http://www.raty.payu.pl/bundles/appfrontend/img/bg_with-arr.png') right 5px no-repeat;
+  padding-right: 15px;
+}
+p.tools-el a {
+  background: transparent url('http://www.raty.payu.pl/bundles/appfrontend/img/bg_with-arr.png') right 5px no-repeat;
+  padding-right: 15px;
+}
+.width-25 { width: 25%; }
+.width-35 { width: 35%; }
+.width-50 { width: 50%; }
+.width-65 { width: 65%; }
+.width-75 { width: 75%; }
+.width-100 { width: 100%; }
+.padding-l-10 { padding-left: 10px; }
+.padding-l-60 { padding-left: 60px; }
+.margin-l-205 { margin-left: 205px !important; }
+.blue { color: #00ACED; display: inline; }
+.bq-section {
+  display: block;
+  overflow: hidden;
+  width: 100%;
+  margin: 40px 0 0;
+}
+.bq-section blockquote {
+  background: url('http://www.raty.payu.pl/bundles/appfrontend/img/bg_bq.png') no-repeat top left;
+  padding: 15px 0 0 18px;
+  font-family: 'AdobeCaslonProItalic', sans-serif;
+  font-size: 0.8em;
+  line-height: 22px;
+  float: left;
+}
+.bq-section blockquote p {
+  margin: 0 0 12px;
+}
+.bq-section blockquote span {
+  font-family: 'AlwynPlLight', Arial, Helvetica, sans-serif;
+  font-size: 14px;
+}
+.sprite-bg {
+  width: 980px;
+  height: 100%;
+  margin: 0 auto;
+  display: block;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+article.with-ray ul {
+  margin: 25px 0;
+  padding: 0;
+  width: 700px;
+}
+article.with-ray ul li {
+  position: relative;
+  list-style-type: none;
+  margin: 0 0 30px 0;
+}
+article.with-ray ul li .holder {
+  float:  left;
+}
+article.with-ray ul li .holder-content {
+  overflow: hidden;
+  margin:  0 0 0 95px;
+}
+article.with-ray ul li .holder-content p {
+  margin: 10px 0 0 8px;
+  font-size: 16px;
+  color: #4d4d4d;
+}
+article.with-ray ul li h3 {
+  display:  block;
+  font-family: 'AdobeCaslonProItalic', sans-serif;
+  font-size: 20px;
+  font-weight: normal;
+  line-height: 30px;
+  padding: 10px;
+  margin: 0;
+}
+article.with-ray ul li ul {
+  margin: 0 0 0 10px;
+  padding: 0;
+}
+article.with-ray ul li ul li {
+  background: transparent url("http://www.raty.payu.pl/bundles/appfrontend/img/li.png") 0 9px no-repeat;
+  padding: 0 0 0 8px;
+  margin: 0;
+  font-size: 16px;
+  line-height: 22px;
+}
+
+/*
+ * header
+ */
+
+header {
+  background-color: #4d4d4d;
+  position: fixed;
+  left: 0;
+  top:  0;
+  width: 100%;
+  z-index: 1010;
+  overflow: hidden;
+}
+header ul li {
+  list-style-type: none;
+}
+header #top-header {
+  width: 100%;
+  border-bottom: 1px solid #ababab;
+}
+header #top-header .top-header-content {
+  width: 980px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+header .top-header-content h1.logo {
+  float: left;
+  width: 115px;
+  height: 29px;
+  margin: 6px 0 0 58px;
+}
+header .top-header-content ul {
+  height: 42px;
+  float: right;
+  width: 720px;
+  margin: 0;
+}
+header .top-header-content ul li {
+  float: left;
+  font-size: 20px;
+  margin: 0 25px 0 0;
+}
+header .top-header-content ul li a {
+  display: block;
+  padding: 14px 16px 10px;
+  color: #fff;
+}
+header .top-header-content ul li a:hover {
+  color: #00AEEF;
+}
+header .top-header-content ul li a.active,
+header .top-header-content ul li a.active:hover {
+  background-color: #6b6b6b;
+  color: #fff;
+}
+header #bottom-header {
+  background-color: #6b6b6b;
+  width: 100%;
+  height: 40px;
+  border-top: 1px solid #4d4d4d;
+  border-bottom: 1px solid #b1b1b1;
+}
+header .bottom-header-content {
+  width: 100%;
+  border-bottom: 1px solid #fff;
+  height: 40px;
+  text-align: center;
+  font-size: 16px;
+}
+header .bottom-header-content ul {
+  display: block;
+  margin: 10px auto 0;
+}
+header .bottom-header-content.seller ul {
+  width: 700px;
+}
+header .bottom-header-content.buyer ul {
+  width: 580px;
+}
+header .bottom-header-content ul li {
+  float: left;
+  margin: 3px 0 3px;
+  padding: 0 20px;
+  border-left: 1px solid #fff;
+}
+header .bottom-header-content ul li:first-child {
+  border:  none;
+}
+header .bottom-header-content ul li a {
+  color: #fff;
+}
+header .bottom-header-content ul li a:hover,
+header .bottom-header-content ul li a.active {
+  color: #00AEEF;
+}
+
+/*
+ * content
+ */
+
+#content .content-container {
+  width: 980px;
+  margin: 0 auto;
+  padding: 110px 0 80px;
+  text-align: left;
+  position: relative;
+}
+#content .sell-section-01 {
+  border-bottom: 1px dashed #b1b1b1;
+  min-height: 800px;
+}
+#content .sell-section-01 h2 span {
+  margin: 10px 0 0 135px;
+}
+#content .sell-section-01 h2 .blue {
+  margin: 0;
+}
+#content .sell-section-01 ul li.whyto-01 h3,
+#content .sell-section-01 ul li.whyto-03 h3,
+#content .sell-section-01 ul li.whyto-04 h3 {
+  padding-top: 20px;
+}
+#content .sell-section-01 ul li.whyto-02 h3,
+#content .sell-section-01 ul li.whyto-05 h3 {
+  padding-top: 2px;
+}
+#content .sell-section-01 p span.small {
+  font-family: 'AdobeCaslonProItalic', sans-serif;
+  font-size: 0.85em;
+}
+#content .sell-section-01 .bq-section blockquote {
+  width: 55%;
+}
+#content .sell-section-01 .bq-section blockquote span {
+  font-family: 'AlwynPlLight', Arial, Helvetica, sans-serif;
+  font-size: 14px;
+}
+#content .sell-section-01 .sell-sprite_00 {
+  background: transparent url("http://www.raty.payu.pl/bundles/appfrontend/img/sell_bg_dlaczegoWarto_00.png") 100% 100% no-repeat;
+  z-index: -1;
+}
+#content .sell-section-01 .sell-sprite_01 {
+  background: transparent url("http://www.raty.payu.pl/bundles/appfrontend/img/sell_bg_dlaczegoWarto_01.png") 70% 50% no-repeat;
+  z-index: -1;
+}
+#content .sell-section-01 .sell-sprite_02 {
+  background: transparent url("http://www.raty.payu.pl/bundles/appfrontend/img/sell_bg_dlaczegoWarto_02.png") 84% 38% no-repeat;
+  z-index: -3;
+}
+#content .sell-section-01 .sell-sprite_03 {
+  background: transparent url("http://www.raty.payu.pl/bundles/appfrontend/img/sell_bg_dlaczegoWarto_03.png") 78% 20% no-repeat;
+  z-index: -2;
+}
+#content .sell-section-02 {
+  border-bottom: 1px dashed #b1b1b1;
+}
+#content .sell-section-02 .how-start-steps-block {
+  background: transparent url('http://www.raty.payu.pl/bundles/appfrontend/img/sell_bg_howStart.png') no-repeat center top;
+  display: block;
+  overflow: hidden;
+  position: relative;
+  height: 500px;
+  margin: 50px 0 0;
+  text-align: center;
+}
+#content .sell-section-02 .how-start-steps-block > span {
+  display: block;
+  position: absolute;
+  width: 210px;
+  height: 45px;
+  font-size: 18px;
+  line-height: 24px;
+}
+#content .sell-section-02 .how-start-steps-block > span strong {
+  font-family: 'AlwynPlMedium', sans-serif;
+}
+#content .sell-section-02 .how-start-steps-block span.step-01,
+#content .sell-section-02 .how-start-steps-block span.step-02,
+#content .sell-section-02 .how-start-steps-block span.step-03 {
+  top: 130px;
+}
+#content .sell-section-02 .how-start-steps-block span.step-01,
+#content .sell-section-02 .how-start-steps-block span.step-04 {
+  left: 44px;
+}
+#content .sell-section-02 .how-start-steps-block span.step-02,
+#content .sell-section-02 .how-start-steps-block span.step-05  {
+  left: 390px;
+}
+#content .sell-section-02 .how-start-steps-block span.step-03,
+#content .sell-section-02 .how-start-steps-block span.step-06 {
+  left: 720px;
+}
+#content .sell-section-02 .how-start-steps-block span.hr {
+  border-top: 1px dashed #D9D9D9;
+  width: 80%;
+  margin: 225px auto 0;
+  position: relative;
+}
+#content .sell-section-02 .how-start-steps-block span.step-04,
+#content .sell-section-02 .how-start-steps-block span.step-05,
+#content .sell-section-02 .how-start-steps-block span.step-06 {
+  top: 392px;
+}
+#content .sell-section-03 {
+  border-bottom: 1px dashed #b1b1b1;
+}
+#content .sell-section-03 h3 {
+  margin: 25px 0;
+}
+#content .sell-section-03 p.tools-header {
+  font-family: 'AdobeCaslonProItalic', sans-serif;
+  color: #4d4d4d;
+  font-size: 18px;
+  margin: 45px 0 25px;
+}
+#content .sell-section-03 p.tools-el {
+  margin: 20px 0 50px;
+  font-size: 20px;
+  line-height: 30px;
+  color:  #4d4d4d;
+}
+#content .sell-section-03 p.tools-01 {
+  background: transparent url('http://www.raty.payu.pl/bundles/appfrontend/img/sell_bg_tool01.png') no-repeat left center;
+  padding: 25px 0 25px 145px;
+}
+#content .sell-section-03 p.tools-02 {
+  background: transparent url('http://www.raty.payu.pl/bundles/appfrontend/img/sell_bg_tool02.png') no-repeat left center;
+  padding: 0 0 0 145px;
+}
+#content .sell-section-04 {
+  border-bottom: 1px dashed #b1b1b1;
+}
+#content .sell-section-04 div.wdrozenia-box {
+  display: block;
+  width: 960px;
+  overflow: hidden;
+  margin: 50px 0 25px;
+}
+#content .sell-section-04 div.wdrozenia-box div.box-main {
+  background-color: #F9F9F9;
+  display: block;
+  float: left;
+  margin: 0 6px;
+  border: 1px solid #F2F2F2;
+  width: 305px;
+  overflow: hidden;
+}
+#content .sell-section-04 div.wdrozenia-box div.box-main img {
+  display: block;
+  width: 305px;
+  height: 165px;
+  box-shadow: 0px -4px 22px #333;
+}
+#content .sell-section-04 div.wdrozenia-box div.box-main p {
+  background: transparent url('http://www.raty.payu.pl/bundles/appfrontend/img/p.png') no-repeat 0 28px;
+  padding: 20px 7px;
+  font-size: 14px;
+  line-height: 20px;
+}
+#content .sell-section-04 div.wdrozenia-box div.box-main a {
+  background: transparent url('http://www.raty.payu.pl/bundles/appfrontend/img/wdrozenia_link.png') no-repeat;
+  width: 110px;
+  height: 27px;
+  margin: 0 7px 15px;
+  float: right;
+}
+#content .sell-section-04 div.wdrozenia-box div.box-main a span {
+  display: none;
+}
+#content .buy-section-01 {
+  border-bottom: 1px dashed #b1b1b1;
+  min-height: 820px;
+}
+#content .buy-section-01 h2 {
+  overflow: hidden;
+  margin: 35px 0 25px;
+}
+#content .buy-section-01 h2 span {
+  font-size: 35px;
+}
+#content .buy-section-01 h2 span.with-arrow {
+  float: left;
+  background: transparent url("http://www.raty.payu.pl/bundles/appfrontend/img/li.png") center left no-repeat;
+  padding: 15px 0 8px 15px;
+  margin: 0 0 0 19px;
+}
+#content .buy-section-01 span.raty-logo {
+  float: left;
+  background: transparent url("http://www.raty.payu.pl/bundles/appfrontend/img/logo_raty.png") center left no-repeat;
+  width: 126px;
+  height: 44px;
+}
+#content .buy-section-01 span.raty-logo > span {
+  display: none;
+}
+#content .buy-section-01 ul {
+  margin: 0 0 0 25px;
+  padding: 0;
+}
+#content .buy-section-01 ul li {
+  background: transparent url("http://www.raty.payu.pl/bundles/appfrontend/img/li.png") center left no-repeat;
+  padding: 0 0 0 8px;
+  margin: 10px 0;
+  font-size: 24px;
+  list-style-type: none;
+}
+#content .buy-section-01 h3 {
+  font-family: 'AdobeCaslonProItalic', sans-serif;
+  font-size: 26px;
+  padding: 10px 0;
+  margin: 50px 0 5px;
+}
+#content .buy-section-01 .buy-sprite_00 {
+  background: transparent url("http://www.raty.payu.pl/bundles/appfrontend/img/buy_bg_raty.png") 100% 100% no-repeat;
+  z-index: -1;
+}
+#content .buy-section-01 .buy-sprite_01 {
+  background: transparent url("http://www.raty.payu.pl/bundles/appfrontend/img/buy_bg_raty_01.png") 67% 70% no-repeat;
+  z-index: -1;
+}
+#content .buy-section-01 .buy-sprite_02 {
+  background: transparent url("http://www.raty.payu.pl/bundles/appfrontend/img/buy_bg_raty_02.png") 59% 58% no-repeat;
+  z-index: -5;
+}
+#content .buy-section-01 .buy-sprite_03 {
+  background: transparent url("http://www.raty.payu.pl/bundles/appfrontend/img/buy_bg_raty_03.png") 65% 42% no-repeat;
+  z-index: -2;
+}
+#content .buy-section-01 .buy-sprite_04 {
+  background: transparent url("http://www.raty.payu.pl/bundles/appfrontend/img/buy_bg_raty_04.png") 56% 32% no-repeat;
+  z-index: -3;
+}
+#content .buy-section-01 .buy-sprite_05 {
+  background: transparent url("http://www.raty.payu.pl/bundles/appfrontend/img/buy_bg_raty_05.png") 64% 15% no-repeat;
+  z-index: -4;
+}
+#content .buy-section-02 h3 {
+  font-size: 28px;
+}
+#content .buy-section-02 .how-it-work-content-box,
+#content .buy-section-02 .how-it-work-points {
+  min-height: 520px;
+}
+#content .buy-section-02 .how-it-work-video {
+  background: transparent url('http://www.raty.payu.pl/bundles/appfrontend/img/videobox_bg.png') no-repeat center center;
+  width: 100%;
+  height: 520px;
+  position: relative;
+}
+#content .buy-section-02 .video-box-with-link {
+  display: block;
+  width: 980px;
+  border-bottom: 1px dashed #b1b1b1;
+  margin: 45px 0 15px;
+  height:  45px;
+}
+#content .buy-section-02 .video-box {
+  display: block;
+  width: 589px;
+  height: 370px;
+  position: absolute;
+  top: 50px;
+  left: 196px;
+}
+#content .buy-section-02 .video-box-close {
+  display: block;
+  background: transparent url('http://www.raty.payu.pl/bundles/appfrontend/img/videobox_close.png') no-repeat;
+  width: 75px;
+  height: 19px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+#content .buy-section-02 .video-box-close span {
+  display:  none;
+}
+#content .buy-section-02 .video-box-with-link span.video-link {
+  display: block;
+  float: right;
+  width: 240px;
+  height: 45px;
+  background: url('http://www.raty.payu.pl/bundles/appfrontend/img/buy_bg_button_video.png') no-repeat #4d4d4d;
+  cursor: pointer;
+}
+#content .buy-section-02 .video-box-with-link span.video-link span {
+  display: none;
+}
+#content .buy-section-02 .bq-section blockquote {
+  width: 48%;
+}
+#content .buy-section-03 {
+  background: #eee url("http://www.raty.payu.pl/bundles/appfrontend/img/background-where.png") center center no-repeat;
+  width: 100%;
+}
+#content .buy-section-03 hgroup {
+  margin: 0 auto;
+  width: 980px;
+}
+#content .buy-section-03 .logo-section {
+  background: #fff;
+  width: 100%;
+  display: block;
+  text-align: center;
+  margin: 25px 0 112px;
+  overflow: hidden;
+}
+#content .buy-section-03 .logo-section ul {
+  margin: 35px auto;
+  overflow: hidden;
+  width: 955px;
+}
+#content .buy-section-03 .logo-section ul li {
+  float: left;
+  width:  120px;
+  height: 120px;
+  margin: 0 35px;
+  list-style-type: none;
+}
+#content .buy-section-03 .logo-section a {
+  background-color: #fff;
+  display: table-cell;
+  vertical-align: middle;
+}
+#content .buy-section-03 .logo-section a img {
+  margin: 0 auto;
+  display: block;
+}
+#content .section-faq {
+  border-bottom: 1px dashed #b1b1b1;
+}
+#content .section-faq h3 {
+  font-size: 20px;
+  font-family: 'AlwynPlMedium', sans-serif;
+  margin: 0;
+  padding: 5px 0;
+  cursor: pointer;
+}
+#content .section-faq h3:hover {
+  color: #54a1c0;
+}
+#content .section-faq h3.ui-state-active {
+  color: #00AEEF;
+}
+#content .section-faq > div {
+  font-size: 16px;
+  line-height: 20px;
+  display: none;
+}
+#content .section-faq > div span {
+  display: block;
+  margin-top: 15px;
+  font-style: italic;
+}
+#content .section-faq div ul {
+  margin: 10px 0 10px 15px;
+}
+#content .section-faq div ul li {
+  list-style-type: initial;
+  margin: 10px 0 10px 15px;
+  font-size: 16px;
+  line-height: 20px;
+  padding: 0;
+}
+
+/*
+ * footer
+ */
+
+footer {
+  background: transparent;
+  height: 200px;
+  width: 980px;
+  margin: 0 auto;
+  overflow: hidden;
+  text-align: left;
+}
+footer p.cookie-policy {
+  text-align: center;
+  margin: 10px 0 35px;
+  padding: 0;
+  font-size: 12px;
+}
+footer .foot-links {
+  display: block;
+  height: 70px;
+  overflow: hidden;
+  padding: 5px 0;
+}
+footer .footer-menu {
+  font-family: 'AlwynPlLight', sans-serif;
+  font-size: 13px;
+  margin: 10px 0 5px;
+  overflow: hidden;
+  height: 100px;
+}
+footer .footer-menu .footer-menu-box {
+  float: left;
+  width: 162px;
+}
+footer .footer-menu-box ul li {
+  margin: 3px 0;
+  padding: 0.2em 0.5em 0 0;
+  list-style-type: none;
+}
+footer .footer-menu-box ul li span.logo-raty {
+  background: transparent url('http://www.raty.payu.pl/bundles/appfrontend/img/logo-raty.png') no-repeat;
+  width: 126px;
+  height: 16px;
+  display: block;
+}
+footer .footer-menu-box ul li a {
+  color: #666;
+}
+footer .footer-menu-box ul li a:hover {
+  color: #27569A;
+}
+footer .footer-menu-box ul li.liFirstElement {
+  font-family: 'AlwynPlMedium', sans-serif;
+  margin: 0 0 10px 0;
+  font-size: 13px;
+}
+
+/*
+ * PayU Calc
+ */
+
+#installment-calc {
+  display: block;
+  text-align: left;
+  
+  
+}
+#payu-installment-calc {
+  border: none;
+  border-radius: 0;
+  background:  transparent;
+  margin: 0;
+  padding: 10px 25px;
+  width: 430px;
+  font-family: 'AlwynPlLight', Arial, Helvetica, sans-serif;
+}
+#payu-installment-calc hr {
+  display: none;
+}
+#payu-installment-calc p {
+  font-size: 16px;
+}
+#payu-installment-calc p.payu-smaller {
+  font-size: 11px;
+  margin: 0;
+}
+#payu-installment-calc p > strong {
+  font-weight: normal;
+}
+#payu-installment-calc p span.payu-right .payu-val,
+#payu-installment-amount {
+  font-family: 'AlwynPlMedium', sans-serif;
+  font-size: 20px;
+}
+#payu-installment-calc p span.payu-right .payu-currency.payu-val {
+  font-size: 20px;
+}
+#payu-installment-calc .payu-slider,
+#payu-installment-calc .payu-slider .ui-slider-range {
+  height: 19px;
+  border-radius: 0;
+  border: none;
+  border-right: 3px solid #e5e5e5;
+  border-left: 3px solid #e5e5e5;
+  margin: 10px 0;
+}
+#payu-installment-calc .payu-slider {
+  background: transparent url("http://www.raty.payu.pl/bundles/appfrontend/img/slider_bg_grey.png") repeat-x;
+}
+#payu-installment-calc .payu-slider .ui-slider-range {
+  background: transparent url("http://www.raty.payu.pl/bundles/appfrontend/img/slider_bg_blue.png") repeat-x;
+  top: -10px;
+  left: -3px;
+}
+#payu-installment-calc .payu-slider .ui-slider-handle {
+  background: transparent url("http://www.raty.payu.pl/bundles/appfrontend/img/slider_bg_handle.png") no-repeat;
+  width: 25px;
+  height: 25px;
+  top: -3px;
+  box-shadow: none;
+  border: none;
+  border-radius: 0;
+}
+#payu-installment-calc #credit-insurance-checkbox {
+  background: transparent url("http://www.raty.payu.pl/bundles/appfrontend/img/interest-checkbox.png") 0 0 no-repeat;
+  width: 15px;
+  height:  15px;
+  bottom: -2px;
+}
+#payu-installment-calc #credit-insurance-checkbox.payu-checked {
+  background-position: 0 -20px;
+}
+#payu-installment-calc .payu-total-cost {
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  margin: 0;
+  overflow: hidden;
+}
+#payu-installment-calc .payu-total-cost p:first-child {
+  border: none;
+}
+#payu-installment-calc .payu-total-cost p {
+  float: left;
+  width: 152px;
+}
+#payu-installment-calc .payu-total-cost p > span {
+  background:  #4d4d4d;
+  padding: 10px;
+  margin: 8px 0;
+  width: 100%;
+  text-align: right;
+}
+#payu-installment-calc .payu-total-cost p span .payu-val {
+  color: #fff;
+}
+#payu-installment-calc #payu-credit-interest {
+  text-align: left;
+  margin:  0 0 20px;
+  font-family: 'AlwynPlMedium', sans-serif;
+  text-transform: lowercase;
+}
+#main
+{
+width: 1000px;
+margin: auto;
+height: 2340px;
+background: url('podglad.png');
+position: relative;
+}
+.hover
+{
+position: absolute;
+top: 754px;
+left: 87px;
+}
+
+p {font-size: 12px}
+.payu-left {float: left}
+.payu-right {float: right}
+#payu-installment-calc {
+    margin: 20px auto;
+    border: 1px solid #d4d4d4;
+    background: #fdfdfd;
+    border-radius: 5px;
+    padding: 25px 35px;
+    width: 368px;
+    color: #6f6f6f;
+}
+.payu-val {color: #00AEEF;font-size: 24px;}
+
+.payu-total-cost {
+    border: 1px solid #49c5f4;
+    background: #edf7fb;
+    border-radius: 5px;
+    margin: 32px 0 10px 0;
+}
+
+.payu-total-cost p {
+    margin: 0 !important;
+    padding: 16px;
+    overflow: hidden;
+    line-height: 18px;
+}
+
+.payu-total-cost p:first-child {
+    border-bottom: 1px solid #49c5f4;
+}
+
+.payu-slider {
+    clear: both;
+    height: 8px;
+    position: relative;
+    border-radius: 5px;
+    margin: 20px 0 10px;
+    background: #f6f6f6;
+    border: 1px solid #D9D6D6;
+    background: linear-gradient(top, #f6f6f6, #fff, #fafafa);
+    background: -o-linear-gradient(top, #f6f6f6, #fff, #fafafa);
+    background: -ms-linear-gradient(top, #f6f6f6, #fff, #fafafa);
+    background: -moz-linear-gradient(top, #f6f6f6, #fff, #fafafa);
+    background: -webkit-linear-gradient(top, #f6f6f6, #fff, #fafafa);
+}
+
+.payu-slider .ui-slider-range {
+    top: -1px;
+    left: -1px;
+    padding: 0;
+    height: 8px;
+    position: absolute;
+    border-radius: 5px 0 0 5px;
+    background: #00adee;
+    border: 1px solid #1c3f95;
+    background: linear-gradient(left, #00adee, #1c3f95);
+    background: -o-linear-gradient(left, #00adee, #1c3f95);
+    background: -ms-linear-gradient(left, #00adee, #1c3f95);
+    background: -moz-linear-gradient(left, #00adee, #1c3f95);
+    background: -webkit-linear-gradient(left, #00adee, #1c3f95);
+}
+
+.payu-slider .ui-slider-handle {
+    width: 22px;
+    height: 22px;
+    display: block;
+    margin-left: -11px;
+    top: -9px;
+    border-radius: 12px;
+    position: absolute;
+    background: #f3f3f3;
+    border: 1px solid #cccaca;
+    box-shadow: 0 0 4px #cccaca;
+    background: linear-gradient(top, #fff, #f3f3f3);
+    background: -o-linear-gradient(top, #fff, #f3f3f3);
+    background: -ms-linear-gradient(top, #fff, #f3f3f3);
+    background: -moz-linear-gradient(top, #fff, #f3f3f3);
+    background: -webkit-linear-gradient(top, #fff, #f3f3f3);
+}
+
+#payu-installment-calc hr {
+    border: none;
+    height: 1px;
+    background: #dbdbdb;
+    margin: 20px 0;
+}
+
+#payu-credit-interest {
+    font-size: 11px;
+    text-align: right;
+    margin: 10px 0;
+}
+
+#credit-insurance-checkbox {
+    width: 24px;
+    height: 24px;
+    bottom: -6px;
+    position: relative;
+    display: inline-block;
+    background: url('../images/interest-checkbox.png') 0 0 no-repeat;
+}
+
+#credit-insurance-checkbox.payu-checked {
+    background-position: 0 100%;
+}
+
+/* docks style*/
+#payu-installment-dock {
+    position: fixed;
+    top: 20%;
+    z-index: 9999;
+}
+
+#payu-installment-dock-handle {
+    float:left;
+    width: 60px;
+    height: 250px;
+    background: url('../images/sprites.png') no-repeat 0 0;
+}
+
+#payu-installment-dock-handle > div {
+    width: 60px;
+    height: 250px;
+    background: url('../images/sprites.png') no-repeat 0 -250px;
+}
+
+#payu-installment-dock-content {
+    float: left;
+    background: #028fcc url('../images/dock_bg.png') no-repeat center center;
+    width: 250px;
+    height: 250px;
+    font-family: Arial, tahoma, sans-serif;
+    font-size:14px;
+    color:white;
+}
+
+#payu-installment-dock-content a,
+#payu-installment-dock-content a:link,
+#payu-installment-dock-content a:visited {
+    font-size: 11px;
+    color: #233588;
+    text-decoration: underline;
+}
+
+#payu-installment-dock-content a:hover {
+    text-decoration: none;
+}
+
+#payu-installment-dock-content ul {
+    list-style-image: url('../images/dock_list_tip.png');
+    padding-left:35px;
+    line-height: 150%;
+    text-shadow: 1px 2px #007eb4;
+}
+
+#payu-installment-dock-content li {
+    margin: 7px 0;
+}
+
+#payu-installment-dock-content > .payu-installment-dock-logo > img {
+    margin: 40px 0 0 20px;
+    border: 0;
+}
+
+#payu-installment-dock-content > .payu-installment-dock-details {
+    float:right;
+    margin:20px 20px 0 0;
+}
+
+/* themes */
+.payu-theme-gray #payu-installment-dock #payu-installment-dock-content {
+    background-image: url('../images/dock_bg_gray.png');
+    background-color: #a1a3a4;
+}
+
+.payu-theme-gray #payu-installment-dock #payu-installment-dock-content ul {
+    text-shadow: 1px 2px #8c8c8c;
+}
+
+.payu-theme-gray #payu-installment-dock a {
+    color: #3e3e3e;
+}
+
+.payu-theme-gray #payu-installment-dock #payu-installment-dock-handle {
+    background-position: -60px 0;
+}
+
+#oblicz{
+  margin-top: 25px;
+margin-bottom: 25px;
+}
+
+#centrowanie
+{
+  width: 900px;
+  margin: 0 auto;
+}
+#centrowanie .l
+{
+  float: left;
+}

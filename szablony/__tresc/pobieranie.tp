@@ -1,0 +1,107 @@
+<!-- wyglad naglowka strony -->
+
+<h1 class="StrNaglowek">
+    <span>{__TLUMACZ:PLIKI_ONLINE} - {__TLUMACZ:NAGLOWEK_HISTORIA_ZAMOWIENIA} - {__NUMER_ZAMOWIENIA}</span>
+</h1>
+
+<!-- tresc strony -->
+
+<section class="StrTresc">
+
+    <!-- czy mozna pobrac pliki czy jest zly status -->
+    
+    <?php if ( is_array($__pA) || is_array($__pB) ) { ?>
+
+        <div class="Ramka Sekcja">
+        
+            <!-- pliki w formie elektronicznej -->
+            
+            <?php
+            $PlikiZamowienia = $__pA;
+            $KodyLicencyjne = $__pB;
+            $HashKod = $__pD;
+            ?> 
+            
+            <?php if ( count($PlikiZamowienia) > 0 ) { ?>
+        
+                <div class="TytulSekcji">{__TLUMACZ:PLIKI_DO_POBRANIA}</div>
+
+                <?php
+                foreach ( $PlikiZamowienia as $Plik ) {
+                ?>
+                
+                <div class="TrescSekcji PozycjaLinkElektroniczny">
+                
+                    <a href="<?php echo $Plik['plik_pobrania'] . $HashKod; ?>"><?php echo $Plik['nazwa_pliku']; ?></a>
+                    
+                </div>    
+                
+                <?php
+                }
+                ?>
+                
+            <?php } ?>
+            
+            <?php if ( count($KodyLicencyjne) > 0 ) { ?>
+        
+                <div class="TytulSekcji">{__TLUMACZ:KODY_DO_POBRANIA}</div>
+
+                <?php
+                foreach ( $KodyLicencyjne as $Kody ) {
+                ?>
+                
+                <div class="TrescSekcji">
+                
+                    <a href="<?php echo $Kody['adres_url']; ?>"><?php echo $Kody['nazwa_produktu']; ?></a>
+                    
+                    <div style="font-weight:bold; padding:8px 0px 8px 0px">
+                        <?php echo $Kody['kody']; ?>
+                    </div>
+                    
+                </div>    
+                
+                <?php
+                }
+                ?>
+                
+            <?php } ?>  
+
+            <?php if ( count($PlikiZamowienia) == 0 && count($KodyLicencyjne) == 0 ) { ?>
+            
+                {__TLUMACZ:BRAK_DANYCH_DO_WYSWIETLENIA}
+            
+            <?php } ?>
+            
+            <?php
+            unset($PlikiZamowienia, $KodyLicencyjne, $HashKod);
+            ?>
+            
+        </div>
+    
+    <?php } else { ?>
+    
+        <p class="Informacja">
+            {__BLAD_POBIERANIA_PLIKOW}
+        </p>    
+    
+    <?php } ?>
+
+    <div class="cl"></div>
+    
+    <!-- przycisk powrotu do panelu klienta - tylko jezeli klient jest zalogowany -->
+    
+    <?php 
+    $Zalogowany = $__pC; 
+    
+    if ( $Zalogowany == 'tak' ) {
+    ?>
+
+    <a href="{__SSL:panel-klienta.html}" class="przycisk Prawy">{__TLUMACZ:PRZYCISK_PANEL_KLIENTA}</a>   
+    
+    <?php } ?>
+
+    <div class="cl"></div>
+
+</section>
+
+

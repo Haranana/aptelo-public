@@ -1,0 +1,110 @@
+<!-- wyglad naglowka strony -->
+
+<?php
+$Artykul = $__pA;
+$KategoriaArtykulu = $__pB;
+?>
+
+<article {__DANE_STRUKTURALNE_ITEMPROP_SCHEMA_ORG}>
+
+    <h1 class="StrNaglowek">
+        <span {__DANE_STRUKTURALNE_NAZWA}>{__NAGLOWEK_ARTYKULU}</span>  
+    </h1>
+
+    <!-- tresc strony -->
+
+    <div class="StrTresc">
+
+        <!-- data dodania artykilu i ilosc odslon (wyswietlane jezeli sa wlaczona w konfiguracji) -->
+
+        <span class="DaneAktualnosci">
+            {__TRESC_ARTYKULU_AUTOR}
+            {__TRESC_ARTYKULU_DATA_DODANIA}
+            {__TRESC_ARTYKULU_ILOSC_ODSLON}
+        </span>  
+        
+        {__DANE_STRUKTURALNE_POZOSTALE}
+
+        <!-- podziel sie -->
+        
+        <?php if (INTEGRACJA_PODZIEL_SIE_WLACZONY == 'tak' && strpos((string)INTEGRACJA_PODZIEL_SIE_STRONY, 'artyku') > -1) { ?>    
+
+            <ul id="PodzielSieAktualnosci">            
+                <?php if ( isset($Artykul['podziel_sie']['Facebook']) ) { ?>            
+                <li><a class="facebook" href="https://www.facebook.com/sharer/sharer.php?u={__ADRES_STRONY_ARTYKULU}" rel="nofollow" title="{__TLUMACZ:PODZIEL_SIE_LINK_AKTUALNOSCI} Facebook"></a></li>
+                <?php } ?>
+                <?php if ( isset($Artykul['podziel_sie']['Twitter']) ) { ?>            
+                <li><a class="twitter" href="http://twitter.com/share?url={__ADRES_STRONY_ARTYKULU}&amp;text={__NAZWA_ARTYKULU_PODZIEL_SIE}" rel="nofollow" title="{__TLUMACZ:PODZIEL_SIE_LINK_AKTUALNOSCI} Twitter"></a></li>
+                <?php } ?>
+                <?php if ( isset($Artykul['podziel_sie']['Pinterest']) ) { ?>            
+                <li><a class="pinterest" href="https://pinterest.com/pin/create/button/?url={__ADRES_STRONY_ARTYKULU}&amp;media={__URL_ZDJECIE_DUZE}&amp;description={__NAZWA_ARTYKULU_PODZIEL_SIE}" title="{__TLUMACZ:PODZIEL_SIE_LINK_AKTUALNOSCI} Pinterest"></a></li>
+                <?php } ?>
+                <?php if ( isset($Artykul['podziel_sie']['LinkedIn']) ) { ?>
+                <li><a class="linkedin" href="https://www.linkedin.com/shareArticle?mini=true&amp;url={__ADRES_STRONY_ARTYKULU}&amp;title={__NAZWA_ARTYKULU_PODZIEL_SIE}" title="{__TLUMACZ:PODZIEL_SIE_LINK_AKTUALNOSCI} LinkedIn"></a></li>
+                <?php } ?>
+                <?php if ( isset($Artykul['podziel_sie']['Wykop']) ) { ?>
+                <li><a class="wykop" href="http://www.wykop.pl/dodaj/link/?url={__ADRES_STRONY_ARTYKULU}&amp;title={__NAZWA_ARTYKULU_PODZIEL_SIE}" rel="nofollow" title="{__TLUMACZ:PODZIEL_SIE_LINK_AKTUALNOSCI} Wykop.pl"></a></li> 
+                <?php } ?>            
+            </ul>   
+
+            <div class="cl"></div>
+                
+        <?php } ?>    
+
+        <!-- tresc skrocona artykulu (wyswietla sie jezeli jest wlaczona w konfiguracji) -->
+
+        <div {__DANE_STRUKTURALNE_TRESC}>
+
+            {__TRESC_ARTYKULU_KROTKI}
+            
+            <!-- tresc pelna artykulu -->
+
+            {__TRESC_ARTYKULU}
+            
+        </div>
+
+        <?php if ( $Artykul['status_komentarzy'] == 'tak' ) { ?>
+        
+            <div class="TytulKomentarze LiniaGorna">{__TLUMACZ:KOMENTARZE} ({__KOMENTARZE_ILOSC})</div>
+            
+            <?php if ( count($Artykul['komentarze']) > 0 ) { 
+            
+                foreach ( $Artykul['komentarze'] as $Komentarz ) {   
+                    //
+                    echo '<div class="KomentarzArtykul">
+                            <b>' . $Komentarz['nick'] . '</b> <span>' . $Komentarz['data'] . '</span>
+                            <div class="KomentarzKlienta">' . $Komentarz['komentarz'] . '</div>
+                            ' . ((!empty($Komentarz['odpowiedz'])) ? '<div class="KomentarzOdpowiedz"><span>{__TLUMACZ:ODPOWIEDZ_SKLEPU}</span>' . $Komentarz['odpowiedz'] . '</div>' : '') . '
+                          </div>';
+                    //
+                }
+                
+            }
+            ?>  
+            
+            <div id="NapiszKomentarz"></div>
+            
+            {__KOD_JS_FORMULARZA}
+            
+        <?php } ?>
+            
+        <br />
+        
+        <!-- przycisk powrotu do strony glownej -->
+
+        <a href="/" class="przycisk Prawy">{__TLUMACZ:PRZYCISK_DO_STRONY_GLOWNEJ}</a>   
+        
+        <!-- przycisk powrotu do kategorii artykulu -->
+        
+        <?php if ( count($KategoriaArtykulu) > 0 ) { ?>
+        
+            <a href="<?php echo $KategoriaArtykulu['seo']; ?>" class="przycisk Prawy">{__TLUMACZ:COFNIJ_DO_KATEGORII} <?php echo $KategoriaArtykulu['nazwa']; ?></a>   
+            
+        <?php } ?>
+        
+        <div class="cl"></div>
+
+    </div>
+
+</article>
+

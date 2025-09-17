@@ -1,0 +1,214 @@
+RewriteEngine On
+RewriteBase /
+
+RewriteRule ^index.(php|html|htm)$ / [L,R=302,NC,NE]
+RewriteCond %{REQUEST_FILENAME} !-f 
+RewriteCond %{REQUEST_FILENAME} !-d
+
+#RewriteRule ^([a-z0-9-_]+)/index.(php|html|htm)$ /$1/ [R=301,L]
+
+# kategorie produktow i produkty producentow
+RewriteRule ^(.*)-c-([0-9-_]+).html(.*)$ listing.php?idkat=$2&%{QUERY_STRING} [L]
+RewriteRule ^(.*)-m-([0-9-_]+).html(.*)$ listing.php?idproducent=$2&%{QUERY_STRING} [L]
+
+# produkty
+RewriteRule ^(.*)-p-([0-9-_]+).html(.*)$ produkt.php?idprod=$2&%{QUERY_STRING} [L]
+RewriteRule ^pobierz-([a-z0-9-_]+)-([0-9]+).html$ inne/pobieranie.php?tok=$1&id=$2 [L]
+RewriteRule ^(.*)-kartapdf-([0-9]+).html$ pdf/karta_produktu.php?id_poz=$2 [L]
+
+# producenci
+RewriteRule ^producenci.html$ producenci.php%{QUERY_STRING} [L]
+
+# kategorie
+RewriteRule ^kategorie.html$ kategorie.php%{QUERY_STRING} [L]
+
+# wyszukiwanie
+RewriteRule ^szukaj.html(.*)$ szukaj.php?%{QUERY_STRING} [L]
+
+# wyszukiwanie zaawansowane
+RewriteRule ^wyszukiwanie-zaawansowane.html$ wyszukiwanie_zaawansowane.php [L]
+
+# chmura tagow
+RewriteRule ^wyszukiwanie-(.*).html$ szukaj.php?szukaj=$1 [L]
+
+#potwierdzenie i wypisanie z newslettera
+RewriteRule ^newsletter-potwierdzenie.html(.*)$ newsletter.php?email=$1&akcja=potwierdz [L]
+RewriteRule ^newsletter-wypisz.html(.*)$ newsletter.php?email=$1&akcja=usun [L]
+RewriteRule ^mailing-wypisz.html(.*)$ newsletter.php?email=$1&akcja=mailing [L]
+
+#produkty - katalog produktow
+RewriteRule ^produkty.html(.*)$ produkty.php?%{QUERY_STRING} [L]
+
+# promocje
+RewriteRule ^promocje.html(.*)$ promocje.php?%{QUERY_STRING} [L]
+
+# wyprzedaz
+RewriteRule ^wyprzedaz.html(.*)$ wyprzedaz.php?%{QUERY_STRING} [L]
+
+# nowosci
+RewriteRule ^nowosci.html(.*)$ nowosci.php?%{QUERY_STRING} [L]
+
+# produkty polecane
+RewriteRule ^polecane.html(.*)$ polecane.php?%{QUERY_STRING} [L]
+
+# hity
+RewriteRule ^hity.html(.*)$ hity.php?%{QUERY_STRING} [L]
+
+# bestsellery
+RewriteRule ^bestsellery.html(.*)$ bestsellery.php?%{QUERY_STRING} [L]
+
+# produkty oczekiwane
+RewriteRule ^oczekiwane.html(.*)$ oczekiwane.php?%{QUERY_STRING} [L]
+
+# bannery
+RewriteRule ^reklama-b-([0-9]+).html?$ reklama.php?id=$1&%{QUERY_STRING} [L]
+
+# historia zamowienia 
+RewriteRule ^zamowienia-przegladaj.html(.*)$ zamowienia_przegladaj.php?%{QUERY_STRING} [L]
+RewriteRule ^zamowienia-szczegoly-zs-([0-9]+).html(.*)$ zamowienia_szczegoly.php?id=$1&%{QUERY_STRING} [L]
+RewriteRule ^zamowienia-szczegoly-pdf-([0-9]+).html(.*)$ pdf/zamowienie.php?id_poz=$1&%{QUERY_STRING} [L]
+RewriteRule ^zamowienia-faktura-pdf-([0-9]+).html(.*)$ pdf/faktura.php?id_poz=$1&%{QUERY_STRING} [L]
+RewriteRule ^produkty-przegladaj.html/?$ produkty_przegladaj.php [L]
+
+# rejestracja klienta
+RewriteRule ^rejestracja.html/?$ rejestracja.php?%{QUERY_STRING} [L]
+RewriteRule ^aktywacja-konta.html(.*)$ aktywacja_konta.php?%{QUERY_STRING} [L]
+
+# logowanie i przypomnienie hasla
+RewriteRule ^logowanie.html/?$ logowanie.php?%{QUERY_STRING} [L]
+RewriteRule ^przypomnienie-hasla.html(.*)$ przypomnienie_hasla.php?%{QUERY_STRING} [L]
+
+# panel klienta
+RewriteRule ^panel-klienta.html/?$ panel_klienta.php?%{QUERY_STRING} [L]
+RewriteRule ^dane-adresowe.html/?$ dane_adresowe.php?%{QUERY_STRING} [L]
+RewriteRule ^adresy-dostawy.html/?$ adresy_dostawy.php?%{QUERY_STRING} [L]
+RewriteRule ^adres-dostawy-usun-ad-([0-9]+).html/?$ adresy_dostawy.php?usun=$1 [L]
+RewriteRule ^adres-dostawy-zmien-ad-([0-9]+).html/?$ adres_dostawy_edycja.php?id_poz=$1 [L]
+RewriteRule ^adres-dostawy-domyslny-ad-([0-9]+).html/?$ adresy_dostawy.php?domyslny=$1 [L]
+RewriteRule ^zmiana-hasla.html/?$ zmiana_hasla.php?%{QUERY_STRING} [L]
+RewriteRule ^panel-klienta-pobierz-([a-zA-Z0-9-=_]+).html$ inne/pobieranie_panel_klienta.php?id=$1 [L]
+
+# podglad zapisanego koszyka
+RewriteRule ^koszyk-szczegoly-zk-([0-9]+).html/?$ koszyk_szczegoly.php?id_poz=$1 [L]
+
+# program partnerski
+RewriteRule ^pp-bannery.html/?$ pp_bannery.php?%{QUERY_STRING} [L]
+RewriteRule ^pp-sklep-([a-z]+).html(.*)$ partner.php?id=$1&%{QUERY_STRING} [L]
+
+# wylogowanie
+RewriteRule ^wylogowanie.html$ wylogowanie.php [L]
+
+# reklamacje
+RewriteRule ^reklamacje-napisz.html(.*)$ reklamacje_napisz.php?%{QUERY_STRING} [L]
+RewriteRule ^reklamacje-napisz-sukces.html(.*)$ reklamacje_napisz.php?sukces&%{QUERY_STRING} [L]
+RewriteRule ^reklamacje-przegladaj.html/?$ reklamacje_przegladaj.php?%{QUERY_STRING} [L]
+RewriteRule ^reklamacje-szczegoly-rs-([A-Z0-9]+).html(.*)$ reklamacje_szczegoly.php?id=$1&%{QUERY_STRING} [L]
+
+# zwroty
+RewriteRule ^zwroty-produktow-napisz.html(.*)$ zwroty_produktow_napisz.php?%{QUERY_STRING} [L]
+RewriteRule ^zwroty-produktow-napisz-sukces.html(.*)$ zwroty_produktow_napisz.php?sukces&%{QUERY_STRING} [L]
+RewriteRule ^zwroty-produktow-przegladaj.html/?$ zwroty_produktow_przegladaj.php?%{QUERY_STRING} [L]
+RewriteRule ^zwroty-produktow-szczegoly-zp-([A-Z0-9-]+).html(.*)$ zwroty_produktow_szczegoly.php?id=$1&%{QUERY_STRING} [L]
+
+# strona informacyjna 
+RewriteRule ^(.*)-pm-([0-9]+).html/?$ strona_informacyjna.php?id=$2&%{QUERY_STRING} [L]
+
+# artykul kategorii 
+RewriteRule ^(.*)-n-([0-9]+).html/?$ artykul.php?idartykul=$2&%{QUERY_STRING} [L]
+
+# kategoria z artykulami 
+RewriteRule ^(.*)-nc-([0-9]+).html(.*)$ kategoria_artykulow.php?idkatart=$2&%{QUERY_STRING} [L]
+
+# ankiety 
+RewriteRule ^(.*)-a-([0-9]+).html/?$ ankieta.php?ida=$2&%{QUERY_STRING} [L]
+
+# recenzje 
+RewriteRule ^recenzje.html(.*)$ recenzje.php?%{QUERY_STRING} [L]
+RewriteRule ^(.*)-r-([0-9]+).html/?$ recenzja.php?id=$2&%{QUERY_STRING} [L]
+RewriteRule ^(.*)-rw-([0-9]+).html(.*)$ napisz_recenzje.php?id=$2&%{QUERY_STRING} [L]
+# sukces wyslania recenzji
+RewriteRule ^(.*)-rws-([0-9]+).html(.*)$ napisz_recenzje.php?sukces=1&id=$2&%{QUERY_STRING} [L]
+
+# opinie o sklepie
+RewriteRule ^opinie-o-sklepie.html(.*)$ opinie.php?%{QUERY_STRING} [L]
+RewriteRule ^napisz-opinie-o-sklepie.html(.*)$ napisz_opinie.php%{QUERY_STRING} [L]
+# sukces wyslania opinii
+RewriteRule ^napisz-opinie-o-sklepie-sukces.html/?$ napisz_opinie.php?sukces=1 [L]
+
+# galeria 
+RewriteRule ^(.*)-g-([0-9]+).html(.*)$ galeria.php?id=$2&%{QUERY_STRING} [L]
+
+# formularz 
+RewriteRule ^(.*)-f-([0-9]+).html(.*)$ formularz.php?id=$2&%{QUERY_STRING} [L]
+#sukces wyslania formularza
+RewriteRule ^(.*)-fs-([0-9]+).html(.*)$ formularz.php?sukces=1&id=$2&%{QUERY_STRING} [L]
+
+# schowek
+RewriteRule ^schowek.html$ schowek.php [L]
+
+# koszyk
+RewriteRule ^koszyk.html(.*)$ koszyk.php?id_koszyka=$1 [L]
+RewriteRule ^pdf-szczegoly-koszyka.html$ pdf/koszyk.php [L]
+
+# cennik
+RewriteRule ^cennik.html(.*)$ cennik.php?typ=$2 [L]
+RewriteRule ^pobierz-cennik.html(.*)$ cennik.php?typ=$2%{QUERY_STRING} [L]
+
+# blad 404 i nie odnaleziono strony
+RewriteRule ^brak-strony.html/?$ brak_strony.php?kod=BLAD_404 [L]
+RewriteRule ^blad-([0-9]+).html/?$ brak_strony.php?kod=BLAD_$1&%{QUERY_STRING} [L]
+
+# zamowienie realizacja
+RewriteRule ^zamowienie-logowanie.html(.*)$ zamowienie_logowanie.php [L]
+RewriteRule ^zamowienie-potwierdzenie.html(.*)$ zamowienie_potwierdzenie.php [L]
+RewriteRule ^zamowienie-podsumowanie.html(.*)$ zamowienie_podsumowanie.php [L]
+RewriteRule ^haslo-przypomnienie.html(.*)$ haslo_przypomnienie.php [L]
+RewriteRule ^zamowienie-zmien-dane.html(.*)$ zamowienie_zmien_dane.php [L]
+
+# sprzedaz elektroniczna
+RewriteRule ^(.*)-d-([0-9]+).html(.*)$ pobieranie.php?id=$2&%{QUERY_STRING} [L]
+
+#logowanie facebook
+RewriteRule ^logowanie-facebook.html$ programy/socialMedia/socialmedia.php?provider=Facebook&powrot=logowanie [L]
+RewriteRule ^rejestracja-facebook.html$ programy/socialMedia/socialmedia.php?provider=Facebook&powrot=rejestracja [L]
+RewriteRule ^polacz-facebook.html$ programy/socialMedia/socialmedia.php?provider=Facebook&powrot=dane_adresowe [L]
+RewriteRule ^rozlacz-facebook.html$ inne/socialmedia.php?usun=Facebook [L]
+
+#logowanie google
+RewriteRule ^logowanie-google.html$ programy/socialMedia/socialmedia.php?provider=Google&powrot=logowanie [L]
+RewriteRule ^rejestracja-google.html$ programy/socialMedia/socialmedia.php?provider=Google&powrot=rejestracja [L]
+RewriteRule ^polacz-google.html$ programy/socialMedia/socialmedia.php?provider=Google&powrot=dane_adresowe [L]
+RewriteRule ^rozlacz-google.html$ inne/socialmedia.php?usun=Google [L]
+
+#zmiana cookies
+RewriteRule ^ustawienia-cookies.html$ zmiana_cookies.php [L]
+
+ErrorDocument 400 /blad.php
+ErrorDocument 401 /blad.php
+ErrorDocument 403 /blad.php
+ErrorDocument 404 /brak_strony.php?kod=BLAD_404
+ErrorDocument 500 /blad.php
+ErrorDocument 503 /blad.php
+
+RewriteCond %{HTTP_USER_AGENT} ^Morfeus
+RewriteRule ^.*$ - [F]
+RewriteCond %{HTTP_USER_AGENT} twiceler [NC]
+RewriteRule .*   - [F]
+RewriteCond %{HTTP_USER_AGENT} YandexBot [NC]
+RewriteRule .*   - [F]
+RewriteCond %{HTTP_USER_AGENT} Baiduspider+ [NC]
+RewriteRule .*   - [F]
+RewriteCond %{HTTP_USER_AGENT} Yahoo! [NC]
+RewriteRule .*   - [F]
+RewriteCond %{HTTP_USER_AGENT} Yeti [NC]
+RewriteRule .*   - [F]
+RewriteCond %{HTTP_USER_AGENT} KSCrawler [NC]
+RewriteRule .*   - [F]
+RewriteCond %{HTTP_USER_AGENT} DotBot [NC]
+RewriteRule .*   - [F]
+RewriteCond %{HTTP_USER_AGENT} YandexBot^ [NC]
+RewriteRule .*   - [F]
+RewriteCond %{HTTP_USER_AGENT} AhrefsBot [NC]
+RewriteRule .*   - [F]
+RewriteCond %{HTTP_USER_AGENT} PeekBot [NC]
+RewriteRule .*   - [F]

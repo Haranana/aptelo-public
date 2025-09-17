@@ -1,0 +1,58 @@
+/* obsluga okna kategorii */
+.OknoKategoriiKontener { margin-bottom:10px; border:1px solid #c1c1c1; padding:2px; -moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px; -khtml-border-radius:4px; }
+.OknoNaglowek { background:url('../obrazki/tlo.png') repeat-x left bottom; text-shadow:#fff 1px 1px 1px; font-weight:bold; color:#2b595b; }
+@media only screen and (max-width:1023px) { 
+ .OknoNaglowek { padding:5px 7px 5px 7px; }
+ .OknoNaglowek .RozwinKategorie { cursor:pointer; padding:5px 0px 5px 0px; display:block; background:url('../obrazki/menu_rozwijane_ciemne.png') no-repeat right center; font-size:130%; text-transform:uppercase; letter-spacing:2px; }
+ .OknoKategoriiKontener .OknoKategorii { display:none; }
+}
+@media only screen and (min-width:1024px) { 
+ .OknoNaglowek { padding:10px 7px 10px 7px; }
+}
+
+/* lista kategorii do jakich jest przypisany produkt */
+.MaleInfoKat { display:block; padding:9px 0px 9px 25px; font-weight:normal; background:url('../obrazki/kategoria.png') no-repeat left center; }
+
+/* nr katalogowy */
+.MaleNrKatalogowy { display:block; padding-top:3px; padding-bottom:2px; font-weight:normal; color:#5b5a5a; }
+
+/* producent */
+.MaleProducent { display:block; padding-top:3px; padding-bottom:2px; font-weight:normal; color:#29682c; }
+
+.WynikProduktowPodobne { margin:0px 0px 20px 10px; }
+.WynikProduktowPodobne span { display:block; padding-bottom:10px; font-weight:bold; }
+
+@media only screen and (max-width:1023px) { 
+  .GlownyListingKategorieEdycja { margin-right:10px; }
+}
+@media only screen and (min-width:1024px) { 
+  .GlownyListingKategorieEdycja { display:table-cell; width:30%; vertical-align:top; }
+  .GlownyListingProduktyEdycja { display:table-cell; width:70%; vertical-align:top; }
+}
+
+.WybranyProdukt { padding:2px; margin-bottom:10px; }
+.WybranyProdukt .WynikNaglowek { font-family:Inder, Arial; font-size:130%; }
+.WynikProduktowLista { margin:0px 0px 20px 10px; }
+.WynikProduktowLista span { display:block; padding-bottom:10px; font-weight:bold; }
+.WynikRamka { border:1px solid #c1c1c1; margin:0px 8px 10px 8px; -moz-border-radius:4px; -webkit-border-radius:4px; -khtml-border-radius:4px; border-radius:4px; overflow:hidden; }
+
+/* lista produktow */
+.WynikNaglowek { display:block; padding-top:4px; padding-left:3px; }
+.WynikNaglowekDodanie { font-family:Inder, Arial; font-size:130%; display:block; padding:10px; color:#ff0000; }
+.WynikNaglowekBrak { display:block; }
+.WynikNaglowekBrak span { background:url('../obrazki/awaria_maly.png') no-repeat left center; padding:5px 0px 5px 30px !important; font-weight:bold; margin:5px 0px 0px 10px; }
+#WynikPrzewijany { max-height:300px; overflow-y:scroll; border:1px solid #c1c1c1; margin-right:10px; -moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px; -khtml-border-radius:4px; }
+.TabelaProdukt { color:#3f5d6b; width:100%; border:0px; }
+.TabelaProdukt td { border:3px solid #fff; text-align:center; }
+.TabelaProdukt .prot td { background:#f4f2f2; padding:4px; text-decoration:none; }
+.TabelaProdukt span { white-space:nowrap; display:block; padding:5px; background:#e5e5e5; font-weight:normal; color:#3f5d6b; text-decoration:none; }
+
+/* status jezeli kategoria jest wylaczona */
+.wylKat { background: url("../obrazki/uwaga_mala.png") no-repeat top center; display:inline-block; padding:2px; padding-top:15px; }
+
+/* zaznaczenie produktow w akcesoriach i podobnych */
+.ZaznaczWybraneLista { margin:15px 8px 5px 28px; padding-left:25px; background:url('../obrazki/strzalka.png') no-repeat left center; }
+.ZaznaczWybraneLista div { cursor:pointer; display:inline-block; margin:0px 8px 0px 8px; color:#6e6e6e; }
+.ZaznaczWybraneLista div:hover { color:#ff0000; }
+.WybierzProdukty { margin:0px 0px 0px 18px; }
+.WybierzProdukty button { padding:8px 5px 8px 5px; }

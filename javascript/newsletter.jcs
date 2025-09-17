@@ -1,0 +1,289 @@
+var czasNewsletter = setTimeout('NewsletterCzas()', 1000);
+
+function sprNewsletter(formularz, tryb){
+    //
+    var blad = false;
+    //
+    // dla boxu
+    if ( ( $('#zgoda_newsletter_marketing_box').length && $('#zgoda_newsletter_info_handlowa_box').length ) && tryb == 'box' ) {
+         //
+         if ( !$('#zgoda_newsletter_marketing_box').prop('checked') || !$('#zgoda_newsletter_info_handlowa_box').prop('checked') ) {
+              //              
+              $('#BladDanychNewsletterBox').fadeIn();
+              clearTimeout(czasNewsletter);
+              czasNewsletter = setTimeout('zamknijNewsletterBladBox()', 4000);
+              blad = true;
+              //
+         }
+         //
+    }
+    //
+    // dla modulu
+    if ( ( $('#zgoda_newsletter_marketing_modul').length && $('#zgoda_newsletter_info_handlowa_modul').length ) && tryb == 'modul' ) {
+         //
+         if ( !$('#zgoda_newsletter_marketing_modul').prop('checked') || !$('#zgoda_newsletter_info_handlowa_modul').prop('checked') ) {
+              //              
+              $('#BladDanychNewsletterModul').fadeIn();
+              clearTimeout(czasNewsletter);
+              czasNewsletter = setTimeout('zamknijNewsletterBladModul()', 4000);
+              blad = true;
+              //
+         }
+         //
+    }    
+    //
+    if ( blad == false ) {
+         //
+         PreloadWlacz();
+         //
+         Form = $(formularz);
+         //
+         var sear = $(Form).serialize(); 
+         $.post("inne/do_newslettera.php?tok={__TOKEN_NEWSLETTER}", { data: sear }, function(data) { 
+         
+            PreloadWylaczSzybko();
+            var myModal = new jBox('Modal',{ 
+                content : '<div class="message">'+data+'</div>',
+                closeButton: false,
+                closeOnEsc: false,
+                closeOnMouseleave: false,
+                closeOnClick: false,
+                onOpen: function () {
+                    const popupElement = this.wrapper;
+                    setTimeout(function () {
+                        initFocusTrap(popupElement);
+                    }, 50);
+                }      
+            });
+            myModal.open();
+
+         });
+         //
+    }
+    //
+    return false;
+}
+
+function wypiszNewsletter(formularz){
+    //
+    Form = $('#' + formularz);
+    if ( formularz == undefined ) {
+         Form = $('#newsletter');
+    }
+    //
+    var sear = $(Form).serialize(); 
+    $.post("inne/do_newslettera.php?tok={__TOKEN_NEWSLETTER}", { data: sear, wypisz: 'tak' }, function(data) { 
+        var myModal = new jBox('Modal',{ 
+            content : '<div class="message">'+data+'</div>',
+            closeButton: false,
+            closeOnEsc: false,
+            closeOnMouseleave: false,
+            closeOnClick: false,
+            onOpen: function () {
+                const popupElement = this.wrapper;
+                setTimeout(function () {
+                    initFocusTrap(popupElement);
+                }, 50);
+            }      
+        });
+        myModal.open();
+
+    });
+    return false;
+}
+
+$(document).ready(function() {
+
+    // wlacza przycisk submit jesli dziala u klienta javascript
+    $('#submitNewsletter').removeAttr('disabled');
+    $("#submitNewsletter").attr('class', 'przycisk'); 
+    
+    $('#submitUnsubscribeNewsletter').removeAttr('disabled');
+    $("#submitUnsubscribeNewsletter").attr('class', 'przycisk');        
+    
+    // wlacza przycisk newsletter w module
+    $('#submitNewsletterModul').removeAttr('disabled');
+    $("#submitNewsletterModul").attr('class', 'przycisk');     
+
+    $('#submitUnsubscribeNewsletterModul').removeAttr('disabled');
+    $("#submitUnsubscribeNewsletterModul").attr('class', 'przycisk');    
+    
+    zakladkaNewsletterPopup();
+
+});
+
+function zakladkaNewsletterPopup() {
+  
+    $('#ZakladkaNewsletterOkno').click(function() {
+      
+        $('#InfoNewsletter').remove();
+        $('#InfoNewsletterOkno').remove();
+        $('#ZakladkaNewsletterOkno').remove();
+
+        PreloadWlacz();
+        $.post("moduly_stale/newsletter_popup.php", { data: 'link' }, function(data) { 
+            //
+            PreloadWylaczSzybko(); 
+            BylModulStaly = false;
+            $('body').append(data);
+            $.NewsletterPopup('ajax');
+            //
+            PokazNewsPop();
+            //
+            zakladkaNewsletterPopup();
+            //
+        });        
+      
+    });  
+
+}    
+
+/* wersja popup w modulach stalych */
+
+function sprNewsletterPopup(formularz){
+    //
+    PreloadWlacz();
+    //
+    Form = $(formularz);
+    //
+    var sear = $(Form).serialize(); 
+    $.post("inne/do_newslettera.php?tok={__TOKEN_NEWSLETTER}", { data: sear }, function(data) { 
+        //
+        PreloadWylaczSzybko();
+        //
+        $('#BladDanych').html(data);
+        $('#BladDanych').fadeIn();
+        //
+        if ( $('#BladDanych').html().indexOf('DodanyNewsletter') > 0 ) {
+             $('.UkryjPopUpNewsletter').hide();
+             $('#ZakonczNewsletter').fadeIn();
+             clearTimeout(czasNewsletter);
+             
+             //if ( $('#edrone_kod').length ) {
+             //     czasNewsletter = setTimeout('zamknijNewsletter(0)', 2000);
+             // } else {
+                  //czasNewsletter = setTimeout('zamknijNewsletter(0)', 4000);
+             //}
+           } else {
+             clearTimeout(czasNewsletter);
+             czasNewsletter = setTimeout('zamknijNewsletterBlad()', 4000);
+        }
+        //
+    });
+    return false;
+}
+
+function zamknijNewsletter(rezygnacja) {
+    //
+    $('#InfoNewsletter').stop().fadeOut('fast');
+    $('#InfoNewsletterOkno').stop().fadeOut('fast');
+    //
+    // jezeli jest zamkniejcie okna newsletter
+    if ( $('#ZakladkaNewsletterOkno').length ) {
+         //
+         if ( rezygnacja == 1 ) {
+            document.cookie = "newsletterPopup=zwin; path=/";
+         }         
+         //
+         if ( $('#edrone_kod').length ) {
+              window.location.reload();              
+         } else {
+              $('#ZakladkaNewsletterOkno').fadeIn('fast');
+              $('#ZakladkaNewsletterOkno').remove();
+         }
+         //
+    } else {
+         //
+         if ( rezygnacja == 1 ) {
+            document.cookie = "newsletterPopup=tak; path=/";
+         }             
+         //
+    }
+    //
+}
+
+function zamknijNewsletterBlad() {
+    //
+    $('#BladDanych').fadeOut('fast');
+    //
+}
+
+function zamknijNewsletterBladBox() {
+    //
+    $('#BladDanychNewsletterBox').fadeOut('fast');
+    //
+}
+
+function zamknijNewsletterBladModul() {
+    //
+    $('#BladDanychNewsletterModul').fadeOut('fast');
+    //
+}
+
+function NewsletterCzas() { }
+
+(function($) {
+
+    $.NewsletterPopup = function(tryb) {
+        //
+        $(document).ready(function() {
+
+            // wlacza przycisk submit jesli dziala u klienta javascript
+            $('#submitNewsletterPopup').removeAttr('disabled');
+            $("#submitNewsletterPopup").attr('class', 'przycisk'); 
+            
+            textZastap($('#emailNewsletterPopup'));
+            
+            $('#NewsletterZamknij span').click(function() {
+               zamknijNewsletter(1);
+            });
+            
+            // zamyka newsletter wcisnieciem esc
+            $(document).keyup(function(e) {
+                if (e.keyCode == 27) { 
+                    zamknijNewsletter(1);
+                }
+            });
+            
+            if ( BylModulStaly == true && tryb != 'ajax' ) {
+                $('#InfoNewsletter').remove();
+                $('#InfoNewsletterOkno').remove();  
+            }
+            //
+            BylModulStaly = true;
+            //
+        });    
+        
+    }
+
+})(jQuery);
+
+function PokazNewsPop() { 
+    //
+    if ( $('#InfoCookie').length == 0 && $('#InfoCookieTlo').length == 0 ) {
+      
+        $('#InfoNewsletter').stop().fadeIn('fast'); 
+        $('#InfoNewsletterOkno').stop().fadeIn(function() {
+            //
+            const clickable = $("#InfoNewsletterOkno").find("a, button, input[type='submit'], [tabindex]:not([tabindex='-1'])").filter(":visible").first();
+            //
+            if (clickable.length) {
+                clickable.focus();
+            }
+            //
+        });
+        //
+        if ( $('#ZakladkaNewsletterOkno').length ) {
+            //
+            $('#ZakladkaNewsletterOkno').stop().fadeOut('fast');
+            //
+        }
+        
+    } else {
+      
+        $('#InfoNewsletter').hide();
+        $('#InfoNewsletterOkno').hide();
+        
+    }
+    //
+}

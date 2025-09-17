@@ -1,0 +1,168 @@
+<!-- wyglad naglowka strony -->
+
+<h1 class="StrNaglowek">
+    <span>{__NAGLOWEK_KATEGORII_ARTYKULU}</span>  
+</h1>
+
+<?php
+$IloscArtykulowKategorii = $__pA;
+$CzyOpcjaWyszukiwanie = $__pB;
+$KategoriaNadrzedna = $__pC;
+?>
+
+<!-- tresc strony -->
+
+<section class="StrTresc">
+
+    <div class="Listing">
+
+        <!-- opis i zdjecie kategorii aktualnosci -->
+
+        <div class="OpisListing" {__CSS_OPIS_KATEGORII_ARTYKULU}>
+                        
+            {__ZDJECIE_KATEGORII_ARTYKULU}
+            
+            <div class="OpisListingGorny{__OPIS_BEZ_ZDJECIA}">{__OPIS_KATEGORII_ARTYKULU}</div>
+            
+            <br />
+            
+        </div>      
+        
+        <div class="cl"></div>
+        
+        <!-- lista podkategorii -->
+        
+        <div class="Podkategorie" {__CSS_PODKATEGORIE_ARTYKULU}>
+        
+            {__PODKATEGORIE}
+
+        </div>        
+
+        <!-- jezeli dla tej kategorii jest dostepne wyszukiwanie -->
+        
+        <?php if ( $CzyOpcjaWyszukiwanie == 'tak' ) { ?>
+        
+            <?php if ( isset($_GET['szukaj']) ) { ?>
+            
+            <div id="WynikWyszukiwania">
+            
+                <div class="Rg">
+                    <a class="przycisk" href="{__LINK_STRONY}">{__TLUMACZ:PRZYCISK_USUN_WYNIKI_WYSZUKIWANIA}</a>
+                </div> 
+
+                <p>
+                    <span>{__TLUMACZ:ZNALEZIONO_ARTYKULOW}</span> <b>{__ILOSC_WYNIKOW_WYSZUKIWANIA}</b>
+                </p>
+                
+                {__WARUNKI_SZUKANIA}
+                
+                <div class="cl"></div>
+            
+            </div>      
+
+            <?php } else { ?>
+            
+            <div id="WyszukiwanieZaawansowane">
+            
+                <div class="WyszukajFraze">
+                
+                    <strong>{__TLUMACZ:INFO_SZUKANIA_AKTUALNOSCI}</strong>
+            
+                    <form onsubmit="return sprSzukaj(this,'InSzukajArtykul')" class="cmxform" action="{__LINK_STRONY}" method="post">
+                    
+                        <div class="Lf">
+                        
+                            <input id="InSzukajArtykul" type="text" name="szukaj" size="45" value="" aria-label="{__TLUMACZ:WPISZ_SZUKANA_FRAZE}" />
+                            <input type="hidden" name="postget" value="tak" />
+                            
+                        </div>
+                        
+                        <input id="ButSzukajArtykul" class="przycisk Lf" type="submit" value="{__TLUMACZ:PRZYCISK_SZUKAJ}" />
+
+                        <div class="cl"></div>
+                    
+                    </form>
+                    
+                </div>
+                
+            </div>
+            
+            <?php } ?>
+            
+        <?php } ?>
+        
+        <?php if ( AKTUALNOSCI_STRONICOWANIE == 'tak' && $IloscArtykulowKategorii > AKTUALNOSCI_ILOSC_NA_STRONIE ) { ?>
+        
+        <!-- nawigacja artykulow - tylko jezeli jest aktywne stronicowanie -->
+        
+        <nav class="ListingNawigacja ListingNawigacjaGora LiniaCala">
+        
+            <!-- odnosniki do kolejnych stron listingu -->
+        
+            <div class="IndexStron">
+            
+                <b>{__TLUMACZ:LISTING_STRONA}</b> {__STRONICOWANIE}
+            
+            </div>
+
+            <div class="cl"></div>
+        
+        </nav>
+        
+        <?php } ?>
+        
+        <!-- poszczegolne artykuly z kategorii -->
+        
+        {__ARTYKULY_KATEGORII}
+
+        <div class="cl"></div>
+        
+    </div>
+    
+    <?php if ( AKTUALNOSCI_STRONICOWANIE == 'tak' && $IloscArtykulowKategorii > AKTUALNOSCI_ILOSC_NA_STRONIE ) { ?>
+        
+    <!-- dodatkowa nawigacja na dole listingu - tylko jezeli jest aktywne stronicowanie -->    
+    
+    <br />
+    
+    <div class="Listing">
+     
+        <nav class="ListingNawigacja ListingNawigacjaDol LiniaCala">
+        
+            <!-- odnosniki do kolejnych stron listingu -->    
+    
+            <div class="IndexStron">
+            
+                <b>{__TLUMACZ:LISTING_STRONA}</b> {__STRONICOWANIE}
+
+            </div>  
+            
+            <div class="cl"></div>
+
+        </nav>
+            
+    </div>  
+
+    <?php } ?>
+    
+    <!-- przycisk powrotu do strony glownej - jezeli nie jest aktywne stronicowanie -->
+
+    <a href="/" class="przycisk Prawy">{__TLUMACZ:PRZYCISK_DO_STRONY_GLOWNEJ}</a>  
+
+    <!-- przycisk powrotu do kategorii nadrzednej -->
+    
+    <?php if ( count($KategoriaNadrzedna) > 0 ) { ?>
+    
+        <a href="<?php echo $KategoriaNadrzedna['seo']; ?>" class="przycisk Prawy">{__TLUMACZ:COFNIJ_DO_KATEGORII} <?php echo $KategoriaNadrzedna['nazwa']; ?></a>   
+        
+    <?php } ?>
+
+    <div class="cl"></div>
+
+</section>
+
+<?php
+unset($IloscArtykulowKategorii);
+?>
+
+

@@ -1,0 +1,25 @@
+<!-- wyglad naglowka strony -->
+
+<h1 class="StrNaglowek">
+    <span>{__NAGLOWEK_INFORMACJI}</span>  
+</h1>
+
+<!-- tresc strony -->
+
+<section class="StrTresc">
+
+    <!-- informacja z komunikatem -->
+
+    <p class="Informacja">
+        {__KOMUNIKAT}
+    </p>
+    
+    <!-- przycisk powrotu do strony glownej -->
+
+    <a href="/" class="przycisk Prawy">{__TLUMACZ:PRZYCISK_DO_STRONY_GLOWNEJ}</a>  
+    
+    <div class="cl"></div>   
+    
+</section>
+
+

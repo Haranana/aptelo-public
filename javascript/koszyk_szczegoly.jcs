@@ -1,0 +1,11 @@
+// funkcja usuniecia zapisanego koszyka
+function UsunZapisanyKoszykProdukt(id) {
+
+    PreloadWlacz();
+    $.post("inne/koszyk_usun_produkt.php?tok={__TOKEN_USUN_KOSZYK}", { id: id }, function(data) { 
+        //
+        window.location.reload();
+        //
+    });
+
+}

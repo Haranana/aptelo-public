@@ -1,0 +1,47 @@
+body { background:url('../obrazki/tlo_strony.gif'); margin:0px; font-family: Arial, Tahoma, Verdana, sans-serif; font-size:75%; font-weight:normal; color:#323232; }
+
+#Logowanie { position:relative; padding:30px 0px 30px 0px; }
+#LogowanieBox { position:fixed; top:50%; left:50%; width:330px; background:#fff; padding:7px; padding-bottom:15px; -moz-box-shadow: 0 0 5px 5px #131313; -webkit-box-shadow: 0 0 5px 5px #131313; box-shadow: 0 0 5px 5px #131313; -moz-border-radius:15px; -webkit-border-radius:15px; -khtml-border-radius:15px; border-radius:15px; 
+  -webkit-transform: translate(-50%, -50%); transform: translate(-50%, -50%);
+  transition: all 0.40s ease-in-out;
+	-moz-transition: all 0.40s ease-in-out;
+	-webkit-transition: all 0.40s ease-in-out;  
+}
+@media only screen and (max-width:479px) {
+  #LogowanieBox { width:270px; }
+}
+
+#LogowanieBox #Tresc { margin-top:15px; margin-bottom:5px; }
+
+#HasloPrzypomnienie { text-align:right; margin-top:10px; }
+#HasloPrzypomnienie a { background:url('../obrazki/klodka.png') no-repeat left center; padding:5px 5px 3px 20px; font-family: Arial, Tahoma, Verdana, sans-serif; font-weight:normal; color:#a6a6a6; text-decoration:none; }
+#HasloPrzypomnienie a:hover { color:#ff0000; text-decoration:none; }
+
+#LogowanieForm p:first-child { margin-top:10px; }
+#LogowanieForm label.error { margin:3px 0px 0px 0px; width:200px; padding:4px 0px 4px 23px; }
+
+#ResetHasloForm label { padding:0px; width:90px; }
+#ResetHasloForm label.error { margin:3px 0px 0px 0px; width:200px; padding:4px 0px 4px 23px; }
+
+#AdresEmail, #imie { padding:12px 5px 12px 5px; width:250px; }
+#Haslo { padding:12px 5px 12px 5px; width:250px; }
+#email { padding:12px 5px 12px 5px; width:250px; }
+#KodWer { padding:12px 5px 12px 5px; width:250px; }
+
+.PoleHasloImie input, .PoleHasloMail input { width:297px !important; }
+
+@media only screen and (min-width:480px) {
+  .PoleMail, .PoleHaslo, .PoleKod { display:flex; justify-content:flex-start; align-items:center; flex-wrap:wrap; }
+  .PoleMail .error, .PoleHaslo .error, .PoleKod .error { width:calc(100% - 30px); }
+  .PoleMail span, .PoleHaslo span, .PoleKod span { width:39px; height:39px; background:#f5f5f5; text-align:center; border-radius:6px; display:flex; justify-content:center; align-items:center; border:1px solid #ccc; margin-right:7px; }
+}
+
+@media only screen and (max-width:479px) {
+  .PoleMail span, .PoleHaslo span, .PoleKod span { display:none; }
+  #AdresEmail, #imie, #Haslo, #email, #KodWer { width:237px !important; }
+}
+
+#AdresEmail::-webkit-input-placeholder, #Haslo::-webkit-input-placeholder, #imie::-webkit-input-placeholder, #email::-webkit-input-placeholder, #Kod::-webkit-input-placeholder { color:#777; }
+#AdresEmail::-moz-placeholder, #Haslo::-moz-placeholder, #imie::-moz-placeholder, #email::-moz-placeholder, #Kod::-moz-placeholder { color:#777; }
+#AdresEmail:-ms-input-placeholder, #Haslo:-ms-input-placeholder, #imie:-ms-input-placeholder, #email:-ms-input-placeholder, #Kod:-ms-input-placeholder { color:#777; }
+#AdresEmail:-moz-placeholder, #Haslo:-moz-placeholder, #imie:-moz-placeholder, #email:-moz-placeholder, #Kod:-moz-placeholder { color:#777; }

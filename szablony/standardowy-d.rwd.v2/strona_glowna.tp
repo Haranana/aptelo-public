@@ -1,0 +1,612 @@
+<!DOCTYPE HTML>
+<html lang="{__JEZYK_STRONY}">
+<head>
+    <meta charset="utf-8" />
+    <title>{__META_TYTUL}</title>
+    <meta name="keywords" content="{__META_SLOWA_KLUCZOWE}" />
+    <meta name="description" content="{__META_OPIS}" />
+    <meta name="robots" content="index,follow" />  
+    
+    <link rel="preload" href="{__DOMENA}/szablony/standardowy-d.rwd.v2/font/roboto-v47-latin_latin-ext-regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    <link rel="preload" href="{__DOMENA}/szablony/standardowy-d.rwd.v2/font/roboto-v47-latin_latin-ext-700.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    {__TAGI_OPEN_GRAPH}
+
+    <base href="{__DOMENA}" />	
+
+    {__LINK_CSS}
+    
+    <script src="javascript/jquery.js"></script>
+    <script src="javascript/skrypty.php"></script>    
+
+    {__GOOGLE_ZGODA}
+    {__GOOGLE_GTM_DATALAYER}
+    {__GOOGLE_GTM_HEAD}
+    {__JS_PLIK}
+    {__JS_POPUP}
+    {__GOOGLE_WERYFIKACJA}
+    {__GOOGLE_ANALYTICS}
+    {__PIKSEL_FB}
+    {__EDRONE}
+    {__LINK_CANONICAL}
+    {__INTEGRACJE_WLASNE_HEAD}
+    {__CRITEO}
+    {__NOKAUT_SLEDZENIE}
+    {__CENEO_OPINIE}
+    {__ALLANIDOMODI_SLEDZENIE}
+    {__WP_PIXEL}
+    {__TRUSTISTO}
+    {__TRUSTPILOT}
+    {__SHOPENEO_NETWORK}
+    {__GOOGLE_TAG_MANAGER}
+    {__CALLBACK24}
+    {__PINTEREST_TAG}
+    {__DODATKOWY_CSS_SZEROKOSC}
+    {__KLAVIYO}
+</head>
+
+<body {__TLO_SKLEPU}>
+{__GOOGLE_GTM_NOSCRIPT}
+
+<div class="CalaStrona">
+
+    {__GOOGLE_KONWERSJA}
+    
+    <?php if ( INFO_NAD_NAGLOWKIEM == 'tak' ) { ?>
+    
+    <div class="OpisNaglowek{__OPIS_NAD_NAGLOWKIEM_CSS}">
+    
+        {__OPIS_NAD_NAGLOWKIEM}
+    
+    </div>    
+    
+    <?php } ?>
+
+    <div class="SklepNaglowek">
+
+        <div class="NaglowekTop">
+        
+            <div class="SzybkieLinki{__SZYBKIE_LINKI_CSS}">
+                <div class="Strona">
+                    {__SZYBKIE_LINKI}
+                </div>
+            </div>
+
+                <div class="SzukanieKoszyk">
+                
+                    <div class="Strona">
+                    
+                        <input class="SzukajMenuCheckbox CheckboxNawigacja" type="checkbox" id="SzukajMenuCheckbox" />
+                                
+                        <?php if ( NAGLOWEK_JEZYK == 'tak' || NAGLOWEK_WALUTA == 'tak' ) { ?>
+                        
+                        <div class="NaglowekZmianaJezykaWaluty">
+                        
+                            <?php if ( NAGLOWEK_JEZYK == 'tak' ) { ?>
+                                
+                            <div class="ZmianaJezyka">
+                    
+                                {__ZMIANA_JEZYKA}
+                                              
+                            </div>
+                            
+                            <?php } ?>
+                            
+                            <?php if ( NAGLOWEK_WALUTA == 'tak' ) { ?>
+                            
+                            <div class="ZmianaWaluty">
+                    
+                                {__ZMIANA_WALUTY}
+                                              
+                            </div>     
+
+                            <?php } ?>
+                        
+                        </div>
+                        
+                        <?php } ?>
+                        
+                        <div class="IkonyNawigacja">
+
+                            <div class="MenuNaglowek IkonaNawigacjiMenu" id="IkonaWysuwaniaMenu">
+                            
+                                <label class="SzukajMenuLabel" for="MenuMobilneCheckbox"> 
+                            
+                                    <span class="IkonaNaglowek">
+                                    
+                                        <span class="PozycjaIkonka KolorSvg" title="{__TLUMACZ:IKONA_MENU}"></span>
+
+                                    </span>
+
+                                </label>
+                            
+                            </div>
+                                      
+                            <div class="SzukajNaglowek IkonaNawigacjiMenu">
+
+                                <label class="SzukajMenuLabel" for="SzukajMenuCheckbox">                
+                            
+                                    <span class="IkonaNaglowek">
+                                    
+                                        <span class="PozycjaIkonka KolorSvg" title="{__TLUMACZ:IKONA_SZUKAJ}"></span>
+
+                                    </span>
+
+                                </label>
+                            
+                            </div>
+                            
+                            <?php if (isset($_SESSION['customer_id']) && (int)$_SESSION['customer_id'] > 0 && $_SESSION['gosc'] == '0' ) { ?>
+                                
+                                <div class="LogowanieNaglowek IkonaNawigacjiMenu">
+                                
+                                    <input class="LogowanieMenuCheckbox CheckboxNawigacja" type="checkbox" id="LogowanieMenuCheckbox" />
+                                
+                                    <label class="LogowanieMenuLabel" for="LogowanieMenuCheckbox">
+                                    
+                                        <span class="PozycjaIkonka KolorSvg" title="{__TLUMACZ:PANEL_KLIENTA}"></span>
+
+                                        </span>
+                                    
+                                    </label>
+                                        
+                                    <ul class="PozycjeLogowanie">
+                                    
+                                        <li><a href="wylogowanie.html" rel="nofollow">{__TLUMACZ:WYLOGUJ_SIE}</a></li>
+                                        <li><a href="{__SSL:panel-klienta.html}" rel="nofollow">{__TLUMACZ:PANEL_KLIENTA}</a></li>
+                                        <li><a href="{__SSL:zamowienia-przegladaj.html}" rel="nofollow">{__TLUMACZ:MOJE_ZAMOWIENIA}</a></li>
+                                    
+                                    </ul>
+                                    
+                                </div>
+                                
+                            <?php } else { if ( !isset($_SESSION['customer_id']) || (int)$_SESSION['customer_id'] == 0 ) { ?>
+                                    
+                                <div class="LogowanieNaglowek IkonaNawigacjiMenu">
+                                
+                                    <input class="LogowanieMenuCheckbox CheckboxNawigacja" type="checkbox" id="LogowanieMenuCheckbox" />
+                                
+                                    <label class="LogowanieMenuLabel" for="LogowanieMenuCheckbox">
+                                    
+                                        <span class="PozycjaIkonka KolorSvg" title="{__TLUMACZ:PANEL_KLIENTA}"></span>
+                                    
+                                    </label>
+                                
+                                    <ul class="PozycjeLogowanie">
+                                
+                                        <li><a href="{__SSL:logowanie.html}" rel="nofollow">{__TLUMACZ:ZALOGUJ_SIE}</a></li>
+                                        <li><a href="{__SSL:rejestracja.html}" rel="nofollow">{__TLUMACZ:ZALOZ_KONTO}</a></li>
+                                    
+                                    </ul>
+                                    
+                                </div>
+                                    
+                            <?php } } ?> 
+                            
+                            <?php if ( NAGLOWEK_POROWNYWARKA == 'tak' ) { ?>
+
+                            <div id="PorownanieNaglowek" class="PorownanieNaglowek IkonaNawigacjiMenu" {__CSS_POROWNANIE_NAGLOWEK}>
+                            
+                                <span class="PorownanieIlosc IkonaNaglowek">
+                                
+                                    <span class="PozycjaIkonka KolorSvg" title="{__TLUMACZ:IKONA_POROWNAJ}"></span>
+                                    
+                                    <span class="PozycjaIlosc">{__ILOSC_PRODUKTOW_POROWNYWARKI}</span>
+                                    
+                                </span>
+                                
+                                <div class="PorownywanieRozwijane"></div>                     
+                                
+                            </div>
+                            
+                            <?php } ?>
+                        
+                            <?php if (PRODUKT_SCHOWEK_STATUS == 'tak') { ?>
+                        
+                            <div id="Schowek" class="IkonaNawigacjiMenu">
+
+                                <a class="SchowekNaglowek IkonaNaglowek" href="schowek.html">
+                                
+                                    <span class="PozycjaIkonka KolorSvg" title="{__TLUMACZ:SCHOWEK_NAGLOWEK}"></span>
+                                    
+                                    <span class="PozycjaIlosc">{__ILOSC_PRODUKTOW_SCHOWKA}</span>
+                                    
+                                </a>
+                                
+                                <div class="SchowekRozwijany">
+                                
+                                    {__ROZWIJANY_SCHOWEK}
+
+                                </div> 
+                                
+                            </div>  
+
+                            <?php } ?>       
+
+                            <div id="Koszyk" class="IkonaNawigacjiMenu">
+
+                                <a class="KoszykNaglowek IkonaNaglowek" href="koszyk.html">
+                                    
+                                    <span class="PozycjaIkonka KolorSvg" title="{__TLUMACZ:KOSZYK}"></span>
+                                    
+                                </a>
+
+                                <div class="ZawartoscKoszyka"><a href="koszyk.html"><strong>{__TLUMACZ:KOSZYK}</strong>
+                                
+                                    <?php if ($GLOBALS['koszykKlienta']->KoszykIloscProduktow() > 0) { ?>
+                                    
+                                    {__TLUMACZ:ILOSC_PRODUKTOW}: <b>{__ILOSC_PRODUKTOW_KOSZYKA}</b>, {__TLUMACZ:WARTOSC_PRODUKTOW}: <b>{__WARTOSC_KOSZYKA_BRUTTO}</b>
+
+                                    <?php } else { ?>
+                                    
+                                    {__TLUMACZ:KOSZYK_JEST_PUSTY}
+                                    
+                                    <?php } ?>
+                                    </a>
+                                </div>
+                                
+                                <div class="KoszykRozwijany">
+                                
+                                    {__ROZWIJANY_KOSZYK}
+
+                                </div>                      
+
+                            </div>        
+
+                        </div>
+                            
+                        <form onsubmit="return sprSzukaj(this,'InSzukaj')" method="post" action="szukaj.html" class="Wyszukiwanie">
+                        
+                            <div class="KontenterWyszukiwania">
+                        
+                                <div class="RamkaSzukania">
+                                    <button id="ButSzukaj" type="submit"></button>
+                                    <input id="InSzukaj" type="text" name="szukaj" size="30" value="{__TLUMACZ:WPISZ_SZUKANA_FRAZE}" />
+                                    <input type="hidden" name="postget" value="tak" />
+                                    
+                                    <div id="Podpowiedzi"></div>
+                                    
+                                </div>
+
+                            </div>
+                                
+                        </form> 
+                                    
+                    </div>
+
+                </div>
+
+                <div class="Logo Strona">
+                    {__LOGO_SKLEPU}
+                </div>
+
+                <div class="Strona<?php echo ((NAGLOWEK_KONTAKT == 'nie') ? ' WyrownanieDoPrawej' : ''); ?>">
+                    
+                     <div class="NaglowekKonto">
+                        <?php if (isset($_SESSION['customer_id']) && (int)$_SESSION['customer_id'] > 0 && $_SESSION['gosc'] == '0' ) { ?>
+                            <div><a href="wylogowanie.html" rel="nofollow">{__TLUMACZ:WYLOGUJ_SIE}</a></div>
+                            <div><a href="{__SSL:panel-klienta.html}" rel="nofollow">{__TLUMACZ:PANEL_KLIENTA}</a></div>
+                            <div><a href="{__SSL:zamowienia-przegladaj.html}" rel="nofollow">{__TLUMACZ:MOJE_ZAMOWIENIA}</a></div>
+                        <?php } else { if ( !isset($_SESSION['customer_id']) || (int)$_SESSION['customer_id'] == 0 ) { ?>
+                            <div><a href="{__SSL:logowanie.html}" rel="nofollow">{__TLUMACZ:ZALOGUJ_SIE}</a></div>
+                            <div><a href="{__SSL:rejestracja.html}" rel="nofollow">{__TLUMACZ:ZALOZ_KONTO}</a></div>
+                        <?php } } ?>
+                    </div>
+                    
+                    <?php if ( NAGLOWEK_KONTAKT == 'tak' || NAGLOWEK_PORTALE == 'tak' ) { ?>
+                    
+                            <div class="NaglowekDaneKontaktowe">
+                            
+                                <?php if ( NAGLOWEK_PORTALE == 'tak' ) { ?>
+                              
+                                    {__PORTALE_SPOLECZNOSCIOWE}
+                                
+                                <?php } ?>
+                                
+                                <?php if ( NAGLOWEK_KONTAKT == 'tak' ) { ?>
+
+                                    <?php if ( DANE_TELEFON_1 != '' ) { ?>
+                                    
+                                    <div><a class="LinkTelefonNaglowek KolorSvg" rel="nofollow" href="tel:<?php echo preg_replace("/[^+0-9]/", "", (string)DANE_TELEFON_1); ?>"><?php echo DANE_TELEFON_1; ?></a></div>
+                                    
+                                    <?php } ?>
+                                    
+                                    <div><a class="LinkMailNaglowek KolorSvg" rel="nofollow" href="mailto:<?php echo INFO_EMAIL_SKLEPU; ?>"><?php echo INFO_EMAIL_SKLEPU; ?></a></div>
+                                
+                                <?php } ?>
+
+                            </div>     
+
+                    <?php } ?>
+
+                </div>
+        </div>
+
+    </div>
+
+    <input class="MenuMobilneCheckbox CheckboxNawigacja" type="checkbox" id="MenuMobilneCheckbox" />
+    
+    <div class="GorneMenuKontener">
+
+        <div class="GorneMenuTlo">
+
+            <div class="Strona">
+
+                <label for="MenuMobilneCheckbox" id="IkonaZwinieciaMenu"></label>
+                <div class="TloZwinieciaMenu" onclick="$('#MenuMobilneCheckbox').prop('checked', !$('#MenuMobilneCheckbox').prop('checked'))"></div>
+
+                <div class="GorneMenu">
+                
+                    {__GORNE_MENU}
+                    
+                </div>
+                
+            </div>
+            
+        </div>
+        
+    </div>
+            
+    {__GRAFIKA_PODSTRONY}
+
+    <div class="Strona">
+
+        <div id="Nawigacja" itemscope itemtype="http://schema.org/BreadcrumbList">
+        
+            {__BREADCRUMB}
+            
+        </div>
+
+    </div>    
+
+    {__MODULY_SRODKOWE_GORA}
+
+    <div class="cl"></div>
+
+    <?php if ( $GLOBALS['kolumny'] != 'srodkowa' || $GLOBALS['stronaGlowna'] != true ) { ?>
+
+        <div class="Strona">
+        
+    <?php } ?>
+
+        <div class="KolumnyKontener">
+
+            <?php if (CZY_WLACZONA_LEWA_KOLUMNA == 'tak' && ($GLOBALS['kolumny'] == 'wszystkie' || $GLOBALS['kolumny'] == 'wszystkie_lewa')) { ?>
+            
+            <div id="LewaKolumna">
+            
+                <div class="LewaKolumnaPrzerwa">
+            
+                    {__LEWA_KOLUMNA}
+                    
+                </div>
+                
+            </div>
+            
+            <?php } ?>
+                    
+            <?php if (CZY_WLACZONA_PRAWA_KOLUMNA == 'tak' && ($GLOBALS['kolumny'] == 'wszystkie' || $GLOBALS['kolumny'] == 'wszystkie_prawa')) { ?>
+            
+            <div id="PrawaKolumna">
+            
+                <div class="PrawaKolumnaPrzerwa">
+            
+                    {__PRAWA_KOLUMNA}
+                    
+                </div>
+                
+            </div>    
+            
+            <?php } ?>
+
+            <div id="SrodekKolumna">
+            
+                {__MODULY_SRODKOWE_PODSTRONA_GORA}
+
+                {__SRODKOWA_KOLUMNA}
+                
+                {__MODULY_SRODKOWE_PODSTRONA_DOL}
+                
+            </div>      
+
+        </div>
+        
+    <?php if ( $GLOBALS['kolumny'] != 'srodkowa' || $GLOBALS['stronaGlowna'] != true ) { ?>
+
+        </div>
+        
+    <?php } ?>    
+
+    <div class="cl"></div>
+
+    {__MODULY_SRODKOWE_DOL}
+    
+    <div class="StopkaTlo">
+        <div class="Strona">
+            
+            <footer class="Stopka">
+            
+                <div class="StopkaKolumny">
+                
+                    <?php if ( STOPKA_KOLUMNA_PIERWSZA_WLACZONA == 'tak' ) { ?>
+            
+                    <div class="KolumnaStopki">
+                    
+                        <input type="checkbox" class="CheckboxRozwinStopke CheckboxNawigacja" id="StopkaKolumnaPierwszaCheckbox" />
+                    
+                        <label for="StopkaKolumnaPierwszaCheckbox">
+                        
+                            <strong class="NaglowekStopki">
+                                {__PIERWSZA_KOLUMNA_STOPKI_NAGLOWEK}
+                            </strong>
+                        
+                        </label>
+                        
+                        <div class="KontenerDaneStopka" id="KontenerStopkaKolumnaPierwsza">
+                        
+                            {__PIERWSZA_KOLUMNA_STOPKI_LINKI}
+                            
+                        </div>
+
+                    </div>
+                    
+                    <?php } ?>
+                    
+                    <?php if ( STOPKA_KOLUMNA_DRUGA_WLACZONA == 'tak' ) { ?>
+                    
+                    <div class="KolumnaStopki">
+
+                        <input type="checkbox" class="CheckboxRozwinStopke CheckboxNawigacja" id="StopkaKolumnaDrugaCheckbox" />
+                    
+                        <label for="StopkaKolumnaDrugaCheckbox">
+                        
+                            <strong class="NaglowekStopki">
+                                {__DRUGA_KOLUMNA_STOPKI_NAGLOWEK}
+                            </strong>
+                        
+                        </label>
+                        
+                        <div class="KontenerDaneStopka" id="KontenerStopkaKolumnaDruga">
+                        
+                            {__DRUGA_KOLUMNA_STOPKI_LINKI}
+                            
+                        </div>
+                        
+                    </div>
+
+                    <?php } ?>
+                    
+                    <?php if ( STOPKA_KOLUMNA_TRZECIA_WLACZONA == 'tak' ) { ?>
+                    
+                    <div class="KolumnaStopki">
+                        
+                        <input type="checkbox" class="CheckboxRozwinStopke CheckboxNawigacja" id="StopkaKolumnaTrzeciaCheckbox" />
+                    
+                        <label for="StopkaKolumnaTrzeciaCheckbox">
+                        
+                            <strong class="NaglowekStopki">
+                                {__TRZECIA_KOLUMNA_STOPKI_NAGLOWEK}
+                            </strong>
+                        
+                        </label>
+                        
+                        <div class="KontenerDaneStopka" id="KontenerStopkaKolumnaTrzecia">
+                        
+                            {__TRZECIA_KOLUMNA_STOPKI_LINKI}
+                            
+                        </div>
+                        
+                    </div>
+
+                    <?php } ?>
+                    
+                    <?php if ( STOPKA_KOLUMNA_CZWARTA_WLACZONA == 'tak' ) { ?>
+                    
+                    <div class="KolumnaStopki">
+                        
+                        <input type="checkbox" class="CheckboxRozwinStopke CheckboxNawigacja" id="StopkaKolumnaCzwartaCheckbox" />
+                    
+                        <label for="StopkaKolumnaCzwartaCheckbox">
+                        
+                            <strong class="NaglowekStopki">
+                                {__CZWARTA_KOLUMNA_STOPKI_NAGLOWEK}
+                            </strong>
+                        
+                        </label>
+                        
+                        <div class="KontenerDaneStopka" id="KontenerStopkaKolumnaCzwarta">
+                        
+                            {__CZWARTA_KOLUMNA_STOPKI_LINKI}
+                            
+                        </div>
+                    
+                    </div>
+                    
+                    <?php } ?>
+                    
+                    <?php if ( STOPKA_KOLUMNA_PIATA_WLACZONA == 'tak' ) { ?>
+                    
+                    <div class="KolumnaStopki">
+                        
+                        <input type="checkbox" class="CheckboxRozwinStopke CheckboxNawigacja" id="StopkaKolumnaPiataCheckbox" />
+                    
+                        <label for="StopkaKolumnaPiataCheckbox">
+                        
+                            <strong class="NaglowekStopki">
+                                {__PIATA_KOLUMNA_STOPKI_NAGLOWEK}
+                            </strong>
+                        
+                        </label>
+                        
+                        <div class="KontenerDaneStopka" id="KontenerStopkaKolumnaPiata">
+                        
+                            {__PIATA_KOLUMNA_STOPKI_LINKI}
+                            
+                        </div>
+                    
+                    </div>            
+
+                    <?php } ?>
+                    
+                </div>
+                
+                <div class="StopkaDolneMenu">
+                
+                    {__DOLNE_MENU}
+                
+                </div>
+                
+                <div class="GrafikiStopka">
+                
+                    {__BANNERY_STOPKA}
+                    
+                </div>
+                
+                <div class="OpisStopka">
+                
+                    {__OPIS_STOPKA}
+                
+                </div>
+
+            </footer>
+            
+        </div>
+    </div>
+            <div class="Copy">
+                {__ZMIANA_COOKIES}{__INFO_SG}            
+            </div>    
+
+    
+</div>
+
+<!-- nie usuwac - wyswietla dodatkowe moduly stale - np informacje o cookie -->
+{__MODULY_STALE}
+
+<!-- nie usuwac - laduje preloader obrazkow -->
+{__FUNKCJA_PRELOADERA}
+
+<!-- nie usuwac - wyswietla bannery popup -->
+{__TRESC_POPUP}
+<!-- nie usuwac - wyswietla widgety -->
+{__WIDGET_CENEO}
+{__WIDGET_OKAZJE_INFO}
+{__WIDGET_OPINEO}
+{__WIDGET_TRUSTEDSHOPS}
+{__WIDGET_GOOGLE_OPINIE}
+{__SALESMANAGO}
+{__WIDGET_TRUSTMATE}
+
+<!-- nie usuwac -->
+<div id="RwdWersja"></div>
+<div id="Strona"></div>
+
+<!-- nie usuwac - wyswietla kod integracji wlasnych dla sekcji body -->
+{__INTEGRACJE_WLASNE_BODY}
+
+<!-- zmiana meta tytulu po opuszczeniu przez klienta zakladki sklepu -->
+{__META_TYTUL_WROC_DO_NAS}
+
+</body>
+</html>

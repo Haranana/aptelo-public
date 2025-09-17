@@ -1,0 +1,148 @@
+<!-- wyglad naglowka strony -->
+
+<h1 class="StrNaglowek">
+    <span>{__TLUMACZ:NAGLOWEK_SZCZEGOLY_REKLAMACJI}</span>
+</h1>
+
+<!-- tresc strony -->
+
+<section class="StrTresc">
+
+    <?php 
+    $Reklamacja = $__pA;
+    $DaneStatusy = $__pB; 
+    $StatusKomentarze = $__pC; 
+    ?>
+    
+    <!-- data reklamacji i status -->
+
+    <div class="SzczegolyData">
+   
+        <em class="DataZlozenia"><b>{__DATA_MODYFIKACJI}</b></em> 
+        <em class="StatusZamowienia">{__TLUMACZ:STATUS_REKLAMACJI}: <b>{__STATUS_ZGLOSZENIA}</b></em>
+        
+    </div>
+
+    <!-- numer reklamacji, tytul, data zgloszenia -->
+    
+    <div style="line-height:1.7">
+
+        <div class="Sekcja">
+        
+            <ul>
+                <li>{__TLUMACZ:NUMER_ZAMOWIENIA_REKLAMOWANEGO}:<b> {__NUMER_ZAMOWIENIA}</b></li>
+                <li>{__TLUMACZ:NUMER_REKLAMACJI}:<b> {__ID_ZGLOSZENIA}</b></li>
+                <li>{__TLUMACZ:TYTUL_REKLAMACJI}:<b> {__TYTUL_ZGLOSZENIA}</b></li>
+                <li>{__TLUMACZ:DATA_REKLAMACJI}:<b> {__DATA_ZGLOSZENIA}</b></li>                
+            </ul>
+            
+        </div>
+
+    </div>
+    
+    <br />
+
+    <div class="Sekcja SekcjaRamka">
+    
+        <div class="TytulSekcji">{__TLUMACZ:HISTORIA_REALIZACJI_REKLAMACJI}</div>
+        
+        <!-- generowanie historii statusow reklamacji -->
+        
+        <?php foreach ( $DaneStatusy as $Status ) { ?>
+        
+            <div class="TrescSekcji PozycjaHistoriaZamowienia PozycjaHistoriaReklamacja">
+        
+                <div class="TrescScr LiniaPoziom">
+                
+                    <div class="SzczegolyData">
+                    
+                        <em class="DataZlozenia"><b><?php echo date('d-m-Y H:i:s',FunkcjeWlasnePHP::my_strtotime($Status['data_dodania'])); ?></b></em> 
+                        
+                        <?php if ( $Status['informacja_od_klienta'] == 'nie' ) { ?>
+                        <em class="StatusZamowienia">{__TLUMACZ:STATUS_REKLAMACJI}: <b><?php echo Reklamacje::pokazNazweStatusuReklamacji($Status['id_statusu'],(int)$_SESSION['domyslnyJezyk']['id']); ?></b></em>
+                        <?php } ?>
+                        
+                    </div>
+                    
+                    <div class="ZamowienieKomentarz">
+                    
+                        <?php if ( $Status['informacja_od_klienta'] == 'tak' ) { ?>
+                        <b>{__TLUMACZ:INFO_KLIENT}</b>
+                        <?php } ?>
+                        
+                        <?php echo $Status['komentarz']; ?>
+                        
+                        <?php echo $Status['zdjecia_reklamacji']; ?>
+                        
+                    </div>
+                    
+                </div>
+                
+            </div>
+            
+        <?php } ?>
+        
+        <script>
+        $(document).ready(function() {
+           $('.ZdjeciaReklamacji').jBox('Image', { imageSize:'auto' });
+        });
+        </script>        
+        
+    </div>
+        
+    <?php
+    // czy ostatni status zamknal reklamacje
+    if ( $DaneStatusy[ count($DaneStatusy) - 1 ]['status_zamkniety'] == 'nie' && $StatusKomentarze == 'tak' ) { 
+    ?>
+    
+    <br />
+    
+    <script>
+    $(document).ready(function() {
+
+        $("#dodajKomentarz").validate({
+          rules: {
+            komentarz: { required: true }
+          },
+          messages: {
+            komentarz: { required: '{__TLUMACZ:BLAD_WYMAGANE_POLE}' }
+          }
+        });
+
+    });
+    </script>    
+
+    <form action="{__AKTUALNY_LINK}" method="post" id="dodajKomentarz" class="cmxform">
+    
+    <div style="margin-bottom:20px">
+    
+        <p>
+          <span><b>{__TLUMACZ:DODAJ_KOMENTARZ}</b> <em class="required" id="em_<?php echo uniqid(); ?>"></em></span>                
+          <textarea cols="60" rows="5" style="width:70%" name="komentarz" id="komentarz"></textarea>
+        </p>
+        
+        <input type="hidden" name="info_klienta" value="tak" />
+        <input type="hidden" name="id" value="<?php echo $Reklamacja['id_reklamacji']; ?>" />
+        <input type="hidden" name="aktualny_status" value="<?php echo $Reklamacja['aktualny_status_id']; ?>" />
+        <input type="submit" class="przycisk" value="{__TLUMACZ:PRZYCISK_WYSLIJ}" />
+
+    </div>
+    
+    </form>
+    
+    <?php } ?>
+
+    <!-- przyciski -->
+
+    <a class="przycisk Lewy" onclick="history.go(-1)">{__TLUMACZ:PRZYCISK_COFNIJ}</a>
+    <a href="/" class="przycisk Prawy">{__TLUMACZ:PRZYCISK_DO_STRONY_GLOWNEJ}</a>   
+    
+    <div class="cl"></div>
+    
+    <?php
+    unset($DaneStatusy, $Reklamacja);
+    ?>
+
+</section>
+
+

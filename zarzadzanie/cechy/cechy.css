@@ -1,0 +1,16 @@
+/* cechy produktow */
+.RamkaCech { margin-bottom:10px; border:1px solid #c1c1c1; padding:2px 2px 2px 1px; -moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px; -khtml-border-radius:4px; }
+#BrakCech { margin-bottom:10px; border:1px solid #c1c1c1; padding:10px; font-weight:bold; -moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px; -khtml-border-radius:4px; }
+#BrakCech span { color:#ff0000; }
+#IdWartosci { display:none; }
+
+@media only screen and (max-width:1023px) { 
+  .CechDodaj { padding:0px 5px 5px 5px; }
+  .CechDodaj .dodaj { margin:0px 0px 15px 0px; }
+}
+@media only screen and (min-width:1024px) { 
+  .CechDodaj { padding:5px 5px 12px 5px; display:table-cell; width:50%; vertical-align:top; }
+}
+
+.KomunikatCechy { margin-bottom:10px; border:1px solid #c1c1c1; padding:15px; font-weight:bold; -moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px; -khtml-border-radius:4px; }
+.KomunikatCechy span { color:#ff0000; }

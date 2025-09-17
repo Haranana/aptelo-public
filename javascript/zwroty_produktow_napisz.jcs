@@ -1,0 +1,69 @@
+function PobierzDaneZwrotu() {
+  
+   var cval = $('#zamowienie_zwrot').find('option:selected').val();
+
+   if ( parseInt(cval) > 0 ) {
+        //
+        PreloadWlacz();
+        var dane = $('#zwrotForm').serialize(); 
+        $.post("inne/zwrot_zamowienie.php?tok={__TOKEN_ZWROT_WCZYTAJ}", { data: dane }, function(data) { 
+            PreloadWylaczSzybko();   
+            if ( data != '' ) {
+                 $('#DaneZamowieniaZwrotuWczytaj').html(data);
+                 $('#DaneZamowieniaZwrotu').show();
+                 //
+                 if ( $("#id_produktow").length > 0 ) {
+                      $('#submitButton').show();
+                      $('.PozycjaZwrotu').show();
+                 } else {
+                      $('#submitButton').hide();
+                      $('.PozycjaZwrotu').hide();
+                 }
+            }            
+        });             
+        //
+   } else {
+        //
+        $('#DaneZamowieniaZwrotu').hide();   
+        $('#submitButton').hide();       
+        //
+   }   
+
+}       
+
+$(document).ready(function() {
+
+    if ( $("#InpostZwroty").length ) {
+        $('#ZwrotPaczkomat').change(function() {
+            (($(this).is(':checked')) ? $('#ZwrotPaczkomatGabaryt').stop().slideDown() : $('#ZwrotPaczkomatGabaryt').stop().slideUp() );
+        });
+    }
+
+    $("#zwrotForm").validate({
+      ignore: [],
+      rules: {
+        zamowienie_id: { required: true },
+        id_produktow: {
+          required: function(element) {
+            if ($("#id_produktow").val() == '') {
+                return true;
+              } else {
+                return false;
+            }
+          }
+        },          
+      },
+      messages: {
+        zamowienie_id: { required: '{__TLUMACZ:BLAD_WYMAGANE_POLE}' },
+        id_produktow: { required: '{__TLUMACZ:BLAD_MIN_JEDEN_PRODUKT}' }          
+      }
+    });
+
+    $('#submitButton').removeAttr('disabled');
+    $("#submitButton").attr('class', 'przycisk');
+    
+    $('#zamowienie_zwrot').change(function() {        
+        PobierzDaneZwrotu();        
+    });
+    
+});

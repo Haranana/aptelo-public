@@ -1,0 +1,65 @@
+/* obsluga okna kategorii */
+.OknoKategoriiKontener { margin-bottom:10px; border:1px solid #c1c1c1; padding:2px; -moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px; -khtml-border-radius:4px; }
+.OknoNaglowek { background:url('../obrazki/tlo.png') repeat-x left bottom; text-shadow:#fff 1px 1px 1px; font-weight:bold; color:#2b595b; }
+@media only screen and (max-width:1023px) { 
+ .OknoNaglowek { padding:5px 7px 5px 7px; }
+ .OknoNaglowek .RozwinKategorie { cursor:pointer; padding:5px 0px 5px 0px; display:block; background:url('../obrazki/menu_rozwijane_ciemne.png') no-repeat right center; font-size:130%; text-transform:uppercase; letter-spacing:2px; }
+ .OknoKategoriiKontener .OknoKategorii { display:none; }
+}
+@media only screen and (min-width:1024px) { 
+ .OknoNaglowek { padding:10px 7px 10px 7px; }
+}
+
+/* lista kategorii do jakich jest przypisany produkt */
+.MaleInfoKat { display:block; padding:9px 0px 9px 25px; font-weight:normal; background:url('../obrazki/kategoria.png') no-repeat left center; }
+
+/* nr katalogowy */
+.MaleNrKatalogowy { display:block; padding-top:3px; padding-bottom:2px; font-weight:normal; color:#5b5a5a; }
+
+/* producent */
+.MaleProducent { display:block; padding-top:3px; padding-bottom:2px; font-weight:normal; color:#29682c; }
+
+.PoleEdycja { width:35px; text-align:center; }
+.PoleEdycjaMax { width:45px; text-align:center; }
+.DoZamowienia { margin-top:10px; color:#999; }
+
+/* niski stan magazynowy */
+.IloscCechy { background:url("../obrazki/uwaga.png") no-repeat left center; display:inline-block; padding-left:20px; }
+.IloscAlarm { text-align:center; margin-bottom:2px; }
+.IloscAlarmUwaga img { opacity:0.5; filter:alpha(opacity=50); }
+.IloscAlarm img, .IloscAlarmUwaga img { max-width:18px; height:auto; }
+
+/* definicje ceny */
+.StaraCena { text-decoration:line-through; padding-bottom:2px; font-weight:normal; color:#5b5a5a; }
+.cena { padding-left:5px; padding-right:5px; font-weight:normal; color:#ff0000; }
+
+/* edycja cech produktu */
+.CechyNaglowek { padding:10px; color:#3f5d6b; font-weight:bold; text-decoration:none; }
+
+.StanyCech { margin:0px 0px 20px 7px; overflow-x:auto; border:1px solid #c1c1c1; padding:2px; display:inline-block; max-width:97%; -moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px; -khtml-border-radius:4px; }
+.TablicaCechy { color:#3f5d6b; }
+.TablicaCechy .NazwaCechy { font-weight:bold; color:#ff0000; background:#f4f2f2; padding:6px; }
+.TablicaCechy td { border:2px solid #fff; padding:2px; padding-left:7px; padding-right:7px; text-decoration:none; }
+.TablicaCechy .Nagl { text-align:center; padding:8px; background:#e5e5e5; font-weight:normal; color:#3f5d6b; text-decoration:none; }
+
+@media only screen and (max-width:1279px) {
+  .TablicaCechy select, .TablicaCechy input { max-width:100px !important; }
+}
+
+/* status jezeli kategoria jest wylaczona */
+.wylKat { background:url("../obrazki/uwaga_mala.png") no-repeat top center; display:inline-block; padding:2px; padding-top:15px; }
+
+#WartDostepnosc { padding-top:7px; font-weight:normal; text-decoration:none; display:block; float:right !important; }
+#WartWysylka, #WartWysylkaZero { padding-top:7px; font-weight:normal; text-decoration:none; display:block; float:right !important; }
+
+div .Export { background:url('../obrazki/export.png') no-repeat left center; line-height:1.5; display:inline-block; padding-left:22px; font-weight:bold; color:#016f24; text-decoration:none; }
+div .Export:hover { color:#ff0000; text-decoration:none; }
+.NaglowekExport { font-weight:bold; text-decoration:none; padding:8px; }
+
+/* wylaczenie kontroli magazynu */
+.BezMagazynu { display:block; text-align:center; background:url("../obrazki/brak_kontroli_magazynu.png") no-repeat center top; height:20px; margin:5px 0px 0px 2px; }
+
+.DodatkoweKombinacje { margin:10px; font-family:Inder, Arial; font-size:110%; background:url('../obrazki/lista_wojewodztw.png') no-repeat left center; padding:3px 0px 3px 25px; }
+.DodatkoweKombinacje a { color:#0095ea; text-decoration:underline; }
+.DodatkoweKombinacje a:hover { color:#ff0000; }
+

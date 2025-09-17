@@ -1,0 +1,29 @@
+<!-- wyglad naglowka strony -->
+
+<h1 class="StrNaglowek">
+    <span>{__NAGLOWEK_CENNIK}</span> 
+</h1>
+
+<!-- tresc strony -->
+
+<section class="StrTresc">
+
+    <!-- lista kategorii z odnosnikami do pobrania cennika w wybranym formacie -->
+
+    <div class="PozycjeCennika">
+        
+        {__LISTA_KATEGORII}
+        
+    </div>
+
+    <div class="cl"></div>
+    
+    <!-- przycisk powrotu do strony glownej -->
+    
+    <a href="/" class="przycisk Prawy">{__TLUMACZ:PRZYCISK_DO_STRONY_GLOWNEJ}</a>   
+    
+    <div class="cl"></div>
+
+</section>
+
+

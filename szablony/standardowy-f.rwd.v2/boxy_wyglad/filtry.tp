@@ -1,0 +1,35 @@
+<!-- box filtrow - calosc musi byc otoczona divem z id - w przypadku jak nie ma filtrow usuwa box -->
+
+<div id="boxFiltry" class="CalyBox">
+
+  <!-- wyglad naglowka boxu - sprawdza czy box ma miec naglowek -->
+
+  <input class="CheckboxNawigacja" type="checkbox" id="CalyBoxCheckbox-<?php echo $__pA['box_id']; ?>" />
+
+  <?php if ($__pA['box_header'] == '1') { ?>
+  
+      <div class="BoxNaglowek">
+      
+          <label for="CalyBoxCheckbox-<?php echo $__pA['box_id']; ?>"> 
+          
+              {__NAGLOWEK_BOXU}
+              
+          </label>
+          
+      </div>
+      
+  <?php } ?>
+
+  <!-- tresc boxu -->
+
+  <div class="BoxTresc BoxZawartosc">
+    
+        <div class="BoxOdstep">
+        
+            {__TRESC_BOXU}
+            
+        </div>
+        
+  </div>
+  
+</div>

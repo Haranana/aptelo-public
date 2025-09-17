@@ -1,0 +1,3 @@
+RewriteEngine Off
+
+ErrorDocument 404 /zarzadzanie/index.php

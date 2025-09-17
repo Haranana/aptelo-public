@@ -1,0 +1,10 @@
+/* oznaczenie klienta firmy */
+.Firma { display:inline-block; padding-bottom:2px; font-weight:bold; color:#098206; }
+
+.MalyTelefon { background: url('../obrazki/maly_telefon.gif') left center no-repeat; padding:4px; padding-left:15px; color:#064661; display:block; }
+.MalyMail { background: url('../obrazki/maly_mail.gif') left center no-repeat; padding:4px; padding-left:15px; color:#064661; display:block; }
+
+/* lista punktow */
+#PktLista td { text-align:center; }
+
+.Daty { display:inline-block; line-height:1.5; padding:4px 0px 4px 0px; font-weight:bold; }

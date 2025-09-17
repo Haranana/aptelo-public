@@ -1,0 +1,86 @@
+(function($) {
+
+    $.GrafikaPopup = function() {
+        //
+        var tryb_zamkniecia = '{__BANNER_POPUP_ILOSC_KLIKNIEC}';
+        var tryb = 0;
+        //
+        if ( parseInt(tryb_zamkniecia) > 0 ) {
+             //
+             tryb = 1;
+             //
+        }
+        //
+        $(document).ready(function() {
+
+            $('#PopUpZamknij').click(function() {
+               zamknijGrafikaPopup(tryb);
+            });
+            
+            // zamyka newsletter wcisnieciem esc
+            $(document).keyup(function(e) {
+                if (e.keyCode == 27) { 
+                    zamknijGrafikaPopup(tryb);
+                }
+            });
+            
+        });    
+        
+    }
+
+})(jQuery);
+
+function PokazGrafikaPopup() { 
+    //
+    var rodzaj_otwarcia = '{__BANNER_POPUP_RODZAJ_OTWARCIA}';
+    //
+    if ( rodzaj_otwarcia == 'standard' ) {
+         //
+         $('#TloPopUp').show();
+         //
+    }
+    if ( rodzaj_otwarcia == 'rozjasnianie' ) {
+         //
+         $('#TloPopUp').stop().fadeIn('slow');
+         //
+    } 
+    if ( rodzaj_otwarcia == 'spadanie' ) {
+         //
+         $('#PopUpZawartosc').css({ 'opacity' : 0, 'top' : '-50%' });
+         //
+         $('#TloPopUp').show();
+         //
+         $('#PopUpZawartosc').stop().animate({ 'opacity' : 1, 'top' : '50%' }, 700);
+         //
+    }      
+    //
+}
+
+function zamknijGrafikaPopup(tryb) {
+    //
+    // 1 - tylko zamyka okno
+    // 0 - na stale
+    //
+    var rodzaj_zamkniecia = '{__BANNER_POPUP_RODZAJ_ZAMKNIECIA}';
+    //
+    if ( rodzaj_zamkniecia == 'standard' ) {
+         //
+         $('#TloPopUp').remove();
+         //
+    }
+    if ( rodzaj_zamkniecia == 'zanikanie' ) {
+         //
+         $('#TloPopUp').stop().animate({ 'opacity' : 0 }, 400, function() { $('#TloPopUp').remove() });    
+         //
+    } 
+    if ( rodzaj_zamkniecia == 'spadanie' ) {
+         //
+         $('#PopUpZawartosc').stop().animate({ 'opacity' : 0, 'top' : '-50%' }, 400, function() { $('#TloPopUp').remove() });         
+         //
+    }    
+    //
+    if ( tryb == 0 ) {
+         document.cookie = "popup=0; path=/";        
+    }
+    //
+}

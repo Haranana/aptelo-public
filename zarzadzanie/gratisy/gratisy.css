@@ -1,0 +1,57 @@
+/* lista produktow */
+.WynikNaglowek { display:block; padding-top:4px; padding-left:3px; }
+.WynikNaglowekDodanie { font-family:Inder, Arial; font-size:130%; display:block; padding:10px; color:#ff0000; }
+.WynikNaglowekBrak { display:block; }
+.WynikNaglowekBrak span { background:url('../obrazki/awaria_maly.png') no-repeat left center; padding:5px 0px 5px 30px !important; font-weight:bold; margin:5px 0px 0px 10px; }
+#WynikPrzewijany { max-height:300px; overflow-y:scroll; border:1px solid #c1c1c1; margin-right:10px; -moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px; -khtml-border-radius:4px; }
+.TabelaProdukt { color:#3f5d6b; width:100%; border:0px; }
+.TabelaProdukt td { border:3px solid #fff; text-align:center; }
+.TabelaProdukt .prot td { background:#f4f2f2; padding:4px; text-decoration:none; }
+.TabelaProdukt span { white-space:nowrap; display:block; padding:5px; background:#e5e5e5; font-weight:normal; color:#3f5d6b; text-decoration:none; }
+
+.warunek { background:url('../obrazki/rozwin_menu.png') no-repeat left center; padding:2px 0px 2px 17px; display:block; line-height:1.4; }
+.warunek b { color:#ff0000; font-weight:normal; }
+
+.WynikProduktowGratisy span { display:block; padding-bottom:10px; font-weight:bold; }
+
+@media only screen and (max-width:1279px) {
+  .GlownyListingKategorieEdycja { margin-right:10px; }
+  .WybieranieKategorii { margin:5px 0px 0px 10px; }
+  .WynikProduktowGratisy { margin:10px 0px 10px 0px; }
+}
+@media only screen and (min-width:1280px) { 
+  .GlownyListingKategorieEdycja { display:table-cell; width:30%; vertical-align:top; }
+  .GlownyListingProduktyEdycja { display:table-cell; width:70%; vertical-align:top; }
+  .WybieranieKategorii { margin:-45px 0px 0px 174px; }
+  .WynikProduktowGratisy { margin-left:10px; }
+}
+
+.RamkaWarunki { border-top:1px dotted #ccc; padding:8px 0px 8px 0px; margin:8px 10px 8px 10px; } 
+.RamkaWarunki p { padding-left:0px !important; }
+.RamkaWarunki b { font-weight:bold; color:#3f5d6b; text-decoration:none; display:block; margin-top:5px; margin-bottom:10px; }
+.RamkaWarunki strong { padding:5px; padding-left:0px; display:inline-block; }
+
+@media only screen and (max-width:1023px) {
+  #Kategorie, #Producenci, #Produkty, #ListaWarunkow { margin-left:145px; }
+}
+@media only screen and (min-width:1024px) {
+  #Kategorie, #Producenci, #Produkty, #ListaWarunkow { margin-left:165px; max-width:50%; }
+}
+#DrzewoProducentow { padding:10px; background:#f6f7f6; border:1px solid #c1c1c1; max-height:400px; overflow-y:scroll; -moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px; -khtml-border-radius:4px; }
+#Produkty { background:#f6f7f6; border:1px solid #c1c1c1; padding:10px; max-height:400px; overflow-y:scroll; -moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px; -khtml-border-radius:4px; }
+
+#Produkty label, #Producenci label { margin:3px 0px 3px 0px; }
+
+#ListaWarunkow { display:block; line-height:1.5; color:#0e7379; border:1px solid #c1c1c1; padding:10px; max-height:400px; overflow-y:scroll; -moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px; -khtml-border-radius:4px; }
+
+/* grupa klientow */
+.grupa_klientow { display:inline-block; padding:5px; }
+
+#Doczytaj { cursor:pointer; margin:10px 0px 10px 0px; background:#d1d1d1; color:#3f3f3f; font-size:120%; text-align:center; padding:8px 10px 8px 10px; 
+  -webkit-border-radius:3px; -moz-border-radius:3px; border-radius:3px;
+  transition:all 0.30s ease-in-out;
+  -moz-transition:all 0.30s ease-in-out;
+  -webkit-transition:all 0.30s ease-in-out;
+  -o-transition:all 0.30s ease-in-out;
+}
+#Doczytaj:hover { background:#949494; color:#ffffff; }

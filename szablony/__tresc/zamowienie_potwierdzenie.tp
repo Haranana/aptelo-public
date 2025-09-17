@@ -1,0 +1,547 @@
+<!-- wyglad naglowka strony -->
+
+<h1 class="StrNaglowek">
+    <span>{__TLUMACZ:NAGLOWEK_ZAMOWIENIE_POTWIERDZENIE}</span>
+</h1>
+
+<!-- tresc strony -->
+
+<section id="SzczegolyKoszyka">
+
+    <!-- poszczegolne kroki zamowienia - tylko jezeli cos jest w koszyku -->
+
+    <div id="KrokiZamowienia">
+    
+        <div class="KoszykKrok">
+            <strong>{__TLUMACZ:KROK_1}</strong>
+            <p>
+                <a href="koszyk.html">{__TLUMACZ:KROK_1_OPIS}</a>
+            </p>
+        </div>
+        
+        <div class="KoszykKrok">
+            <strong>{__TLUMACZ:KROK_2}</strong>
+            <p>{__TLUMACZ:KROK_2_OPIS}</p>
+        </div>
+        
+        <div class="KoszykKrok aktywny">
+            <strong>{__TLUMACZ:KROK_3}</strong>
+            <h2>{__TLUMACZ:KROK_3_OPIS}</h2>
+        </div>
+        
+        <div class="KoszykKrok">
+            <strong>{__TLUMACZ:KROK_4}</strong>
+            <p>{__TLUMACZ:KROK_4_OPIS}</p>
+        </div>
+
+    </div>
+
+    <div id="TrescKoszyka">
+    
+        <div class="StrTresc">
+
+            <form action="/inne/zamowienie_realizacja.php" method="post" class="cmxform" id="potwierdzenie">
+            
+                <div class="error">
+                    <span id="span_<?php echo uniqid(); ?>"></span>
+                </div>
+
+                <!-- prosba o sprawdzenie danych -->
+            
+                <div class="Informacja InfoDuze">
+                    {__TLUMACZ:INFO_PODSUMOWANIE}
+                </div>
+
+                <div class="KontenerDaneKlienta">
+                
+                    <!-- dane do wysylki z mozliwoscia zmiany -->
+
+                    <div class="DaneWysylki">
+
+                        <div class="OknoWysylka">
+                            
+                            <div class="ZmienDane">
+                                <a class="przycisk" href="{__SSL:zamowienie-zmien-dane.html}?dane=dostawa">{__TLUMACZ:ZMIEN_DANE}</a>
+                            </div>
+
+                            <h3>{__TLUMACZ:DANE_DO_WYSYLKI}</h3>
+
+                            <div class="Tekst">
+
+                                {__DANE_DO_WYSYLKI}
+                                
+                                {__DODATKOWE_ADRESY_DOSTAWY}
+
+                            </div>
+                            
+                        </div>
+
+                    </div>
+
+                    <div class="Odstep"></div>
+                    
+                    <!-- dane do faktury z mozliwoscia zmiany -->
+
+                    <div class="DaneFaktura">
+
+                        <div {__CSS_DOKUMENT_SPRZEDAZY}>
+                        
+                            <h3>{__TLUMACZ:DOKUMENT_SPRZEDAZY}</h3>
+                            
+                            <div class="Tekst">
+
+                                 <label for="dokument_faktura">{__TLUMACZ:DOKUMENT_SPRZEDAZY_FAKTURA}
+                                    <input type="radio" name="dokument" id="dokument_faktura" value="1" <?php echo ( $_SESSION['adresFaktury']['dokument'] == '1' ? 'checked="checked"' : '' ); ?> />
+                                    <span class="radio" id="radio_dokument_faktura"></span>
+                                </label>
+                                <label for="dokument_paragon">{__TLUMACZ:DOKUMENT_SPRZEDAZY_PARAGON}
+                                    <input type="radio" name="dokument" id="dokument_paragon" value="0" <?php echo ( $_SESSION['adresFaktury']['dokument'] == '0' ? 'checked="checked"' : '' ); ?> />
+                                    <span class="radio" id="radio_dokument_paragon"></span>
+                                </label>
+
+                            </div>
+                            
+                            <br /><br />
+
+                        </div>
+                        
+                        <div class="OknoNipParagon" <?php echo ( ($_SESSION['adresFaktury']['dokument'] == '0' || $_SESSION['adresFaktury']['dokument'] == '') && KOSZYK_WYBOR_DOKUMENTU_SPRZEDAZY == 'tak' ? '' : 'style="display:none"' ); ?>>                            
+
+                            <div class="Informacja InformacjaParagonNip">{__TLUMACZ:NR_NIP_PARAGON}</div>
+
+                            {__TLUMACZ:NUMER_NIP_FIRMY_KLIENTA}: <input type="text" name="nip_paragon" id="nip_paragon" value="" size="25" aria-label="{__TLUMACZ:NUMER_NIP_FIRMY_KLIENTA}" />
+                            
+                        </div>                        
+                            
+                        <div class="OknoFaktura" <?php echo ( ($_SESSION['adresFaktury']['dokument'] == '0' || $_SESSION['adresFaktury']['dokument'] == '') && KOSZYK_WYBOR_DOKUMENTU_SPRZEDAZY == 'tak' ? 'style="display:none"' : '' ); ?>>                            
+
+                            <div class="ZmienDane">
+                                <a class="przycisk" href="{__SSL:zamowienie-zmien-dane.html}?dane=faktura">{__TLUMACZ:ZMIEN_DANE}</a>
+                            </div>
+
+                            <h3>{__TLUMACZ:DANE_DO_FAKTURY}</h3>
+
+                            <div class="Tekst">
+
+                                {__DANE_DO_FAKTURY}
+
+                            </div>
+                            
+                        </div>
+                                                        
+                    </div>
+
+                </div>   
+
+                <div class="KontenerPotwierdzenieTekst">
+                    
+                    <!-- informacje o formie dostawy -->
+
+                    <div class="PotwierdzenieTekst">
+                    
+                        <div class="ZmienDane">
+                            <a class="przycisk" href="koszyk.html">{__TLUMACZ:ZMIEN_DANE}</a>
+                        </div>
+                                
+                        <div class="FormaWysylkiPlatnosci">
+                            
+                            <h3>{__TLUMACZ:FORMA_DOSTAWY}</h3> 
+                            
+                            <b><?php echo $_SESSION['rodzajDostawy']['wysylka_nazwa']; ?></b>
+                            
+                        </div>
+                        
+                        <div class="cl"></div>
+                        
+                        <div class="OpisInfoItalic" id="WysylkaInformacjaPotwierdzenie">
+                        
+                            {__WYSYLKA_W_POTWIERDZENIU_INFORMACJA}
+                            
+                            <div class="OpisInfo" id="WysylkaLokalizacjaPotwierdzenie">{__WYSYLKA_W_POTWIERDZENIU}</div>
+                            
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="Odstep"></div>
+                
+                    <!-- informacje o formie platnosci -->
+
+                    <div class="PotwierdzenieTekst">
+                    
+                        <div class="ZmienDane">
+                            <a class="przycisk" href="koszyk.html">{__TLUMACZ:ZMIEN_DANE}</a>
+                        </div>                
+                    
+                        <div class="FormaWysylkiPlatnosci">
+                        
+                            <h3>{__TLUMACZ:FORMA_PLATNOSCI}</h3> 
+                            
+                            <b><?php echo $_SESSION['rodzajPlatnosci']['platnosc_nazwa']; ?></b>
+                            
+                        </div>
+                        
+                        <div class="cl"></div>
+                        
+                        <div class="OpisInfoItalic">{__PLATNOSC_W_POTWIERDZENIU}</div>
+                        
+                    </div>  
+                    
+                </div>
+
+                <!-- lista produktow koszyka -->                
+
+                <table class="KoszykPotwierdzenie">
+                    
+                    <tr class="Naglowek">
+                        <th>{__TLUMACZ:NAZWA_PRODUKTU}</th>
+                        <th class="UkryjMobile">{__TLUMACZ:CENA}</th>
+                        <th>{__TLUMACZ:ILOSC_PRODUKTOW}</th>
+                        <th>{__TLUMACZ:WARTOSC_PRODUKTOW}</th>
+                    </tr>
+                    
+                    <?php
+                    $ProduktyKoszyka = $__pA;
+                    
+                    foreach ($ProduktyKoszyka AS $ProduktKoszyka) {
+                    ?>
+                        
+                        <tr>
+                            <td>
+                                <h3>
+                                    <?php 
+                                    // nazwa produktu
+                                    echo $ProduktKoszyka['nazwa'];
+                                    ?>
+                                </h3>
+                                
+                                <?php                                
+                                // pola tekstowe do produktu
+                                echo $ProduktKoszyka['pola_txt']; 
+                                // komentarz do produktu
+                                echo $ProduktKoszyka['komentarz'];                                
+                                // informacja o producencie
+                                if ( ZAMOWIENIE_POKAZ_PRODUCENT == 'tak' ) {
+                                     echo $ProduktKoszyka['producent'];
+                                }
+                                // informacja o czasie wysylki
+                                if ( ZAMOWIENIE_POKAZ_CZAS_WYSYLKI == 'tak' ) {
+                                     echo $ProduktKoszyka['czas_wysylki'];
+                                }
+                                // informacja o stanie produktu
+                                if ( ZAMOWIENIE_POKAZ_STAN_PRODUKTU == 'tak' ) {
+                                     echo $ProduktKoszyka['stan_produktu'];                                
+                                }
+                                // informacja o gwarancji
+                                if ( ZAMOWIENIE_POKAZ_GWARANCJA == 'tak' ) {
+                                     echo $ProduktKoszyka['gwarancja']; 
+                                }
+                                // nr katalogowy
+                                if ( ZAMOWIENIE_POKAZ_NUMER_KATALOGOWY == 'tak' ) {
+                                     echo $ProduktKoszyka['nr_katalogowy']; 
+                                }                                               
+                                // jezeli jest ubezpieczenie easyprotect
+                                echo $ProduktKoszyka['ubezpieczenie'];                                                 
+                                // link do produktu - do opisu
+                                if ( ZAMOWIENIE_POKAZ_OPIS_PRODUKTU == 'tak' ) {
+                                     echo $ProduktKoszyka['link_opisu'];
+                                }
+                                ?>
+                                
+                            </td>
+                            <td class="UkryjMobile"><?php echo $ProduktKoszyka['cena']; ?></td>
+                            <td><?php echo $ProduktKoszyka['ilosc']; ?></td>
+                            <td><?php echo $ProduktKoszyka['wartosc']; ?></td>
+                        </tr>
+
+                    <?php
+                    }    
+                    
+                    unset($ProduktyKoszyka);
+                    ?>
+
+                </table>
+                
+                <table class="KoszykPotwierdzenie KoszykPotwierdzeniePodsumowanie">
+                
+                    {__PODSUMOWANIE_ZAMOWIENIA}
+                
+                </table>
+                
+                <div class="cl"></div>
+                
+                {__MAKSYMALNY_CZAS_WYSYLKI}
+                
+                <!-- komentarze do zamowienia -->    
+
+                <div class="UwagiZamowienie">
+                
+                    <b>{__TLUMACZ:UWAGI_DO_ZAMOWIENIA}</b>
+
+                    <textarea cols="60" rows="5" name="komentarz">{__UWAGI_KOSZYKA}</textarea>
+                    
+                </div>
+                
+                {__DODATKOWE_POLA_ZAMOWIENIA}
+                
+                <div class="PotwierdzenieAkceptacje">
+                
+                    <!-- zgoda na akceptacje regulaminu - tylko jezeli jest konto z rejestracja - bez rejestracji akceptuje regulamin przy zakladaniu konta -->  
+                    
+                    <?php if ( KLIENT_ZGODY_POTWIERDZENIE == 'tak' ) { ?>
+                        <?php if ( !isset($_COOKIE['regulamin']) ) { ?>
+
+                        <div class="CheckSekcja">
+
+                            <label for="regulamin">{__TLUMACZ:ZGODA_REGULAMIN}
+                                <input type="checkbox" value="1" name="regulamin" id="regulamin" class="regulamin" />
+                                <span class="check" id="check_regulamin"></span><em class="required checkreq" id="em_<?php echo uniqid(); ?>"></em>
+                            </label>
+
+                        </div>
+                        
+                        <div class="cl"></div>
+                        
+                        <div id="error-potwierdzenie" class="errorInformacja"></div>
+                        
+                        <div class="cl"></div>
+                        
+                        <div class="CheckSekcja">
+
+                            <label for="polityka_prywatnosci">{__TLUMACZ:ZGODA_POLITYKA_PRYWATNOSCI}
+                                <input type="checkbox" value="1" name="polityka_prywatnosci" id="polityka_prywatnosci" class="polityka_prywatnosci" />
+                                <span class="check" id="check_polityka_prywatnosci"></span><em class="required checkreq" id="em_<?php echo uniqid(); ?>"></em>
+                            </label>
+
+                        </div>
+                        
+                        <div class="cl"></div>
+                        
+                        <div id="error-polityka_prywatnosci" class="errorInformacja"></div>
+                        
+                        <div class="cl"></div>
+                        
+                        <?php } ?>
+                    <?php } ?>
+                    
+                    <!-- zgoda na produkty w formie uslug - brak mozliwosci odstapienia od umowy -->  
+                    
+                    <?php if ( $__Parametr['ProduktyUsluga'] == true ) { ?>
+                    
+                        <div class="CheckSekcja">
+
+                            <label for="produkty_uslugi">{__TLUMACZ:ZGODA_SPRZEDAZ_USLUG}
+                                <input type="checkbox" value="1" name="produkty_uslugi" id="produkty_uslugi" class="usluga" />
+                                <span class="check" id="check_produkty_uslugi"></span><em class="required checkreq" id="em_<?php echo uniqid(); ?>"></em>
+                            </label>
+
+                        </div>    
+                        
+                        <div class="cl"></div>
+
+                        <div id="error-usluga" class="errorInformacja"></div> 
+
+                        <div class="cl"></div>
+                    
+                    <?php } ?>
+                    
+                    <!-- zgoda na produkty w formie elektronicznej - brak mozliwosci odstapienia od umowy -->  
+                    
+                    <?php if ( $__Parametr['ProduktyOnline'] == true ) { ?>
+                    
+                        <div class="CheckSekcja">
+
+                            <label for="produkty_online">{__TLUMACZ:ZGODA_SPRZEDAZ_ELEKTRONICZNA}
+                                <input type="checkbox" value="1" name="produkty_online" id="produkty_online" class="online" />
+                                <span class="check" id="check_produkty_online"></span><em class="required checkreq" id="em_<?php echo uniqid(); ?>"></em>
+                            </label>
+
+                        </div> 
+                        
+                        <div class="cl"></div>
+
+                        <div id="error-online" class="errorInformacja"></div>
+                        
+                        <div class="cl"></div>
+                    
+                    <?php } ?>  
+                    
+                    <!-- zgoda na produkty w formie niestandardowej - brak mozliwosci odstapienia od umowy -->  
+                    
+                    <?php if ( $__Parametr['ProduktyNiestandardowe'] == true ) { ?>
+                    
+                        <div class="CheckSekcja">
+
+                            <label for="produkty_niestandardowe">{__TLUMACZ:ZGODA_SPRZEDAZ_NIESTANDARDOWA}
+                                <input type="checkbox" value="1" name="produkty_niestandardowe" id="produkty_niestandardowe" class="niestandardowy" />
+                                <span class="check" id="check_produkty_niestandardowe"></span><em class="required checkreq" id="em_<?php echo uniqid(); ?>"></em>
+                            </label>
+
+                        </div> 
+                        
+                        <div class="cl"></div>
+
+                        <div id="error-niestandardowy" class="errorInformacja"></div> 
+
+                        <div class="cl"></div>
+                    
+                    <?php } ?>                
+                    
+                    <!-- zgoda na produkty ze zwrotow -->  
+                    
+                    <?php if ( $__Parametr['ProduktyZeZwrotu'] == true ) { ?>
+                    
+                        <div class="CheckSekcja">
+
+                            <label for="produkty_zezwrotu">{__TLUMACZ:ZGODA_SPRZEDAZ_ZE_ZWROTU}
+                                <input type="checkbox" value="1" name="produkty_zezwrotu" id="produkty_zezwrotu" class="zezwrotu" />
+                                <span class="check" id="check_produkty_zezwrotu"></span><em class="required checkreq" id="em_<?php echo uniqid(); ?>"></em>
+                            </label>
+
+                        </div> 
+                        
+                        <div class="cl"></div>
+
+                        <div id="error-zezwrotu" class="errorInformacja"></div> 
+
+                        <div class="cl"></div>
+                    
+                    <?php } ?>                
+                    
+                    <!-- zgoda na produkty niekompletne -->  
+                    
+                    <?php if ( $__Parametr['ProduktyNiekompletne'] == true ) { ?>
+                    
+                        <div class="CheckSekcja">
+
+                            <label for="produkty_niekompletne">{__TLUMACZ:ZGODA_SPRZEDAZ_NIEKOMPLETNY}
+                                <input type="checkbox" value="1" name="produkty_niekompletne" id="produkty_niekompletne" class="niekompletne" />
+                                <span class="check" id="check_produkty_niekompletne"></span><em class="required checkreq" id="em_<?php echo uniqid(); ?>"></em>
+                            </label>
+
+                        </div> 
+                        
+                        <div class="cl"></div>
+
+                        <div id="error-niekompletne" class="errorInformacja"></div> 
+
+                        <div class="cl"></div>
+                    
+                    <?php } ?>                
+                    
+                    <!-- zgoda na produkty z demontazu -->  
+                    
+                    <?php if ( $__Parametr['ProduktyZDemontazu'] == true ) { ?>
+                    
+                        <div class="CheckSekcja">
+
+                            <label for="produkty_zdemontazu">{__TLUMACZ:ZGODA_SPRZEDAZ_DEMONTAZ}
+                                <input type="checkbox" value="1" name="produkty_zdemontazu" id="produkty_zdemontazu" class="zdemontazu" />
+                                <span class="check" id="check_produkty_niekompletne"></span><em class="required checkreq" id="em_<?php echo uniqid(); ?>"></em>
+                            </label>
+
+                        </div> 
+                        
+                        <div class="cl"></div>
+
+                        <div id="error-zdemontazu" class="errorInformacja"></div> 
+
+                        <div class="cl"></div>
+                    
+                    <?php } ?>                
+                    
+                    <!-- zgoda na produkty refabrykowane -->  
+                    
+                    <?php if ( $__Parametr['ProduktyRefabrykowane'] == true ) { ?>
+                    
+                        <div class="CheckSekcja">
+
+                            <label for="produkty_refabrykowane">{__TLUMACZ:ZGODA_SPRZEDAZ_REFABRYKOWANY}
+                                <input type="checkbox" value="1" name="produkty_refabrykowane" id="produkty_refabrykowane" class="refabrykowane" />
+                                <span class="check" id="check_produkty_niekompletne"></span><em class="required checkreq" id="em_<?php echo uniqid(); ?>"></em>
+                            </label>
+
+                        </div> 
+                        
+                        <div class="cl"></div>
+
+                        <div id="error-refabrykowane" class="errorInformacja"></div> 
+
+                        <div class="cl"></div>
+                    
+                    <?php } ?>                
+                    
+                    <!-- zgoda na produkty z odzysku -->  
+                    
+                    <?php if ( $__Parametr['ProduktyZOdzysku'] == true ) { ?>
+                    
+                        <div class="CheckSekcja">
+
+                            <label for="produkty_zodzysku">{__TLUMACZ:ZGODA_SPRZEDAZ_ODZYSK}
+                                <input type="checkbox" value="1" name="produkty_zodzysku" id="produkty_zodzysku" class="zodzysku" />
+                                <span class="check" id="check_produkty_niekompletne"></span><em class="required checkreq" id="em_<?php echo uniqid(); ?>"></em>
+                            </label>
+
+                        </div> 
+                        
+                        <div class="cl"></div>
+
+                        <div id="error-zodzysku" class="errorInformacja"></div> 
+
+                        <div class="cl"></div>
+                    
+                    <?php } ?>                
+                    
+                    <div class="cl"></div>
+                    
+                    <!-- zgoda na przekazanie adresu email -->
+                    
+                    <?php 
+                    $ZgodaNaOpinie = $__pB;
+                    //
+                    if ( $ZgodaNaOpinie ) { ?>
+                    
+                        <div class="CheckSekcja" {__CSS_TEKST_ZGODY}>
+<!--
+                            <div class="Lf"><input type="checkbox" value="1" name="zgoda_opinie" id="zgoda_opinie" {__ZAZNACZENIE_TEKST_ZGODY} /></div>
+                            <div class="PotwierdzenieOpis"><label for="zgoda_opinie">{__TEKST_ZGODY}</label></div>
+-->
+                            <label for="zgoda_opinie">{__TEKST_ZGODY}
+                                <input type="checkbox" value="1" name="zgoda_opinie" id="zgoda_opinie" {__ZAZNACZENIE_TEKST_ZGODY} />
+                                <span class="check" id="check_zgoda_opinie"></span>
+                            </label>
+
+                        </div>
+                        
+                    <?php 
+                    }                     
+                    unset($ZgodaNaOpinie);
+                    ?>
+
+                    <div class="cl"></div>
+                    
+                </div>
+                
+                <div class="cl"></div>
+
+                <!-- przycisk zlozenia zamowienia -->    
+
+                <div class="PrzyciskiPotwierdzenie">
+                   <input class="przyciskZamow" type="submit" id="submitButton" value="{__TLUMACZ:PRZYCISK_ZLOZ_ZAMOWIENIE}" />
+                </div>
+                
+                <br />
+                
+                <a href="koszyk.html" class="przycisk Rg">{__TLUMACZ:PRZYCISK_COFNIJ}</a>
+                
+                <div class="cl"></div>
+
+            </form>
+
+        </div>
+        
+    </div>
+    
+</section>
+
+{__INTEGRACJA_KLAVIYO}

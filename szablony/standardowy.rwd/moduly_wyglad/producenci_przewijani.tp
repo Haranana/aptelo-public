@@ -1,0 +1,13 @@
+<!-- wyglad naglowka modulu - sprawdza czy modul ma miec naglowek -->
+
+<?php if ($__pA['modul_header'] == '1') { ?>
+    <h2 class="StrNaglowek">
+        <span>{__NAGLOWEK_MODULU}</span>
+    </h2>
+<?php } ?>
+
+<!-- tresc modulu - dodatkowo dodany padding 0px - nie moze byc odstepow w module producentow przewijanych -->
+
+<div class="StrTresc" style="padding:0px">
+    {__TRESC_MODULU}
+</div>

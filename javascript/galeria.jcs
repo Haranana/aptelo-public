@@ -1,0 +1,16 @@
+$(document).ready(function() {
+  
+    new jBox('Image', {
+      imageSize: 'auto',
+      imageCounter: true,
+      imageCounterSeparator: ' / '
+    });
+  
+    $(document).on('keydown', '.ZdjecieGalerii', function (e) {
+        if (e.key === ' ') {
+          e.preventDefault(); 
+          $(this).trigger('click'); 
+        }
+    });  
+    
+});

@@ -1,0 +1,569 @@
+/* ukrywanie modulu dla malych rozdzielczosci --- nie zmieniac nazwy styli, nie usuwac --- */
+@media only screen and (max-width:799px) {
+  /* klasa do ukrywania modulu */
+  .ModulRwdUkryj { display:none; }
+}
+@media only screen and (min-width:800px) {
+  /* klasa do ukrywania modulu dla duzych rozdzielczosci */
+  .ModulMobileRwdWyswietl { display:none; }
+}
+
+/*** wyglad modulow srodkowych ***/
+
+/* aktualnosci na stronie glownej */
+.AktProsta { text-align:left; position:relative; padding:10px; float:left;
+  -webkit-background-clip:content-box; -moz-background-clip:content-box; background-clip:content-box;  
+	-webkit-box-sizing:border-box; -moz-box-sizing:border-box; box-sizing:border-box;
+  border-right:1px dotted #dbdbdb; border-bottom:1px dotted #dbdbdb;
+}
+.AktProsta h2 a { text-align:left; padding:0px; display:block; margin-bottom:5px; font-weight:bold; font-size:110%; }
+.AktProsta .DaneAktualnosci { float:none; text-align:left; margin-bottom:8px; display:block; }
+.AktProsta .DaneAktualnosci em { display:inline-block; margin:2px 2px 2px 0px; padding-right:15px; color:#929090; font-style:normal; }
+.AktProsta .TrescAktualnosci { text-align:left; margin:5px 0px 5px 0px; }
+.AktProsta .TrescAktualnosci .FotoArtykul { padding-bottom:15px; text-align:center; }
+.AktProsta .TrescAktualnosci .OpisArtykul { line-height:1.5; }
+.AktProsta .DataDodania { background:url('../obrazki/nawigacja/kalendarz.png') no-repeat left center; padding:2px 0px 2px 22px; }
+.AktProsta .IloscOdslon { padding:0px; }
+.AktProsta em.AutorArtykulu { display:block; padding:3px 0px 5px 0px; }
+
+/* wyglad produktu w formie okien */
+.ProduktProsty { text-align:center; position:relative; padding:10px 5px 10px 5px; float:left;
+  -webkit-background-clip:content-box; -moz-background-clip:content-box; background-clip:content-box;  
+	-webkit-box-sizing:border-box; -moz-box-sizing:border-box; box-sizing:border-box;
+  border-right:1px dotted #dbdbdb; border-bottom:1px dotted #dbdbdb;
+}
+.ProduktProsty .Foto { display:inline-block; }
+.ProduktProsty h3 a { padding:7px 10px 10px 10px; display:inline-block; }
+.ProduktProsty .Foto a { position:relative; }
+.ProduktProsty .Zdjecie { margin:0px 0px 10px 0px; }
+.ProduktProsty .Opis { text-align:left; display:block; margin:10px !important; padding:5px; }
+.ProduktProsty .DataDostepnosci { text-align:center; display:block; margin:10px !important; padding:10px 10px 5px 10px; }
+.ProduktProsty .DataDostepnosci b { text-align:center; display:block; margin:5px; font-size:110%; }
+.ProduktProsty .Zakup { display:inline-block; margin:0px auto; margin-top:10px; }
+.ProduktProsty .Zakup .InputIlosc { float:left; text-align:center; width:30px; margin:4px 5px 4px 0px; }
+.ProduktProsty .Zakup em { display:inline-block; float:left; font-style:normal; margin:10px 15px 5px 0px; }
+/* wyskakujacy z gory napis zobacz szczegoly z lupa */
+.ProduktProsty .AnimacjaZobacz { overflow:hidden; position:relative; }
+.ProduktProsty .Zobacz { position:absolute; z-index:100; left:0px; right:0px; top:-100px; 
+  transition: all 0.30s ease-in-out;
+	-moz-transition: all 0.30s ease-in-out;
+	-webkit-transition: all 0.30s ease-in-out;
+}
+.ProduktProsty .AnimacjaZobacz:hover .Zobacz { top:0px; }
+.ProduktProsty .Zobacz strong { display:block; background:#ebebeb; padding:13px 0px 8px 0px; margin:0px 10px 0px 10px; border-bottom:2px solid #e10101; opacity:0.9; filter:alpha(opacity=90); }
+.ProduktProsty .Zobacz a { display:inline-block; color:#9d9d9d; text-transform:uppercase; font-weight:bold; font-size:120%; background:url('../obrazki/szablon/lupa_modul.png') no-repeat; background-position:left center; padding:10px 10px 10px 35px; font-family:Roboto, Arial, Tahoma, Verdana, sans-serif; 
+  transition: all 0.20s ease-in-out;
+	-moz-transition: all 0.20s ease-in-out;
+	-webkit-transition: all 0.20s ease-in-out;
+	-o-transition: all 0.20s ease-in-out;
+}
+.ProduktProsty .Zobacz a:hover { background-position:right center; padding:10px 35px 10px 10px; color:#e10101; }
+
+/* wyglad produktu w formie okien - z dostepnoscia, ocena, producentem */
+.ProduktZlozony { text-align:center; position:relative; padding:10px 5px 5px 5px; float:left;
+  -webkit-background-clip:content-box; -moz-background-clip:content-box; background-clip:content-box;  
+	-webkit-box-sizing:border-box; -moz-box-sizing:border-box; box-sizing:border-box;
+  border-right:1px dotted #dbdbdb; border-bottom:1px dotted #dbdbdb;
+}
+@media only screen and (max-width:1023px) {
+  .ProduktZlozony .Foto { margin-bottom:10px; }
+  .ProduktZlozony .ProdCena { text-align:center; margin:0px !important; }
+  .ProduktZlozony .Ocena { text-align:center; }
+  .ProduktZlozony .Ocena img { display:inline-block; }
+  .ProduktZlozony .Ocena span { display:block; }
+}
+@media only screen and (min-width:1024px) {
+  .ProduktZlozony .Foto { float:left; margin-left:15px; }
+  .ProduktZlozony .ProdCena { text-align:left; padding-right:5px; }
+  .ProduktZlozony .Ocena { text-align:left; }
+  .ProduktZlozony .Ocena img { display:block; }
+}
+.ProduktZlozony .ProdCena a { padding:0px 10px 10px 0px; display:inline-block; }
+.ProduktZlozony .Opis { text-align:left; display:block; margin:10px !important; padding:5px; }
+.ProduktZlozony .Opis .Dostepnosc { font-style:normal; display:block; padding:5px 0px 5px 0px; font-weight:bold; }
+.ProduktZlozony .Opis .Dostepnosc em { font-style:normal; color:#929090; font-weight:normal; }
+.ProduktZlozony .ProdCena .Producent { margin-top:8px; display:block; }
+.ProduktZlozony .ProdCena .Producent a { color:#e10101; font-weight:bold; }
+.ProduktZlozony .ProdCena .Producent a:hover { color:#e10101; }
+.ProduktZlozony .ProdCena .Producent em { font-style:normal; color:#929090; font-weight:normal; }
+.ProduktZlozony .cl { height:10px; }
+.ProduktZlozony .Ocena { margin-top:10px; line-height:1.5; }
+.ProduktZlozony .Ocena img { margin:5px 0px 5px 0px; }
+.ProduktZlozony .Ocena strong { display:inline-block; margin-left:3px; font-size:110%; }
+.ProduktZlozony .Zakup { display:inline-block; margin-top:5px; }
+.ProduktZlozony .Zakup .InputIlosc { float:left; text-align:center; width:30px; margin:4px 5px 4px 0px; }
+.ProduktZlozony .Zakup em { display:inline-block; float:left; font-style:normal; margin:10px 10px 5px 0px; }
+
+/* wyglad modulu produktow z jedynym zdjeciem */
+@media only screen and (max-width:799px) { 
+  .ProduktZdjecieLista .FotoJedno { margin-bottom:20px; width:100% !important; }
+  .ProduktZdjecieLista .FotoJedno li { text-align:center; }
+  .ProduktZdjecieLista .NazwyProduktow { text-align:left; }
+}
+@media only screen and (min-width:800px) { 
+  .ProduktZdjecieLista { display:table; width:100%; border-collapse:collapse; border-spacing:0; }
+  .ProduktZdjecieLista .FotoJedno { display:table-cell; vertical-align:middle; text-align:left; padding-left:30px; }
+  .ProduktZdjecieLista .NazwyProduktow { display:table-cell; vertical-align:middle; text-align:left; }
+}
+.ProduktZdjecieLista .FotoJedno ul { list-style-type:none; padding:0px; text-align:left; }
+.ProduktZdjecieLista .FotoJedno li { display:none; }
+.ProduktZdjecieLista .FotoJedno li:first-child { display:block; }
+.ProduktZdjecieLista .NazwyProduktow h3 { display:table; width:100%; }
+.ProduktZdjecieLista .NazwyProduktow h3:nth-child(odd) { background:#f3f3f3; }
+.ProduktZdjecieLista .NazwyProduktow h3 .wyswietlany { color:#e10101; }
+.ProduktZdjecieLista .NazwyProduktow a { padding:10px; display:table-cell; vertical-align:middle; text-align:left; 
+  transition: all 0.20s ease-in-out;
+	-moz-transition: all 0.20s ease-in-out;
+	-webkit-transition: all 0.20s ease-in-out;
+	-o-transition: all 0.20s ease-in-out;
+}
+.ProduktZdjecieLista .NazwyProduktow a:hover { padding-left:18px; }
+.ProduktZdjecieLista .NazwyProduktow .Ceny { vertical-align:middle; display:table-cell; padding:6px 10px 6px 0px; text-align:right; }
+.ProduktZdjecieLista .NazwyProduktow .CenaPoprzednia { display:inline-block; margin-right:10px; }
+
+/* przyciski do modulu wszystkich produktow */
+#LadowanieWszystkie { display:none; z-index:100; position:absolute; width:100px; height:150px; background:url('../obrazki/nawigacja/loader_maly.gif') no-repeat center center; }
+#WszystkieProdukty { z-index:1; }
+#WszystkieProdukty .SekcjaRowna:nth-last-child(2) { border-bottom:0px; }
+#WszystkieProdukty .ModulPrzyciski { margin:20px 0px 10px 0px; text-align:center; }
+@media only screen and (max-width:799px) {
+  #WszystkieProdukty .ModulPrzyciski b { font-size:140%; margin:4px; padding:3px 8px 3px 8px; }
+}
+@media only screen and (min-width:800px) and (max-width:1023px) { 
+  #WszystkieProdukty .ModulPrzyciski b { font-size:130%; margin:3px; padding:3px 8px 3px 8px; }
+}
+@media only screen and (min-width:1024px) { 
+  #WszystkieProdukty .ModulPrzyciski b { font-size:120%; margin:2px; padding:3px 8px 4px 8px; }
+}
+#WszystkieProdukty .ModulPrzyciski b { height:auto; width:auto; display:inline-block; cursor:pointer; background:#b7b7b7; color:#e6e6e6; font-weight:normal; -webkit-border-radius:4px; -moz-border-radius:4px; border-radius:4px; -khtml-border-radius:4px; 
+  transition: all 0.20s ease-in-out;
+	-moz-transition: all 0.20s ease-in-out;
+	-webkit-transition: all 0.20s ease-in-out;
+	-o-transition: all 0.20s ease-in-out;
+}
+#WszystkieProdukty .ModulPrzyciski b:hover { background:#626262; }
+#WszystkieProdukty .ModulPrzyciski b.On { background:#626262; font-weight:bold; }
+#WszystkieProdukty .ModulPrzyciski span { display:inline-block; margin:0px 5px 0px 5px; font-weight:bold; }
+
+/* wyglad produktu - modul promocje z zegarem */
+.ProduktWiersz { position:relative; padding:10px 0px 10px 0px; border-bottom:1px dotted #dbdbdb; }
+.StrTresc .ProduktWiersz:last-child { border:0px; }
+@media only screen and (max-width:799px) { 
+  .ProduktWiersz .Foto { margin:5px 0px 10px 0px; text-align:center; }
+  .ProduktWiersz .ProdOpis { margin:5px 0px 10px 0px !important; text-align:center; }
+  .ProduktWiersz .Odliczanie { margin-left:0px !important; text-align:center; }
+  .ProduktWiersz .OpisKrotki { padding:0px 10px 0px 10px; display:block; }
+}
+@media only screen and (min-width:800px) {
+  .ProduktWiersz .Foto { float:left; margin:5px 0px 0px 15px; }
+  .ProduktWiersz .ProdOpis { text-align:left; margin:5px 40px 10px 0px; }
+}
+.ProduktWiersz .ProdOpis a { padding:0px 10px 10px 0px; display:inline-block; }
+.ProduktWiersz .Zdjecie { margin:0px 0px 10px 0px; }
+.ProduktWiersz .OpisKrotki { margin:10px 0px 10px 0px; display:block; }
+.ProduktWiersz .Odliczanie { display:block; font-size:110%; color:#e10101; font-weight:bold; margin:12px 0px 8px 0px; }
+.ProduktWiersz .Odliczanie span { display:block; color:#5c5c5c; margin-bottom:5px; font-size:19px; font-weight:bold; font-family: Arial, Tahoma, Verdana, sans-serif; }
+.ProduktWiersz .Odliczanie span em { display:inline-block; background:#5c5c5c; color:#ffffff; font-style:normal; padding:2px 5px 2px 5px; margin:1px; 
+                                  -webkit-border-radius:4px; -moz-border-radius:4px; border-radius: 4px; -khtml-border-radius:4px; }
+.ProduktWiersz .Bestseller_pl { right:0px; top:0px; position:absolute; background:url('../obrazki/ikony/pl/bestseller.png') no-repeat; width:185px; height:111px; }
+.ProduktWiersz .Bestseller_en { right:0px; top:0px; position:absolute; background:url('../obrazki/ikony/en/bestseller.png') no-repeat; width:185px; height:111px; }
+.ProduktWiersz .Zakup { display:inline-block; }
+.ProduktWiersz .Zakup .InputIlosc { float:left; text-align:center; width:30px; margin:4px 5px 4px 0px; }
+.ProduktWiersz .Zakup em { display:inline-block; float:left; font-style:normal; margin:10px 15px 5px 0px; }
+
+/* wyglad kategorii na stronie glownej */
+.KategoriaGl { text-align:left; position:relative; padding:5px 8px 10px 8px; float:left;
+  -webkit-background-clip:content-box; -moz-background-clip:content-box; background-clip:content-box;  
+	-webkit-box-sizing:border-box; -moz-box-sizing:border-box; box-sizing:border-box;
+  border-right:1px dotted #dbdbdb; border-bottom:1px dotted #dbdbdb;
+}
+.KategoriaGl .Kategoria { margin-right:60px; }
+.KategoriaGl h3 a { padding:7px 10px 10px 3px; display:inline-block; }
+.KategoriaGl .Foto { float:right; }
+.KategoriaGl .Zdjecie { margin:0px 0px 10px 0px; }
+.KategoriaGl ul { list-style-type: none; padding: 0; margin: 0; }
+.KategoriaGl li { margin:0px; }
+.KategoriaGl li a { background:url('../obrazki/szablon/menu_kategorii_str_glowna.png') no-repeat left center; display:block; padding:3px 10px 3px 18px; }
+.KategoriaPusta { display:table-cell; }
+
+/* producenci chmura */
+.ProducenciChmuraModul { text-align:center; }
+.ProducenciChmuraModul a { display:inline-block; margin:5px; font-size:130%; }
+
+/* wyglad producentow na stronie glownej */
+#ProducenciAnimacja { margin:10px 28px 10px 28px; overflow:hidden; }
+#ProducenciAnimacjaStrzalkaLewa { display:none; opacity:0.6; filter:alpha(opacity=60); cursor:pointer; float:left; width:28px; height:30px; margin-top:30px; background:url('../obrazki/nawigacja/strzalka_poprzedni.png') no-repeat center center; }
+#ProducenciAnimacjaStrzalkaLewa:hover { opacity:1; filter:alpha(opacity=100); }
+#ProducenciAnimacjaStrzalkaPrawa { opacity:0.6; filter:alpha(opacity=60); cursor:pointer; float:right; width:28px; height:30px; margin-top:30px; background:url('../obrazki/nawigacja/strzalka_nastepny.png') no-repeat center center; }
+#ProducenciAnimacjaStrzalkaPrawa:hover { opacity:1; filter:alpha(opacity=100); }
+#ProducenciAnimacjaSrodek ul { list-style-type: none; padding: 0; margin: 0; display:table; border-collapse:collapse; border-spacing:0; }
+#ProducenciAnimacjaSrodek li { display:table-cell; vertical-align:middle; text-align:center; margin:0px; }
+
+/* modul animowany - jeden produkt na cala szerokosc szeroki na cala kolumne - przenikanie - promocje */
+.AnimModulJeden .ProdOpisSrodek { text-align:left; margin:5px 20px 0px 10px; }
+.AnimModulJeden .ProdOpisSrodek a { font-size:22px; font-weight:normal; padding:0px 10px 10px 0px; display:inline-block; }
+.AnimModulJeden .ProdOpisSrodek .Znikanie { position:relative; margin:0px; }
+@media only screen and (max-width:479px) { 
+  .AnimModulJeden .ProdOpisSrodek { margin:0px !important; text-align:center; padding-bottom:5px; }
+  .AnimModulJeden .FotoPrawe { display:none; }
+}
+@media only screen and (min-width:480px) and (max-width:799px) {
+  .AnimModulJeden .ProdOpisSrodek { padding-bottom:5px; }
+  .AnimModulJeden .FotoPrawe { margin:0px; float:right; }
+}
+@media only screen and (min-width:800px) {
+  .AnimModulJeden .FotoPrawe { float:right; margin:5px 15px 0px 15px; }
+}
+.AnimModulJeden .FotoPrawe .Skakanie { position:relative; margin:0px; }
+.AnimModulJeden .FotoPrawe .Zdjecie { border:0px; -moz-box-shadow:none; -webkit-box-shadow:none; box-shadow:none; }
+
+/* modul animowany - jeden produkt na cala szerokosc szeroki na cala kolumne - przenikanie - hity */
+.AnimModulJeden { list-style-type:none; padding:0px; margin:0px; overflow:hidden; width:50000px; opacity:0; filter:alpha(opacity=0); }
+.AnimModulJeden li { float:left; }
+@media only screen and (max-width:799px) { 
+  .AnimModulJeden .Kont { margin:0px 5px 0px 5px; }
+  .AnimModulJeden .Foto { text-align:center; margin:5px 0px 10px 0px; width:auto !important; }
+  .AnimModulJeden .ProdOpis { text-align:center; }
+}
+@media only screen and (min-width:800px) { 
+  .AnimModulJeden .Kont { margin:0px 5px 0px 5px; display:table; width:100%; border-collapse:collapse; border-spacing:0; }
+  .AnimModulJeden .Foto { display:table-cell; vertical-align:top; padding:5px 0px 0px 15px; }
+  .AnimModulJeden .ProdOpis { display:table-cell; vertical-align:top; text-align:left; }
+}
+.AnimModulJeden .ProdOpis { padding:5px 20px 0px 20px; }
+.AnimModulJeden .ProdOpis a { font-size:180%; font-weight:normal; padding:0px 10px 10px 0px; display:inline-block; }
+.AnimModulJeden .Zdjecie { margin:0px 0px 10px 0px; }
+.AnimModulJeden .OpisKrotki { margin:5px 0px 10px 0px; display:block; line-height:1.5; }
+.AnimModulJeden .Zakup { display:inline-block; margin-top:10px; }
+.AnimModulJeden .Zakup .InputIlosc { float:left; text-align:center; width:30px; margin:4px 5px 4px 0px; }
+.AnimModulJeden .Zakup em { display:inline-block; float:left; font-style:normal; margin:10px 15px 5px 0px; }
+
+@media only screen and (max-width:799px) {
+  .ModulPrzyciski { text-align:center; margin-bottom:10px; }
+}
+@media only screen and (min-width:800px) {
+  .ModulPrzyciski { text-align:right; }
+}
+.ModulPrzyciskiSrodek { text-align:center; }
+@media only screen and (max-width:799px) {
+  .ModulPrzyciski b, .ModulPrzyciskiSrodek b { width:22px; height:22px; margin:4px; }
+}
+@media only screen and (min-width:800px) and (max-width:1023px) { 
+  .ModulPrzyciski b, .ModulPrzyciskiSrodek b { width:18px; height:18px; margin:3px; }
+}
+@media only screen and (min-width:1024px) { 
+  .ModulPrzyciski b, .ModulPrzyciskiSrodek b { width:14px; height:14px; margin:2px; }
+}
+.ModulPrzyciski b, .ModulPrzyciskiSrodek b { display:inline-block; cursor:pointer; background:#dbdbdb; color:#dbdbdb; -webkit-border-radius:50%; -moz-border-radius:50%; border-radius:50%; -khtml-border-radius:50%; 
+  transition: all 0.20s ease-in-out;
+	-moz-transition: all 0.20s ease-in-out;
+	-webkit-transition: all 0.20s ease-in-out;
+	-o-transition: all 0.20s ease-in-out;
+}
+.ModulPrzyciski b:hover, .ModulPrzyciskiSrodek b:hover { background:#5c5c5c; }
+.ModulPrzyciski b.On, .ModulPrzyciskiSrodek b.On { background:#5c5c5c; }
+
+/* modul animowany - przewijane produkty lewo / prawo lub przenikanie */
+.AnimModul ul { list-style-type:none; padding:0px; width:100%; }
+.AnimModul li { overflow:hidden; opacity:0; filter:alpha(opacity=0); width:50000px; }
+.AnimModul .StronyAnim { padding:4px 2px 4px 2px; text-align:center; }
+@media only screen and (max-width:799px) {
+  .AnimModul .StronyAnim b { font-size:140%; margin:4px; padding:3px 8px 3px 8px; }
+}
+@media only screen and (min-width:800px) and (max-width:1023px) { 
+  .AnimModul .StronyAnim b { font-size:130%; margin:3px; padding:3px 8px 3px 8px; }
+}
+@media only screen and (min-width:1024px) { 
+  .AnimModul .StronyAnim b { font-size:120%; margin:2px; padding:3px 8px 4px 8px; }
+}
+.AnimModul .StronyAnim b { display:inline-block; cursor:pointer; background:#b7b7b7; color:#e6e6e6; font-weight:normal; -webkit-border-radius:4px; -moz-border-radius:4px; border-radius:4px; -khtml-border-radius:4px; 
+  transition: all 0.20s ease-in-out;
+	-moz-transition: all 0.20s ease-in-out;
+	-webkit-transition: all 0.20s ease-in-out;
+	-o-transition: all 0.20s ease-in-out;
+}
+.AnimModul .StronyAnim b:hover { background:#626262; }
+.AnimModul .StronyAnim b.On { background:#626262; font-weight:bold; }
+
+.AnimModul { position:relative; }
+.AnimModul .StronyStrzalki { margin-left:40px; margin-right:40px; overflow:hidden; position:relative; }
+.AnimModul .LewaStrzalka, .AnimModul .PrawaStrzalka { opacity:0.7; filter:alpha(opacity=70);
+  transition: all 0.30s ease-in-out;
+  -moz-transition: all 0.30s ease-in-out;
+  -webkit-transition: all 0.30s ease-in-out;
+  -o-transition: all 0.30s ease-in-out;
+}
+.AnimModul .LewaStrzalka { cursor:pointer; z-index:14; position:absolute; left:0px; top:50%; margin-top:-20px; width:40px; height:40px; background:url('../obrazki/animacja_bannery/strzalka_lewa.png') no-repeat; }
+.AnimModul .PrawaStrzalka { cursor:pointer; z-index:14; position:absolute; right:0px; top:50%; margin-top:-20px; width:40px; height:40px; background:url('../obrazki/animacja_bannery/strzalka_prawa.png') no-repeat; }
+.AnimModul .LewaStrzalka:hover, .AnimModul .PrawaStrzalka:hover { opacity:1; filter:alpha(opacity=100); }
+
+.AnimModul .ProduktProsty { border-bottom:0px; }
+
+@media only screen and (max-width:799px) { 
+  .AnimModul .Kol-1 .ProduktProsty:nth-child(1n), .AnimModul .Kol-2 .ProduktProsty:nth-child(1n), .AnimModul .Kol-3 .ProduktProsty:nth-child(1n), .AnimModul .Kol-4 .ProduktProsty:nth-child(1n) { border-right:0px; }
+}
+@media only screen and (min-width:800px) and (max-width:1023px) { 
+  .AnimModul .Kol-1 .ProduktProsty:nth-child(1n) { border-right:0px; }
+  .AnimModul .Kol-2 .ProduktProsty:nth-child(2n), .AnimModul .Kol-3 .ProduktProsty:nth-child(2n), .AnimModul .Kol-4 .ProduktProsty:nth-child(2n) { border-right:0px; }  
+}  
+@media only screen and (min-width:1024px) and (max-width:1279px) { 
+  .AnimModul .Kol-1 .ProduktProsty:nth-child(1n) { border-right:0px; }
+  .AnimModul .Kol-2 .ProduktProsty:nth-child(2n) { border-right:0px; }
+  .AnimModul .Kol-3 .ProduktProsty:nth-child(3n), .AnimModul .Kol-4 .ProduktProsty:nth-child(3n) { border-right:0px; }
+}  
+@media only screen and (min-width:1280px) { 
+  .AnimModul .Kol-1 .ProduktProsty:nth-child(1n) { border-right:0px; }
+  .AnimModul .Kol-2 .ProduktProsty:nth-child(2n) { border-right:0px; }
+  .AnimModul .Kol-3 .ProduktProsty:nth-child(3n) { border-right:0px; }
+  .AnimModul .Kol-4 .ProduktProsty:nth-child(4n) { border-right:0px; }
+}
+
+/* newsletter */
+@media only screen and (max-width:799px) {
+  .ModulNewsletter strong { display:block; }
+  .ModulNewsletter p { display:block; text-align:center; padding:5px 10px 5px 10px; margin:0px; }
+}
+@media only screen and (min-width:800px) { 
+  .ModulNewsletter { display:table; width:100%; border-collapse:collapse; border-spacing:0; }
+  .ModulNewsletter strong { display:table-cell; vertical-align:middle; }
+  .ModulNewsletter #newsletterModul { display:table-cell; vertical-align:middle; text-align:left; }
+  .ModulNewsletter p { display:table-cell; vertical-align:middle; padding:5px 10px 5px 10px; text-align:left; }
+  .ModulNewsletter #emailNewsletterModul { min-width:120px; }
+}
+@media only screen and (min-width:1024px) { 
+  .ModulNewsletter #emailNewsletterModul { min-width:250px; }
+}
+.ModulNewsletter { background:#ebebeb; line-height:1.5; margin:10px 0px 10px 0px; }
+.ModulNewsletter strong { background:#525252; color:#ffffff; font-size:170%; padding:10px 30px 10px 30px; text-transform:uppercase; }
+.ModulNewsletter #newsletterModul { text-align:left; }
+.ModulNewsletter p { color:#7a7a7a; }
+.ModulNewsletter #emailNewsletterModul { width:90%; margin:0px auto; padding:8px; }
+.ModulNewsletter span { display:block; margin:10px; }
+.ModulNewsletter small { display:block; margin:5px 0px 0px 0px; text-align:left; }
+.ModulNewsletter .check { display:block; margin:0px; }
+
+/* wyglad bannerow statycznych */
+.BanneryStatyczne { display:block; text-align:center; margin:5px; }
+
+/* animowane bannery na stronie glownej - modul przewijany */
+#AnimacjaPrzewijanaKontener { position:relative; overflow:hidden; margin-bottom:15px; }
+#BanneryAnimacjaPrzewijanaLewaStrzalka, #BanneryAnimacjaPrzewijanaPrawaStrzalka { opacity:0; filter:alpha(opacity=0);
+  transition: all 0.30s ease-in-out;
+  -moz-transition: all 0.30s ease-in-out;
+  -webkit-transition: all 0.30s ease-in-out;
+  -o-transition: all 0.30s ease-in-out;
+}
+#BanneryAnimacjaPrzewijana { width:50000px; list-style-type:none; padding:0px; margin:0px; }
+#BanneryAnimacjaPrzewijana img { max-width:100%; height:auto; }
+#BanneryAnimacjaPrzewijana li { float:left; overflow:hidden; position:relative; }
+#BanneryAnimacjaPrzewijana li span { display:none; background:#565656; text-align:center; color:#ffffff; position:absolute; top:0px; opacity:0; filter:alpha(opacity=0); width:100%; }
+@media only screen and (max-width:799px) {
+  #BanneryAnimacjaPrzewijana li span { padding:5px; }
+}
+@media only screen and (min-width:800px) {
+  #BanneryAnimacjaPrzewijana li span { padding:10px; }
+}
+#BanneryAnimacjaPrzewijana li:first-child span { display:block; opacity:0.7; filter:alpha(opacity=70); }
+#AnimacjaPrzewijanaKontener:hover #BanneryAnimacjaPrzewijanaLewaStrzalka, #AnimacjaPrzewijanaKontener:hover #BanneryAnimacjaPrzewijanaPrawaStrzalka { opacity:0.7; filter:alpha(opacity=70); }
+#BanneryAnimacjaPrzewijanaLewaStrzalka { cursor:pointer; z-index:14; position:absolute; left:0px; top:50%; margin-top:-20px; width:40px; height:40px; background:url('../obrazki/animacja_bannery/strzalka_lewa.png') no-repeat; }
+#BanneryAnimacjaPrzewijanaPrawaStrzalka { cursor:pointer; z-index:14; position:absolute; right:0px; top:50%; margin-top:-20px; width:40px; height:40px; background:url('../obrazki/animacja_bannery/strzalka_prawa.png') no-repeat; }
+#BanneryAnimacjaPrzewijanaNumer { display:none; }
+#BanneryAnimacjaPrzewijanaPrzyciski { margin:10px 0px 15px 0px; text-align:center; }
+@media only screen and (max-width:799px) {
+  #BanneryAnimacjaPrzewijanaPrzyciski span { width:22px; height:22px; margin:4px; }
+}
+@media only screen and (min-width:800px) and (max-width:1023px) { 
+  #BanneryAnimacjaPrzewijanaPrzyciski span { width:18px; height:18px; margin:3px; }
+}
+@media only screen and (min-width:1024px) { 
+  #BanneryAnimacjaPrzewijanaPrzyciski span { width:14px; height:14px; margin:2px; }
+}
+#BanneryAnimacjaPrzewijanaPrzyciski span { display:inline-block; cursor:pointer; background:#b7b7b7; font-size:1px; overflow:hidden; line-height:100; -webkit-border-radius:50%; -moz-border-radius:50%; border-radius:50%; -khtml-border-radius:50%; }
+#BanneryAnimacjaPrzewijanaPrzyciski span:hover { background:#626262; }
+#BanneryAnimacjaPrzewijanaPrzyciski span.On { background:#626262; }
+
+/* animowane bannery na stronie glownej - modul przenikania */
+#AnimacjaPrzenikanieKontener { position:relative; overflow:hidden; margin-bottom:10px; }
+#BanneryAnimacjaPrzenikanieLewaStrzalka, #BanneryAnimacjaPrzenikaniePrawaStrzalka { opacity:0; filter:alpha(opacity=0);
+  transition: all 0.30s ease-in-out;
+  -moz-transition: all 0.30s ease-in-out;
+  -webkit-transition: all 0.30s ease-in-out;
+  -o-transition: all 0.30s ease-in-out;
+}
+#BanneryAnimacjaPrzenikanie { width:50000px; list-style-type:none; padding:0px; margin:0px; }
+#BanneryAnimacjaPrzenikanie img { max-width:100%; height:auto; }
+#BanneryAnimacjaPrzenikanie li { position:absolute; overflow:hidden; display:none; }
+#BanneryAnimacjaPrzenikanie li span { display:none; background:#565656; text-align:center; color:#ffffff; position:absolute; top:0px; opacity:0; filter:alpha(opacity=0); width:100%; }
+@media only screen and (max-width:799px) {
+  #BanneryAnimacjaPrzenikanie li span { padding:5px; }
+}
+@media only screen and (min-width:800px) {
+  #BanneryAnimacjaPrzenikanie li span { padding:10px; }
+}
+#BanneryAnimacjaPrzenikanie li:first-child span { display:block; opacity:0.7; filter:alpha(opacity=70); }
+#BanneryAnimacjaPrzenikanie li:first-child { display:block; }
+#AnimacjaPrzenikanieKontener:hover #BanneryAnimacjaPrzenikanieLewaStrzalka, #AnimacjaPrzenikanieKontener:hover #BanneryAnimacjaPrzenikaniePrawaStrzalka { opacity:0.7; filter:alpha(opacity=70); }
+#BanneryAnimacjaPrzenikanieLewaStrzalka { cursor:pointer; z-index:14; position:absolute; left:0px; top:50%; margin-top:-20px; width:40px; height:40px; background:url('../obrazki/animacja_bannery/strzalka_lewa.png') no-repeat; }
+#BanneryAnimacjaPrzenikaniePrawaStrzalka { cursor:pointer; z-index:14; position:absolute; right:0px; top:50%; margin-top:-20px; width:40px; height:40px; background:url('../obrazki/animacja_bannery/strzalka_prawa.png') no-repeat; }
+#BanneryAnimacjaPrzenikanieNumer { display:none; }
+#BanneryAnimacjaPrzenikaniePrzyciski { margin:10px 0px 15px 0px; text-align:center; }
+@media only screen and (max-width:799px) {
+  #BanneryAnimacjaPrzenikaniePrzyciski span { width:22px; height:22px; margin:4px; }
+}
+@media only screen and (min-width:800px) and (max-width:1023px) { 
+  #BanneryAnimacjaPrzenikaniePrzyciski span { width:18px; height:18px; margin:3px; }
+}
+@media only screen and (min-width:1024px) { 
+  #BanneryAnimacjaPrzenikaniePrzyciski span { width:14px; height:14px; margin:2px; }
+}
+#BanneryAnimacjaPrzenikaniePrzyciski span { display:inline-block; cursor:pointer; background:#b7b7b7; font-size:1px; overflow:hidden; line-height:100; -webkit-border-radius:50%; -moz-border-radius:50%; border-radius:50%; -khtml-border-radius:50%;
+  transition: all 0.20s ease-in-out;
+	-moz-transition: all 0.20s ease-in-out;
+	-webkit-transition: all 0.20s ease-in-out;
+	-o-transition: all 0.20s ease-in-out;
+}
+#BanneryAnimacjaPrzenikaniePrzyciski span:hover { background:#626262; }
+#BanneryAnimacjaPrzenikaniePrzyciski span.On { background:#626262; }
+
+/* animowane bannery na stronie glownej - modul mieszany */
+#AnimacjaMieszanaKontener { overflow:hidden; position:relative; margin-bottom:10px; }
+#AnimacjaMieszanaKontener img { max-width:100%; height:auto; }
+#AnimacjaMieszanaKontener ul { list-style-type:none; padding:0px; margin:0px; width:100000px; position:relative; }
+#AnimacjaMieszanaKontener li { position:relative; float:left; }
+@media only screen and (max-width:799px) {
+  #AnimacjaMieszanaKontener span { padding:5px; }
+}
+@media only screen and (min-width:800px) {
+  #AnimacjaMieszanaKontener span { padding:10px; }
+}
+#AnimacjaMieszanaKontener span { position:absolute; top:0px; display:block; width:100%; background:#565656; color:#ffffff; text-align:center; opacity:0; filter:alpha(opacity=0); }
+
+#BanneryAnimacjaMieszanaPrzyciski { text-align:center; margin:10px; }
+@media only screen and (max-width:799px) {
+  #BanneryAnimacjaMieszanaPrzyciski span { width:22px; height:22px; margin:4px; }
+}
+@media only screen and (min-width:800px) and (max-width:1023px) { 
+  #BanneryAnimacjaMieszanaPrzyciski span { width:18px; height:18px; margin:3px; }
+}
+@media only screen and (min-width:1024px) { 
+  #BanneryAnimacjaMieszanaPrzyciski span { width:14px; height:14px; margin:2px; }
+}
+#BanneryAnimacjaMieszanaPrzyciski span { display:inline-block; cursor:pointer; background:#b7b7b7; font-size:1px; overflow:hidden; line-height:100; -webkit-border-radius:50%; -moz-border-radius:50%; border-radius:50%; -khtml-border-radius:50%;
+  transition: all 0.20s ease-in-out;
+	-moz-transition: all 0.20s ease-in-out;
+	-webkit-transition: all 0.20s ease-in-out;
+	-o-transition: all 0.20s ease-in-out;
+}
+#BanneryAnimacjaMieszanaPrzyciski span:hover { background:#626262; }
+#BanneryAnimacjaMieszanaPrzyciski span.On { background:#626262; }
+
+/*** moduly stale ***/
+
+/* ostatnio ogladane - modul staly - przyklejony */
+#PrzyklejOstatnieProd { position:fixed; left:0px; bottom:0px; width:100%; background:#000000; border-top:1px solid #ffffff; z-index:1002; opacity:0.5; filter:alpha(opacity=50); text-align:center; }
+#PrzyklejOstatnieProd .Rozwiniecie { cursor:pointer; background:url('../obrazki/moduly_stale/ostatnio_ogladane_strzalka.png') no-repeat left center; padding:12px 10px 12px 35px; display:inline-block; font-size:110%; color:#ffffff; font-weight:bold; }
+#PrzyklejOstatnieProd .Zamknij { left:0px; position:absolute; margin:10px; cursor:pointer; background:url('../obrazki/moduly_stale/zamknij.png') no-repeat left center; width:20px; height:20px; display:inline-block; }
+#PrzyklejOstatnieProd ul { display:none; list-style-type: none; padding:0px 0px 10px 0px; margin:0px; }
+#PrzyklejOstatnieProd li { margin:0px; text-align:center; }
+#PrzyklejOstatnieProd li a { color:#ffffff; font-weight:normal; font-size:110%; margin:4px 0px 4px 0px; display:inline-block; }
+#PrzyklejOstatnieProd li a:hover { text-decoration:underline; }
+
+/* informacje o cookie - modul staly - przyklejony */
+#InfoCookie { position:fixed; left:0px; bottom:0px; padding:10px 0px 10px 0px; width:100%; background:#000000; color:#dbdbdb; border-top:1px solid #ffffff; z-index:10003; opacity:0.9; filter:alpha(opacity=90); text-align:center; }
+#InfoCookie .CookieTekst { font-size:110%; }
+#InfoAkcept { background:url('../obrazki/moduly_stale/zamknij.png') no-repeat left center; display:inline-block; cursor:pointer; color:#ffffff; padding:7px 0px 7px 27px; }
+
+/* blokada 18 + - modul staly - przyklejony */
+#Blokada18 { position:fixed; left:0px; top:0px; width:100%; height:100%; background:#000000; z-index:1002; opacity:0.8; filter:alpha(opacity=80); }
+@media only screen and (max-width:479px) { 
+  #BlokadaOkno { position:absolute; top:10%; width:270px; margin:0px auto; margin-left:-140px; }
+  #BlokadaOkno strong { margin:0px 10px 0px 10px; }
+}
+@media only screen and (min-width:480px) and (max-width:799px) { 
+  #BlokadaOkno { position:absolute; top:10%; width:400px; margin:0px auto; margin-left:-205px; }
+  #BlokadaOkno strong { margin:0px 10px 0px 10px; }
+}
+@media only screen and (min-width:800px) {
+  #BlokadaOkno { position:fixed; top:30%; width:500px; margin-left:-250px; }
+}
+#BlokadaOkno { left:50%; background:#ffffff; z-index:1003; border:4px solid #242424; -moz-border-radius:12px; -webkit-border-radius:12px; border-radius:12px; -khtml-border-radius:12px; text-align:center; }
+#BlokadaOkno strong { background:url('../obrazki/moduly_stale/info18plus.png') no-repeat left center; font-size:110%; color:#ff0000; display:inline-block; padding:25px 25px 25px 55px; text-align:center; }
+#BlokadaOkno .BlokadaTekst { line-height:1.5; text-align:center; margin:0px 30px 0px 30px; }
+#BlokadaOkno .BlokadaPrzyciski { padding:25px 0px 25px 0px; }
+#BlokadaOkno .BlokadaPrzyciski .przycisk18plus { cursor:pointer; padding:5px 12px 5px 12px; font-weight:bold; font-size:110%; font-family: Arial, Tahoma, Verdana, sans-serif; -moz-border-radius:5px; -webkit-border-radius:5px; -khtml-border-radius:5px; border-radius:5px; }
+#BlokadaOkno .BlokadaPrzyciski .przycisk18plus:hover { color:#ffffff; background:#929090; }
+#BlokadaOkno .BlokadaPrzyciski .wejdz { background:#e10101; color:#ffffff; }
+#BlokadaOkno .BlokadaPrzyciski .zrezygnuj { background:#dbdbdb; color:#ffffff; }
+#BlokadaOkno .BlokadaPrzyciski span { margin:0px 5px 0px 5px; }
+
+/* informacja na gorze sklepu */
+#InfoTop { position:fixed; left:0px; top:0px; width:100%; background:#e10101; border-bottom:2px solid #ffffff; z-index:1005; opacity:0.8; filter:alpha(opacity=80); text-align:center; }
+#InfoTop span { background:url('../obrazki/oknoPop/uwaga.png') no-repeat left center; font-size:110%; color:#ffffff; display:inline-block; padding:25px 25px 25px 55px; }
+
+/* informacja o darmowej dostawie */
+#InfoTopDarmowaDostawa { background:#56b907; text-align:center; color:#ffffff; padding:10px; }
+#InfoTopDarmowaDostawa span { color:#ffffff; display:inline-block; font-size:140%; font-weight:bold; }
+#InfoTopDarmowaDostawa small { display:block; padding-top:5px; }
+
+/* newsletter popup */
+#InfoNewsletter { position:fixed; left:0px; top:0px; width:100%; height:100%; background:#000000; z-index:1002; opacity:0.8; filter:alpha(opacity=80); }
+@media only screen and (max-width:479px) { 
+  #InfoNewsletterOkno { position:absolute; top:10%; width:250px; margin:0px auto; margin-left:-140px; padding:10px; }
+  #InfoNewsletterOkno #emailNewsletterPopup { width:200px; }
+  #InfoNewsletterOkno #NewsletterZamknij span { margin:-20px 0px 0px 0px; }
+}
+@media only screen and (min-width:480px) and (max-width:799px) { 
+  #InfoNewsletterOkno { position:absolute; top:10%; width:370px; margin:0px auto; margin-left:-200px; padding:10px; }
+  #InfoNewsletterOkno #emailNewsletterPopup { width:250px; }
+  #InfoNewsletterOkno #NewsletterZamknij span { margin:-20px 0px 0px 0px; }
+}
+@media only screen and (min-width:800px) {
+  #InfoNewsletterOkno { position:fixed; top:35%; width:460px; margin:0px auto; margin-left:-230px; padding:20px; }
+  #InfoNewsletterOkno #emailNewsletterPopup { width:300px; }
+  #InfoNewsletterOkno #NewsletterZamknij span { margin:-30px 0px 0px 0px; }
+}
+#InfoNewsletterOkno { left:50%; background:#ffffff; z-index:1003; border:4px solid #242424; -moz-border-radius:12px; -webkit-border-radius:12px; border-radius:12px; -khtml-border-radius:12px; text-align:center; }
+#InfoNewsletterOkno h4 { margin:10px 0px 15px 0px; font-size:140%; }
+#InfoNewsletterOkno b { font-size:120%; }
+#InfoNewsletterOkno small { margin:10px 0px 10px 0px; }
+#InfoNewsletterOkno #newsletterPopup { margin:15px 0px 10px 0px; }
+#InfoNewsletterOkno #NewsletterZamknij { cursor:pointer; float:right; color:#fff; font-family: Arial, Tahoma, Verdana, sans-serif; font-size:11px; width:30px; height:15px; }
+#InfoNewsletterOkno #NewsletterZamknij span { position:absolute; right:-15px; width:30px; height:30px; background:url('../obrazki/nawigacja/zamknij_banner_popup.png'); display:inline-block; }
+#InfoNewsletterOkno p { text-align:center; margin:10px 0px 0px 0px; }
+#InfoNewsletterOkno #emailNewsletterPopup { font-size:120%; padding:10px; text-align:center; }
+#InfoNewsletterOkno #submitNewsletterPopup { font-size:110%; padding:7px 30px 7px 30px; }
+#InfoNewsletterOkno #BladDanych { display:none; }
+#InfoNewsletterOkno #BladDanych span { max-width:300px; text-align:left; color:#ff0000; font-size:110%; font-weight:normal; background:transparent url('../obrazki/formularz/blad.png') no-repeat left center; display:inline-block; margin:10px 0px 0px 0px; padding:2px 0px 2px 25px; }
+#InfoNewsletterOkno #BladDanych strong { text-align:center; color:#ff0000; font-size:120%; font-weight:normal; display:inline-block; margin:10px 0px 10px 0px; }
+#InfoNewsletterOkno #ZgodaPopup { margin:10px 0px 5px 0px; font-size:80%; opacity:0.6; filter:alpha(opacity=60); }
+#ZakladkaNewsletterOkno { background:url('../obrazki/zakladki/newsletter.png') no-repeat; width:45px; height:117px; position:fixed; left:0px; bottom:100px; cursor:pointer; }
+
+/* okno ext popup */
+#TloExitPopUp { position:fixed; left:0; top:0; width:100%; height:100%; background:rgba(0,0,0,0.82); z-index:10003; display:none; }
+#TloExitPopUpZamknij { position:absolute; left:0; top:0; right:0; bottom:0; }
+#TloExitPopUp #ExitPopUpZamknij { cursor:pointer; position:absolute; right:5px; top:5px; }
+#TloExitPopUp #ExitPopUpZamknij span { position:absolute; top:-15px; right:-15px; width:30px; height:30px; background:url('../obrazki/nawigacja/zamknij_banner_popup.png'); display:inline-block; }
+
+@media only screen and (max-width:799px) { 
+  #TloExitPopUp .ExitPopUpOkno { width:80%; max-height:80%; overflow-y:auto; }
+}
+@media only screen and (min-width:800px) {
+  #TloExitPopUp .ExitPopUpOkno { width:1000px; }
+}
+#TloExitPopUp .ExitPopUpOkno { position:fixed; left:50%; top:50%; background:#ffffff; border:4px solid #242424; transform:translate(-50%, -50%) !important; border-radius:12px; z-index:10004; }
+#TloExitPopUp .ExitPopUpOknoKont { padding:20px; }
+
+.AnimacjaExitPopUpOkno {
+	animation: scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+@keyframes scale-in-center {
+  0% {
+    opacity:0;
+    top:30%;
+  }
+  100% {
+    opacity:1;
+    top:50%;
+  }
+}

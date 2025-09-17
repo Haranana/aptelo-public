@@ -1,0 +1,7 @@
+@font-face {
+  font-family: fallback-font;
+  src: local('Arial');
+  ascent-override: 99.2%;
+  descent-override: 31%;
+  line-gap-override: 0%;
+}

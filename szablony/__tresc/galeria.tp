@@ -1,0 +1,95 @@
+<!-- wyglad naglowka strony -->
+
+<h1 class="StrNaglowek">
+    <span>{__NAGLOWEK_GALERII}</span> 
+</h1>
+
+<?php
+$CzyAktywneStronicowanie = $__pA;
+$IloscZdjecGalerii = $__pB;
+$IloscZdjecNaStronie = $__pC;
+?>
+
+<!-- tresc strony -->
+
+<section class="StrTresc">
+
+    <div class="Listing">
+
+        <!-- opis galerii -->
+
+        {__OPIS_GALERII}
+
+        <div class="cl"></div>
+        
+        <br />
+        
+        <?php if ( $CzyAktywneStronicowanie == 'tak' && $IloscZdjecGalerii > $IloscZdjecNaStronie ) { ?>
+        
+        <!-- nawigacja artykulow - tylko jezeli jest aktywne stronicowanie -->
+        
+        <nav class="ListingNawigacja ListingNawigacjaGora LiniaCala">
+        
+            <!-- odnosniki do kolejnych stron listingu -->
+        
+            <div class="IndexStron">
+            
+                <b>{__TLUMACZ:LISTING_STRONA}</b> {__STRONICOWANIE}
+            
+            </div>
+
+            <div class="cl"></div>
+        
+        </nav>
+        
+        <?php } ?>    
+        
+        <!-- poszczegolne zdjecia galerii z opisami -->
+        
+        {__ZDJECIA_GALERII}
+        
+        <?php if ( $CzyAktywneStronicowanie == 'nie' || ( $CzyAktywneStronicowanie == 'tak' && $IloscZdjecGalerii <= $IloscZdjecNaStronie ) ) { ?>
+        
+        <!-- przycisk powrotu do strony glownej - jezeli nie jest aktywne stronicowanie -->
+
+        <a href="/" class="przycisk Prawy">{__TLUMACZ:PRZYCISK_DO_STRONY_GLOWNEJ}</a>   
+        
+        <?php } ?>
+        
+        <div class="cl"></div>
+        
+    </div>
+    
+    <?php if ( $CzyAktywneStronicowanie == 'tak' && $IloscZdjecGalerii > $IloscZdjecNaStronie ) { ?>
+        
+    <!-- dodatkowa nawigacja na dole listingu - tylko jezeli jest aktywne stronicowanie -->    
+    
+    <br />
+    
+    <div class="Listing">
+     
+        <nav class="ListingNawigacja ListingNawigacjaDol LiniaCala">
+        
+            <!-- odnosniki do kolejnych stron listingu -->    
+    
+            <div class="IndexStron">
+            
+                <b>{__TLUMACZ:LISTING_STRONA}</b> {__STRONICOWANIE}
+
+            </div>  
+            
+            <div class="cl"></div>
+
+        </nav>
+            
+    </div>  
+
+    <?php } ?>    
+
+</section>
+
+<?php
+unset($CzyAktywneStronicowanie, $IloscZdjecGalerii, $IloscZdjecNaStronie);
+?>
+
+

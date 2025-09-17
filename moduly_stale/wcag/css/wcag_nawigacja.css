@@ -1,0 +1,87 @@
+body.Kontrast .IkonaDostepnosci, .IkonaDostepnosci { cursor:pointer; transition:all 0.40s ease-in-out; position:fixed; bottom:20px; left:20px; width:45px; height:45px; border:3px solid #007aff !important; border-radius:50%; background:url('../img/ikona.svg') #fff no-repeat center center !important; background-size:30px 30px !important; z-index:10009; } 
+
+.PasekDostepnosci, .PasekDostepnosci * { letter-spacing:normal !important; line-height:normal !important; font-family:Arial,sans-serif !important; }
+
+body.Kontrast .PasekDostepnosci *:not(select):not(input):not(.PasekDostepnosci):not(.PasekDostepnosci):not(.PasekDostepnosci *) { background-color:transparent !important; color:inherit !important; border-color:initial !important; }
+.PasekDostepnosci { display:none; overflow-y:auto; z-index:10022; position:fixed; left:0; top:0; bottom:0; background:#eff1f5 !important; color:#000 !important; font-size:15px; padding:10px; box-shadow:0px 0px 30px 0px rgba(0,0,0,0.25); }
+@media only screen and (max-width:479px) {
+  .PasekDostepnosci { width:260px; }
+}
+@media only screen and (min-width:480px) {
+  .PasekDostepnosci { width:400px; }
+}
+body.Kontrast .PasekDostepnosci { background:#333 !important; box-shadow:0px 0px 40px 0px rgba(0,0,0,1); }
+
+.NawigacjaPasekDostepnosci { padding:10px; text-align:center; }
+body.Kontrast .NawigacjaPasekDostepnosci, body.Kontrast .NawigacjaPasekDostepnosci * { background-color:transparent !important; }
+.ZamknijDostepnosc { text-align:left !important; }
+.ZamknijDostepnosc span { cursor:pointer; display:inline-block; background:url('../img/zamknij.svg') no-repeat left center !important; background-size:20px 20px !important; filter:invert(0) !important; padding:5px 0 5px 30px; }
+body.Kontrast .ZamknijDostepnosc span { filter:invert(1) !important; }
+body.Kontrast.CiemneTlo .ZamknijDostepnosc span { color:#000 !important; }
+
+.ResetPasekDostepnosci { margin:10px; }
+.ResetPasekDostepnosci span { cursor:pointer; display:block; text-align:center !important; background:#007aff; color:#fff; padding:10px; text-align:center; border-radius:5px; font-weight:bold; }
+.ResetPasekDostepnosci span:hover { background:#000; }
+body.Kontrast .ResetPasekDostepnosci span { background:#ffcc00 !important; color:#000 !important; }
+
+.PasekDostepnosciWybor { display:flex; justify-content:center; align-items:center; flex-wrap:wrap; }
+body.Kontrast .PasekDostepnosciWybor { background-color:transparent !important; }
+.PasekDostepnosciWybor > div { position:relative; margin:10px; background:#fff !important; color:#000 !important; box-shadow:0px 0px 20px 0px rgba(0,0,0,0.05); border-radius:10px; display:flex; flex-direction:column; align-items:center; justify-content:center; }
+@media only screen and (max-width:479px) {
+  .PasekDostepnosciWybor > div { width:calc(100% - 20px); }
+}
+@media only screen and (min-width:480px) {
+  .PasekDostepnosciWybor > div { width:calc(50% - 20px); }
+}
+.PasekDostepnosciWybor > div::before { content:''; position:absolute; top:0; left:0; bottom:0; right:0; border:4px solid #fff; border-radius:10px; display:block; }
+.PasekDostepnosciWybor > div.Aktywny::before { border:4px solid #00a1ff; }
+.PasekDostepnosciWybor > div.Aktywny::after { content:''; position:absolute; top:-5px; right:-5px; width:20px; height:20px; border:2px solid #fff; background:url('../img/zaznaczone.svg') #fff no-repeat top center !important; background-size:20px 20px !important; border-radius:50%; display:block; }
+body.Kontrast .PasekDostepnosciWybor > div.Aktywny::before { border:4px solid #000; }
+body.Kontrast .PasekDostepnosciWybor > div.Aktywny::after { filter:invert(1) !important; border-color:#000; background-color:#000 !important; }
+.PasekDostepnosciWybor > div *:not(select):not(input):not(.DostepnoscNaglowek) { color:#000 !important; background-color:transparent !important; }
+
+.DostepnoscNaglowek { font-weight:bold; padding-top:10px; height:30px; display:flex; justify-content:center; align-items:flex-start; position:relative; }
+body.Kontrast .DostepnoscNaglowek { background-color:transparent !important; filter:invert(1) !important; }
+.PoleKontrastu > div:last-child { width:80%; }
+body.Kontrast .PoleKontrastu { background-color:var(--kolor-bialy-kontrast) !important; filter:invert(1) !important; }
+
+.PoleKontrastu select { text-align:left !important; transition:none !important; filter:invert(0) !important; padding-top:5px; padding-bottom:5px; width:100%; box-sizing:border-box; background:url('../img/strzalka_rozwin.svg') #fff no-repeat right 10px center !important; background-size:10px 10px !important; appearance:none; color:#000 !important; border:1px solid #000 !important; }
+
+/* zmiana kontrastu */
+.ZmianaKontrastu > div:last-child { padding:45px 0 15px 0; background:url('../img/kontrast.svg') no-repeat top center !important; background-size:30px 30px !important; filter:invert(0) !important; }
+
+/* wielkosc tekstu */
+.ZmianaCzcionki > div:last-child { padding:45px 0 15px 0; background:url('../img/wielkosc-tekstu.svg') no-repeat top center !important; background-size:30px 30px !important; filter:invert(0) !important; }
+
+/* interlinia */
+.ZmianaInterlinia > div:last-child { padding:45px 0 15px 0; background:url('../img/interlinia.svg') no-repeat top center !important; background-size:30px 30px !important; filter:invert(0) !important; }
+
+/* odstep liter */
+.ZmianaOdstepliter > div:last-child { padding:45px 0 15px 0; background:url('../img/letter-spacing.svg') no-repeat top center !important; background-size:30px 30px !important; filter:invert(0) !important; }
+
+/* kursor */
+.ZmianaKursor > div:last-child { padding:45px 0 15px 0; background:url('../img/kursor.svg') no-repeat top center !important; background-size:30px 30px !important; filter:invert(0) !important; }
+
+/* skala szarosci */
+.ZmianaSzarosci > div:last-child { padding:45px 0 15px 0; background:url('../img/szarosc.svg') no-repeat top center !important; background-size:30px 30px !important; filter:invert(0) !important; }
+
+/* ukrycie obrazkow */
+.ZmianaObrazki > div:last-child { padding:45px 0 15px 0; background:url('../img/brak-grafik.svg') no-repeat top center !important; background-size:30px 30px !important; filter:invert(0) !important; }
+
+/* rodzaj czcionki */
+.ZmianaRodzajuCzcionki > div:last-child { padding:45px 0 15px 0; background:url('../img/czytelna-czcionka.svg') no-repeat top center !important; background-size:30px 30px !important; filter:invert(0) !important; }
+
+/* wylaczenie animacji */
+.ZmianaAnimacji > div:last-child { padding:45px 0 15px 0; background:url('../img/animacje.svg') no-repeat top center !important; background-size:30px 30px !important; filter:invert(0) !important; }
+
+/* wyrownanie tekstu */
+.ZmianaWyrownanieTekstu > div:last-child { padding:45px 0 15px 0; background:url('../img/wyrownanie-tekstu.svg') no-repeat top center !important; background-size:30px 30px !important; filter:invert(0) !important; }
+
+/* nasycenie */
+.ZmianaNascenie > div:last-child { padding:45px 0 15px 0; background:url('../img/nasycenie.svg') no-repeat top center !important; background-size:30px 30px !important; filter:invert(0) !important; }
+
+/* odnosniki */
+.ZmianaOdnosniki > div:last-child { padding:45px 0 15px 0; background:url('../img/odnosniki.svg') no-repeat top center !important; background-size:30px 30px !important; filter:invert(0) !important; }
+
+/* czytnik ekranu */
+.ZmianaCzytnikEkranu > div:last-child { padding:45px 0 15px 0; background:url('../img/dzwiek.svg') no-repeat top center !important; background-size:30px 30px !important; filter:invert(0) !important; }

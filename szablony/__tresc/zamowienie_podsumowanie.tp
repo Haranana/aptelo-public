@@ -1,0 +1,102 @@
+<!-- wyglad naglowka strony -->
+
+<h1 class="StrNaglowek">
+    <span>{__TLUMACZ:NAGLOWEK_ZAMOWIENIE_PODSUMOWANIE}</span>
+</h1>
+
+<!-- tresc strony -->
+
+<section id="SzczegolyKoszyka">
+
+    <!--poszczegolne kroki zamowienia - tylko jezeli cos jest w koszyku -->
+
+    <div id="KrokiZamowienia">
+    
+        <div class="KoszykKrok">
+            <strong>{__TLUMACZ:KROK_1}</strong>
+            <p>{__TLUMACZ:KROK_1_OPIS}</p>
+        </div>
+        
+        <div class="KoszykKrok">
+            <strong>{__TLUMACZ:KROK_2}</strong>
+            <p>{__TLUMACZ:KROK_2_OPIS}</p>
+        </div>
+        
+        <div class="KoszykKrok">
+            <strong>{__TLUMACZ:KROK_3}</strong>
+            <p>{__TLUMACZ:KROK_3_OPIS}</p>
+        </div>
+        
+        <div class="KoszykKrok aktywny">
+            <strong>{__TLUMACZ:KROK_4}</strong>
+            <h2>{__TLUMACZ:KROK_4_OPIS}</h2>
+        </div>
+        
+    </div>
+    
+    <!-- tresc podsumowania -->
+
+    <div id="TrescKoszyka">
+    
+        <div class="StrTresc">
+
+            <?php
+            $Zamowienie = $__pA;
+            ?>
+            
+            <!-- podziekowanie za zlozone zamowienie -->
+
+            <div class="Informacja Podziekowanie">{__TLUMACZ:DZIEKUJEMY_ZA_ZLOZENIE_ZAMOWIENIA}</div>
+            
+            <!-- informacje o platnosci -->
+
+            <div class="PlatnoscInfo" id="PlatnoscInformacjaPodsumowanie">{__PLATNOSC_INFORMACJA}</div>
+
+            <div class="PlatnoscInfo" id="PlatnoscElektronicznaPodsumowanie">{__PLATNOSC_ELEKTRONICZNA}</div>
+            
+            {__ZEGAR_ODLICZANIE}
+
+            <!-- szczegoly zamowienia -->
+
+            <div class="KontenerSzczegoly">
+            
+                <ul id="podsumowanieZamowienia">
+                    <li><strong>{__TLUMACZ:TWOJ_ADRES_EMAIL}:</strong><span class="adres_email">{__ADRES_EMAIL}</span></li> 
+                    <li><strong>{__TLUMACZ:KLIENT_NUMER_ZAMOWIENIA}:</strong><span>{__NUMER_ZAMOWIENIA}</span></li> 
+                    <li><strong>{__TLUMACZ:WARTOSC_ZAMOWIENIA}:</strong><span class="wartosc_zamowienia" data-wartosc-liczba="{__WARTOSC_ZAMOWIENIA_LICZBA}" data-waluta="{__ZAMOWIENIE_WALUTA}">{__WARTOSC_ZAMOWIENIA}</span></li>
+                    <li><strong>{__TLUMACZ:DATA_ZAMOWIENIA}:</strong><span>{__DATA_ZAMOWIENIA}</span></li> 
+                    <li><strong>{__TLUMACZ:KLIENT_STATUS_ZAMOWIENIA}:</strong><span>{__STATUS_ZAMOWIENIA}</span></li>
+                    <li><strong>{__TLUMACZ:FORMA_PLATNOSCI}:</strong><span>{__METODA_PLATNOSCI}</span></li>
+                    <li><strong>{__TLUMACZ:FORMA_DOSTAWY}:</strong><span>{__WYSYLKA_MODUL}</span></li>
+                    
+                    <!-- jezeli jest wlaczona mozliwosc pobrania faktury proforma -->
+                
+                    <?php if ( FAKTURA_POBIERANIE == 'tak' ) { ?> 
+                    
+                        <li><strong>{__TLUMACZ:DRUKUJ_FAKTURE_PROFORMA}:</strong><span>{__PDF_FAKTURA}</span></li>
+                        
+                    <?php } ?>   
+                    
+                    <li><strong>{__TLUMACZ:DRUKUJ_ZAMOWIENIE}:</strong><span>{__PDF_ZAMOWIENIE}</span></li>
+                </ul>
+                
+            </div>
+
+            <div id="SkryptyAfiliacja" style="display:none;">{__SKRYPTY_AFILIACJA}</div>
+            
+            {__INTEGRACJA_TRUSTEDSHOPS}
+            {__INTEGRACJA_PIKSEL_FB}
+            {__INTEGRACJE_WLASNE_ZAMOWIENIE_PODSUMOWANIE}
+            
+            <!-- przycisk powrotu do strony glownej -->
+
+            <a href="/" class="przycisk Prawy">{__TLUMACZ:PRZYCISK_DO_STRONY_GLOWNEJ}</a>   
+            
+            <div class="cl"></div>
+
+        </div>
+        
+    </div>
+    
+</section>
+

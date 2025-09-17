@@ -1,0 +1,300 @@
+<!-- wyglad naglowka strony -->
+
+<h1 class="StrNaglowek">
+    <span>{__TLUMACZ:NAPISZ_OPINIE_O_SKLEPIE}</span>  
+</h1>
+
+<!-- tresc strony -->
+
+<section class="StrTresc">
+
+    <?php 
+    $Zalogowany = $__pA; 
+    $FormularzLink = $__pB;
+    ?>
+
+    <!-- wyswietlany komunikat po zapisaniu opinii jezeli jest get = sukces -->
+
+    <?php if (isset($_GET['sukces'])) { ?>
+    
+    <p class="Informacja">
+        {__TLUMACZ:NAPISANIE_OPINII_SUKCES} <br />
+        {__TLUMACZ:INFO_O_ZATWIERDZENIU_OPINII}
+    </p>
+
+    <?php }  ?> 
+    
+    <!-- wyswietlanie formularza napisania recenzji -->
+    
+    <?php if (!isset($_GET['sukces'])) { ?>
+
+    <div class="Opinia">
+    
+        <!-- formularz -->
+        
+        <div class="OpisTekst">
+
+            <!-- sprawdza czy recenzje sa tylko dla zarejestrowanych klientow -->
+            
+            <?php if ((OPINIE_DODAWANIE == 'tak' && $Zalogowany == 'tak') || OPINIE_DODAWANIE == 'nie') { ?>
+
+            <form action="napisz-opinie-o-sklepie.html" method="post" id="pisanie_opinii" class="cmxform" <?php echo (($Zalogowany == 'tak') ? 'enctype="multipart/form-data"' : ''); ?>> 
+            
+                <div class="error">
+                    <span id="span_<?php echo uniqid(); ?>"></span>
+                </div>
+
+                <h5>{__TLUMACZ:TWOJE_DANE}</h5>
+            
+                <p>
+                    <span><label class="formSpan" for="autor">{__TLUMACZ:AUTOR_OPINII}:</label> <em class="required" id="em_<?php echo uniqid(); ?>"></em></span>
+                    <input type="text" size="35" style="width:50%" value="{__IMIE_AUTORA}" name="autor" id="autor" />
+                </p>         
+
+                <p {__CSS_OPINIE}>
+                    <span><label class="formSpan" for="email">{__TLUMACZ:TWOJ_ADRES_EMAIL}:</label> <em class="required" id="em_<?php echo uniqid(); ?>"></em></span>
+                    <input type="text" size="35" style="width:50%" value="{__EMAIL_AUTORA}" name="email" id="email" />
+                </p>
+
+                <p {__CSS_OPINIE}>
+                    <span><label class="formSpan" for="nr_zamowienia">{__TLUMACZ:KLIENT_NUMER_ZAMOWIENIA}:</label> </span>
+                    <input type="text" size="15" style="width:20%" value="{__NR_ZAMOWIENIA}" name="nr_zamowienia" id="nr_zamowienia" />
+                </p>          
+
+                <br />
+                
+                <h5>{__TLUMACZ:OCENA_ZAKUPOW}</h5>
+
+                <ul class="OcenaSklepuWybor">
+
+                    <?php if ( Wyglad::TypSzablonu() == true ) { ?>
+                
+                    <li>
+                        <span class="LiniaDolna">{__TLUMACZ:OCENA_JAKOSC_OBSLUGI}: </span>
+                        <label tabindex="0" for="jakosc_5" aria-label="{__TLUMACZ:OCENA_JAKOSC_OBSLUGI} 5/5"><span class="Gwiazdki" id="radio_<?php echo uniqid(); ?>" style="--ocena: 5.0;"></span><input type="radio" value="5" id="jakosc_5" name="ocena_jakosc" checked="checked" /><span class="radio" id="radio_jakosc_5"></span></label><br />
+                        <label tabindex="0" for="jakosc_4" aria-label="{__TLUMACZ:OCENA_JAKOSC_OBSLUGI} 4/5"><span class="Gwiazdki" id="radio_<?php echo uniqid(); ?>" style="--ocena: 4.0;"></span><input type="radio" value="4" id="jakosc_4" name="ocena_jakosc" /><span class="radio" id="radio_jakosc_4"></span></label><br />
+                        <label tabindex="0" for="jakosc_3" aria-label="{__TLUMACZ:OCENA_JAKOSC_OBSLUGI} 3/5"><span class="Gwiazdki" id="radio_<?php echo uniqid(); ?>" style="--ocena: 3.0;"></span><input type="radio" value="3" id="jakosc_3" name="ocena_jakosc" /><span class="radio" id="radio_jakosc_3"></span></label><br />
+                        <label tabindex="0" for="jakosc_2" aria-label="{__TLUMACZ:OCENA_JAKOSC_OBSLUGI} 2/5"><span class="Gwiazdki" id="radio_<?php echo uniqid(); ?>" style="--ocena: 2.0;"></span><input type="radio" value="2" id="jakosc_2" name="ocena_jakosc" /><span class="radio" id="radio_jakosc_2"></span></label><br />
+                        <label tabindex="0" for="jakosc_1" aria-label="{__TLUMACZ:OCENA_JAKOSC_OBSLUGI} 1/5"><span class="Gwiazdki" id="radio_<?php echo uniqid(); ?>" style="--ocena: 1.0;"></span><input type="radio" value="1" id="jakosc_1" name="ocena_jakosc" /><span class="radio" id="radio_jakosc_1"></span></label>
+                    </li>
+                    
+                    <li>
+                        <span class="LiniaDolna">{__TLUMACZ:OCENA_CZAS_REALIZACJI}: </span>
+                        <label tabindex="0" for="czas_5" aria-label="{__TLUMACZ:OCENA_CZAS_REALIZACJI} 5/5"><span class="Gwiazdki" id="radio_<?php echo uniqid(); ?>" style="--ocena: 5.0;"></span><input type="radio" value="5" id="czas_5" name="ocena_czas" checked="checked" /><span class="radio" id="radio_czas_5"></span></label><br />
+                        <label tabindex="0" for="czas_4" aria-label="{__TLUMACZ:OCENA_CZAS_REALIZACJI} 4/5"><span class="Gwiazdki" id="radio_<?php echo uniqid(); ?>" style="--ocena: 4.0;"></span><input type="radio" value="4" id="czas_4" name="ocena_czas" /><span class="radio" id="radio_czas_4"></span></label><br />
+                        <label tabindex="0" for="czas_3" aria-label="{__TLUMACZ:OCENA_CZAS_REALIZACJI} 3/5"><span class="Gwiazdki" id="radio_<?php echo uniqid(); ?>" style="--ocena: 3.0;"></span><input type="radio" value="3" id="czas_3" name="ocena_czas" /><span class="radio" id="radio_czas_3"></span></label><br />                        
+                        <label tabindex="0" for="czas_2" aria-label="{__TLUMACZ:OCENA_CZAS_REALIZACJI} 1/5"><span class="Gwiazdki" id="radio_<?php echo uniqid(); ?>" style="--ocena: 2.0;"></span><input type="radio" value="2" id="czas_2" name="ocena_czas" /><span class="radio" id="radio_czas_2"></span></label><br />
+                        <label tabindex="0" for="czas_1" aria-label="{__TLUMACZ:OCENA_CZAS_REALIZACJI} 2/5"><span class="Gwiazdki" id="radio_<?php echo uniqid(); ?>" style="--ocena: 1.0;"></span><input type="radio" value="1" id="czas_1" name="ocena_czas" /><span class="radio" id="radio_czas_1"></span></label>
+                    </li>    
+
+                    <li>
+                        <span class="LiniaDolna">{__TLUMACZ:OCENA_CENY}: </span>
+                        <label tabindex="0" for="ceny_5" aria-label="{__TLUMACZ:OCENA_CENY} 5/5"><span class="Gwiazdki" id="radio_<?php echo uniqid(); ?>" style="--ocena: 5.0;"></span><input type="radio" value="5" id="ceny_5" name="ocena_ceny" checked="checked" /><span class="radio" id="radio_ceny_5"></span></label><br />
+                        <label tabindex="0" for="ceny_4" aria-label="{__TLUMACZ:OCENA_CENY} 4/5"><span class="Gwiazdki" id="radio_<?php echo uniqid(); ?>" style="--ocena: 4.0;"></span><input type="radio" value="4" id="ceny_4" name="ocena_ceny" /><span class="radio" id="radio_ceny_4"></span></label><br />
+                        <label tabindex="0" for="ceny_3" aria-label="{__TLUMACZ:OCENA_CENY} 3/5"><span class="Gwiazdki" id="radio_<?php echo uniqid(); ?>" style="--ocena: 3.0;"></span><input type="radio" value="3" id="ceny_3" name="ocena_ceny" /><span class="radio" id="radio_ceny_3"></span></label><br />
+                        <label tabindex="0" for="ceny_2" aria-label="{__TLUMACZ:OCENA_CENY} 2/5"><span class="Gwiazdki" id="radio_<?php echo uniqid(); ?>" style="--ocena: 2.0;"></span><input type="radio" value="2" id="ceny_2" name="ocena_ceny" /><span class="radio" id="radio_ceny_2"></span></label><br />
+                        <label tabindex="0" for="ceny_1" aria-label="{__TLUMACZ:OCENA_CENY} 1/5"><span class="Gwiazdki" id="radio_<?php echo uniqid(); ?>" style="--ocena: 1.0;"></span><input type="radio" value="1" id="ceny_1" name="ocena_ceny" /><span class="radio" id="radio_ceny_1"></span></label>
+                    </li> 
+
+                    <li>
+                        <span class="LiniaDolna">{__TLUMACZ:OCENA_PRODUKTOW}: </span>
+                        <label tabindex="0" for="produkty_5" aria-label="{__TLUMACZ:OCENA_PRODUKTOW} 5/5"><span class="Gwiazdki" id="radio_<?php echo uniqid(); ?>" style="--ocena: 5.0;"></span><input type="radio" value="5" id="produkty_5" name="ocena_produkty" checked="checked" /><span class="radio" id="radio_produkty_5"></span></label><br />
+                        <label tabindex="0" for="produkty_4" aria-label="{__TLUMACZ:OCENA_PRODUKTOW} 4/5"><span class="Gwiazdki" id="radio_<?php echo uniqid(); ?>" style="--ocena: 4.0;"></span><input type="radio" value="4" id="produkty_4" name="ocena_produkty" /><span class="radio" id="radio_produkty_4"></span></label><br />
+                        <label tabindex="0" for="produkty_3" aria-label="{__TLUMACZ:OCENA_PRODUKTOW} 3/5"><span class="Gwiazdki" id="radio_<?php echo uniqid(); ?>" style="--ocena: 3.0;"></span><input type="radio" value="3" id="produkty_3" name="ocena_produkty" /><span class="radio" id="radio_produkty_3"></span></label><br />
+                        <label tabindex="0" for="produkty_2" aria-label="{__TLUMACZ:OCENA_PRODUKTOW} 2/5"><span class="Gwiazdki" id="radio_<?php echo uniqid(); ?>" style="--ocena: 2.0;"></span><input type="radio" value="2" id="produkty_2" name="ocena_produkty" /><span class="radio" id="radio_produkty_2"></span></label><br />
+                        <label tabindex="0" for="produkty_1" aria-label="{__TLUMACZ:OCENA_PRODUKTOW} 1/5"><span class="Gwiazdki" id="radio_<?php echo uniqid(); ?>" style="--ocena: 1.0;"></span><input type="radio" value="1" id="produkty_1" name="ocena_produkty" /><span class="radio" id="radio_produkty_1"></span></label>
+                    </li>
+
+                    <?php } else { ?>
+                
+                    <li>
+                        <span class="LiniaDolna">{__TLUMACZ:OCENA_JAKOSC_OBSLUGI}: </span>
+                        <label class="formSpan" tabindex="0" for="jakosc_5" aria-label="{__TLUMACZ:OCENA_JAKOSC_OBSLUGI} 5/5"><img alt="{__TLUMACZ:OCENA_PRODUKTU} 5/5" src="szablony/{__DOMYSLNY_SZABLON}/obrazki/recenzje/ocena_5.png" /></label><input type="radio" value="5" id="jakosc_5" name="ocena_jakosc" checked="checked" /><span style="padding:0" class="radio" id="radio_jakosc_5"></span>
+                        <label class="formSpan" tabindex="0" for="jakosc_4" aria-label="{__TLUMACZ:OCENA_JAKOSC_OBSLUGI} 4/5"><img alt="{__TLUMACZ:OCENA_PRODUKTU} 4/5" src="szablony/{__DOMYSLNY_SZABLON}/obrazki/recenzje/ocena_4.png" /></label><input type="radio" value="4" id="jakosc_4" name="ocena_jakosc" /><span style="padding:0" class="radio" id="radio_jakosc_4"></span>
+                        <label class="formSpan" tabindex="0" for="jakosc_3" aria-label="{__TLUMACZ:OCENA_JAKOSC_OBSLUGI} 3/5"><img alt="{__TLUMACZ:OCENA_PRODUKTU} 3/5" src="szablony/{__DOMYSLNY_SZABLON}/obrazki/recenzje/ocena_3.png" /></label><input type="radio" value="3" id="jakosc_3" name="ocena_jakosc" /><span style="padding:0" class="radio" id="radio_jakosc_3"></span>
+                        <label class="formSpan" tabindex="0" for="jakosc_2" aria-label="{__TLUMACZ:OCENA_JAKOSC_OBSLUGI} 2/5"><img alt="{__TLUMACZ:OCENA_PRODUKTU} 2/5" src="szablony/{__DOMYSLNY_SZABLON}/obrazki/recenzje/ocena_2.png" /></label><input type="radio" value="2" id="jakosc_2" name="ocena_jakosc" /><span style="padding:0" class="radio" id="radio_jakosc_2"></span>
+                        <label class="formSpan" tabindex="0" for="jakosc_1" aria-label="{__TLUMACZ:OCENA_JAKOSC_OBSLUGI} 1/5"><img alt="{__TLUMACZ:OCENA_PRODUKTU} 1/5" src="szablony/{__DOMYSLNY_SZABLON}/obrazki/recenzje/ocena_1.png" /></label><input type="radio" value="1" id="jakosc_1" name="ocena_jakosc" /><span style="padding:0" class="radio" id="radio_jakosc_1"></span>
+                    </li>
+                    
+                    <li>
+                        <span class="LiniaDolna">{__TLUMACZ:OCENA_CZAS_REALIZACJI}: </span>
+                        <label class="formSpan" tabindex="0" for="czas_5" aria-label="{__TLUMACZ:OCENA_CZAS_REALIZACJI} 5/5"><img alt="{__TLUMACZ:OCENA_PRODUKTU} 5/5" src="szablony/{__DOMYSLNY_SZABLON}/obrazki/recenzje/ocena_5.png" /></label><input type="radio" value="5" id="czas_5" name="ocena_czas" checked="checked" /><span style="padding:0" class="radio" id="radio_czas_5"></span>
+                        <label class="formSpan" tabindex="0" for="czas_4" aria-label="{__TLUMACZ:OCENA_CZAS_REALIZACJI} 4/5"><img alt="{__TLUMACZ:OCENA_PRODUKTU} 4/5" src="szablony/{__DOMYSLNY_SZABLON}/obrazki/recenzje/ocena_4.png" /></label><input type="radio" value="4" id="czas_4" name="ocena_czas" /><span style="padding:0" class="radio" id="radio_czas_4"></span>
+                        <label class="formSpan" tabindex="0" for="czas_3" aria-label="{__TLUMACZ:OCENA_CZAS_REALIZACJI} 3/5"><img alt="{__TLUMACZ:OCENA_PRODUKTU} 3/5" src="szablony/{__DOMYSLNY_SZABLON}/obrazki/recenzje/ocena_3.png" /></label><input type="radio" value="3" id="czas_3" name="ocena_czas" /><span style="padding:0" class="radio" id="radio_czas_3"></span>                        
+                        <label class="formSpan" tabindex="0" for="czas_2" aria-label="{__TLUMACZ:OCENA_CZAS_REALIZACJI} 1/5"><img alt="{__TLUMACZ:OCENA_PRODUKTU} 2/5" src="szablony/{__DOMYSLNY_SZABLON}/obrazki/recenzje/ocena_2.png" /></label><input type="radio" value="2" id="czas_2" name="ocena_czas" /><span style="padding:0" class="radio" id="radio_czas_2"></span>
+                        <label class="formSpan" tabindex="0" for="czas_1" aria-label="{__TLUMACZ:OCENA_CZAS_REALIZACJI} 2/5"><img alt="{__TLUMACZ:OCENA_PRODUKTU} 1/5" src="szablony/{__DOMYSLNY_SZABLON}/obrazki/recenzje/ocena_1.png" /></label><input type="radio" value="1" id="czas_1" name="ocena_czas" /><span style="padding:0" class="radio" id="radio_czas_1"></span>
+                    </li>    
+
+                    <li>
+                        <span class="LiniaDolna">{__TLUMACZ:OCENA_CENY}: </span>
+                        <label class="formSpan" tabindex="0" for="ceny_5" aria-label="{__TLUMACZ:OCENA_CENY} 5/5"><img alt="{__TLUMACZ:OCENA_PRODUKTU} 5/5" src="szablony/{__DOMYSLNY_SZABLON}/obrazki/recenzje/ocena_5.png" /></label><input type="radio" value="5" id="ceny_5" name="ocena_ceny" checked="checked" /><span style="padding:0" class="radio" id="radio_ceny_5"></span>
+                        <label class="formSpan" tabindex="0" for="ceny_4" aria-label="{__TLUMACZ:OCENA_CENY} 4/5"><img alt="{__TLUMACZ:OCENA_PRODUKTU} 4/5" src="szablony/{__DOMYSLNY_SZABLON}/obrazki/recenzje/ocena_4.png" /></label><input type="radio" value="4" id="ceny_4" name="ocena_ceny" /><span style="padding:0" class="radio" id="radio_ceny_4"></span>
+                        <label class="formSpan" tabindex="0" for="ceny_3" aria-label="{__TLUMACZ:OCENA_CENY} 3/5"><img alt="{__TLUMACZ:OCENA_PRODUKTU} 3/5" src="szablony/{__DOMYSLNY_SZABLON}/obrazki/recenzje/ocena_3.png" /></label><input type="radio" value="3" id="ceny_3" name="ocena_ceny" /><span style="padding:0" class="radio" id="radio_ceny_3"></span>
+                        <label class="formSpan" tabindex="0" for="ceny_2" aria-label="{__TLUMACZ:OCENA_CENY} 2/5"><img alt="{__TLUMACZ:OCENA_PRODUKTU} 2/5" src="szablony/{__DOMYSLNY_SZABLON}/obrazki/recenzje/ocena_2.png" /></label><input type="radio" value="2" id="ceny_2" name="ocena_ceny" /><span style="padding:0" class="radio" id="radio_ceny_2"></span>
+                        <label class="formSpan" tabindex="0" for="ceny_1" aria-label="{__TLUMACZ:OCENA_CENY} 1/5"><img alt="{__TLUMACZ:OCENA_PRODUKTU} 1/5" src="szablony/{__DOMYSLNY_SZABLON}/obrazki/recenzje/ocena_1.png" /></label><input type="radio" value="1" id="ceny_1" name="ocena_ceny" /><span style="padding:0" class="radio" id="radio_ceny_1"></span>
+                    </li> 
+
+                    <li>
+                        <span class="LiniaDolna">{__TLUMACZ:OCENA_PRODUKTOW}: </span>
+                        <label class="formSpan" tabindex="0" for="produkty_5" aria-label="{__TLUMACZ:OCENA_PRODUKTOW} 5/5"><img alt="{__TLUMACZ:OCENA_PRODUKTU} 5/5" src="szablony/{__DOMYSLNY_SZABLON}/obrazki/recenzje/ocena_5.png" /></label><input type="radio" value="5" id="produkty_5" name="ocena_produkty" checked="checked" /><span style="padding:0" class="radio" id="radio_produkty_5"></span>
+                        <label class="formSpan" tabindex="0" for="produkty_4" aria-label="{__TLUMACZ:OCENA_PRODUKTOW} 4/5"><img alt="{__TLUMACZ:OCENA_PRODUKTU} 4/5" src="szablony/{__DOMYSLNY_SZABLON}/obrazki/recenzje/ocena_4.png" /></label><input type="radio" value="4" id="produkty_4" name="ocena_produkty" /><span style="padding:0" class="radio" id="radio_produkty_4"></span>
+                        <label class="formSpan" tabindex="0" for="produkty_3" aria-label="{__TLUMACZ:OCENA_PRODUKTOW} 3/5"><img alt="{__TLUMACZ:OCENA_PRODUKTU} 3/5" src="szablony/{__DOMYSLNY_SZABLON}/obrazki/recenzje/ocena_3.png" /></label><input type="radio" value="3" id="produkty_3" name="ocena_produkty" /><span style="padding:0" class="radio" id="radio_produkty_3"></span>
+                        <label class="formSpan" tabindex="0" for="produkty_2" aria-label="{__TLUMACZ:OCENA_PRODUKTOW} 2/5"><img alt="{__TLUMACZ:OCENA_PRODUKTU} 2/5" src="szablony/{__DOMYSLNY_SZABLON}/obrazki/recenzje/ocena_2.png" /></label><input type="radio" value="2" id="produkty_2" name="ocena_produkty" /><span style="padding:0" class="radio" id="radio_produkty_2"></span>
+                        <label class="formSpan" tabindex="0" for="produkty_1" aria-label="{__TLUMACZ:OCENA_PRODUKTOW} 1/5"><img alt="{__TLUMACZ:OCENA_PRODUKTU} 1/5" src="szablony/{__DOMYSLNY_SZABLON}/obrazki/recenzje/ocena_1.png" /></label><input type="radio" value="1" id="produkty_1" name="ocena_produkty" /><span style="padding:0" class="radio" id="radio_produkty_1"></span>
+                    </li>
+
+                    <?php } ?>
+
+                </ul>
+                
+                <div class="cl"></div>
+                
+                <br />
+                
+                <h5>{__TLUMACZ:CZY_POLECASZ_ZAKUPY}</h5>
+                
+                <p>
+                
+                    <label for="polecanie_tak">{__TLUMACZ:TAK}
+                        <input type="radio" value="1" name="polecanie" id="polecanie_tak" checked="checked" />
+                        <span class="radio" id="radio_polecanie_tak"></span>
+                    </label>
+                    
+                    <label for="polecanie_nie">{__TLUMACZ:NIE}
+                        <input type="radio" value="0" name="polecanie" id="polecanie_nie" />
+                        <span class="radio" id="radio_polecanie_nie"></span>
+                    </label>
+
+                </p>
+                
+                <!-- czy klient wyraza zgode na info o produktach jakie zakupil -->
+                
+                <?php if ( $FormularzLink == 'tak' ) { ?>
+                
+                    <h5>{__TLUMACZ:ZGODA_NA_INFO_PRODUKTOW}</h5>
+                    
+                    <p>
+                    
+                        <label for="produkty_tak">{__TLUMACZ:TAK}
+                            <input type="radio" value="1" name="produkty" id="produkty_tak" checked="checked" />
+                            <span class="radio" id="radio_produkty_tak"></span>
+                        </label>
+                        
+                        <label for="produkty_nie">{__TLUMACZ:NIE}
+                            <input type="radio" value="0" name="produkty" id="produkty_nie" />
+                            <span class="radio" id="radio_produkty_nie"></span>
+                        </label>
+
+                    </p>                
+
+                <?php } ?>
+
+                <br />
+                
+                <h5>{__TLUMACZ:KLIENT_KOMENTARZ} <em class="required" id="em_<?php echo uniqid(); ?>"></em></h5>
+                
+                <p>
+                    <textarea rows="5" cols="35" style="width:90%" name="opinia" id="opinia"></textarea>
+                </p>    
+                
+                <div class="Informacja">{__TLUMACZ:OPINIE_INFO_KOMENTARZ}</div>
+                
+                <?php if ( $Zalogowany == 'tak' ) { ?>
+                        
+                    <br />
+                        
+                    <p>
+                       <span><label class="formSpan" for="zdjecie_1">{__TLUMACZ:ZDJECIE_WGRYWANIE}:</label></span>
+                       <input type="file" name="zdjecie_1" id="zdjecie_1" />
+                    </p>
+              
+                <?php } ?>                  
+
+                <br />
+                
+                <!-- recenzje do produktow -->
+                
+                <?php if ( $FormularzLink == 'tak' ) { ?>
+                
+                    <div {__CSS_OPINIE_PRODUKTY}>
+                
+                        <h5>{__TLUMACZ:OPINIE_O_PRODUKTACH}</h5>
+                        
+                        <div class="Informacja">{__TLUMACZ:OPINIE_O_PRODUKTACH_INFO}</div>
+                        
+                        {__LISTA_PRODUKTOW_DO_RECENZJI}
+                        
+                        <br />
+                        
+                    </div>
+                    
+                <?php } ?>
+                
+                <input class="PolaFormKlienta" type="text" name="fields_996901112" value="" size="15" />
+                <input class="PolaFormKlienta" type="text" name="fields_996903112" value="" size="15" />                
+               
+                <div class="NaglowekZabezpieczenieFormularz" style="margin-bottom:10px">
+                    <label class="formSpan" for="weryfikacja">{__TLUMACZ:PRZEPISZ_TEKST_CAPTCHA}</label>
+                </div>               
+               
+                <div class="ZabezpieczenieFormularz TrescPolaFormularza">
+                    <div class="Lf"><input type="text" name="weryfikacja" id="weryfikacja" onblur="WeryfikacjaCaptcha(this.value)" onkeyup="WeryfikacjaCaptcha(this.value)" /></div>
+                    <div class="Lf"><span class="OdswiezGrafike" onclick="OdswiezCaptcha()"><img style="margin:6px;cursor:pointer" src="images/odswiez.png" alt="" /></span></div>
+                    <div class="Lf OknoGrafikiFormularz"><img src="inne/captcha.php" id="weryfikacjaImg" alt="" /></div>                    
+                </div>
+                
+                <div class="cl"></div>
+
+                <p>
+                    <input type="hidden" name="akcja" value="zapisz" />
+                    <input type="hidden" name="tok" value="{__TOKEN}" />
+                    <input type="hidden" name="czas" value="{__CZAS}" />
+                    <input type="hidden" name="link" value="{__Z_LINKU}" />
+                    <input type="hidden" name="id_produktow" value="{__ID_PRODUKTOW}" />
+                    <input type="hidden" name="id_pozycji" value="{__ID_KLIENTA}" />
+                    <input type="hidden" name="id_grupa" value="{__GRUPA_KLIENTA}" />
+                    <input type="submit" style="margin-top:15px" id="submitButton" class="przyciskWylaczony" value="{__TLUMACZ:PRZYCISK_WYSLIJ}" disabled="disabled" />
+                </p>
+
+                <p class="Informacja" style="margin-top:20px">
+                    {__TLUMACZ:INFO_O_ZATWIERDZENIU_OPINII}
+                </p>
+ 
+            </form>    
+
+            <!-- jezeli formularz jest tylko dla zarejestrowanych klientow a klient nie jest zalogowany to wyswietli komunikat -->            
+
+            <?php } else { ?>
+            
+                {__TLUMACZ:INFO_OPINIA_KONIECZNE_ZALOGOWANIE}
+                
+                <div style="margin-top:15px">
+                    <a href="{__SSL:logowanie.html}" class="przycisk">{__TLUMACZ:ZALOGUJ_SIE}</a> 
+                    <a href="{__SSL:rejestracja.html}" class="przycisk">{__TLUMACZ:ZALOZ_KONTO}</a> 
+                </div>
+                
+            <?php } ?>
+
+        </div>
+        
+    </div>
+    
+    <?php } 
+    
+    unset($Zalogowany, $FormularzLink);
+    ?>    
+    
+    <div class="cl"></div>
+    
+    <!-- przycisk powrotu do strony glownej -->
+    
+    <a href="/" class="przycisk Prawy">{__TLUMACZ:PRZYCISK_DO_STRONY_GLOWNEJ}</a>   
+    
+    <div class="cl"></div>
+
+</section>
+
+<style>
+.PolaFormKlienta { display:none; }
+</style>
+

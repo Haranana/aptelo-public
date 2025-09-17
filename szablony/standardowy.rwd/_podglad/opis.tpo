@@ -1,0 +1,8 @@
+1. Szablon wykonany w technice RWD (możliwe działanie szablonu na komputerach PC, tabletach, telefonach komórkowych).
+1. Szablon oparty o kolorystykę definiowaną w większości w plikach CSS.
+2. Możliwe jest działanie szablonu w układzie 2 lub 3-kolumnowym - wyłączenie lewej lub prawej kolumny z boxami.
+3. Preferowane tło szablonu - kolor biały (jasny) - kod FFFFFF. Po zmianie koloru zmienia się całe tło sklepu.
+4. W szablonie nie ustawia się szerokości sklepu - szablon dostosowuje się automatycznie do rozdzielczości ekranu urządzania na jakim jest wyświetlany.
+5. Możliwe jest ustawienie dowolnej szerokości kolumn z boxami (środek sklepu ustawi się automatycznie w zależności od szerokości kolumn).
+6. W szablonie można definiować linki w górnym menu oraz w czterech kolumnach stopki. Nie jest aktywna piąta kolumna stopki oraz dolne menu.
+7. W szablonie można zastosować dowolny nagłówek, powinien on mieć szerokość taką jak największa możliwa szerokość sklepu 1200px - wysokość dowolna - przy zmianie rozdzielczości ekranu nagłówek automatycznie przeskaluje swoją wielkość.

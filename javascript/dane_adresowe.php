@@ -1,0 +1,99 @@
+<?php
+chdir('../');
+
+// wczytanie ustawien inicjujacych system
+require_once('ustawienia/init_ajax.php');
+
+if ( !isset($_SESSION['domyslnyJezyk']['kod']) ) { $_SESSION['domyslnyJezyk']['kod'] = 'pl'; }
+if ( !isset($_SESSION['domyslnyJezyk']['id']) ) { $_SESSION['domyslnyJezyk']['id'] = '1'; }
+
+$PlikCacheJs = 'cache/js/dane_adresowe_' . $_SESSION['domyslnyJezyk']['kod'] . '.jcs';
+
+if (!file_exists($PlikCacheJs) || CACHE_JS == 'nie') {
+
+    include 'klasy/Jezyki.php';
+    include 'klasy/Translator.php';
+    include 'klasy/jsMin.php';
+    include 'klasy/Funkcje.php';
+
+    $kod = '';
+    
+    $kod .= file_get_contents('programy/zebraDatePicker/zebra_datepicker.js');
+    $kod .= file_get_contents('javascript/dane_adresowe.jcs');
+
+    // tlumaczenia
+    $i18n = new Translator($_SESSION['domyslnyJezyk']['id']);
+    $tlumacz = $i18n->tlumacz( array('FORMULARZ','WYGLAD') );
+
+    // konwersja danych jezykowych
+    $preg = preg_match_all('|{__TLUMACZ:([0-9A-Z_]+?)}|', $kod, $matches);
+    foreach ($matches[1] as $WartoscJezykowa) {
+        $kod = str_replace('{__TLUMACZ:' . $WartoscJezykowa . '}', str_replace("'", "&apos;", (string)nl2br($tlumacz[$WartoscJezykowa])), (string)$kod);
+    }
+    
+    unset($i18n, $tlumacz);
+
+    $IdPL = '170';
+    $IdPL = Funkcje::IdKrajuDostawy( 'PL' );
+    $kod = str_replace('{KOD_PL}', $IdPL, (string)$kod);
+
+    // zamienia linki SSL
+    $preg = preg_match_all('|{__SSL:([0-9a-zA-Z-._?/]+?)}|', $kod, $matches);
+    foreach ($matches[1] as $Link) {
+        //
+        if ( WLACZENIE_SSL == 'tak' ) {
+            $kod = str_replace('{__SSL:' . $Link . '}', ADRES_URL_SKLEPU_SSL . '/' . $Link, (string)$kod);
+          } else {
+            $kod = str_replace('{__SSL:' . $Link . '}', (string)$Link, (string)$kod);
+        }
+    } 
+
+    $kod = jsMin::minify($kod);
+
+    if ( CACHE_JS == 'tak' ) {
+        // zapis cache js do pliku
+        $plikKlucz = fopen($PlikCacheJs,'a+');
+        flock($plikKlucz,LOCK_EX);
+        fseek($plikKlucz,0);
+        ftruncate($plikKlucz,0);
+        fwrite($plikKlucz, $kod);
+        fclose($plikKlucz);    
+    }
+    
+} else {
+
+    // odczyt cache js z pliku
+    $plikKlucz = fopen($PlikCacheJs,'r');
+    flock($plikKlucz,LOCK_SH);
+    
+    if(isset($_SERVER['HTTP_IF_MODIFIED_SINCE']) ){
+        header ("HTTP/1.0 304 Not Modified");
+        exit;
+    } 
+          
+    $kod = file_get_contents($PlikCacheJs);
+    fclose($plikKlucz);          
+
+}
+
+unset($PlikCacheJs);    
+    
+// zamiana tokenu bezpieczenstwa
+$kod = str_replace( '{__TOKEN_DANE_ADRESOWE}', (string)Sesje::Token(), (string)$kod );  
+$kod = str_replace( '{__TOKEN_EMAIL}', (string)Sesje::Token(), (string)$kod ); 
+$kod = str_replace( '{__TOKEN_NICK}', (string)Sesje::Token(), (string)$kod );
+$kod = str_replace( '{__TOKEN_REGON}', (string)Sesje::Token(), (string)$kod );
+
+if ( KLIENT_POKAZ_DATE_URODZENIA_18_PLUS == 'tak' ) {
+     $date_minus_18 = FunkcjeWlasnePHP::my_strtotime( date('d-m-Y', time()) . ' -18 year');
+     $kod = str_replace( '{__DATA_REJESTRACJA_18_PLUS}', ", direction: ['01-01-1900', '" . date('d-m-Y', $date_minus_18) . "'], start_date: '" . date('d-m-Y', $date_minus_18) . "'", (string)$kod );
+     unset($date_minus_18);
+} else {
+     $kod = str_replace( '{__DATA_REJESTRACJA_18_PLUS}', "", (string)$kod );
+}
+
+echo $kod;
+
+unset($kod, $db, $session);
+
+?>  

@@ -1,0 +1,195 @@
+<!-- wyglad naglowka strony -->
+
+<h1 class="StrNaglowek">
+    <span>{__NAGLOWEK_FORMULARZA}</span>  
+</h1>
+
+<!-- skrypt do walidacji formularza -->
+
+<script>
+$(document).ready(function() {
+    $("#formularzKlienta").validate( {__WALIDACJA} );
+    $('div.error').click(function(){
+       $('div.error').slideUp();;
+    });
+});
+</script>
+
+<!-- tresc strony -->
+
+<section class="StrTresc">
+
+    <!-- jezeli formularz jest tylko dla zalogowanych -->
+
+    <?php     
+    $LiczbaOdbiorcow = $__pA;
+    $NazwaProduktu = $__pB;
+    ?>
+    
+    <!-- wyswietlany komunikat po wyslaniu formularza -->
+
+    <?php if ( isset($_GET['sukces']) ) { ?>
+    
+        <p class="Informacja">
+            {__TLUMACZ:WIADOMOSC_WYSLANA}
+        </p>
+        
+        <!-- przycisk powrotu do strony glownej -->
+        
+        <a href="/" class="przycisk Prawy">{__TLUMACZ:PRZYCISK_DO_STRONY_GLOWNEJ}</a>
+
+        <!-- przycisk powrotu do produktu jezeli formularz byl wywolany z produktu - np negocjacja ceny -->
+        
+        <?php if ( !empty($NazwaProduktu) ) { ?>
+            <a href="{__LINK_PRODUKTU}" class="przycisk Prawy">{__TLUMACZ:PRZYCISK_WROC_DO_PRODUKTU}</a>   
+        <?php } ?>         
+        
+        <div class="cl"></div>
+    
+    <?php } ?>
+    
+    <!-- formularz tresc -->
+
+    <?php if (!isset($_GET['sukces'])) { ?>
+    
+        <!-- ustawienia ukladu wyswietlania formularza -->
+    
+        <div class="OpisPolaFormularza {__CSS_WYGLAD_FORMULARZ}">
+        
+            <!-- opis formularza -->
+        
+            <div class="OpisFormularza">
+    
+                {__OPIS_FORMULARZA}
+                
+            </div>
+            
+            <!-- tresc formularza -->
+            
+            <div class="TrescPolaFormularza">
+
+                <form action="{__LINK}" method="post" id="formularzKlienta" class="cmxform" {__TRYB_FORMULARZA}> 
+
+                    <div class="error">
+                        <span id="span_<?php echo uniqid(); ?>"></span>
+                    </div>
+
+                    <!-- wybor odbiorcy formularza -->
+                
+                    <?php if ( $LiczbaOdbiorcow > 0 ) { ?>
+                    <p>
+                    
+                        <span><label class="formSpan" for="pola_odbiorcow">{__TLUMACZ:ADRESAT_WIADOMOSCI}</label></span>
+                        {__ODBIORCY}
+                        
+                    </p>
+                    <?php } else { ?>
+                        
+                        <!-- jezeli nie ma wyboru odbiorcow tworzy tylko ukrytego inputa z domyslnym adresem email sklepu -->
+                        
+                        <div>{__ODBIORCY}</div>
+                        
+                    <?php } ?>
+                    
+                    <!-- pola formularza -->
+                    
+                    {__POLA_FORMULARZA}
+                    
+                    <!-- dodatkowe pola -->
+                    
+                    <input class="PolaFormKlienta" type="text" name="fields_996901112" value="" size="15" />
+                    <input class="PolaFormKlienta" type="text" name="fields_996903112" value="" size="15" />
+                    
+                    <!-- przetwarzanie danych osobowych -->
+                    <?php if ( isset($__pD) && $__pD == true ) { ?>            
+                    
+                        <div class="CheckSekcja" style="margin-top:25px">
+
+                            <label for="przetwarzanie_formularz">{__TLUMACZ:ZGODA_PRZETWARZANIE_FORMULARZE}
+                                <input type="checkbox" value="1" name="przetwarzanie_formularz" id="przetwarzanie_formularz" class="przetwarzanie_formularz" />
+                                <span class="check" id="check_przetwarzanie_formularz"></span><em class="required checkreq" id="em_<?php echo uniqid(); ?>"></em>
+                            </label>
+                            
+                            <div id="error-przetwarzanie_formularz"></div> 
+                            
+                        </div>
+
+                        <div class="cl"></div>
+
+                    <?php } ?>
+                    
+                    <!-- zabezpieczenie CAPTCHA -->
+                    <?php if ( isset($__pC) && $__pC == true ) { ?>
+                    
+                        <br />
+                        
+                        <div class="NaglowekZabezpieczenieFormularz" style="margin-bottom:10px">
+                            <label class="formSpan" for="weryfikacja">{__TLUMACZ:PRZEPISZ_TEKST_CAPTCHA}</label>
+                        </div>
+                    
+                        <div class="ZabezpieczenieFormularz">
+                            <div class="Lf"><input type="text" name="weryfikacja" id="weryfikacja" onblur="WeryfikacjaCaptcha(this.value)" onkeyup="WeryfikacjaCaptcha(this.value)" /></div>
+                            <div class="Lf"><span class="OdswiezGrafike" onclick="OdswiezCaptcha()"><img style="margin:6px;cursor:pointer" src="images/odswiez.png" alt="" /></span></div>
+                            <div class="Lf OknoGrafikiFormularz"><img src="inne/captcha.php" id="weryfikacjaImg" alt="" /></div>
+                        </div>
+                        
+                        <div class="cl"></div>
+
+                    <?php } else { ?>
+
+                        <script>
+                        $(document).ready(function() {
+                            $('#submitButton').removeAttr('disabled');
+                            $("#submitButton").attr('class', 'przycisk');
+                        });
+                        </script>
+
+                    <?php } ?>
+
+                    <p>
+                    
+                        <!-- nie kasowac -->
+                        <input type="hidden" name="akcja" value="zapisz" />
+                        <input type="hidden" name="tok" value="{__TOKEN}" />
+                        <input type="hidden" name="czas" value="{__CZAS}" />
+                        <input type="hidden" name="tytul" value="{__NAGLOWEK_FORMULARZA}" />
+                        
+                        <!-- przyciski -->
+                        <input type="submit" style="margin-top:15px" id="submitButton" class="przyciskWylaczony" value="{__TLUMACZ:PRZYCISK_WYSLIJ}" disabled="disabled" />
+                        
+                        <!-- ukryty input z id produktu jezeli formularz byl wywolany z produktu - np negocjacja ceny -->
+                        <?php if ( !empty($NazwaProduktu) ) { ?>
+                            <input type="hidden" name="produkt" value="{__ID_PRODUKTU}" /> 
+                        <?php } ?> 
+                        
+                    </p>
+                            
+                </form>
+          
+            </div>
+            
+        </div>
+        
+        <!-- przycisk powrotu do strony glownej -->
+
+        <a href="/" class="przycisk Prawy">{__TLUMACZ:PRZYCISK_DO_STRONY_GLOWNEJ}</a> 
+        
+        <!-- przycisk powrotu do produktu jezeli formularz byl wywolany z produktu - np negocjacja ceny -->
+
+        <?php if ( !empty($NazwaProduktu) ) { ?>
+            <a href="{__LINK_PRODUKTU}" class="przycisk Prawy">{__TLUMACZ:PRZYCISK_WROC_DO_PRODUKTU}</a>   
+        <?php } ?>  
+        
+        <div class="cl"></div>
+        
+    <?php }
+        
+    unset($LiczbaOdbiorcow, $NazwaProduktu);
+    ?>
+
+</section>
+
+<style>
+.PolaFormKlienta { display:none; }
+</style>
+

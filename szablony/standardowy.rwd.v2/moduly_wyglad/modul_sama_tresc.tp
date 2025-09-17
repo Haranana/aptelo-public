@@ -1,0 +1,41 @@
+<!-- sama tresc - bez naglowka i innych elementow html -->
+
+<?php if ($__pA['SzerokoscTla'] == 'SzerokoscSklepu') { ?>
+
+    <!-- dodatkowy div jezeli tlo jest ustawione na szerokosc sklepu -->
+
+    <div class="Strona">
+    
+<?php } ?>
+
+    <div {__CSS_DODATKOWE_MARGINESY} class="ModulId-{__ID_MODULU} KontenerModul KontenerModulSamaTresc">
+      
+        <!-- dodatkowe style css dla odstepu i tla -->
+
+        <div {__CSS_DODATKOWY} class="ModulCssDodatkowy">
+
+            <!-- sprawdza jaka ma być szerokosc modulu - jezeli nie na 100% szerokosci ekranu to przyjmuje klase .Strona -->
+
+            <?php if ($__pA['SzerokoscModulu'] == 'SzerokoscSklepu' && $__pA['SzerokoscTla'] != 'SzerokoscSklepu') { ?>
+
+                <div class="Strona">
+                
+            <?php } ?>
+              
+                {__TRESC_MODULU}
+
+            <?php if ($__pA['SzerokoscModulu'] == 'SzerokoscSklepu' && $__pA['SzerokoscTla'] != 'SzerokoscSklepu') { ?>
+
+                </div>
+                
+            <?php } ?> 
+
+        </div>    
+        
+    </div>    
+    
+<?php if ($__pA['SzerokoscTla'] == 'SzerokoscSklepu') { ?>
+
+    </div>
+    
+<?php } ?>  

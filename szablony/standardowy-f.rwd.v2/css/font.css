@@ -1,0 +1,26 @@
+@font-face {
+  font-display: swap;
+  font-family: 'Krub';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../szablony/standardowy-f.rwd.v2/font/krub-v10-latin_latin-ext-regular.woff2') format('woff2'), 
+       url('../szablony/standardowy-f.rwd.v2/font/krub-v10-latin_latin-ext-regular.ttf') format('truetype'); 
+}
+
+@font-face {
+  font-display: swap; 
+  font-family: 'Krub';
+  font-style: normal;
+  font-weight: 700;
+  src: url('../szablony/standardowy-f.rwd.v2/font/krub-v10-latin_latin-ext-600.woff2') format('woff2'), 
+       url('../szablony/standardowy-f.rwd.v2/font/krub-v10-latin_latin-ext-600.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: fallback-font;
+  src: local('Arial');
+    size-adjust: 105%;
+    ascent-override: 98%;
+    descent-override: normal;
+    line-gap-override: normal;
+}

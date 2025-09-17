@@ -1,0 +1,31 @@
+#Czat { position:fixed; right:15px; bottom:15px; z-index:101; }
+#IkonaCzat { cursor:pointer; text-align:right; }
+#OknoCzat { width:270px; border:1px solid #546e7a; margin-top:5px; background:#ffffff; overflow:hidden; position:relative;
+  -webkit-border-radius:3px; -moz-border-radius:3px; border-radius:3px; -khtml-border-radius:3px; 
+}
+#IkonaCzatZwin { display:none; position:absolute; right:11px; top:6px; color:#ffffff; cursor:pointer; font-size:14px; font-weight:bold; z-index:5; }
+#Czat .CzatWitaj { cursor:pointer; position:relative; background:#546e7a; color:#ffffff; padding:8px 32px 8px 12px; }
+#DaneCzatu { display:none; }
+#TrescCzat { background:#f8f8f8; width:260px; padding:5px; height:205px; overflow-y:scroll; }
+#WiadomoscCzat { border-top:1px solid #cccccc; text-align:center; }
+.CzatLadowanie { opacity:0.4; filter:alpha(opacity=40); }
+#WiadomoscCzat textarea { width:92%; border:0px; height:50px; text-align:left; }
+#WiadomoscCzat #PrzyciskWyslijCzat { text-align:right; margin:5px; }
+#WiadomoscCzat #PrzyciskWyslijCzat button { color:#ffffff; background:#546e7a; border:0px; padding:5px 12px 5px 12px; cursor:pointer; }
+#WiadomoscCzat #PrzyciskWyslijCzat button:hover { background:#2e4651; }
+#TrescCzat div.InfoKlient { background:#efefef; padding:10px; margin:0px 0px 5px 10px; position:relative; overflow:visible;
+  -webkit-border-radius:4px; -moz-border-radius:4px; border-radius:4px; -khtml-border-radius:4px; 
+}
+#TrescCzat div.InfoKlient:before { position:absolute; content:""; width: 0; left:-10px; top:4px; height:0px; border-style:solid; border-width:13px 15px 13px 0px; border-color:transparent #efefef transparent transparent; }
+#TrescCzat div.InfoAdmin { background:#edebce; padding:10px; margin:0px 0px 5px 40px; position:relative; overflow:visible;
+  -webkit-border-radius:4px; -moz-border-radius:4px; border-radius:4px; -khtml-border-radius:4px; 
+}
+#TrescCzat div.InfoAdmin:before { position:absolute; content:""; width: 0; left:-10px; top:4px; height:0px; border-style:solid; border-width:13px 15px 13px 0px; border-color:transparent #edebce transparent transparent; }
+
+#TrescCzat div ul { list-style-type:none; padding:0px; margin:0px 0px 3px 0px; }   
+#TrescCzat div ul:after { content:""; clear:both; display:block; height:1px; }
+#TrescCzat div ul li:first-child { float:left; font-weight:bold; }
+#TrescCzat div ul li:last-child { float:right; color:#9c9c9c; }
+#TrescCzat div.InfoRozmowa { padding:20px; text-align:center; }
+#KonsultantNiedostepny { padding:15px 15px 15px 15px; color:#ff0000; position:relative; text-align:center; }
+#KonsultantNiedostepny a { display:block; text-align:center; margin-top:8px; background:#546e7a; color:#ffffff; padding:6px 12px 6px 12px; }

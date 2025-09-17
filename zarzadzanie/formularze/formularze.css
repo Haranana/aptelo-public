@@ -1,0 +1,7 @@
+.PoleFormularza { margin-top:10px; margin-bottom:10px; }
+
+.NaglowekFormularza { margin:5px; margin-bottom:10px; text-align:left; padding:8px; background:#ebe9e9; font-weight:bold; color:#1e749d; text-decoration:none; }
+.NaglowekFormularza span { font-size:12px; color:#ff0000; }
+
+/* grupa klientow */
+.GrupaKlientow { display:inline-block; padding:5px; }

@@ -1,0 +1,11 @@
+/* generowanie slupka wykresu */
+.Slupek { width:150px; }
+.Slupek div { background:url('../obrazki/slupek_ankiety.png') no-repeat right center; width:100px; height:14px; }
+.OdpowiedziTlo { background:url('../obrazki/ankieta_tlo.png') no-repeat left bottom; width:450px; padding-bottom:25px; }
+.Odpowiedzi td { padding:0px 0px 3px 0px !important; background:transparent  !important; border:0px !important; }
+.Odpowiedz { width:180px; color:#818181; }
+.Procent { width:120px; color:#357840; }
+.Procent span { font-size:10px; color:#9e9b9b; }
+
+.AnkietaInfo { margin-bottom:15px; }
+.AnkietaInfo .OdpowiedziTlo { margin:0px 10px 0px 10px; }

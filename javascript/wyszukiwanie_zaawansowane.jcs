@@ -1,0 +1,56 @@
+$(document).ready(function() {
+    //wlacza przycisk submit jesli dziala u klienta javascript
+    $('#submitButton').removeAttr('disabled');
+    $("#submitButton").attr('class', 'przycisk');    
+});
+
+// do wyszukiwania zaawansowanego - sprawdza dlugosc wpisanego wyrazenia
+function sprSzukajZaawansowane(){
+    //
+    Formularz = $('#WyszukiwanieZaawansowane');
+
+    Formularz.find('input').each(function() {
+        if ($(this).val() == '') {
+          $(this).attr('disabled', true);
+        }      
+    });
+    
+    Formularz.find('select').each(function() {
+        if ($(this).val() == '0') {
+          $(this).attr('disabled', true);
+        }
+    });    
+    //
+    
+    if ( Formularz.find('input[name="opis"]').prop('checked') == false ) {
+         Formularz.find('input[name="opis"]').prop('checked', true).val('nie');
+    }
+    if ( Formularz.find('input[name="fraza"]').prop('checked') == false ) {
+         Formularz.find('input[name="fraza"]').prop('checked', true).val('nie');
+    }
+    if ( Formularz.find('input[name="nrkat"]').prop('checked') == false ) {
+         Formularz.find('input[name="nrkat"]').prop('checked', true).val('nie');
+    }
+    if ( Formularz.find('input[name="kodprod"]').prop('checked') == false ) {
+         Formularz.find('input[name="kodprod"]').prop('checked', true).val('nie');
+    }
+    if ( Formularz.find('input[name="ean"]').prop('checked') == false ) {
+         Formularz.find('input[name="ean"]').prop('checked', true).val('nie');
+    }
+    
+    var SzukanyCiag = $.trim($('#SzukanaFraza').val());
+    if (SzukanyCiag.length < 2) {
+        //
+        var myModal = new jBox('Modal',{ 
+            content : '<div class="message"><div id="PopUpInfo">{__TLUMACZ:BLAD_ZA_MALO_ZNAKOW} <b>2</b></div></div>',
+        });
+        myModal.open();
+
+        Formularz.find(':input').attr('disabled', false);
+        $('#SzukanaFraza').focus();
+        return false;
+        //
+      }
+    return true;
+    
+}

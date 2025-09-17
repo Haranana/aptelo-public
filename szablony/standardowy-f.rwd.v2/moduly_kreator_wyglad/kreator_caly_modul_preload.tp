@@ -1,0 +1,19 @@
+<!-- ogolny wyglad modulu na stronie glownej -->
+
+<div id="ModulLadowanie-{__ID_MODULU}" data-preload="false">
+
+    <div class="KreatorPreload"></div>
+    
+</div>
+
+<script>
+$(document).ready(function() {
+
+    PreloaderKreator({__ID_MODULU}, 100);
+
+    $(window).scroll(function() {
+        PreloaderKreator({__ID_MODULU}, 100);
+    });  
+    
+});
+</script>

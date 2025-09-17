@@ -1,0 +1,39 @@
+<!-- wyglad naglowka strony -->
+
+<h1 class="StrNaglowek">
+    <span>{__NAGLOWEK_ANKIETY}</span> 
+</h1>
+
+<!-- tresc strony -->
+
+<section class="StrTresc">
+
+    <!-- opis ankiety -->
+
+    {__OPIS_ANKIETY}
+
+    <div class="cl"></div>
+    
+    <br />
+    
+    <!-- wyniki ankiety w formie graficznej -->
+    
+    {__POZYCJE_ANKIETY}
+    
+    <br />
+    
+    <!-- tekst - suma glosow z iloscia -->
+    
+    <p class="sumaGlosow">
+        {__TLUMACZ:SUMA_GLOSOW_W_ANKIECIE} <b>{__SUMA_GLOSOW}</b>
+    </p>
+    
+    <!-- przycisk powrotu do strony glownej -->
+
+    <a href="/" class="przycisk Prawy">{__TLUMACZ:PRZYCISK_DO_STRONY_GLOWNEJ}</a>   
+    
+    <div class="cl"></div>
+
+</section>
+
+

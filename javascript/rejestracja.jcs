@@ -1,0 +1,203 @@
+$(document).ready(function() {
+  
+    $("#rejestracja").on("keyup keypress", function(e) {
+      var code = e.keyCode || e.which; 
+      if (code === 13) {               
+          e.preventDefault();
+          return false;
+      }
+    });
+    
+    $('#kod_pocztowy').keyup(function() {
+        $(this).val($(this).val().toUpperCase());
+    });
+
+    $("#wszystkie_zgody").on("change", function () {
+        var isChecked = $(this).prop("checked");
+        $(".ZgodaRejestracja input[type='checkbox']").prop("checked", isChecked);
+    });
+
+    $.validator.addMethod("nip", function(value, element) {
+        if (this.optional(element)) {
+            return true;
+        }
+        // nie sprawdza jesli krajem nie jest PL
+        if ($('#wybor_panstwo').val() != {KOD_PL}) {
+            return true;
+        }
+        // sprawdza czy sa tylko cyfry litery i myslniki
+        if (!(/^[0-9\A-Z\-\s]+$/i.test(value))) {
+            return false;
+        }
+        // usuwa myslniki i spacje
+        var nipWithoutDashes = value.replace(/-/g,"");
+        nipWithoutDashes = nipWithoutDashes.replace(/ /g,"");
+        // sprawdza dlugosc - jezeli jest 12 znakow to sprawdza czy pierwsze 2 znaki to PL
+        if ( nipWithoutDashes.length == '12' && nipWithoutDashes.substring(0,2) == 'PL' ) {
+             nipWithoutDashes = nipWithoutDashes.substring(2,12);
+        }
+        var reg = /^[0-9]{10}$/;
+        if(reg.test(nipWithoutDashes) == false) {
+            return false;
+        } else {
+            var digits = (""+nipWithoutDashes).split("");
+            var checksum = (6*parseInt(digits[0]) + 5*parseInt(digits[1]) + 7*parseInt(digits[2]) + 2*parseInt(digits[3]) + 3*parseInt(digits[4]) + 4*parseInt(digits[5]) + 5*parseInt(digits[6]) + 6*parseInt(digits[7]) + 7*parseInt(digits[8]))%11;
+            return (parseInt(digits[9])==checksum);
+        }
+    }, "{__TLUMACZ:BLAD_ZLY_NIP}");
+
+    $.validator.addMethod(
+        "cyfryMyslnikRegex", function(value, element) {
+        return this.optional(element) || /^[0-9\A-Z\-\s]+$/i.test(value);
+    }, "{__TLUMACZ:BLAD_TYLKO_CYFRY_MYSLNIK}");
+    $.validator.addMethod("cyfryMyslnikPlusRegex", function(value, element) {
+        return this.optional(element) || /^[0-9\-+\s]+$/i.test(value);
+    }, "{__TLUMACZ:BLAD_TYLKO_CYFRY_MYSLNIK}");
+
+    $.validator.addMethod("cyfryliteryRegex", function(value, element) {
+        return this.optional(element) || /[a-zа-яΑ-Ωα-ωίϊΐόάέύϋΰήώ].*[0-9]|[0-9].*[a-zа-яΑ-Ωα-ωίϊΐόάέύϋΰήώ]/i.test(value);
+    }, "{__TLUMACZ:BLAD_LITERY_CYFRY}");
+
+    $("#rejestracja").validate({
+      rules: {
+        regulamin: {required: true},
+        przetwarzanie: {required: true},
+        przetwarzanie_dodatkowe: {required: true},
+        polityka_prywatnosci: {required: true},
+        email: { email: true, required: true, remote: "{__SSL:inne/rejestracja.php?email}&tok={__TOKEN_REJESTRACJA}" },
+        nick: { remote: "{__SSL:inne/rejestracja.php?nick}&tok={__TOKEN_REJESTRACJA}" },
+        nazwa_firmy: {required: function() {var wynik = true; if ( $("input[name='osobowosc']:checked", "#rejestracja").val() == "1" ) { wynik = false; } return wynik; }},
+        nip_firmy: {
+            required: function() {var wynik = true; if ( $("input[name='osobowosc']:checked", "#rejestracja").val() == "1" ) { wynik = false; } return wynik;},
+            nip: true,
+            cyfryMyslnikRegex: true
+        },
+        regon_firmy: {
+            required: function() {var wynik = true; if ( $("input[name='osobowosc']:checked", "#rejestracja").val() == "1" ) { wynik = false; } return wynik;},
+            remote: "{__SSL:inne/rejestracja.php?regon}&tok={__TOKEN_REJESTRACJA}"
+        },        
+        haslopowtorz: { equalTo: "#haslo" },
+        pesel: { digits: true, minlength: 11 },
+        kod_pocztowy: { cyfryMyslnikRegex: true },
+        telefon: { cyfryMyslnikPlusRegex: true },
+        ulica: { cyfryliteryRegex: true }
+      },
+      messages: {
+        imie: { required: '{__TLUMACZ:BLAD_WYMAGANE_POLE}' },
+        nazwisko: { required: '{__TLUMACZ:BLAD_WYMAGANE_POLE}' },
+        data_urodzenia: { required: '{__TLUMACZ:BLAD_WYMAGANE_POLE}' },
+        nazwa_firmy: { required: '{__TLUMACZ:BLAD_WYMAGANE_POLE}' },
+        nip_firmy: { required: '{__TLUMACZ:BLAD_WYMAGANE_POLE}', nip: '{__TLUMACZ:BLAD_ZLY_NIP}' },
+        regon_firmy: { remote: '{__TLUMACZ:BLAD_ZLY_REGON}', required: '{__TLUMACZ:BLAD_WYMAGANE_POLE}' },
+        ulica: { required: '{__TLUMACZ:BLAD_WYMAGANE_POLE}' },
+        kod_pocztowy: { required: '{__TLUMACZ:BLAD_WYMAGANE_POLE}' },
+        miasto: { required: '{__TLUMACZ:BLAD_WYMAGANE_POLE}' },
+        telefon: { required: '{__TLUMACZ:BLAD_WYMAGANE_POLE}' },
+        email: { email: '{__TLUMACZ:BLAD_ZLY_EMAIL}', remote: '{__TLUMACZ:BLAD_EMAIL_ISTNIEJE}', required: '{__TLUMACZ:BLAD_WYMAGANE_POLE}' },
+        nick: { remote: '{__TLUMACZ:BLAD_NICK_ISTNIEJE}' },
+        haslo: { required: '{__TLUMACZ:BLAD_WYMAGANE_POLE}' },
+        haslopowtorz: { required: '{__TLUMACZ:BLAD_WYMAGANE_POLE}', equalTo: '{__TLUMACZ:BLAD_HASLA_SA_ROZNE}' },
+        regulamin: { required: '{__TLUMACZ:BLAD_WYMAGANE_POLE}' },
+        przetwarzanie: { required: '{__TLUMACZ:BLAD_WYMAGANE_POLE}' },
+        przetwarzanie_dodatkowe: { required: '{__TLUMACZ:BLAD_WYMAGANE_POLE}' },
+        polityka_prywatnosci: { required: '{__TLUMACZ:BLAD_WYMAGANE_POLE}' },
+        pesel: { digits: '{__TLUMACZ:BLAD_TYLKO_LICZBY}', minlength: '{__TLUMACZ:BLAD_ZA_MALO_ZNAKOW_FORM}' }
+
+      },
+      errorPlacement: function(error, element) {
+        if (element.hasClass('regulamin') || element.hasClass('przetwarzanie') || element.hasClass('przetwarzanie_dodatkowe') || element.hasClass('polityka_prywatnosci')){
+            if (element.hasClass('przetwarzanie')){
+                error.appendTo('#error-przetwarzanie');
+            } else if (element.hasClass('regulamin')){
+                error.appendTo('#error-regulamin');
+            } else if (element.hasClass('przetwarzanie_dodatkowe')){
+                error.appendTo('#error-przetwarzanie_dodatkowe');
+            } else if (element.hasClass('polityka_prywatnosci')){
+                error.appendTo('#error-polityka_prywatnosci');
+            }
+        } else {
+          error.insertAfter(element);
+        }
+      },
+      submitHandler: function() {
+        PreloadWlacz();
+        var sear = $('#rejestracja').serialize(); 
+        $.post("{__SSL:inne/do_rejestracji.php}?tok={__TOKEN_REJESTRACJA_OKNO}", { data: sear }, function(data) { 
+            PreloadWylaczSzybko(); 
+            var myModal = new jBox('Modal',{ 
+                content : '<div class="message">'+data+'</div>',
+                closeButton: false,
+                closeOnEsc: false,
+                closeOnMouseleave: false,
+                closeOnClick: false,
+                onOpen: function () {
+                    const popupElement = this.wrapper;
+                    setTimeout(function () {
+                        initFocusTrap(popupElement);
+                    }, 50);
+                }      
+            });
+            myModal.open();
+        });
+      }        
+    });
+
+    // weryfikuje pole nip_firmy przy zmianie kraju
+    $("#wybor_panstwo").on("change", function() {
+        $("#nip_firmy").valid();
+    });
+
+    if ($('.datepicker').length) {
+        $('input.datepicker').Zebra_DatePicker({
+          view: 'years',
+          format: 'd-m-Y',
+          inside: false,
+          readonly_element: true,
+          show_icon: true
+          {__DATA_REJESTRACJA_18_PLUS}
+        });
+    }
+    
+    if ($('.datefields').length) {
+        $('input.datefields').Zebra_DatePicker({
+          format: 'd-m-Y',
+          inside: false,
+          readonly_element: true,
+          show_icon: true
+        });
+    }    
+    
+    // sprawdza czy jest pole wojewodztwo
+    if ($('#wybor_panstwo').length) {
+        $("#wybor_panstwo").change( function() {
+          PreloadWlacz();
+          $.ajax({
+            type: "POST",
+            data: "data=" + $(this).val(),
+            url: "{__SSL:inne/wybor_wojewodztwa.php}?tok={__TOKEN_REJESTRACJA}",
+            success: function(msg){
+              PreloadWylaczSzybko();
+              $("#wybor_wojewodztwo_wynik").html(msg).show(); 
+            }
+          });
+        });
+    }
+
+    // wlacza przycisk submit jesli dziala u klienta javascript
+    $('#submitButton').removeAttr('disabled');
+    $("#submitButton").attr('class', 'przycisk');
+
+});
+
+function ZmienOsobowosc(nr) {
+    //
+    if ( nr == 1 ) {
+         $('#osobaFizyczna').slideDown();
+         $('#osobaPrawna').slideUp();
+    }
+    if ( nr == 2 ) {
+         $('#osobaFizyczna').slideUp();
+         $('#osobaPrawna').slideDown();
+    }
+    //
+}

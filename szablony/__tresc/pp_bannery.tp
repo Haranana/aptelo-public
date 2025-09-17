@@ -1,0 +1,91 @@
+<!-- wyglad naglowka strony -->
+
+<h1 class="StrNaglowek">
+    <span>{__TLUMACZ:PP_BANNERY}</span>
+</h1>
+
+<!-- tresc strony -->
+
+<section class="StrTresc">
+
+    {__TLUMACZ:PP_INFO_OGOLNE}
+    
+    <br />
+    
+    {__PP_INFO_ILOSC_DNI}
+
+    <br /> <br />    
+    
+    {__PP_INFO_ILOSC_PKT} {__PP_INFO_ZA_JAKIE_ZAMOWIENIA}
+
+    <br /><br />
+    
+    <!-- jezeli sa dostepne bannery dla programu partnerskiego -->
+
+    <?php
+    $TablicaBannerow = $__pA;
+    
+    if ( count($TablicaBannerow) > 0 ) {
+    ?>
+    
+        <div class="Sekcja">
+            
+            <div class="TytulSekcji" style="margin-bottom:10px">{__TLUMACZ:PP_NAGLOWEK_BANNERY}</div>
+
+            <p class="Informacja">
+                {__TLUMACZ:PP_INFO_BANNER}
+            </p>
+                  
+            <br />
+        
+            <div class="TabelaKlient">
+            
+                <table>
+                    <tr class="Naglowek Centruj">
+                        <th>{__TLUMACZ:PP_TBL_OPIS}</th>
+                        <th>{__TLUMACZ:PP_TBL_ROZDZIELCZOSC}</th>
+                        <th>{__TLUMACZ:PP_TBL_HTML}</th>
+                    </tr>    
+
+                    <?php
+                    foreach ( $TablicaBannerow as $grafika ) {
+
+                        echo '<tr class="GrafikaBanneru"><td colspan="3"><img src="' . $grafika['obrazek'] . '" alt="' . $grafika['opis_banneru'] . '" /></td></tr>';
+                        echo '<tr class="Centruj">';
+                        echo '<td>' . $grafika['opis_banneru'] . '</td>';
+                        echo '<td>' . $grafika['rozdzielczosc'] . '</td>';
+                        echo '<td style="font-family:Courier;line-height:18px;">' . $grafika['kod_html'] . '</td>';
+                        echo '</tr>';
+                        
+                    }
+                    ?> 
+                </table>
+            
+            </div>
+
+        </div>
+
+    <?php } 
+    
+    unset($TablicaBannerow);
+    ?>
+    
+    <br /><br />
+    
+    <div class="Sekcja">
+        
+        <div class="TytulSekcji" style="margin-bottom:10px">{__TLUMACZ:PP_NAGLOWEK_BANNERY_WLASNE}</div>
+        
+        {__TLUMACZ:PP_INFO_WLASNE_BANNERY} <b>{__PP_LINK_DO_SKLEPU}</b>
+        
+    </div>   
+    
+    <br />
+    
+    <!-- przyciski -->
+
+    <a href="{__SSL:panel-klienta.html}" class="przycisk Lewy">{__TLUMACZ:PRZYCISK_PANEL_KLIENTA}</a>
+
+    <div class="cl"></div>    
+
+</section>

@@ -1,0 +1,344 @@
+/* @ustalenie sposobu funkcjonowania ramek, rodzaju i wielkosci czcionki
+---------------------------------- */
+/*
+.cmxform, .cmxform *{-webkit-box-sizing:border-box; -moz-box-sizing:border-box; box-sizing:border-box; }
+*/
+
+* {
+  border: none;
+}
+
+/* @wyzerowanie ustawien przegladarki
+----------------------------------------------- */
+.cmxform button,
+.cmxform input,
+.cmxform textarea,
+.cmxform select,
+.cmxform input[type="checkbox"],
+.cmxform input[type="radio"],
+.cmxform input[type="button"],
+.cmxform input[type="submit"] {
+    -webkit-tap-highlight-color:transparent; -webkit-tap-highlight-color: rgba(0,0,0,0); -webkit-border-radius:0; -moz-border-radius:0px; -khtml-border-radius:0px; border-radius:0; 
+}
+
+.cmxform input:focus,
+.cmxform textarea:focus,
+.cmxform select:focus
+{
+    outline:0;
+}
+
+
+/* @focus po kliknieciu na pole - tutaj mozna ustawic wlasne parametry
+-------------------------------------------------------- */
+.cmxform input[type=text]:focus,
+.cmxform input[type=password]:focus,
+.cmxform textarea:focus,
+.cmxform select:focus { 
+    border: 1px solid #999;
+    -webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Wyglad elementow radio i checkbox po najechaniu myszka */
+.cmxform input:hover + .OpisFor::before,
+.cmxform input:hover + .OpisForPustyLabel::before,
+.cmxform input:hover + .OpisForPustyLabelKategorie::before
+{
+    border: 1px solid #999;
+    -webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Wyglad zaznaczonych elementow radio i chceckbox */
+.cmxform input:checked + .OpisFor::before,
+.cmxform input:checked + .OpisForPustyLabel::before,
+.cmxform input:checked + .OpisForPustyLabelKategorie::before
+{
+	background-color: #e9ecee;
+	border: 1px solid #adb8c0;
+	box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05), inset 15px 10px -12px rgba(255,255,255,0.1);
+	color: #99a1a7;
+}
+
+/* Wyglad wylaczonych elementow radio i chceckbox */
+.cmxform input:disabled + .OpisFor::before,
+.cmxform input:disabled + .OpisForPustyLabel::before,
+.cmxform input:disabled + .OpisForPustyLabelKategorie::before
+{
+    cursor:not-allowed !important;
+    background:#ffffff;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.cmxform input[type="checkbox"], .cmxform input[type="radio"] {
+  position: absolute;
+  left: -9999px;
+
+}
+
+/* Zaokraglenie kolka w radio */
+.cmxform input[type="radio"] + .OpisFor::before,
+.cmxform input[type="radio"] + .OpisFor::after,
+.cmxform input[type="radio"] + .OpisForPustyLabel::before,
+.cmxform input[type="radio"] + .OpisForPustyLabel::after,
+.cmxform input[type="radio"] + .OpisForPustyLabelKategorie::before,
+.cmxform input[type="radio"] + .OpisForPustyLabelKategorie::after {
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  border-radius: 50px;
+}
+
+/* Zaokraglenie ramki w checkbox */
+.cmxform input[type="checkbox"] + .OpisFor::before,
+.cmxform input[type="checkbox"] + .OpisFor::after,
+.cmxform input[type="checkbox"] + .OpisForPustyLabel::before,
+.cmxform input[type="checkbox"] + .OpisForPustyLabel::after,
+.cmxform input[type="checkbox"] + .OpisForPustyLabelKategorie::before,
+.cmxform input[type="checkbox"] + .OpisForPustyLabelKategorie::after {
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+
+
+.cmxform .OpisFor {
+  box-sizing: border-box;
+  display: inline-block;
+  position: relative;
+  margin: 0;
+  cursor: pointer !important;
+  width: auto !important;
+  width:initial !important;
+  padding: 4px 10px 4px 25px !important;
+  vertical-align: middle;
+}
+
+
+/* Pozycja wzgledem tekstu w LABEL */
+.cmxform .OpisFor::before, .cmxform .OpisFor::after {
+      content: '';
+      position: absolute;
+      top: 3px;
+      left: 0;
+}
+
+/* Wyglad i wielkosc elementow radio i checkbox */
+.cmxform .OpisFor::before,
+.cmxform .OpisForPustyLabel::before,
+.cmxform .OpisForPustyLabelKategorie::before {
+        background-color: #f6f7f3;
+        border: 1px solid #cccccc;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
+        padding: 8px;
+        display: block;
+}
+
+/* Wyglad ptaszka zaznaczenia chceckbox */
+.cmxform input[type="checkbox"] + .OpisFor::after,
+.cmxform input[type="checkbox"] + .OpisForPustyLabel::after,
+.cmxform input[type="checkbox"] + .OpisForPustyLabelKategorie::after {
+      display: none;
+        content: '\2714';
+        font-size: 16px;
+        position: absolute;
+        top: 1px;
+        left: 0px;
+        color: #99a1a7;
+        width:18px;
+        height:18px;
+        text-align:center;
+}
+
+/* Wyglad ptaszka zaznaczenia chceckbox */
+.cmxform input[type="checkbox"]:disabled + .OpisFor::after,
+.cmxform input[type="checkbox"]:disabled + .OpisForPustyLabel::after,
+.cmxform input[type="checkbox"]:disabled + .OpisForPustyLabelKategorie::after {
+        color: #d7d7d7;
+        cursor:not-allowed !important;
+}
+
+.cmxform input[type="radio"] + .OpisFor::after,
+.cmxform input[type="radio"] + .OpisForPustyLabel::after,
+.cmxform input[type="radio"] + .OpisForPustyLabelKategorie::after {
+      display: none;
+      width: 10px;
+      height: 10px;
+      margin: 4px;
+      background: #868686;
+}
+.cmxform input:checked + .OpisFor::after,
+.cmxform input:checked + .OpisForPustyLabel::after,
+.cmxform input:checked + .OpisForPustyLabelKategorie::after
+{
+  display: block;
+}
+
+
+/* Wyglad dla wyborow w drzewach kategorii, klientow, itp. - jak nie ma tresci w label */
+.cmxform .OpisForPustyLabel,
+.cmxform .OpisForPustyLabelKategorie {
+  display: inline-block;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+  width:16px !important;
+  height:16px !important;
+  vertical-align:initial !important;
+}
+
+.cmxform .OpisForPustyLabelLista {
+  margin-right:10px;
+}
+
+.cmxform .OpisForMarginPrawy {
+  margin-right:10px;
+}
+
+.cmxform .OpisForPustyLabel::before, .cmxform .OpisForPustyLabel::after {
+          content: '';
+          position: absolute;
+          top: 2px;
+          left: 0;
+}
+
+.cmxform .OpisForPustyLabelKategorie::before, .cmxform .OpisForPustyLabelKategorie::after {
+          content: '';
+          position: absolute;
+          top: 2px;
+          left: 0;
+}
+
+.cmxform { font-family:Arial, Tahoma, sans-serif; font-size:100%; }
+
+/* wyglad przyciskow */
+span.przyciskNon, .cmxform input.przyciskNon, button.przyciskNon, label.przyciskNon, a.przyciskNon, span.przyciskAllegro { font-family:Arial, Tahoma, sans-serif; margin-top:10px; margin-left:10px; background:url('../../obrazki/tlo.gif') repeat-x center top; cursor:pointer; border:1px solid #ccc; font-size:100%; 
+   -moz-border-radius:4px; -webkit-border-radius:4px; -khtml-border-radius:4px; border-radius:4px; line-height:1.5;
+}
+span.przyciskNon:hover, .cmxform input.przyciskNon:hover, button.przyciskNon:hover, label.przyciskNon:hover, a.przyciskNon:hover, span.przyciskAllegro:hover { background:url('../../obrazki/tlo_on.gif') repeat-x center bottom; cursor:pointer; border:1px solid #bababa; font-size:100%; color:#000; }
+span.przyciskNon, span.przyciskAllegro { display:inline-block; }
+
+.przyciskNon::-moz-focus-inner, .przyciskBut::-moz-focus-inner, label.przyciskNon::-moz-focus-inner { border:0px; padding:0px; }
+
+span.przyciskAllegro { padding:6px 40px 6px 40px; display:inline-block; }
+
+/* to samo co wyzej ale bez margin */
+.cmxform input.przyciskBut { font-family:Arial, Tahoma, sans-serif; margin-left:10px; background:url('../../obrazki/tlo.gif') repeat-x center top; cursor:pointer; border:1px solid #ccc; font-size:100%; line-height:1.5; }
+.cmxform input.przyciskBut:hover { background:url('../../obrazki/tlo_on.gif') repeat-x center bottom; cursor:pointer; border:1px solid #bababa; font-size:100%; color:#000; }
+
+.poleForm { padding:2px; border:1px solid #c1c1c1; -moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px; -khtml-border-radius:4px; }
+.poleForm .naglowek { font-family:Inder, Arial; font-size:120%; padding:8px; text-shadow:#fff 1px 1px 1px; background:url('../../obrazki/tlo.png') repeat-x left bottom; color:#2b595b; }
+.pozycja_edytowana { padding:8px; padding-bottom:5px; }
+
+.cmxform label { font-size:100%; font-weight:normal; color:#3f5d6b; display:inline-block; vertical-align:middle; cursor:pointer; padding:4px 10px 4px 15px; }
+@media only screen and (max-width:1023px) {
+  .cmxform label { width:135px; }
+}
+@media only screen and (min-width:1024px) {
+  .cmxform label { width:155px; }
+}
+
+/* label dla checkbox oraz radio */
+/*
+.OpisFor { color:#323232 !important; width:auto !important; padding:0px !important; margin:0px !important; display:inline !important; line-height:normal !important; }
+*/
+.cmxform label.error, label.error { font-size:100%; color:red; font-weight:normal; background:transparent url(../../obrazki/blad.png) no-repeat left center; padding-left:20px; display:block; }
+@media only screen and (max-width:1023px) {
+  .cmxform label.error, label.error { margin-left:163px; width:300px; }
+}
+@media only screen and (min-width:1024px) {
+  .cmxform label.error, label.error { margin-left:185px; width:400px; }
+}
+
+@media only screen and (max-width:1023px) {
+  .info_tab_content label { width:135px; padding:4px 10px 4px 0px; }
+  .info_tab_content label.error { display:block; margin-left:150px; }
+  .info_tab_content .odlegloscRwd, .odlegloscRwdTab { margin-left:175px; }
+  .odlegloscRwdDiv { margin-left:172px; }
+  .odlegloscRwdEdytor { margin:0px 10px 15px 158px; }
+}
+@media only screen and (min-width:1024px) {
+  .info_tab_content label { width:155px; padding:4px 10px 4px 0px; }
+  .info_tab_content label.error { display:block; margin-left:170px; }
+  .info_tab_content .odlegloscRwd, .odlegloscRwdTab { margin-left:195px; }
+  .odlegloscRwdDiv { margin-left:192px; }
+  .odlegloscRwdEdytor { margin:0px 10px 15px 178px; }
+}
+
+@media only screen and (max-width:1023px) {
+  .info_content label { width:131px; padding:4px 10px 4px 0px; }
+  .info_content label.error { display:block; margin-left:145px; }
+  .info_content .odlegloscRwd { margin-left:145px; }
+  
+}
+@media only screen and (min-width:1024px) {
+  .info_content label { width:151px; padding:4px 10px 4px 0px; }
+  .info_content label.error { display:block; margin-left:165px; }
+  .info_content .odlegloscRwd { margin-left:165px; }
+}
+
+@media only screen and (max-width:1279px) {
+  .errorRwd .error { margin-left:0px !important; }
+}
+
+table.WyborCheckbox { margin:10px 0px 10px 13px; line-height:1.5; }
+
+.cmxform p { list-style:none; margin:0; padding:3px 10px 4px; }
+div.error { display:none; }
+.cmxform input.submit { margin-left:200px; }
+
+.cmxform input { border:1px solid #ccc; font-size:100%; font-family:Arial, Tahoma, sans-serif; padding:8px 5px 8px 5px; -moz-box-shadow:0 0 10px #eee inset; -webkit-box-shadow:0 0 10px #eee inset; box-shadow:0 0 10px #eee inset; -moz-border-radius:4px; -webkit-border-radius:4px; -khtml-border-radius:4px; border-radius:4px; }
+
+.cmxform textarea { border:1px solid #ccc; font-size:100%; font-family:Arial, Tahoma, sans-serif; padding:8px 5px 8px 5px; -moz-box-shadow:0 0 10px #eee inset; -webkit-box-shadow:0 0 10px #eee inset; box-shadow:0 0 10px #eee inset; -moz-border-radius:4px; -webkit-border-radius:4px; -khtml-border-radius:4px; border-radius:4px; }
+
+/* wylaczenie dla ckeditora */
+.cmxform .cke_source { padding:0px; }
+
+
+.cmxform select { background:#fff; border:1px solid #ccc; font-size:100%; font-family:Arial, Tahoma, sans-serif; padding:8px 5px 8px 5px; -moz-box-shadow:0 0 10px #eee inset; -webkit-box-shadow:0 0 10px #eee inset; box-shadow:0 0 10px #eee inset; -moz-border-radius:4px; -webkit-border-radius:4px; -khtml-border-radius:4px; border-radius:4px; }
+
+
+@media only screen and (max-width:1023px) {
+  .cmxform input, .cmxform textarea, .cmxform textarea, .cmxform select { max-width:280px; }
+}
+
+.cmxform date { border:1px solid #ccc; font-size:100%; font-family:Arial, Tahoma, sans-serif; padding:8px 5px 8px 5px; -moz-box-shadow:0 0 10px #eee inset; -webkit-box-shadow:0 0 10px #eee inset; box-shadow:0 0 10px #eee inset; -moz-border-radius:4px; -webkit-border-radius:4px; -khtml-border-radius:4px; border-radius:4px; }
+
+.cmxform input.przyciskForm { border:0px; padding:0px; cursor:pointer; }
+.cmxform input.przyciskForm:focus { border:0px; padding:0px; cursor:pointer; }
+
+/*
+.cmxform input:focus { border:1px solid #b9b9b9; color:#000; background:#f6f7f3; }
+.cmxform select:focus { border:1px solid #b9b9b9; color:#000; background:#f6f7f3; }
+.cmxform textarea:focus { border:1px solid #b9b9b9; color:#000; background:#f6f7f3; }
+*/
+
+.cmxform input.error { border:1px solid #fb4a4a; }
+.cmxform .gray * { color:gray; }
+
+.cmxform label.required { font-size:100%; font-weight:normal; display:inline-block; line-height:1.5; vertical-align:middle; cursor:pointer; color:#3f5d6b; background:transparent url(../../obrazki/gwiazdka.png) no-repeat scroll center right; }
+
+/* wyswietlenie tekstu na czerwono */
+.cmxform SPAN.red { color:red; }
+
+/*\*//*/ .cmxform legend { display:inline-block; } /* IE Mac legend fix */
+
+/* wskaznik sily hasla */
+.cmxform #haselko {list-style:none; margin:0; padding:3px 10px 4px;}
+/*.cmxform #haselko label.error { display:none !important; }*/
+
+.cmxform div.WierszPola { list-style:none; margin:0; padding:3px 10px 4px; }
+.cmxform div.OpisPola { font-size:100%; font-weight:normal; color:#3f5d6b; display:inline-block; vertical-align:top; width:165px; padding-left:15px; padding-top:4px; padding-bottom:4px; float:left; }
+.cmxform div.InfoPola { font-size:100%; font-weight:bold; color:#3f5d6b; display:inline-block; vertical-align:top; padding-left:10px; padding-top:2px; padding-bottom:2px; }
+.cmxform div.InfoPolaBezBold {	font-size:100%; font-weight:normal; color:#3f5d6b; display:inline-block; vertical-align:top; padding-left:10px; padding-top:2px; padding-bottom:2px; }
+
+ .cmxform input.readonly, textarea.readonly { border:1px solid #ccc; font-size:100%; font-family:Arial, Tahoma, sans-serif; padding:8px 5px 8px 5px; color:#757575; -moz-box-shadow:0 0 10px #d2d2d2 inset; -webkit-box-shadow:0 0 10px #d2d2d2 inset; box-shadow:0 0 10px #d2d2d2 inset; -moz-border-radius:4px; -webkit-border-radius:4px; -khtml-border-radius:4px; border-radius:4px; }
+
+.cmxform input.readonly:focus, textarea.readonly:focus { border:1px solid #ccc; color:#000; background:#fff; }
+.cmxform legend { color:#3f5d6b; font-weight:bold; padding-left:5px;padding-right:5px; }
+.cmxform fieldset { border:1px solid #dcdcdc; padding:0px;}
+.cmxform input.klient, textarea.klient { border:1px solid #ccc; font-size:100%; font-family:Arial, Tahoma, sans-serif; padding:8px 5px 8px 5px; color:#ff0000; -moz-box-shadow:0 0 10px #d2d2d2 inset; -webkit-box-shadow:0 0 10px #d2d2d2 inset; -moz-border-radius:4px; -webkit-border-radius:4px; -khtml-border-radius:4px;  border-radius:4px; }
+

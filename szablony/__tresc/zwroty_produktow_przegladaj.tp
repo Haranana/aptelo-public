@@ -1,0 +1,78 @@
+<!-- wyglad naglowka strony -->
+
+<h1 class="StrNaglowek">
+    <span>{__TLUMACZ:NAGLOWEK_PRZEGLADANIE_ZWROTOW}</span>
+</h1>
+
+<!-- tresc strony -->
+
+<section class="StrTresc">
+
+    <!-- tablica zwrotow - sprawdzi czy sa jakies zwroty klienta -->
+
+    <?php
+    $TablicaZwrotow = $__pA;
+
+    if ( count($TablicaZwrotow) > 0 ) {
+
+        foreach ( $TablicaZwrotow as $Zwrot ) { ?>
+
+            <div class="PozycjaReklamacjaLista LiniaPoziom" style="margin-bottom:10px">
+            
+                <div class="Tytul">{__TLUMACZ:NUMER_ZWROTU}: <?php echo $Zwrot['numer_zgloszenia']; ?></div>
+                
+                <div class="SzczegolyData">
+                    
+                    <em class="DataZlozenia"><b><?php echo $Zwrot['data_zgloszenia']; ?></b></em> <br /> 
+                    <em class="StatusZamowienia">{__TLUMACZ:STATUS_ZWROTU}: <b><?php echo $Zwrot['status_zgloszenia']; ?></b></em>
+                    
+                </div>
+                
+                <div class="cl"></div>
+
+                <div class="SzczegolySzerokie" style="padding:0px">
+                
+                    <strong>{__TLUMACZ:NAGLOWEK_SZCZEGOLY_ZWROTU}</strong>
+                    
+                    <ul>
+                        <li>{__TLUMACZ:NUMER_ZAMOWIENIA_ZWROTU}: <b><?php echo $Zwrot['numer_zamowienia']; ?></b></li>
+                        <li>{__TLUMACZ:ILOSC_PRODUKTOW_DO_ZWROTU}: <b><?php echo $Zwrot['ilosc_produktow_do_zwrotu']; ?></b></li>
+                        <li>{__TLUMACZ:DATA_MODYFIKACJI}: <b><?php echo $Zwrot['data_modyfikacji']; ?></b></li>
+                    </ul>
+                    
+                </div>
+                
+                <a href="{__SSL:zwroty-produktow-szczegoly-zp-<?php echo $Zwrot['numer_zgloszenia']; ?>.html}" class="przycisk PrawyBezMargin">{__TLUMACZ:PRZYCISK_SZCZEGOLY}</a>
+                
+                <div class="cl"></div>
+                
+            </div>
+
+        <?php
+        }
+        unset($Zwrot);
+
+    } else { ?>
+    
+        <!-- jezeli nie ma zwrotu wyswietli komunikat -->
+    
+        <p class="Informacja">
+            {__TLUMACZ:BRAK_DANYCH_DO_WYSWIETLENIA}
+        </p>
+        
+    <?php }
+    
+    unset($TablicaZwrotow);
+    ?>
+        
+    <div class="cl"></div>
+    
+    <!-- przycisk powrotu do panelu klienta -->
+
+    <a href="{__SSL:panel-klienta.html}" class="przycisk Lewy">{__TLUMACZ:PRZYCISK_PANEL_KLIENTA}</a>   
+    
+    <div class="cl"></div>
+
+</section>
+
+

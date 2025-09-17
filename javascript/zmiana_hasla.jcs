@@ -1,0 +1,58 @@
+$(document).ready(function() {
+  
+    $("#Zmienhaslo").on("keyup keypress", function(e) {
+      var code = e.keyCode || e.which; 
+      if (code === 13) {               
+          e.preventDefault();
+          return false;
+      }
+    });  
+  
+    $("#Zmienhaslo").validate({
+      rules: {
+        haslo_stare: { required: true,
+                       remote: {
+                           url: "{__SSL:inne/zmiana_hasla.php?spr}&tok={__TOKEN_ZMIANA_HASLA}",
+                           type: 'POST',
+                           data: {
+                               id: function() { return $("#id").val(); },
+                               haslo: function() { return $("#haslo_stare").val(); }      
+                          }              
+                      }
+        },
+        nowe_haslo: { required: true, },
+        haslo_powtorz: { equalTo: "#nowe_haslo" }
+      },
+      messages: {
+         haslo_stare: { required: '{__TLUMACZ:BLAD_WYMAGANE_POLE}', remote: '{__TLUMACZ:BLAD_HASLO_NIEPOPRAWNE}' },
+         nowe_haslo: { required: '{__TLUMACZ:BLAD_WYMAGANE_POLE}' },
+         haslo_powtorz: { required: '{__TLUMACZ:BLAD_WYMAGANE_POLE}', equalTo: '{__TLUMACZ:BLAD_HASLA_SA_ROZNE}' },
+      },
+      submitHandler: function() {
+        PreloadWlacz();
+        var sear = $('#Zmienhaslo').serialize(); 
+        $.post("{__SSL:inne/do_zmiana_hasla.php}?tok={__TOKEN_ZMIANA_HASLA_OKNO}", { data: sear }, function(data) { 
+            PreloadWylaczSzybko(); 
+            var myModal = new jBox('Modal',{ 
+                content : '<div class="message">'+data+'</div>',
+                closeButton: false,
+                closeOnEsc: false,
+                closeOnMouseleave: false,
+                closeOnClick: false,
+                onOpen: function () {
+                    const popupElement = this.wrapper;
+                    setTimeout(function () {
+                        initFocusTrap(popupElement);
+                    }, 50);
+                }      
+            });
+            myModal.open();
+
+        });
+      }        
+    });
+
+    //wlacza przycisk submit jesli dziala u klienta javascript
+    $('#submitButton').removeAttr('disabled');
+    $("#submitButton").attr('class', 'przycisk');
+});

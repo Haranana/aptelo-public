@@ -1,0 +1,221 @@
+/* ustawienia globalne dla kontrastu */
+body.Kontrast {
+  --kolor-szablonu:#ffcc00;
+  /* czarny - odwraca na bialy */
+  --filtr-szablonu:invert(0%) sepia(0%) saturate(0%) hue-rotate(357deg) brightness(100%) contrast(101%);
+  --kolor-bialy:#000000;
+  --kolor-tlo-modul:#000000;
+  --kolor-czarny:#ffffff;
+  --filtr-bialy:invert(0%) sepia(6%) saturate(23%) hue-rotate(236deg) brightness(108%) contrast(105%);
+  --gwiazdka-tlo:#ffcc00;
+  /* kolory kontrast */
+  --kolor-glowny-kontrast:#ffcc00;
+  --kolor-czarny-kontrast:#000000;
+  --kolor-bialy-kontrast:#ffffff;
+  --kolor-tla-konkrast-1:#333333;
+  --kolor-tla-konkrast-2:#222222;
+  --kolor-nawigacja-slick-kontrast:#adadad;
+  --filtr-kontrast:invert(1) hue-rotate(180deg);
+  --magazyn-kolor:#333333;
+}
+
+/* ustawienia globalne dla kontrastu */
+body.Kontrast {
+  background-color:var(--kolor-czarny-kontrast) !important;
+  color:var(--kolor-bialy-kontrast) !important;
+}
+
+/* ustawienia globalne dla kontrastu */
+body.Kontrast *, body.Kontrast .Wybor li label::before {
+  background-color:var(--kolor-czarny-kontrast) !important;
+  color:var(--kolor-bialy-kontrast) !important;
+  border-color:var(--kolor-bialy-kontrast) !important;
+}
+
+/* linki podkreslone oprocz przyciskow */
+body.Kontrast a:not(.przycisk):hover, body.Kontrast a.PozycjaRozwijanaMenu b:hover { text-decoration:underline !important; text-decoration-skip-ink:auto !important; }
+
+/* w module kreatora tlo czarne */
+body.Kontrast .ModulCssDodatkowy { background:var(--kolor-czarny-kontrast) !important; }
+
+/* wylaczenia dla ikonek */
+body.Kontrast .Ikonki b, body.Kontrast .Ikonki b *, 
+body.Kontrast .IkonkiProduktu b, body.Kontrast .IkonkiProduktu b *, 
+body.Kontrast .Odliczanie em, body.Kontrast .Odliczanie em *, 
+body.Kontrast .ProduktDniaOszczedzasz, body.Kontrast .ProduktDniaOszczedzasz * { background:var(--kolor-tla-konkrast-1) !important; }
+
+body.Kontrast .IkonkiProduktu, body.Kontrast .IkonkiProduktu span, body.Kontrast .jBox-container .IkonkiProduktu { background-color:transparent !important; margin-bottom:5px; }
+body.Kontrast .IkonkiProduktu b, body.Kontrast .Ikonki b { position:relative; }
+body.Kontrast .IkonkiProduktu b::before, body.Kontrast .Ikonki b::before { content:''; position:absolute; top:-2px; left:-2px; bottom:-2px; right:-2px; border:2px solid var(--kolor-bialy-kontrast); display:block; border-radius:var(--zaokraglenie-3-px); }
+body.Kontrast .IkonkiProduktu b, body.Kontrast .IkonkiProduktu b *,
+body.Kontrast .Ikonki b, body.Kontrast .Ikonki b * { border:4px solid var(--kolor-czarny-kontrast) !important; }
+body.Kontrast .IkonaPromocja b span { border:0 !important; margin:0 !important; }
+
+/* tlo jboxa */
+body.Kontrast .jBox-container, body.Kontrast .jBox-container * { background:var(--kolor-tla-konkrast-2) !important; }
+ 
+/* kolory przyciskow */
+body.Kontrast .DoKoszyka, body.Kontrast .DoKoszyka *,
+body.Kontrast .DoKoszykaKartaProduktu, body.Kontrast .DoKoszykaKartaProduktu *,
+body.Kontrast .przycisk, body.Kontrast .przycisk *,
+body.Kontrast .przyciskCookie, body.Kontrast .przyciskCookie *,
+body.Kontrast .cmxform .przyciskZamow, body.Kontrast .cmxform .przyciskZamow *, body.Kontrast .cmxform .przyciskZaplac, body.Kontrast .cmxform .przyciskZaplac *, body.Kontrast .przyciskZaplac, body.Kontrast .przyciskZaplac *, body.Kontrast .przyciskWylaczony,
+body.Kontrast .PozycjaIlosc,
+body.Kontrast .Listing .IndexStron a,
+body.Kontrast .Listing .IloscProdStronie span,
+body.Kontrast .aktywna { background-color:var(--kolor-glowny-kontrast) !important; color:var(--kolor-czarny-kontrast) !important; border-color:var(--kolor-glowny-kontrast) !important; }
+
+/* kolory nawigacji slicka */
+body.Kontrast .slick-arrow { background-color:transparent !important; }
+body.Kontrast .slick-prev::before, body.Kontrast #KartaProduktu .slick-prev::before,
+body.Kontrast .slick-next::before, body.Kontrast #KartaProduktu .slick-next::before,
+body.Kontrast .slick-dots li button::before { color:var(--kolor-nawigacja-slick-kontrast) !important; opacity:1 !important; }
+body.Kontrast .slick-dots li.slick-active button::before { color:var(--kolor-glowny-kontrast) !important;  }
+
+/* formularze */
+body.Kontrast .cmxform .error { color:var(--kolor-glowny-kontrast) !important; }
+body.Kontrast .cmxform input.error, body.Kontrast .cmxform select.error, body.Kontrast .cmxform textarea.error { border-color:var(--kolor-glowny-kontrast) !important; }
+
+/* elementy nawigacji listingu */
+body.Kontrast #sposobwyswietlania span { background:var(--kolor-glowny-kontrast) !important; border:1px solid var(--kolor-glowny-kontrast) !important; }
+
+body.Kontrast .MenuNaglowek span.PozycjaIkonka { background:var(--kolor-glowny-kontrast) !important; }
+
+body.Kontrast #ButSzukaj, body.Kontrast .PortaleSpolecznoscioweIkony li a, body.Kontrast .PozycjaDoPorownania span, body.Kontrast .ZawartoscPorownania li span { background-color:transparent !important; } /* filter:var(--filtr-kontrast); */
+body.Kontrast .ZawartoscPorownania li span { filter:var(--filtr-kontrast); }
+  
+/* cechy na karcie produktu */  
+body.Kontrast #CechyProduktu .Radio.PoleWyboruCechy label input:checked ~ span { border-color:var(--kolor-glowny-kontrast) !important; }
+
+/* informacje z ikonkami */
+body.Kontrast .Informacja, body.Kontrast .InformacjaOk, body.Kontrast #HistoriaCenProduktu span { padding:7px 5px 7px 0; background:transparent; } 
+
+/* slupki recenzji i ankiet */
+body.Kontrast .PasekRecenzja > div:nth-child(2), body.Kontrast .StrTresc .Slupek::before { background:var(--kolor-tla-konkrast-1) !important; }
+body.Kontrast .PasekRecenzja > div:nth-child(2) span, body.Kontrast .StrTresc .Slupek div { background:var(--kolor-glowny-kontrast) !important; }
+
+/* naglowki tabel */
+body.Kontrast .Naglowek th { background:var(--kolor-tla-konkrast-2) !important; }
+
+/* wykrywanie SVG jako tla i invert */
+body.Kontrast *:not(img):not(svg)[style*=".svg"],
+body.Kontrast *[style*=".svg"] {
+  filter:var(--filtr-kontrast) !important;
+}
+
+body.Kontrast .OdwroconyInvert *, body.Kontrast .OdwroconyInvert, body.Kontrast:not(.CiemneTlo) .OdswiezGrafike { background-color:var(--kolor-bialy-kontrast) !important; color:var(--kolor-czarny-kontrast) !important; border-color:var(--kolor-czarny-kontrast) !important; }
+body.Kontrast .OdwroconyFiltr, body.Kontrast:not(.CiemneTlo) .OdswiezGrafike {
+  filter:var(--filtr-kontrast) !important; 
+}
+
+/* wylaczenie animacji dla linkow */
+body.Kontrast .OdwroconyInvert, body.Kontrast .OdwroconyInvert a { transition:none !important; }
+
+/* elementy nawigacji listingu i koszyka */
+body.Kontrast .ListingNawigacja, body.Kontrast #Porownywanie, body.Kontrast .WyszukajFraze, body.Kontrast #FormSzybkiZakup, body.Kontrast #FormPowiadomienieDostepnosc { padding:15px 0 15px 0 !important; border:0 !important; }
+body.Kontrast .Koszyk .Przelicz .przycisk { background-color:transparent !important; }
+body.Kontrast:not(.CiemneTlo) .Koszyk .Przelicz .przycisk { filter:var(--filtr-kontrast) !important; }
+body.Kontrast .TloZwinieciaMenu, body.Kontrast .TloZwinieciaFiltry { background:var(--kolor-tla-konkrast-1) !important; }
+
+/* captcha */
+body.Kontrast #weryfikacjaImg { filter:var(--filtr-kontrast); }
+
+/* ciemne tlo dla ikony preloadera */
+body.Kontrast:not(.CiemneTlo) #IkonaLoader { filter:var(--filtr-kontrast); }
+
+/* wylaczenie filtrów dla gornego menu */
+body.Kontrast:not(.CiemneTlo) .GorneMenuTlo a.OdwroconyInvert::before { filter:var(--filtr-kontrast); }
+
+/* ramka dla elementow */
+body.Kontrast .FiltryMobile, body.Kontrast .PodkategorieMobile, body.Kontrast .ZegarCzasWysylkiKartaProduktu { border:1px solid var(--kolor-bialy-kontrast); }
+
+/* ramka zakladek na karcie produktu */
+body.Kontrast #TresciZakladek { border:1px solid var(--kolor-bialy-kontrast) !important; padding:15px; }
+
+/* naroznik w oknie kuponu na karcie produktu */
+body.Kontrast #InfoKupon::before, body.Kontrast #InfoKupon::after { display:none !important; }
+
+/* zakladki na karcie produktu */
+body.Kontrast #ZakladkiProduktu #Zakladki { border:0; }
+body.Kontrast #ZakladkiProduktu #Zakladki li { background:transparent !important; color:var(--kolor-bialy-kontrast) !important; border-radius:var(--zaokraglenie-5-px); border:1px solid var(--kolor-bialy-kontrast) !important; padding:10px; margin:5px; }  
+body.Kontrast #ZakladkiProduktu #Zakladki li:hover, body.Kontrast #ZakladkiProduktu #Zakladki li.aktywna { background:var(--kolor-glowny-kontrast) !important; border:1px solid var(--kolor-glowny-kontrast) !important; color:var(--kolor-czarny-kontrast) !important; }
+body.Kontrast #ZakladkiProduktu #Zakladki li::before, body.Kontrast #ZakladkiProduktu #Zakladki li::after { display:none !important; }
+
+/* suwak darmowej wysylki w koszyku */
+body.Kontrast .WysylkaSuwakTlo { background:var(--kolor-tla-konkrast-1) !important; }
+body.Kontrast .WysylkaSuwakWartosc { background:var(--kolor-glowny-kontrast) !important; }
+
+/* brak tla przy ilosci na karcie produktu i w koszyku */
+body.Kontrast #PrzyciskKupowania .minus, body.Kontrast #PrzyciskKupowania .plus, .Koszyk .PoleIlosc .minus, .Koszyk .PoleIlosc .plus { background-color:transparent !important; }
+
+/* indywidualne szablony */
+body.Kontrast .MenuSticky .GorneMenuTlo { border-bottom:1px solid var(--kolor-bialy-kontrast); } 
+
+/* porownanie ikona po lewej stronie */
+body.Kontrast #PorownanieNaglowek .PorownanieNaglowek::before { filter:var(--filtr-bialy); }
+body.Kontrast #PorownanieNaglowek .PorownanieNaglowek .PozycjaIlosc { background:var(--kolor-czarny-kontrast) !important; color:var(--kolor-bialy-kontrast) !important; }
+body.Kontrast .PorownywanieRozwijane, body.Kontrast .BoxRozwinZwin, body.Kontrast .PorownajSchowek { background-color:transparent !important; }
+
+body.Kontrast .OpisNaglowek, body.Kontrast .OpisNaglowek *:not(label) { background:var(--kolor-tla-konkrast-1) !important; }
+
+/* dodatkowy css dla focusa */
+body.Kontrast:not(.CiemneTlo) .UsunKoszyk:focus, body.Kontrast:not(.CiemneTlo) .minus:focus, body.Kontrast:not(.CiemneTlo) .plus:focus, 
+body.Kontrast:not(.CiemneTlo) #PrzyciskSchowek span:focus, body.Kontrast:not(.CiemneTlo) .Porownaj:focus, body.Kontrast:not(.CiemneTlo) .PorownajWlaczone:focus, 
+body.Kontrast:not(.CiemneTlo) #ZnizkiOdIlosci span:focus, body.Kontrast:not(.CiemneTlo) .PorownanieNaglowek:focus, body.Kontrast:not(.CiemneTlo) .IkonaMenuGlownego label:focus, body.Kontrast:not(.CiemneTlo) .IkonaWyszukiwania label:focus {
+  background-color:transparent !important;
+  filter:var(--filtr-kontrast) !important;
+}
+
+/* usuniecie w porownaniu pozycji w ramce */
+body.Kontrast:not(.CiemneTlo) #ListaProduktowPorownanie span:not(.OdwroconyInvert) { filter:var(--filtr-kontrast) !important; }
+
+/* usuniecie tla dla produktow w produktach popup */
+body.Kontrast:not(.CiemneTlo) .ProduktyPopUp .ProduktPopUp .ProduktPopUpRamka::before, body.Kontrast:not(.CiemneTlo) .ProduktyPopUp .ProduktPopUp .ProduktPopUpRamka *:not(.DoKoszyka,.przycisk) { background-color:transparent !important; }
+
+/* podsumowanie koszyka i schowka rozwijanego */
+body.Kontrast:not(.CiemneTlo) .ZawartoscKoszykaSchowkaSumaFixed, body.Kontrast:not(.CiemneTlo) .ZawartoscKoszykaSchowkaSumaFixed *:not(.przycisk) { background:var(--kolor-tla-konkrast-1) !important; }
+
+/* wykluczenie klasy energetycznej */
+body.Kontrast:not(.CiemneTlo) #KlasaEnergetyczna::before { filter:var(--filtr-kontrast) !important; }
+
+/* ikonki menu */
+body.Kontrast:not(.CiemneTlo) .IkonkaMenu img { filter:var(--filtr-kontrast) !important; background-color:transparent !important; }
+
+/* newsletter popup */
+body.Kontrast #InfoNewsletterOkno, body.Kontrast #InfoNewsletterOkno *:not(.przycisk):not(#NewsletterZamknij *) { background:var(--kolor-tla-konkrast-1) !important; }
+body.Kontrast #BladDanych * { filter:none !important; background:transparent !important; padding:5px !important; }
+body.Kontrast #ZakladkaNewsletterOkno { position:fixed; left:3px; bottom:50%; cursor:pointer; z-index:105; width:unset !important; height:unset !important; transform-origin:top left !important; transform:rotate(90deg) translate(0,-100%) !important; white-space:nowrap !important; }
+body.Kontrast #ZakladkaNewsletterOkno::after { display:none; }
+body.Kontrast #ZakladkaNewsletterOkno::before { content:"NEWSLETTER"; position:relative; display:inline-block; padding:10px; filter:none !important; width:unset !important; height:unset !important; background:var(--kolor-glowny-kontrast); color:var(--kolor-czarny-kontrast); border-radius:var(--zaokraglenie-4-px); font-size:110%; font-weight:bold; transition:all 0.30s ease-in-out; }
+body.Kontrast #NewsletterZamknij span { filter:var(--filtr-kontrast) !important; background-color:transparent !important; }
+
+/* 18plus */
+body.Kontrast #BlokadaOkno, body.Kontrast #BlokadaOkno *:not(.BlokadaPrzyciski *):not(.OdwroconyInvert) { background-color:var(--kolor-tla-konkrast-1) !important; }
+body.Kontrast #BlokadaOkno .BlokadaPrzyciski span { border:1px solid var(--kolor-bialy-kontrast) !important; }
+body.Kontrast #BlokadaOkno .OdwroconyInvert { background-color:transparent !important; }
+
+/* telefon */
+body.Kontrast #TelefonIkona { background-color:transparent !important; }
+
+/* exit popup */
+body.Kontrast #TloExitPopUp .ExitPopUpOkno, body.Kontrast #TloExitPopUp .ExitPopUpOkno *:not(#ExitPopUpZamknij *) { background-color:var(--kolor-tla-konkrast-1) !important; }
+body.Kontrast #ExitPopUpZamknij span { filter:var(--filtr-kontrast) !important; background-color:transparent !important; }
+
+/* cookie zgody */
+body.Kontrast #InfoCookieIntegracje, body.Kontrast #InfoCookieIntegracje *:not(.przyciskCookie) { background-color:var(--kolor-tla-konkrast-1) !important; }
+body.Kontrast #CookieOknoUstawien .CookieOkno, body.Kontrast #CookieOknoUstawien .CookieOkno *:not(.przycisk):not(#CookieOknoZamknij *) { background-color:var(--kolor-tla-konkrast-1) !important; }
+body.Kontrast #CookieOknoZamknij span { filter:var(--filtr-kontrast) !important; background-color:transparent !important; }
+body.Kontrast .CookiePrzyciskUstawien span { border:2px solid var(--kolor-bialy-kontrast) !important; }
+body.Kontrast #InfoAkceptIntegracje { border:2px solid var(--kolor-glowny-kontrast) !important; }
+
+/* cookie zgody proste */
+body.Kontrast #InfoCookieProste, body.Kontrast #InfoCookieProste *:not(#InfoAkcept) { background-color:var(--kolor-tla-konkrast-1) !important; }
+
+/* polaczenie tel */
+body.Kontrast #TloKontaktSluchawka .KontaktSluchawkaOkno, body.Kontrast #TloKontaktSluchawka .KontaktSluchawkaOkno *:not(#KontaktSluchawkaZamknij *):not(.przycisk) { background-color:var(--kolor-tla-konkrast-1) !important; }
+body.Kontrast #BladDanychSluchawka * { filter:none !important; background:transparent !important; padding:5px !important; }
+body.Kontrast #KontaktSluchawkaZamknij span { filter:var(--filtr-kontrast) !important; background-color:transparent !important; }
+
+/* zakladka opinie o sklepie */
+body.Kontrast #opinieIkona { background-color:transparent !important; }
+body.Kontrast #opinieIkona span { background:var(--kolor-tla-konkrast-1) !important; }

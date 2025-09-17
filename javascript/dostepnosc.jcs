@@ -1,0 +1,695 @@
+// aktualizacja elementow slicka
+
+$(function () {
+
+  function aktualizujTabindexSlick() {
+    
+      $(".slick-slide").each(function () {
+        
+          const $slide = $(this);
+          const isVisible = $slide.attr("aria-hidden") === "false";
+
+          $slide.removeAttr("tabindex");
+          $slide.removeAttr("role");
+
+          $slide.find("a, button, input, select, textarea, [tabindex]").each(function () {
+            $(this).attr("tabindex", isVisible ? "0" : "-1");
+          });
+          
+      });
+    
+  }
+
+  $(document).on('init afterChange', '.slick-slider', function () {
+    
+      $('.slick-dots button').attr('tabindex', '-1');
+      aktualizujTabindexSlick();
+    
+  });
+
+  setTimeout(() => {
+    $('.slick-dots button').attr('tabindex', '-1');
+    aktualizujTabindexSlick();
+  }, 500);
+
+});
+
+// obsluga zmian tab/spacja/enter
+
+$(document).ready(function () {
+
+    const selektoryDostepnosci = [
+
+      // inne przyciski (span)
+      '.PorownajWlaczone, span.Schowek, .Porownaj, #PrzyciskSchowek span, .StronaInfoWiecej span, #oknoPorownywarki, #ZnizkiOdIlosci span, .OdswiezGrafike',
+
+      // filtry i nawigacja
+      '.ZastosujUsunFiltry input, .Multi span, .SposobWyswietlania span, .IloscProdStronie span, #IkonaZwinieciaMenu, #IkonaZwinieciaFiltry',
+
+      // koszyk
+      '.UsunKoszyk, .PrzyciskiKoszyka > span, .PoleIlosc > .minus, .PoleIlosc > .plus, .WyborPunktuKoszyk .przycisk',
+
+      // opis w oknie popup dla cech i pol tekstowych
+      '.PoleTekstowe .TxtOpis, .CechaOpis',
+
+      // przyciski w boxach i modulach dla starych szablonow
+      '.BoxPrzyciski b, .ModulPrzyciski b, .ModulPrzyciskiSrodek b, #BanneryAnimacjaPrzenikaniePrzyciski span, #BanneryAnimacjaMieszanaPrzyciski span, #BanneryAnimacjaPrzewijanaPrzyciski span, #ProducenciAnimacjaStrzalkaPrawa, #ProducenciAnimacjaStrzalkaLewa, .AnimModul .LewaStrzalka, .AnimModul .PrawaStrzalka'
+      
+    ];
+
+    // ustawianie tabindex i role="button"
+    selektoryDostepnosci.forEach(selektor => {
+      $(selektor).attr({
+        tabindex: '0', role: 'button'
+      });
+    });
+
+    // dla starych szablonow
+    $(window).on("load resize", function() {
+      
+        if ($(window).width() < 1023) {
+            $('.KolumnaStopki > strong').attr('tabindex', '0').attr('role', 'button');
+            //
+            $('.KolumnaStopki > strong').each(function() {
+                $(this).removeAttr('aria-label'); 
+                $(this).attr('aria-label', '{__TLUMACZ:ROZWIN_ZWIN}: ' + $(this).text().trim());
+            });
+            //            
+        } else {
+            $('.KolumnaStopki > strong').removeAttr('tabindex role aria-label');  
+        }
+        
+    });
+
+    // stopka dla v2
+    $(window).on("load resize", function() {
+      
+        if ($(window).width() < 1023) {
+            $('.KolumnaStopki > label').attr('tabindex', '0');
+            //
+            $('.KolumnaStopki > label').each(function() {
+                $(this).removeAttr('aria-label'); 
+                $(this).attr('aria-label', '{__TLUMACZ:ROZWIN_ZWIN}: ' + $(this).text().trim());
+            });
+            //             
+        } else {
+            $('.KolumnaStopki > label').removeAttr('tabindex role aria-label');  
+        }
+        
+    });
+    
+    // stopka boxow
+    $(window).on("load resize", function() {
+      
+        if ($(window).width() < 1023) {
+            $('.BoxNaglowekKategorie, .BoxNaglowek').attr('tabindex', '0').attr('role', 'button');
+            //
+            $('.BoxNaglowekKategorie, .BoxNaglowek').each(function() {
+                $(this).removeAttr('aria-label'); 
+                $(this).attr('aria-label', '{__TLUMACZ:ROZWIN_ZWIN}: ' + $(this).text().trim());
+            });
+            //
+        } else {
+            $('.BoxNaglowekKategorie, .BoxNaglowek').removeAttr('tabindex role aria-label'); 
+        }
+        
+    });    
+    
+    // elementy gornego menu
+    $(document).on("keydown", ".GlowneGorneMenu > li", function (event) {
+      
+        const $this = $(this);
+        const key = event.key;
+
+        const checkbox = $this.find("input[type='checkbox']");
+        const link = $this.find("a").first();
+        const span = $this.find("span.MenuPozycjaDowolnaTresc").first();
+        const submenu = $this.find(".MenuRozwijaneKolumny");
+
+        const isLinkTarget = link.length && $(event.target).closest(link).length > 0;
+        const isSpanTarget = span.length && $(event.target).closest(span).length > 0;
+        const isInteractive = isLinkTarget || isSpanTarget;
+
+        // spacja na mobile – zablokuj scroll
+        if (window.innerWidth <= 1023 && key === " " && isInteractive) {
+            event.preventDefault();
+            return;
+        }
+
+        // enter = kliknij w link lub span
+        if (key === "Enter" && isInteractive) {
+            (isLinkTarget ? link[0] : span[0]).click();
+            return;
+        }
+
+        // spacja / enter = toggle menu przez checkbox
+        if ((key === "Enter" || key === " ") && (checkbox.length || submenu.length)) {
+          
+            event.preventDefault();
+            event.stopPropagation();
+
+            if (checkbox.length) {
+                const isChecked = checkbox.prop("checked");
+                checkbox.prop("checked", !isChecked);
+                $this.toggleClass("AktywnaPozycjaMenu", !isChecked);
+                updateMenuAriaExpanded();
+            } else {
+                $(".GlowneGorneMenu > li").removeClass("AktywnaPozycjaMenu");
+                $this.addClass("AktywnaPozycjaMenu");
+                updateMenuAriaExpanded();
+            }
+
+            return;
+            
+        }
+
+        // escape – zamknij
+        if (key === "Escape" && (checkbox.length || submenu.length)) {
+          
+            if (checkbox.length) {
+                checkbox.prop("checked", false);
+            }
+            $this.removeClass("AktywnaPozycjaMenu");
+            updateMenuAriaExpanded();
+            
+        }
+        
+    });
+
+    $(document).on("click", ".GlowneGorneMenu > li", function (event) {
+      
+        const $this = $(this);
+        const checkbox = $this.find("input[type='checkbox']");
+        const link = $this.find("a").first();
+        const span = $this.find("span.MenuPozycjaDowolnaTresc").first();
+        const toggle = $this.find(".IkonaSubMenu").first();
+
+        const isInteractive =
+            $(event.target).closest(link).length > 0 ||
+            $(event.target).closest(span).length > 0;
+
+        // klik w link/span/ikone = nic nie rob
+        if (isInteractive) return;
+
+        // klik w tło <li> = toggle
+        if (checkbox.length) {
+            const isChecked = checkbox.prop("checked");
+            checkbox.prop("checked", !isChecked);
+            $this.toggleClass("AktywnaPozycjaMenu", !isChecked);
+            updateMenuAriaExpanded();
+        } else {
+            $(".GlowneGorneMenu > li").removeClass("AktywnaPozycjaMenu");
+            $this.addClass("AktywnaPozycjaMenu");
+            updateMenuAriaExpanded();
+        }
+        
+    });
+
+    // zamykanie okna menu po opuszczeniu focusa
+    $(document).on("focusout", ".GlowneGorneMenu > li", function () {
+      
+        const $this = $(this);
+
+        setTimeout(() => {
+            if (!$this.find(':focus').length) {
+                $this.removeClass("AktywnaPozycjaMenu");
+                updateMenuAriaExpanded();
+                $this.find("input[type='checkbox']").prop("checked", false);
+            }
+        }, 0);
+        
+    });
+
+    $(document).on("click", function (e) {
+      
+        if (!$(e.target).closest(".GlowneGorneMenu > li").length) {
+          
+            $(".GlowneGorneMenu > li.AktywnaPozycjaMenu").removeClass("AktywnaPozycjaMenu");
+            $(".GlowneGorneMenu input[type='checkbox']").prop("checked", false);
+            updateMenuAriaExpanded();
+            
+        }
+        
+    });
+    
+    // dodanie atrybutow item do gornego menu - dodajemy role="menuitem" do kazdego li w menu glownym i podmenu
+    $('.GlowneGorneMenu li').attr('role', 'menuitem');
+    $('.GlowneGorneMenu ul ul li').attr('role', 'menuitem');
+
+    // dodajemy aria-haspopup i aria-expanded do li, ktore maja wewnrtrzne ul (podmenu)
+    $('.GlowneGorneMenu li').has('ul').each(function(){
+      
+        $(this).attr('aria-haspopup', 'true').attr('aria-expanded', 'false'); // domyslnie zamkniete
+        $(this).children('ul').attr('role', 'menu'); // submenu
+        
+    });
+    
+    $(document).on("mouseenter", ".GlowneGorneMenu > li[aria-haspopup='true']", function () {
+        $(this).addClass("AktywnaPozycjaMenu");
+        updateMenuAriaExpanded();
+    });
+
+    $(document).on("mouseleave", ".GlowneGorneMenu > li[aria-haspopup='true']", function () {
+        $(this).removeClass("AktywnaPozycjaMenu");
+        updateMenuAriaExpanded();
+    });    
+    
+    function updateMenuAriaExpanded() {
+      
+        $(".GlowneGorneMenu > li[aria-haspopup='true']").each(function() {
+            $(this).attr("aria-expanded", $(this).hasClass("AktywnaPozycjaMenu") ? "true" : "false");
+            
+        });
+    }
+
+    // rozwijanie naglowkow boxow
+    $(document).on("keydown", ".BoxNaglowekKategorie, .BoxNaglowek", function (event) {
+      
+        let typ_szablonu_v2 = '{__TYP_SZABLONU}';
+        
+        if ( typ_szablonu_v2 == 'tak' ) {
+          
+            if (event.key === "Enter" || event.key === " ") {
+              
+                event.preventDefault();
+                event.stopPropagation();
+
+                var link = $(this).find("a").first();
+                var label = $(this).find("label[for]");
+
+                if (link.length) {
+                    link[0].click();
+                    return;
+                }
+
+                if (label.length) {
+                    var checkboxId = label.attr("for");
+                    var checkbox = $("#" + checkboxId);
+
+                    if (checkbox.length && checkbox.attr("type") === "checkbox") {
+                        checkbox.prop("checked", !checkbox.prop("checked")).trigger("change");
+                    }
+                } else {
+                    $(this).trigger("click");
+                }
+                
+            }
+            
+        }
+        
+    });
+
+    // dla elementow z tabindex
+    $(document).on("keydown", "[tabindex]", function (event) {
+      
+        if (event.key === "Enter" || event.key === " ") { 
+        
+            var target = $(event.target);
+
+            if (
+                target.is("a, button, input, textarea, select, label[for]") ||
+                target.closest(".jBox-wrapper").length ||
+                target.closest(".GlowneGorneMenu").length
+            ) {
+                return;
+            }
+            
+            if (target.is("a") && target.attr("role") !== "button") {
+                return; 
+            }
+            
+            event.preventDefault();
+            target.trigger("click");
+            
+        }
+        
+    });
+    
+    // obsluga gwiazdek w recenzjach
+    $(document).on("keydown", "label[for^='ocena_']", function(event) {
+      
+        if (event.key === "Enter" || event.key === " ") {
+          
+            event.preventDefault();
+
+            var input = $("#" + $(this).attr("for"));
+            input.prop("checked", true).trigger("change");
+            
+        }
+        
+    });    
+    
+    // dodanie aria-label dla tych label ktore maja wewnatrz html z title
+    $("label").each(function () {
+          
+        var innerElement = $(this).find("[title]").first();
+        var titleValue = innerElement.attr("title");
+
+        if (titleValue && !$(this).attr("aria-label")) {
+            $(this).attr("aria-label", titleValue);
+        }
+        
+    });
+        
+    // zaznaczanie tab label/checkbox
+    $("label:not(.IkonaSubMenu,.error)").filter(function () {
+      
+        const $label = $(this);
+        const isInBoxRwd = $label.closest(".BoxRwd").length > 0;
+        const isInsideAnkietaBox = $label.closest("#ankietaBox").length > 0;
+
+        return !isInBoxRwd || isInsideAnkietaBox;
+        
+    }).each(function () {
+      
+        var forAttr = $(this).attr("for");
+        var input = $("#" + forAttr);
+
+        if (forAttr && input.length && input.is(":checkbox, :radio")) {
+          
+            $(this).attr("tabindex", "0");
+            input.attr("tabindex", "-1");
+
+            $(this).on("keydown", function (event) {
+              
+                if (event.key === "Enter" || event.key === " ") {
+                    event.preventDefault();
+
+                    if (input.is(":checkbox")) {
+                        input.prop("checked", !input.prop("checked")).trigger("change");
+                    } else if (input.is(":radio")) {
+                        input.prop("checked", true).trigger("change");
+                    }
+
+                    if (typeof input[0].onclick === "function") {
+                        input[0].onclick();
+                    }
+                }
+                
+            });
+
+        }
+        
+    });
+    
+    // przesuniecie aria-label z label do div ikon nawigacji
+
+    // focus na rozwijanym menu mobilnym
+    $("#MenuMobilneCheckbox").on("change", function () {
+      
+        if ($(this).is(":checked")) {
+          
+            setTimeout(() => {
+              $(".GlowneGorneMenu a:visible").first().focus();
+            }, 500);
+          
+        }
+      
+    });
+
+    // esc - zamkniecie menu
+    $(document).on("keydown", function (e) {
+      
+        if (e.key === "Escape" && $("#MenuMobilneCheckbox").is(":checked")) {
+          $("#MenuMobilneCheckbox").prop("checked", false).trigger("change");
+        }
+        if (e.key === "Escape" && $("#JezykWalutaCheckbox").is(":checked")) {
+          $("#JezykWalutaCheckbox").prop("checked", false).trigger("change");
+        }
+        if (e.key === "Escape" && $("#KontaktCheckbox").is(":checked")) {
+          $("#KontaktCheckbox").prop("checked", false).trigger("change");
+        }
+        if (e.key === "Escape" && $("#KontoCheckbox").is(":checked")) {
+          $("#KontoCheckbox").prop("checked", false).trigger("change");
+        }
+        if (e.key === "Escape" && $("#SzukajMenuCheckbox").is(":checked")) {
+          $("#SzukajMenuCheckbox").prop("checked", false).trigger("change");
+        }
+        
+    });
+    
+    // focus na rozwijanym oknie filtrow
+    $("#FiltryMobilneCheckbox").on("change", function () {
+      
+        if ($(this).is(":checked")) {
+          
+            setTimeout(() => {
+              $(".ZakresCen input").first().focus();
+              $(".FormularzFiltry, .TloZwinieciaFiltry").attr("tabindex", "-1").on("focus", function () {
+                  this.blur();
+              });
+            }, 500);
+            
+        }
+      
+    });
+
+    // esc - zamkniecie filtry
+    $(document).on("keydown", function (e) {
+      
+        if (e.key === "Escape" && $("#FiltryMobilneCheckbox").is(":checked")) {
+            $("#FiltryMobilneCheckbox").prop("checked", false).trigger("change");
+        }
+      
+    });
+    
+    // dla <a> w buttonem - wywolanie spacja
+    $(document).on("keydown", "a[role='button']", function (e) {
+      
+        if (e.key === " ") {
+            e.preventDefault();
+            $(this).trigger("click"); 
+        }
+        
+    });    
+    
+    // aktywacja linkow dla a z klasa przycisk
+    $(document).on("keydown", "a.przycisk", function (event) {
+      
+        if (event.key === "Enter") {
+            event.preventDefault();
+            window.location.href = $(this).attr("href");
+        }
+        
+    });    
+    
+    // aktywacja enter dla input submit
+    $("input[type='submit']").on("keydown", function(event) {
+      
+        if (event.key === "Enter") {
+            event.preventDefault();
+            $(this).click();
+        }
+        
+    });
+
+    // dodaje aria-label do a w nawigacji naglowka
+    $(".IkonyNawigacja a, IkonyGlowneSklep a").each(function () {
+      
+        const $a = $(this);
+
+        if ($a.attr("aria-label")) return;
+
+        const $withTitle = $a.find("[title]").first();
+        
+        if ($withTitle.length) {
+          
+            const title = $withTitle.attr("title");
+            if (title && title.trim() !== "") {
+                $a.attr("aria-label", title);
+            }
+            
+        }
+        
+    });
+
+    // obsluga rozwijanego menu dla logowania - np standardowy v2 - esc zamyka okno
+    $(".LogowanieMenuLabel").on("keydown", function (event) {
+      
+        const $label = $(this);
+        const forAttr = $label.attr("for");
+        const $checkbox = $("#" + forAttr);
+
+        if (!$checkbox.length || !$checkbox.is(":checkbox")) return;
+
+        if (event.key === "Escape") {
+          
+            if ($checkbox.prop("checked")) {
+                $checkbox.prop("checked", false).trigger("change");
+
+                if (typeof $checkbox[0].onclick === "function") {
+                    $checkbox[0].onclick();
+                }
+            }
+            
+        }
+        
+    });
+    
+    // klawiatura: spacja/enter rozwija, esc zamyka
+    $(document).on('keydown', '.IkonaKontakt, .IkonaKonto, .IkonaJezyk, .IkonaJezykWaluta, .LogowanieNaglowek, .IkonaJezyk, .RejestracjeLogowanieKontener, .JezykWalutaKontener, .KontaktNaglowekKontener', function (e) {
+      
+        const $this = $(this);
+
+        if (e.key === ' ' || e.key === 'Enter') {
+          e.preventDefault(); // zapobiega przewijaniu
+          $this.toggleClass('OtwartaKlawiatura');
+        }
+
+        if (e.key === 'Escape') {
+          $this.removeClass('OtwartaKlawiatura');
+        }
+        
+    });
+
+    $(document).on('focusout', '.IkonaKontakt, .IkonaKonto, .IkonaJezykWaluta, .LogowanieNaglowek, .IkonaJezyk, .RejestracjeLogowanieKontener, .JezykWalutaKontener, .KontaktNaglowekKontener', function (e) {
+        
+        const $this = $(this);
+
+        setTimeout(() => {
+          if (!$this.find(':focus').length && !$this.is(':focus')) {
+            $this.removeClass('OtwartaKlawiatura');
+          }
+        }, 0);
+        
+    });
+  
+    // dodanie aria-label w wyszukiwaniu
+    const $butSzukaj = $("#ButSzukaj");
+    const $inSzukaj = $("#InSzukaj");
+
+    if ($butSzukaj.length && !$butSzukaj.attr("aria-label")) {
+      const alt = $butSzukaj.attr("alt");
+      if (alt) {
+        $butSzukaj.attr("aria-label", alt);
+      }
+    }
+
+    if ($inSzukaj.length && !$inSzukaj.attr("aria-label")) {
+      const val = $inSzukaj.val();
+      if (val) {
+        $inSzukaj.attr("aria-label", val);
+      }
+    }    
+    
+    // dodanie aria-label do filtrow
+    $('.FiltryMobile').attr('aria-label', $('.FiltryRozwin').text());
+    
+    // dodanie aria-label do zakresu cen
+    $('input[name="ceno"]').attr('aria-label', '{__TLUMACZ:LISTING_ZAKRES_CEN_OD}');
+    $('input[name="cend"]').attr('aria-label', '{__TLUMACZ:LISTING_ZAKRES_CEN_DO}');
+    
+    // dodanie aria-label w listingach - ilosc na stronie
+    $('.IloscProdStronie span[onclick]').each(function() {
+        const tekst = $(this).text().trim();
+        $(this).attr('aria-label', '{__TLUMACZ:LISTING_WYNIKOW_NA_STRONIE} ' + tekst);
+    });
+    
+    $('.SposobWyswietlania span[title]').each(function() {
+        const title = $(this).attr('title');
+        $(this).attr('aria-label', title);
+    });    
+    
+    $('#sortowanie').attr('aria-label', '{__TLUMACZ:LISTING_SORTUJ_WG}');
+    
+    // aria-label dla span ktore maja tabindex
+    $("span[tabindex]").each(function () {
+      
+        var titleValue = $(this).attr("title");
+
+        if (titleValue && !$(this).attr("aria-label")) {
+            $(this).attr("aria-label", titleValue);
+        }
+        
+    });  
+    
+    // dodatkowe aria-label
+    $('#ZnizkiOdIlosci span').attr('aria-label', '{__TLUMACZ:ZNIZKI_OD_ILOSCI_INFO}');
+    $('.minus').attr('aria-label', '{__TLUMACZ:ZMNIEJSZ_ILOSC}');
+    $('.plus').attr('aria-label', '{__TLUMACZ:ZWIEKSZ_ILOSC}');
+    $('input[name="ilosc"]').attr('aria-label', '{__TLUMACZ:ILOSC_PRODUKTOW}');
+    
+    // punkty wyboru punktu dostawy w koszyku
+    $('.WyborPunktuKoszyk .przycisk').removeAttr('aria-label').attr('aria-label', $('.WyborPunktuKoszyk .przycisk').text());
+    
+    // dodawanie inline-block dla a jezeli nie ma block lub inline-block - przy przelaczaniu tab
+    document.addEventListener('keydown', function (e) {
+      
+        if (e.key === 'Tab') {
+          
+            requestAnimationFrame(() => {
+              
+                const el = document.activeElement;
+
+                if (el && el.tagName === 'A') {
+                  const computedStyle = window.getComputedStyle(el);
+                  if (computedStyle.display === 'inline') {
+                    el.style.display = 'inline-block';
+                  }
+                }
+              
+            });
+          
+        }
+      
+    });
+    
+    // dodanie informacji do linkow __blank ze otwierane sa w nowym oknie
+    $("a[target='_blank']").each(function() {
+      
+        var $a = $(this);
+
+        var hasLabel = $a.is('[aria-label]');
+        var hasTitle = $a.is('[title]');
+        var labelText = $a.attr('aria-label') || '';
+        var titleText = $a.attr('title') || '';
+        var suffix = " – otwiera się w nowym oknie";
+
+        if ( (hasLabel && labelText.toLowerCase().includes("nowym oknie")) || (hasTitle && titleText.toLowerCase().includes("nowym oknie")) ) {
+          return;
+        }
+
+        if (!hasLabel) {
+          var linkText = $.trim($a.text());
+          $a.attr('aria-label', linkText + suffix);
+        } else {
+          $a.attr('aria-label', labelText + suffix);
+        }
+        
+    });    
+    
+});
+
+// tworzenie ramki focus
+document.addEventListener('DOMContentLoaded', function () {
+  
+    function handleFirstTab(e) {
+      
+        if (e.key === 'Tab') {
+          document.body.classList.add('user-is-tabbing');
+          window.removeEventListener('keydown', handleFirstTab);
+          window.addEventListener('mousedown', handleMouseDownOnce);
+        }
+      
+    }
+
+    function handleMouseDownOnce() {
+      
+        document.body.classList.remove('user-is-tabbing');
+        window.removeEventListener('mousedown', handleMouseDownOnce);
+        window.addEventListener('keydown', handleFirstTab);
+        
+    }
+
+    window.addEventListener('keydown', handleFirstTab);
+
+    // dodaj styl focus-visible tylko dla klawiatury
+    const style = document.createElement('style');
+    
+    style.textContent = '.user-is-tabbing input:focus, .user-is-tabbing button:focus, .user-is-tabbing select:focus, .user-is-tabbing textarea:focus, .user-is-tabbing a:focus, .user-is-tabbing [tabindex]:focus { transition: none !important; outline: 2px solid #1976d2 !important; outline-offset: 2px !important; }';
+    
+    style.textContent += '#ZdjeciaDuze a:focus, .GrafikaKreator a:focus { transform: scale(0.99); filter: none !important; transition: none !important; outline: 2px solid #1976d2 !important; outline-offset:0px !important; border-radius: 0 !important; }';
+    
+    document.head.appendChild(style);
+    
+});

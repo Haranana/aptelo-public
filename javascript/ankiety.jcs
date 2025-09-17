@@ -1,0 +1,50 @@
+$(document).ready(function() {
+
+    $("#ankietaBox").on("keyup keypress", function(e) {
+      var code = e.keyCode || e.which; 
+      if (code === 13) {               
+          e.preventDefault();
+          return false;
+      }
+    });
+    
+    $('.Pytania input:radio').click(function() {
+        $('#BladAnkiety').hide();
+    });
+
+    $("#ankietaBox").validate({
+      rules: {
+        ankieta: { required: true }                   
+      },   
+      errorPlacement: function() {
+        $('#BladAnkiety').show();
+      },      
+      submitHandler: function() {
+        PreloadWlacz();
+        var sear = $('#ankietaBox').serialize(); 
+        $.post("inne/do_ankiety.php?tok={__TOKEN_ANKIETA}", { data: sear }, function(data) { 
+            PreloadWylaczSzybko(); 
+            var myModal = new jBox('Modal',{ 
+                content : '<div class="message">'+data+'</div>',
+                closeButton: false,
+                closeOnEsc: false,
+                closeOnMouseleave: false,
+                closeOnClick: false,
+                onOpen: function () {
+                    const popupElement = this.wrapper;
+                    setTimeout(function () {
+                        initFocusTrap(popupElement);
+                    }, 50);
+                }      
+            });
+            myModal.open();
+        });
+        return false;
+      }       
+    });
+
+    //wlacza przycisk submit jesli dziala u klienta javascript
+    $('#submitAnkieta').removeAttr('disabled');
+    $("#submitAnkieta").attr('class', 'przycisk'); 
+
+});

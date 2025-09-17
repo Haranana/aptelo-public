@@ -1,0 +1,551 @@
+<!-- wyglad naglowka strony -->
+
+<h1 class="StrNaglowek">
+    <span>{__TLUMACZ:NAGLOWEK_ZAMOWIENIE_LOGOWANIE}</span>
+</h1>
+
+<!-- tresc strony -->
+
+<section id="SzczegolyKoszyka">
+
+    <!--poszczegolne kroki zamowienia - tylko jezeli cos jest w koszyku -->
+
+    <div id="KrokiZamowienia">
+    
+        <div class="KoszykKrok">
+            <strong>{__TLUMACZ:KROK_1}</strong>
+            <p>
+                <a href="koszyk.html">{__TLUMACZ:KROK_1_OPIS}</a>
+            </p>
+        </div>
+        
+        <div class="KoszykKrok aktywny">
+            <strong>{__TLUMACZ:KROK_2}</strong>
+            <h2>{__TLUMACZ:KROK_2_OPIS}</h2>
+        </div>
+        
+        <div class="KoszykKrok">
+            <strong>{__TLUMACZ:KROK_3}</strong>
+            <p>{__TLUMACZ:KROK_3_OPIS}</p>
+        </div>
+        
+        <div class="KoszykKrok">
+            <strong>{__TLUMACZ:KROK_4}</strong>
+            <p>{__TLUMACZ:KROK_4_OPIS}</p>
+        </div>
+        
+    </div>
+        
+    <div id="TrescKoszyka">
+    
+        <div class="StrTresc">
+
+            <div class="TabelaTbl OknaZamowienieLogowanie">
+
+                <div class="error">
+                    <span id="span_<?php echo uniqid(); ?>"></span>
+                </div>
+
+                <!-- nowy klient lub zakup bez zakladania konta -->
+                
+                <div class="RamkaProcent Ramka OknaZamowienieLogowanie-1" style="padding-right:20px">
+                
+                    <!-- formularz bedzie widoczny tylko jezeli bedzie wlaczona automatyczna aktywacja konta klienta -->
+                
+                    <h3>{__TLUMACZ:DANE_DO_WYSYLKI} / {__TLUMACZ:NAGLOWEK_DANE_UZYTKOWNIKA}</h3>
+                    
+                    <?php if ( KLIENT_AKTYWACJA == 'tak' ) { ?>
+                    
+                    <form action="{__SSL:zamowienie-logowanie.html}" method="post" id="rejestracja" class="cmxform"> 
+                    
+                        <!-- jezeli rejestrowac moze sie dowolny klient -->
+                    
+                        <?php if ( KLIENT_TYLKO_FIRMA == 'dowolny' ) { ?> 
+                        
+                        <p class="OsobowoscPrawna"> 
+                      
+                            <label for="wybor_fizyczna">{__TLUMACZ:OSOBOWOSC_PRAWNA_KLIENTA_FIZYCZNY}
+                                <input type="radio" value="1" id="wybor_fizyczna" name="osobowosc" onclick="ZmienOsobowoscKoszyk(1, 'Konto')" checked="checked" />
+                                <span class="radio" id="radio_wybor_fizyczna"></span>
+                            </label>
+                            
+                            <label for="wybor_prawna">{__TLUMACZ:OSOBOWOSC_PRAWNA_KLIENTA_FIRMA}
+                                <input type="radio" value="0" id="wybor_prawna" name="osobowosc" onclick="ZmienOsobowoscKoszyk(2, 'Konto')" />
+                                <span class="radio" id="radio_wybor_prawna"></span>
+                            </label>
+                        
+                        </p>
+                        
+                        <!-- jezeli rejestrowac moze sie tylko firma -->
+                        
+                        <?php } else { ?>
+                        
+                            <br /><p style="display:none"><input type="radio" value="0" name="osobowosc" checked="checked" /></p>
+                        
+                        <?php } ?>                        
+                        
+                        <p>
+                            <span><label class="formSpan" for="imie">{__TLUMACZ:IMIE_KLIENTA}:</label> <em class="required" id="em_<?php echo uniqid(); ?>"></em></span>
+                            <input type="text" name="imie" id="imie" style="width:80%" size="40" value="" class="required" />
+                        </p> 
+
+                        <p>
+                            <span><label class="formSpan" for="nazwisko">{__TLUMACZ:NAZWISKO_KLIENTA}:</label> <em class="required" id="em_<?php echo uniqid(); ?>"></em></span>
+                            <input type="text" name="nazwisko" id="nazwisko" style="width:80%" size="40" value="" class="required" />
+                        </p>
+                        
+                        <!-- czy pokazywac telefon (zalezne od ustawien konfiguracji klienta) -->
+
+                        <?php if ( KLIENT_POKAZ_TELEFON == 'tak' ) { ?>
+                        
+                            <p>
+                                <span><label class="formSpan" for="telefon">{__TLUMACZ:NUMER_TELEFONU_KLIENTA}:</label> <em class="required" id="em_<?php echo uniqid(); ?>"></em></span>
+                                <input type="tel" name="telefon" id="telefon" style="width:80%" size="40" value="" class="required" />
+                            </p>
+                            
+                        <?php } ?>
+                        
+                        <!-- czy pokazywac fax (zalezne od ustawien konfiguracji klienta) -->
+
+                        <?php if ( KLIENT_POKAZ_FAX == 'tak' ) { ?>
+                        
+                            <p>
+                                <span><label class="formSpan" for="fax">{__TLUMACZ:NUMER_FAXU_KLIENTA}:</label></span>
+                                <input type="tel" name="fax" id="fax" style="width:80%" size="40" value="" />
+                            </p>
+                            
+                        <?php } ?>    
+
+                        <?php if ( KLIENT_POKAZ_PLEC == 'tak' ) { ?>
+                        
+                            <p>
+                                <span style="display:inline-block; margin-right:10px">{__TLUMACZ:PLEC_KLIENTA}:</span>
+
+                                <label for="wybor_kobieta">{__TLUMACZ:PLEC_KLIENTA_KOBIETA}
+                                    <input type="radio" value="f" name="plec" checked="checked" id="wybor_kobieta" />
+                                    <span class="radio" id="radio_wybor_kobieta"></span>
+                                </label>
+                                
+                                <label for="wybor_mezczyzna">{__TLUMACZ:PLEC_KLIENTA_MEZCZYZNA}
+                                    <input type="radio" value="m" name="plec" id="wybor_mezczyzna" />
+                                    <span class="radio" id="radio_wybor_mezczyzna"></span>
+                                </label>
+
+                            </p> 
+                            
+                        <?php } ?>                        
+
+                        <!-- czy pokazywac date urodzenia (zalezne od ustawien konfiguracji klienta) -->
+
+                        <?php if ( KLIENT_POKAZ_DATE_URODZENIA == 'tak' ) { ?>
+                        
+                            <p>
+                                <span><label class="formSpan" for="data_urodzenia">{__TLUMACZ:DATA_URODZENIA_KLIENTA}:</label> <em class="required" id="em_<?php echo uniqid(); ?>"></em></span>
+                                <input type="text" name="data_urodzenia" id="data_urodzenia" size="32" value="" class="required datepicker" />
+                            </p> 
+                            
+                        <?php } ?>                                                
+
+                        <p>
+                            <span><label class="formSpan" for="email_nowy">{__TLUMACZ:ADRES_EMAIL_KLIENTA}:</label> <em class="required" id="em_<?php echo uniqid(); ?>"></em></span>
+                            <input type="text" name="email_nowy" id="email_nowy" style="width:80%;" size="40" value="" class="required" />
+                        </p> 
+                        
+                        <!-- jezeli mozna kupowac bez zakladania konta -->
+
+                        <?php if ( KLIENT_ZAKUP_BEZ_REJESTRACJI == 'tak' && KLIENT_AKTYWACJA == 'tak' && KLIENT_AKTYWACJA_KONTA_EMAIL == 'nie' ) { ?>
+                        
+                            <div class="CheckSekcja" style="padding-bottom:10px;">
+
+                                <label for="gosc"><b>{__TLUMACZ:CHCE_ZALOZYC_KONTO}</b>
+                                    <input type="checkbox" value="0" name="gosc" id="gosc" />
+                                    <span class="check" id="check_gosc"></span>
+                                </label>
+
+                            </div>
+                            
+                            <div class="cl"></div>
+                            
+                        <?php } else { ?>
+                        
+                            <!-- nie usuwac -->
+                            <input type="hidden" value="0" name="gosc" id="gosc" />
+                            
+                        <?php } ?>
+
+                        <div id="HasloKonta" <?php if ( KLIENT_ZAKUP_BEZ_REJESTRACJI == 'tak' && KLIENT_AKTYWACJA_KONTA_EMAIL == 'nie' ) { echo 'style="display:none"'; } ?>>
+                        
+                            <!-- czy pokazywac nick (zalezne od ustawien konfiguracji klienta) -->
+
+                            <?php if ( KLIENT_POKAZ_NICK == 'tak' ) { ?>            
+
+                            <p>
+                                <span><label class="formSpan" for="nick">{__TLUMACZ:NICK_KLIENTA}:</label></span>
+                                <input type="text" size="35" style="width:80%" name="nick" id="nick" />
+                            </p>
+                            
+                            <?php } ?>                        
+
+                            <p>
+                                <span><label class="formSpan" for="haslo_nowe">{__TLUMACZ:HASLO_KLIENTA}:</label> <em class="required" id="em_<?php echo uniqid(); ?>"></em></span>
+                                <input type="password" size="35" style="width:80%" name="haslo_nowe" id="haslo_nowe" class="required" />
+                            </p>
+
+                            <p>
+                                <span><label class="formSpan" for="haslopowtorz_nowe">{__TLUMACZ:HASLO_KLIENTA_POWTORZENIE}:</label> <em class="required" id="em_<?php echo uniqid(); ?>"></em></span>
+                                <input type="password" size="35" style="width:80%" name="haslopowtorz_nowe" id="haslopowtorz_nowe" class="required" />
+                            </p>
+
+                        </div>                        
+
+                        <!-- czy pokazywac pesel (zalezne od ustawien konfiguracji klienta) -->
+                        
+                        <div id="osobaFizycznaKonto" {__CSS_FIZYCZNA}>
+
+                            <?php if ( KLIENT_POKAZ_PESEL == 'tak' ) { ?>                          
+
+                            <p>
+                                <span><label class="formSpan" for="pesel">{__TLUMACZ:NUMER_PESEL_KLIENTA}:</label></span>
+                                <input type="text" name="pesel" id="pesel" value="" size="32" style="width:40%" />
+                            </p>
+                            
+                            <?php } ?> 
+
+                        </div>
+                        
+                        <div id="osobaPrawnaKonto" {__CSS_FIRMA}>
+
+                            <p>
+                                <span><label class="formSpan" for="nazwa_firmy">{__TLUMACZ:NAZWA_FIRMY_KLIENTA}:</label> <em class="required" id="em_<?php echo uniqid(); ?>"></em></span>
+                                <input type="text" name="nazwa_firmy" id="nazwa_firmy" style="width:80%" value="" size="40" />                            
+                            </p>
+                        
+                            <p>
+                                <span><label class="formSpan" for="nip_firmy">{__TLUMACZ:NUMER_NIP_FIRMY_KLIENTA}:</label> <em class="required" id="em_<?php echo uniqid(); ?>"></em></span>
+                                <input type="text" name="nip_firmy" id="nip_firmy" value="" size="32" />
+                            </p>  
+
+                            <?php if ( KLIENT_POKAZ_REGON == 'tak' ) { ?> 
+                            
+                            <p>
+                                <span><label class="formSpan" for="regon_firmy">{__TLUMACZ:REGON_FIRMY_KLIENTA}:</label> <em class="required" id="em_<?php echo uniqid(); ?>"></em></span>
+                                <input type="text" name="regon_firmy" id="regon_firmy" value="" size="15" />
+                            </p>                
+                            
+                            <?php } ?>                            
+
+                        </div>
+
+                        <p>
+                            <span><label class="formSpan" for="ulica">{__TLUMACZ:ULICA_KLIENTA}:</label> <em class="required" id="em_<?php echo uniqid(); ?>"></em></span>
+                            <input type="text" name="ulica" id="ulica" style="width:80%" size="40" value="" class="required" />
+                        </p>
+
+                        <p>
+                            <span><label class="formSpan" for="kod_pocztowy">{__TLUMACZ:KOD_POCZTOWY_KLIENTA}:</label> <em class="required" id="em_<?php echo uniqid(); ?>"></em></span>
+                            <input type="text" name="kod_pocztowy" style="width:80%" id="kod_pocztowy" size="22" value="" class="required" />
+                        </p> 
+
+                        <p>
+                            <span><label class="formSpan" for="miasto">{__TLUMACZ:MIEJSCOWOSC_KLIENTA}:</label> <em class="required" id="em_<?php echo uniqid(); ?>"></em></span>
+                            <input type="text" name="miasto" id="miasto" style="width:80%" size="40" value="" class="required" />
+                        </p>
+
+                        <p>
+                            <span><label class="formSpan" for="wybor_panstwo">{__TLUMACZ:KRAJ_KLIENTA}:</label></span>
+                            {__WYBOR_PANSTWA}
+                        </p>
+
+                        <!-- czy pokazywac wojewodztwo (zalezne od ustawien konfiguracji klienta) -->
+
+                        <?php if ( KLIENT_POKAZ_WOJEWODZTWO == 'tak' ) { ?>
+                        
+                            <p>
+                                <span><label class="formSpan" for="wybor_wojewodztwo">{__TLUMACZ:WOJEWODZTWO_KLIENTA}:</label></span>
+                                {__WYBOR_WOJEWODZTWA}
+                            </p>
+                            
+                        <?php } ?>
+
+                        <div id="DodatkowePola">
+                        
+                            {__DODATKOWE_POLA_KLIENTOW}
+                            
+                        </div>
+                        
+                        <br />
+                     
+                        <h3>{__TLUMACZ:ZGODY_FORMALNE}</h3>
+                        
+                        <!-- zgoda na przetwarzanie i regulamin -->
+                        
+                        <div style="padding-top:15px">
+                        
+                            <div class="ZaznaczWszystkieZgody">
+                            
+                                 <div class="CheckSekcja">
+
+                                    <label for="wszystkie_zgody"><b>{__TLUMACZ:ZAZNACZ_WSZYSTKIE_ZGODY}</b>
+                                        <input type="checkbox" value="1" name="wszystkie_zgody" id="wszystkie_zgody" />
+                                        <span class="check" id="check_wszystkie_zgody"></span>
+                                    </label>
+
+                                 </div>
+
+                                 <div class="cl"></div>                                  
+                            
+                            </div>
+                          
+                            <?php if ( NEWSLETTER_WLACZONY == 'tak' ) { ?>
+                        
+                            <div class="CheckSekcja ZgodaRejestracja" <?php echo ((isset($_SESSION['aktywny_newsletter']) && $_SESSION['aktywny_newsletter'] == 'tak') ? 'style="display:none"' : ''); ?>>
+
+                                <label for="biuletyn">{__TLUMACZ:ZGODA_BIULETYN}
+                                    <input type="checkbox" value="1" name="biuletyn" id="biuletyn" <?php echo ((isset($_SESSION['aktywny_newsletter']) && $_SESSION['aktywny_newsletter'] == 'tak') ? 'checked="checked"' : ''); ?>/>
+                                    <span class="check" id="check_biuletyn"></span>
+                                </label>
+
+                            </div>
+                            
+                            <?php } ?>
+                            
+                            <div class="cl"></div>
+                            
+                            <?php 
+                            $ZgodaNaOpinie = $__pA;
+                            //
+                            if ( $ZgodaNaOpinie ) { ?>
+                    
+                                 <div class="CheckSekcja ZgodaRejestracja">
+
+                                    <label for="zgoda_opinie">{__TEKST_ZGODY}
+                                        <input type="checkbox" value="1" name="zgoda_opinie" id="zgoda_opinie" class="zgoda_opinie" />
+                                        <span class="check" id="check_zgoda_opinie"></span>
+                                    </label>
+                                 
+                                 </div>
+
+
+                                 <div class="cl"></div>                            
+                                 
+                            <?php 
+                            }                     
+                            unset($ZgodaNaOpinie);
+                            ?>
+
+                            <div class="CheckSekcja ZgodaRejestracja">
+
+                                <label for="regulamin">{__TLUMACZ:ZGODA_REGULAMIN}
+                                    <input type="checkbox" value="1" name="regulamin" id="regulamin" class="regulamin" />
+                                    <span class="check" id="check_regulamin"></span><em class="required checkreq" id="em_<?php echo uniqid(); ?>"></em>
+                                </label>
+                                
+                            </div>
+                            
+                            <div class="cl"></div>  
+                            
+                            <div id="error-regulamin" class="errorInformacja"></div>
+                            
+                            <?php if ( KLIENT_REJESTRACJA_POLITYKA_PRYWATNOSCI == 'tak' ) { ?>
+                            
+                                <div class="CheckSekcja ZgodaRejestracja">
+
+                                    <label for="polityka_prywatnosci">{__TLUMACZ:ZGODA_POLITYKA_PRYWATNOSCI}
+                                        <input type="checkbox" value="1" name="polityka_prywatnosci" id="polityka_prywatnosci" class="polityka_prywatnosci" />
+                                        <span class="check" id="check_polityka_prywatnosci"></span><em class="required checkreq" id="em_<?php echo uniqid(); ?>"></em>
+                                    </label>
+
+                                </div>
+                                
+                                <div class="cl"></div>
+                                
+                                <div id="error-polityka_prywatnosci" class="errorInformacja"></div>
+
+                            <?php } ?>
+                            
+                            <?php if ( KLIENT_REJESTRACJA_DODATKOWA_ZGODA == 'tak' ) { ?>
+                            
+                            <div class="CheckSekcja ZgodaRejestracja">
+
+                                <label for="przetwarzanie_dodatkowe">{__TLUMACZ:ZGODA_PRZETWARZANIE_DODATKOWA}
+                                    <input type="checkbox" value="1" name="przetwarzanie_dodatkowe" id="przetwarzanie_dodatkowe" class="przetwarzanie_dodatkowe" />
+                                    <span class="check" id="check_przetwarzanie_dodatkowe"></span><em class="required checkreq" id="em_<?php echo uniqid(); ?>"></em>
+                                </label>
+                                
+                            </div>
+                            
+                            <div class="cl"></div>
+                            
+                            <div id="error-przetwarzanie_dodatkowe" class="errorInformacja"></div>              
+                            
+                            <?php } ?>
+                            
+                            <?php if ( KLIENT_REJESTRACJA_PRZETWARZANIE == 'tak' ) { ?>
+
+                            <div class="CheckSekcja ZgodaRejestracja">
+
+                                <label for="przetwarzanie">{__TLUMACZ:ZGODA_PRZETWARZANIE}
+                                    <input type="checkbox" value="1" name="przetwarzanie" id="przetwarzanie" class="przetwarzanie" />
+                                    <span class="check" id="check_przetwarzanie"></span><em class="required checkreq" id="em_<?php echo uniqid(); ?>"></em>
+                                </label>
+                                
+                            </div>
+                                
+                            <div class="cl"></div>
+                                
+                            <div id="error-przetwarzanie" class="errorInformacja"></div> 
+                            
+                            <?php } ?>
+
+                            <?php if ( KLIENT_ZGODY_MARKETING == 'tak' ) { ?>
+
+                            <div class="CheckSekcja ZgodaRejestracja">
+
+                                <label for="marketing">{__TLUMACZ:ZGODA_MARKETING}
+                                    <input type="checkbox" value="1" name="marketing" id="marketing" class="marketing" />
+                                    <span class="check" id="check_marketing"></span><em class="checkreq" id="em_<?php echo uniqid(); ?>"></em>
+                                </label>
+
+                            </div>
+                            
+                            <div class="cl"></div>
+                            
+                            <?php } ?>
+
+                            <div class="CheckSekcja">
+                            
+                                <div class="Lf">&nbsp;</div>
+                                <div class="checkboxOpis">{__TLUMACZ:ZGODA_PRZETWARZANIE_INFO}</div>
+                                
+                            </div>
+                            
+                            <div class="cl"></div>   
+                                
+                        </div>     
+
+                        <div class="cl"></div>
+
+                        <br />
+                        
+                        <div>
+                            
+                            <!-- nie usuwac -->
+                            <input type="hidden" name="adres_ip" value="<?php echo $_SERVER['REMOTE_ADDR']; ?>" />
+                            <input type="hidden" name="nazwa_hosta" value="<?php echo gethostbyaddr($_SERVER['REMOTE_ADDR']); ?>" />
+                            
+                            <?php if ( KLIENT_AKTYWACJA_KONTA_EMAIL == 'tak' && KLIENT_AKTYWACJA == 'tak' ) { ?>
+                            
+                            <p class="InformacjaOk">{__TLUMACZ:REJESTRACJA_KONTO_AKTYWACJA_EMAIL}</p>
+                            
+                            <?php } ?>                        
+                            
+                            <input type="submit" id="submitButtonNowyKlient" class="przyciskWylaczony" value="{__TLUMACZ:PRZYCISK_PRZEJDZ_DO_POTWIERDZENIA}" disabled="disabled" />
+                            <input type="hidden" name="akcja" value="zapisz" />
+                            
+                            <!-- logowanie przez facebook i google -->
+                            <?php if ( INTEGRACJA_FB_LOGOWANIE_WLACZONY == 'tak' || INTEGRACJA_GOOGLE_LOGOWANIE_WLACZONY == 'tak' ) { ?>
+
+                                <br /><br /><br />
+
+                                <?php if ( INTEGRACJA_FB_LOGOWANIE_WLACZONY == 'tak' ) { ?>
+                                
+                                <p>
+                                    <a href="{__SSL:rejestracja-facebook.html}" rel="nofollow" class="AkcjaFacebook">{__TLUMACZ:ZALOZ_KONTO_Z_FACEBOOK}</a>
+                                </p> 
+                                
+                                <?php } ?>
+                                
+                                <?php if ( INTEGRACJA_GOOGLE_LOGOWANIE_WLACZONY == 'tak' ) { ?>
+                                
+                                <p>
+                                    <a href="{__SSL:rejestracja-google.html}" rel="nofollow" class="AkcjaGooglePlus">{__TLUMACZ:ZALOZ_KONTO_Z_GOOGLE}</a>
+                                </p> 
+                                
+                                <?php } ?>                    
+
+                            <?php } ?>    
+
+                        </div>
+
+                    </form>
+                    
+                    <?php } else { ?>
+                                            
+                        <a href="{__SSL:rejestracja.html}" class="przycisk">{__TLUMACZ:ZALOZ_KONTO}</a>
+                        
+                        <br /><br />
+                    
+                        {__TLUMACZ:REJESTRACJA_KONTO_NIEAKTYWNE_INFO}
+                    
+                    <?php } ?>
+
+                </div>
+                
+                <!-- formularz logowania -->
+
+                <div class="RamkaProcent Ramka OknaZamowienieLogowanie-2">
+                
+                    <h3>{__TLUMACZ:ZALOGUJ_SIE}</h3>
+
+                    <br />
+                    
+                    {__TLUMACZ:POSIADASZ_KONTO_ZALOGUJ_SIE}
+                    
+                    <br /><br />                    
+
+                    <form action="{__SSL:zamowienie-potwierdzenie.html}" method="post" id="logowanie" class="cmxform"> 
+            
+                        <p>
+                            <span><label class="formSpan" for="email">{__TLUMACZ:ADRES_EMAIL_LOGOWANIE}</label> <em class="required" id="em_<?php echo uniqid(); ?>"></em></span>
+                            <input type="text" size="35" style="width:80%" name="email" id="email" />
+                        </p>
+                    
+                        <p>
+                            <span><label class="formSpan" for="haslo">{__TLUMACZ:HASLO_LOGOWANIE}</label> <em class="required" id="em_<?php echo uniqid(); ?>"></em></span>
+                            <input type="password" size="35" style="width:80%" name="haslo" id="haslo" />
+                        </p>
+
+                        <p>
+                            <span>{__TLUMACZ:PRZYPOMNIENIE_HASLA} <a href="{__SSL:haslo-przypomnienie.html}"><b>{__TLUMACZ:PRZYPOMNIENIE_HASLA_LINK}</b></a></span>
+                        </p>
+
+                        <p>
+                            <input type="submit" id="submitButton" class="przyciskWylaczony" value="{__TLUMACZ:PRZYCISK_ZALOGUJ}" disabled="disabled" />
+                        </p>
+                        
+                        <!-- logowanie przez facebook i google -->
+                        <?php if ( INTEGRACJA_FB_LOGOWANIE_WLACZONY == 'tak' || INTEGRACJA_GOOGLE_LOGOWANIE_WLACZONY == 'tak' ) { ?>
+                        
+                            <br />
+
+                            <?php if ( INTEGRACJA_FB_LOGOWANIE_WLACZONY == 'tak' ) { ?>
+                            
+                            <p>
+                                <a href="{__SSL:logowanie-facebook.html}" class="AkcjaFacebook">{__TLUMACZ:ZALOGUJ_PRZEZ_FACEBOOK}</a>
+                            </p> 
+                            
+                            <?php } ?>
+                            
+                            <?php if ( INTEGRACJA_GOOGLE_LOGOWANIE_WLACZONY == 'tak' ) { ?>
+                            
+                            <p>
+                                <a href="{__SSL:logowanie-google.html}" class="AkcjaGooglePlus">{__TLUMACZ:ZALOGUJ_PRZEZ_GOOGLE}</a>
+                            </p> 
+                            
+                            <?php } ?>                    
+
+                        <?php } ?>                        
+
+                    </form>
+                    
+                </div>  
+
+            </div>
+
+        </div>
+        
+    </div>
+    
+</section>
+
+

@@ -1,0 +1,123 @@
+<!-- wyglad naglowka strony -->
+
+<h1 class="StrNaglowek">
+    <span>{__TLUMACZ:NAGLOWEK_RECENZJE}</span>  
+</h1>
+
+<!-- tresc strony -->
+
+<section class="StrTresc">
+
+    <p class="Informacja">
+        {__TLUMACZ:RECENZJE_WERYFIKACJA}
+    </p>               
+
+    <br />
+
+    <div class="Listing">
+    
+        <!-- tresc strony -->
+        
+        <nav class="ListingNawigacja ListingNawigacjaGora NawigacjaBezSposobuWyswietlania LiniaCala">
+        
+            <!-- odnosniki do kolejnych stron listingu -->
+        
+            <div class="IndexStron">
+            
+                <b>{__TLUMACZ:LISTING_STRONA}</b> {__STRONICOWANIE}
+            
+            </div>
+            
+            <div class="cl"></div>
+            
+            <?php if ( LISTING_WYSWIETLAC_SORTOWANIE == 'tak' ) { ?>
+            
+            <!-- sortowanie listingu -->
+            
+            <div class="Sortowanie{__CSS_LISTING_SORTOWANIE}">
+
+                <form id="sposobsortowania" class="cmxform" action="{__AKTUALNY_LINK}" method="post">
+                
+                    <b>{__TLUMACZ:LISTING_SORTUJ_WG}</b>
+                
+                    {__WYBOR_SORTOWANIE}
+                
+                </form>
+            
+            </div>      
+            
+            <?php } ?>
+
+            <?php if ( LISTING_WYSWIETLAC_ILOSC_WYNIKOW == 'tak' ) { ?>
+            
+            <!-- ilosc wynikow na stronie -->
+        
+            <div class="IloscProdStronie{__CSS_LISTING_POZYCJI_NA_STRONIE}">
+            
+                <form id="iloscprodstrony" class="cmxform" action="{__AKTUALNY_LINK}" method="post">
+                
+                    <div>
+                        <input type="hidden" name="ilosc_na_stronie" id="ilosc_na_stronie" value="" />
+                        <b>{__TLUMACZ:LISTING_WYNIKOW_NA_STRONIE}</b>
+                        <span {__CSS_PRODSTR_1} onclick="str_prod({__LISTA_ILOSC_PROD_1})">{__LISTA_ILOSC_PROD_1}</span>
+                        <span {__CSS_PRODSTR_2} onclick="str_prod({__LISTA_ILOSC_PROD_2})">{__LISTA_ILOSC_PROD_2}</span>
+                        <span {__CSS_PRODSTR_3} onclick="str_prod({__LISTA_ILOSC_PROD_3})">{__LISTA_ILOSC_PROD_3}</span>
+                    </div>
+                    
+                </form>
+                
+            </div>
+            
+            <?php } ?>
+            
+            <div class="cl"></div>
+        
+        </nav>
+        
+        <!-- listing recenzji -->
+
+        {__LISTA_RECENZJI}
+
+    </div>
+    
+    <!-- dodatkowa nawigacja na dole listingu -->    
+    
+    <br />
+     
+    <div class="Listing">
+    
+        <nav class="ListingNawigacja ListingNawigacjaDol LiniaCala">
+        
+            <!-- odnosniki do kolejnych stron listingu -->    
+    
+            <div class="IndexStron">
+            
+                <b>{__TLUMACZ:LISTING_STRONA}</b> {__STRONICOWANIE}
+
+            </div>  
+            
+            <?php if ( LISTING_WYSWIETLAC_ILOSC_WYNIKOW == 'tak' ) { ?>
+            <!-- ilosc wynikow na stronie -->
+            
+            <div class="IloscProdStronie">
+                <form id="iloscprodstrony_dol" class="cmxform" action="{__AKTUALNY_LINK}" method="post">
+                    <div>
+                        <input type="hidden" name="ilosc_na_stronie" id="ilosc_na_stronie_dol" value="" />
+                        <b>{__TLUMACZ:LISTING_WYNIKOW_NA_STRONIE}</b>
+                        <span {__CSS_PRODSTR_1} onclick="str_prod({__LISTA_ILOSC_PROD_1},'_dol')">{__LISTA_ILOSC_PROD_1}</span>
+                        <span {__CSS_PRODSTR_2} onclick="str_prod({__LISTA_ILOSC_PROD_2},'_dol')">{__LISTA_ILOSC_PROD_2}</span>
+                        <span {__CSS_PRODSTR_3} onclick="str_prod({__LISTA_ILOSC_PROD_3},'_dol')">{__LISTA_ILOSC_PROD_3}</span>
+                    </div>
+                </form>
+            </div>            
+            <?php } ?>
+
+            <div class="cl"></div>
+
+        </nav>
+            
+    </div>    
+
+</section>
+
+

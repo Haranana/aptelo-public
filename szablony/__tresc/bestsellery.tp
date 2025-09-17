@@ -1,0 +1,252 @@
+<!-- wyglad naglowka strony -->
+
+<h1 class="StrNaglowek">
+    <span>{__TLUMACZ:NAGLOWEK_BESTSELLERY}</span>
+</h1>
+
+<!-- tresc strony -->
+
+<section class="StrTresc">
+
+    <div class="Listing">
+    
+        <!-- tresc strony -->
+
+        <nav class="ListingNawigacja ListingNawigacjaGora LiniaCala">
+        
+            <!-- odnosniki do kolejnych stron listingu -->
+        
+            <div class="IndexStron">
+            
+                <b>{__TLUMACZ:LISTING_STRONA}</b> {__STRONICOWANIE}
+                
+                <span>{__TLUMACZ:LISTING_ILOSC_PRODUKTOW} {__ILOSC_PRODUKTOW_OGOLEM}</span>
+            
+            </div>
+            
+            <?php if ( LISTING_WYSWIETLAC_SPOSOB_WYSWIETLANIA == 'tak' ) { ?>
+            
+            <!-- sposob wyswietlania listingu, okna, wiersze, lista -->
+        
+            <div class="SposobWyswietlania">
+            
+                <form id="sposobwyswietlania" class="cmxform" action="{__AKTUALNY_LINK}" method="post">
+                
+                    <div>
+                        <input type="hidden" name="wyswietlanie" id="wyswietlanie" value="" />
+                        <span {__CSS_WYGLAD_1} title="{__TLUMACZ:LISTING_IKONA_OKNA}" onclick="lista(1)"></span>
+                        <span {__CSS_WYGLAD_2} title="{__TLUMACZ:LISTING_IKONA_WIERSZE}" onclick="lista(2)"></span>
+                        <span {__CSS_WYGLAD_3} title="{__TLUMACZ:LISTING_IKONA_PROSTY}" onclick="lista(3)"></span>
+                    </div>
+                    
+                </form>
+                
+            </div>
+            
+            <?php } ?>
+            
+            <div class="cl"></div>
+            
+            <?php if ( LISTING_WYSWIETLAC_SORTOWANIE == 'tak' ) { ?>
+            
+            <!-- sortowanie listingu -->
+            
+            <div class="Sortowanie{__CSS_LISTING_SORTOWANIE}">
+
+                <form id="sposobsortowania" class="cmxform" action="{__AKTUALNY_LINK}" method="post">
+                
+                    <b>{__TLUMACZ:LISTING_SORTUJ_WG}</b>
+                
+                    {__WYBOR_SORTOWANIE}
+                
+                </form>
+            
+            </div>
+            
+            <?php } ?>
+
+            <?php if ( LISTING_WYSWIETLAC_ILOSC_WYNIKOW == 'tak' ) { ?>
+            
+            <!-- ilosc wynikow na stronie -->
+            
+            <div class="IloscProdStronie{__CSS_LISTING_POZYCJI_NA_STRONIE}">
+            
+                <form id="iloscprodstrony" class="cmxform" action="{__AKTUALNY_LINK}" method="post">
+                
+                    <div>
+                        <input type="hidden" name="ilosc_na_stronie" id="ilosc_na_stronie" value="" />
+                        <b>{__TLUMACZ:LISTING_WYNIKOW_NA_STRONIE}</b>
+                        <span {__CSS_PRODSTR_1} onclick="str_prod({__LISTA_ILOSC_PROD_1})">{__LISTA_ILOSC_PROD_1}</span>
+                        <span {__CSS_PRODSTR_2} onclick="str_prod({__LISTA_ILOSC_PROD_2})">{__LISTA_ILOSC_PROD_2}</span>
+                        <span {__CSS_PRODSTR_3} onclick="str_prod({__LISTA_ILOSC_PROD_3})">{__LISTA_ILOSC_PROD_3}</span>
+                    </div>
+                    
+                </form>
+                
+            </div>
+            
+            <?php } ?>
+            
+            <div class="cl"></div>
+        
+        </nav>
+        
+        <?php if ( POKAZUJ_FILTRY_WSZYSTKIE == 'tak' ) { ?>
+        
+        <!-- filtry w listingu -->
+
+        <div class="ListingFiltry LiniaCala">
+
+            <?php if ( Wyglad::TypSzablonu() == true ) { ?>
+        
+            <input class="FiltryMobilneCheckbox" type="checkbox" id="FiltryMobilneCheckbox" />
+        
+            <label class="FiltryMobile" for="FiltryMobilneCheckbox">
+            
+                <span class="FiltryRozwin">{__TLUMACZ:LISTING_DODATKOWE_FILTRY}</span>
+                
+            </label>        
+            
+            <?php } ?>
+            
+            <div class="UzyteTagi" {__AKTYWNE_FILTRY_CSS}>
+            
+                <strong>{__TLUMACZ:LISTING_DODATKOWE_FILTRY_WYBRANE}</strong>
+            
+                {__AKTYWNE_FILTRY}
+                
+            </div>            
+                        
+            <div class="FiltryKontenter">
+            
+                <div class="FiltryTlo">
+                
+                    <label for="FiltryMobilneCheckbox" id="IkonaZwinieciaFiltry" style="display:none"></label>
+                    <label for="FiltryMobilneCheckbox" class="TloZwinieciaFiltry" style="display:none"></label>
+            
+                    <form id="filtr" action="{__AKTUALNY_LINK}" method="post" class="cmxform FormularzFiltry">
+            
+                        <div class="Lf">
+                            <!-- nie usuwac -->
+                            <input type="hidden" name="postget" value="tak" />                
+                            <strong>{__TLUMACZ:LISTING_DODATKOWE_FILTRY}</strong>
+                        </div>
+
+                        <div class="cl"></div>
+                        
+                        <div class="PozycjeFiltryListing">
+                    
+                            <div class="ZakresCen">
+                                <label class="formSpan" for="ceno"><b>{__TLUMACZ:LISTING_ZAKRES_CEN_OD}</b></label> <input type="text" size="4" value="{__CENA_OD_WARTOSC}" class="ulamek" id="ceno" name="ceno" /> <label class="formSpan" for="cend">{__TLUMACZ:LISTING_ZAKRES_CEN_DO}</label> <input type="text" size="4" value="{__CENA_DO_WARTOSC}" class="ulamek" name="cend" id="cend" />
+                            </div>           
+
+                            <!-- poszczegolne filtry -->
+
+                            {__FILTRY_KATEGORIA}
+                            
+                            {__FILTRY_PRODUCENT}
+                            
+                            {__FILTRY_NOWOSCI}
+
+                            {__FILTRY_PROMOCJE}
+                            
+                            {__FILTRY_DOSTEPNOSCI}
+                            
+                            {__FILTRY_CZAS_WYSYLKI}                         
+
+                            {__FILTRY_PO_CECHACH}
+                            
+                            {__FILTRY_PO_DODATKOWYCH_POLACH}
+
+                            <div class="cl"></div>                
+                
+                        </div>
+                                                
+                        <div class="Rg ZastosujUsunFiltry">
+                            {__LINK_USUNIECIA_FILTROW}
+                            <input type="submit" class="przycisk" value="{__TLUMACZ:PRZYCISK_WYSWIETL_PRODUKTY}" />
+                        </div> 
+
+                        <div class="cl"></div>
+                                                
+                    </form>
+                    
+                </div>
+                
+            </div>
+
+        </div>
+        
+        <?php } ?>
+        
+        <!-- okno porownywania produktow - ukryte jezeli klient nic nie dodal do porownania -->
+        
+        <div id="Porownywanie" {__CSS_POROWNANIE}>
+        
+            <div class="Lf">
+                <strong>{__TLUMACZ:LISTING_PRODUKTY_DODANE_DO_POROWNANIA}</strong>
+            </div>
+            
+            <div class="Rg" id="przyciskPorownywania" {__CSS_PRZYCISK_POROWNANIE}>
+                <span id="oknoPorownywarki" class="przycisk oknoAjax">{__TLUMACZ:PRZYCISK_POROWNAJ_PRODUKTY}</span>
+            </div> 
+
+            <div class="cl"></div>        
+
+            <div id="ListaProduktowPorownanie">
+            
+                {__PRODUKTY_DO_POROWNANIA}
+            
+            </div>
+            
+        </div>        
+        
+        <!-- listing produktow -->
+
+        {__LISTA_PRODUKTOW}
+
+    </div>
+    
+    <!-- dodatkowa nawigacja na dole listingu -->    
+    
+    <br />
+     
+    <div class="Listing">
+    
+        <nav class="ListingNawigacja ListingNawigacjaDol LiniaCala">
+        
+            <!-- odnosniki do kolejnych stron listingu -->    
+    
+            <div class="IndexStron">
+            
+                <b>{__TLUMACZ:LISTING_STRONA}</b> {__STRONICOWANIE}
+                
+                <span>{__TLUMACZ:LISTING_ILOSC_PRODUKTOW} {__ILOSC_PRODUKTOW_OGOLEM}</span>
+            
+            </div>  
+            
+            <?php if ( LISTING_WYSWIETLAC_ILOSC_WYNIKOW == 'tak' ) { ?>
+            <!-- ilosc wynikow na stronie -->
+            
+            <div class="IloscProdStronie">
+                <form id="iloscprodstrony_dol" class="cmxform" action="{__AKTUALNY_LINK}" method="post">
+                    <div>
+                        <input type="hidden" name="ilosc_na_stronie" id="ilosc_na_stronie_dol" value="" />
+                        <b>{__TLUMACZ:LISTING_WYNIKOW_NA_STRONIE}</b>
+                        <span {__CSS_PRODSTR_1} onclick="str_prod({__LISTA_ILOSC_PROD_1},'_dol')">{__LISTA_ILOSC_PROD_1}</span>
+                        <span {__CSS_PRODSTR_2} onclick="str_prod({__LISTA_ILOSC_PROD_2},'_dol')">{__LISTA_ILOSC_PROD_2}</span>
+                        <span {__CSS_PRODSTR_3} onclick="str_prod({__LISTA_ILOSC_PROD_3},'_dol')">{__LISTA_ILOSC_PROD_3}</span>
+                    </div>
+                </form>
+            </div>            
+            <?php } ?>
+
+            <div class="cl"></div>
+
+        </nav>
+            
+    </div>    
+
+</section>
+
+

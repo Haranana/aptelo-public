@@ -1,0 +1,19 @@
+<!-- wyglad naglowka strony -->
+
+<h1 class="StrNaglowek">
+    <span>{__TLUMACZ:NAGLOWEK_PRODUCENCI}</span>  
+</h1>
+
+<!-- tresc strony -->
+
+<section class="StrTresc">
+
+    <div class="Producenci">
+        
+        {__LISTA_PRODUCENTOW}
+
+    </div>
+
+</section>
+
+

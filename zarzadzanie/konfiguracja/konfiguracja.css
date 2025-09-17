@@ -1,0 +1,22 @@
+#KonfiguracjaSklepu label { padding:4px 20px 4px 0px; }
+#KonfiguracjaSklepu label.error { display:block; padding-left:20px; }
+
+@media only screen and (max-width:1023px) {
+  #KonfiguracjaSklepu label { width:320px; }
+  #KonfiguracjaSklepu label.error { margin-left:340px; }
+}
+@media only screen and (min-width:1024px) {
+  #KonfiguracjaSklepu label { width:380px; }
+  #KonfiguracjaSklepu label.error { margin-left:400px; }
+}
+
+.TytulKonfigurcji { font-weight:bold; color:#016f24; margin:10px; font-size:12px; }
+
+span.IkonyJezyk b { display:block; font-weight:normal; padding:5px 0px 5px 0px; }
+span.IkonyJezyk b img { display:inline-block; vertical-align:middle; }
+span.IkonyJezyk b input { margin-left:10px; }
+
+span.IkonyJezyk label.error { margin:4px 0px 0px 0px !important; }
+
+span.IkonyKolejnosc b { display:block; font-weight:normal; padding:5px 0px 5px 0px; }
+span.IkonyKolejnosc b input { margin-right:5px; text-align:center; }

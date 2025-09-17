@@ -1,0 +1,118 @@
+<!-- wyglad naglowka strony -->
+
+<h1 class="StrNaglowek">
+    <span>{__TLUMACZ:NAGLOWEK_ZGLOSZENIE_REKLAMACJI}</span>
+</h1>
+
+<!-- tresc strony -->
+
+<section class="StrTresc">
+
+    <?php $IloscZamowien = $__pA; ?>
+
+    <!-- wyswietlany komunikat po wyslaniu -->
+
+    <?php if ( isset($_GET['sukces']) ) { ?>
+    
+    <p class="Informacja">
+        {__TLUMACZ:NAPISZ_REKLAMACJE_SUKCES}
+    </p>
+    
+    <!-- przycisk powrotu do strony glownej -->
+
+    <a href="/" class="przycisk Prawy">{__TLUMACZ:PRZYCISK_DO_STRONY_GLOWNEJ}</a>   
+    
+    <div class="cl"></div>
+    
+    <?php } ?>
+    
+    <!-- formularz napisania reklamacji -->
+    
+    <?php if ( !isset($_GET['sukces']) ) { ?>
+    
+        <?php if ( $IloscZamowien > 1 ) { ?>
+
+            <form action="{__SSL:reklamacje-napisz.html}" method="post" id="reklamacja" class="cmxform" enctype="multipart/form-data"> 
+            
+                <div class="error">
+                    <span id="span_<?php echo uniqid(); ?>"></span>
+                </div>
+
+                <div class="Sekcja" style="margin-left:0px">
+                
+                    <ul>
+                        <li>{__TLUMACZ:IMIE_I_NAZWISKO_KLIENTA}: <b>{__IMIE_KLIENTA} {__NAZWISKO_KLIENTA}</b></li>
+                        <li>{__TLUMACZ:ADRES_EMAIL_KLIENTA}: <b>{__EMAIL_KLIENTA}</b></li>
+                    </ul>
+                    
+                </div>
+
+                <p>
+                   <span><label class="formSpan" for="lista_zamowien">{__TLUMACZ:NUMER_ZAMOWIENIA_REKLAMOWANEGO}:</label> <em class="required" id="em_<?php echo uniqid(); ?>"></em></span>
+                   {__ZAMOWIENIA_KLIENTA}
+                </p>
+
+                <p>
+                   <span><label class="formSpan" for="temat">{__TLUMACZ:TYTUL_REKLAMACJI}:</label> <em class="required" id="em_<?php echo uniqid(); ?>"></em></span>
+                   <input type="text" name="temat" id="temat" style="width:70%" size="40" value="" class="required" />
+                </p>
+
+                <p>
+                   <span><label class="formSpan" for="wiadomosc">{__TLUMACZ:OPIS_ZGLOSZENIA}:</label> <em class="required" id="em_<?php echo uniqid(); ?>"></em></span>
+                   <textarea name="wiadomosc" id="wiadomosc" cols="80" rows="7" style="width:95%" class="required"></textarea>
+                </p>
+
+                <p>
+                   <span><label class="formSpan" for="zdjecie_1">{__TLUMACZ:ZDJECIE_WGRYWANIE}:</label></span>
+                   <input type="file" name="zdjecie_1" id="zdjecie_1" />
+                </p>
+                
+                <p>
+                   <span><label class="formSpan" for="zdjecie_2">{__TLUMACZ:ZDJECIE_WGRYWANIE}:</label></span>
+                   <input type="file" name="zdjecie_2" id="zdjecie_2" />
+                </p>
+
+                <p>
+                   <span><label class="formSpan" for="zdjecie_3">{__TLUMACZ:ZDJECIE_WGRYWANIE}:</label></span>
+                   <input type="file" name="zdjecie_3" id="zdjecie_3" />
+                </p>
+                
+                <p>
+                
+                   <!-- nie usuwac -->
+                   <input type="hidden" name="adres_ip" value="<?php echo $_SERVER['REMOTE_ADDR']; ?>" />
+                   <input type="hidden" name="nazwa_hosta" value="<?php echo gethostbyaddr($_SERVER['REMOTE_ADDR']); ?>" />
+                   <input type="hidden" name="akcja" value="zapisz" />
+                   <input type="hidden" name="tok" value="{__TOKEN}" />
+                   <input type="hidden" name="hash" value="{__HASH}" />
+                   <input type="hidden" name="id" value="{__ID_KLIENTA}" />
+
+                   <input type="submit" id="submitButton" class="przyciskWylaczony" value="{__TLUMACZ:PRZYCISK_WYSLIJ}" disabled="disabled" />
+                                      
+                   <!-- przycisk wyslania formularza -->
+                   <?php if (isset($_GET['zamowienie'])) { ?>
+                      <a onclick="history.go(-1)" class="przycisk">{__TLUMACZ:PRZYCISK_COFNIJ}</a>                                 
+                   <?php } else { ?>                              
+                      <a href="{__SSL:panel-klienta.html}" class="przycisk">{__TLUMACZ:PRZYCISK_ANULUJ}</a>                     
+                   <?php } ?>
+                   
+                </p>
+
+            </form>
+        
+        <?php } else { ?>
+        
+            <div class="Informacja">{__TLUMACZ:REKLAMACJA_BRAK_ZAMOWIEN}</div>
+        
+            <a class="przycisk Lewy" onclick="history.go(-1)">{__TLUMACZ:PRZYCISK_COFNIJ}</a>
+            <a href="{__SSL:panel-klienta.html}" class="przycisk Prawy">{__TLUMACZ:PRZYCISK_PANEL_KLIENTA}</a>        
+        
+        <?php } ?>
+        
+        <div class="cl"></div>
+
+    <?php } ?>
+
+</section>
+
+

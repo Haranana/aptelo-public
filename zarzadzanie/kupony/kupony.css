@@ -1,0 +1,74 @@
+.TablicaPozycji { color:#3f5d6b; width:100%; }
+.TablicaPozycji td { padding:2px; text-decoration:none; text-align:center; }
+.PoziomNaglowek span { display:block; padding:9px; background:#e5e5e5; font-weight:normal; color:#3f5d6b; text-decoration:none; }
+.OpisKuponu { font-weight:bold; display:inline-block; margin-right:5px; color:#016f24; }
+@media only screen and (min-width:1280px) {
+  .OpisKuponu { display:none; }
+}
+
+.RamkaKupony { border:1px solid #c1c1c1; padding:2px; -moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px; -khtml-border-radius:4px; display:inline-block; margin-left:10px; }
+
+#LinkCsv { margin:6px; margin-top:15px; background:url('../obrazki/csv.png') no-repeat left center; display:inline-block; line-height:50px; height:50px; padding-left:50px; padding-right:0px; font-weight:normal; text-decoration:none; }
+#LinkCsv:hover { color:#ff0000; text-decoration:none; }
+#LinkCsv span { font-weight:normal; color:#939393; text-decoration:none; }
+
+div .Export { background:url('../obrazki/export.png') no-repeat left center; line-height:1.5; display:inline-block; padding-left:22px; font-weight:bold; color:#016f24; text-decoration:none; margin-right:5px; }
+div .Export:hover { color:#ff0000; text-decoration:none; }
+
+div .Import { background:url('../obrazki/import.png') no-repeat left center; line-height:1.5; display:inline-block; padding-left:22px; font-weight:bold; color:#016f24; text-decoration:none; }
+div .Import:hover { color:#ff0000; text-decoration:none; }
+
+.NaglowekEksport { font-weight:bold; text-decoration:none; padding:10px; font-size:110%; }
+.Inputy { margin-left:5px; }
+.Inputy td { padding:6px 15px 6px 12px; }
+
+@media only screen and (max-width:1279px) {
+  .JednaLinia td { display:block; }
+}
+
+.RamkaWarunki { border-top:1px dotted #ccc; border-bottom:1px dotted #ccc; padding:8px 0px 8px 0px; margin:8px 10px 8px 10px; } 
+.RamkaWarunki p { padding-left:0px !important; }
+.RamkaWarunki b { font-weight:bold; color:#3f5d6b; text-decoration:none; display:block; margin-top:5px; margin-bottom:10px; }
+.RamkaWarunki strong { padding:5px 5px 9px 2px; display:inline-block; font-size:110%; }
+
+@media only screen and (max-width:1023px) {
+  #Kategorie, #Producenci, #Produkty, #ListaWarunkow, #ProduktyPowiazane { margin-left:145px; }
+}
+@media only screen and (min-width:1024px) {
+  #Kategorie, #Producenci, #Produkty, #ListaWarunkow, #ProduktyPowiazane { margin-left:165px; max-width:50%; }
+}
+#Producenci { background:#f6f7f6; border:1px solid #c1c1c1; padding:10px; max-height:400px; overflow-y:scroll; -moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px; -khtml-border-radius:4px; }
+#Produkty { background:#f6f7f6; border:1px solid #c1c1c1; padding:10px; max-height:400px; overflow-y:scroll; -moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px; -khtml-border-radius:4px; }
+#ProduktyPowiazane { background:#f6f7f6; border:1px solid #c1c1c1; padding:10px; max-height:400px; overflow-y:scroll; -moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px; -khtml-border-radius:4px; }
+
+#Produkty label, #Producenci label, #ProduktyPowiazane label { margin:3px 0px 3px 0px; }
+
+#ListaWarunkow { display:block; line-height:1.5; color:#0e7379; border:1px solid #c1c1c1; padding:10px; max-height:400px; overflow-y:scroll; -moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px; -khtml-border-radius:4px; }
+
+#KuponyNaMail { margin-top:8px !important; }
+
+strong.NaglowekEdycji { font-family: Inder,Arial; display:block; margin:10px; margin-bottom:20px; font-size:130%; font-weight:normal; color:#3f5d6b; }
+
+#KuponMail { margin:10px; }
+#KuponMail div { display:block; text-align:left; margin-bottom:8px; font-weight:normal; text-decoration:none; }
+#KuponMail span { font-weight:bold; color:#0c617d; }
+
+.AdresatEmail { padding:5px; padding-left:0px; display:inline-block; color:#03700b; font-weight:bold; }
+
+.LegnedaKuponow { padding:12px; }
+.LegnedaKuponow .ostrzezenie { padding-top:5px; padding-bottom:2px; }
+
+/*
+.cmxform label { width:300px !important; }
+.cmxform label.error { margin-left:320px !important; }
+.info_content .odlegloscRwd {margin-left: 315px !important; }
+*/
+
+#Doczytaj { cursor:pointer; margin:10px 0px 10px 0px; background:#d1d1d1; color:#3f3f3f; font-size:120%; text-align:center; padding:8px 10px 8px 10px; 
+  -webkit-border-radius:3px; -moz-border-radius:3px; border-radius:3px;
+  transition:all 0.30s ease-in-out;
+  -moz-transition:all 0.30s ease-in-out;
+  -webkit-transition:all 0.30s ease-in-out;
+  -o-transition:all 0.30s ease-in-out;
+}
+#Doczytaj:hover { background:#949494; color:#ffffff; }

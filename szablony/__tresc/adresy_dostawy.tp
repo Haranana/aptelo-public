@@ -1,0 +1,182 @@
+<!-- wyglad naglowka strony -->
+
+<h1 class="StrNaglowek">
+    <span>{__TLUMACZ:NAGLOWEK_ADRESY_DOSTAWY}</span>
+</h1>
+
+<!-- tresc strony -->
+
+<section class="StrTresc">
+
+    <!-- sprawdza czy klient jest zalogowany - jezeli nie wyswietli okno logowania -->
+    
+    <?php     
+    $Adresy = $__pA;
+
+    if ( count($Adresy) > 0 ) {
+
+        foreach ( $Adresy as $Adres ) { ?>
+
+            <div class="PozycjaAdresyDostawyLista LiniaPoziom" style="margin-bottom:10px">
+            
+                <div class="Adresat" style="padding:10px 0 10px 0">
+                
+                    <strong>{__TLUMACZ:KLIENT_ADRES_WYSYLKI}</strong>
+
+                    <ul>
+                        <li><?php echo $Adres['imie'] . ' ' . $Adres['nazwisko']; ?></li>
+                        <?php if ( $Adres['nazwa_firmy'] != '' ) echo '<li>' . $Adres['nazwa_firmy'] . '</li>'; ?>
+                        <li><?php echo $Adres['ulica']; ?></li>
+                        <li><?php echo $Adres['kod_pocztowy'] . ' ' . $Adres['miasto']; ?></li>
+                        <li><?php echo $Adres['kraj']; ?></li>
+                        
+                        <?php
+                        if ( KLIENT_POKAZ_WOJEWODZTWO == 'tak' && $Adres['wojewodztwo'] != '' ) {
+                            ?>
+                            <li><?php echo $Adres['wojewodztwo']; ?></li>
+                            <?php
+                        }
+                        if ( KLIENT_POKAZ_TELEFON == 'tak' && $Adres['telefon'] != '' ) {
+                            ?>
+                            <li>{__TLUMACZ:TELEFON}: <?php echo $Adres['telefon']; ?></li>
+                            <?php
+                        }                        
+                        ?>      
+
+                    </ul>
+                    
+                </div> 
+                
+                <div class="cl"></div>
+                
+                <?php if ( $Adres['domyslny_adres_dostawy'] == 'nie' ) { ?>
+                
+                <a href="{__SSL:adres-dostawy-domyslny-ad-<?php echo $Adres['adres_id']; ?>.html}" class="przycisk PrawyBezMargin">{__TLUMACZ:ADRES_USTAW_JAKO_DOMYSLNY}</a>
+                
+                <?php } else { ?>
+                
+                <div class="Informacja" style="margin-bottom:15px">{__TLUMACZ:ADRES_USTAWIONY_JAKO_DOMYSLNY}</div>
+                
+                <div class="cl"></div>
+                
+                <?php } ?>
+                
+                <?php if ( $Adres['glowny_adres'] == 'nie' ) { ?>
+                
+                <a href="{__SSL:adres-dostawy-usun-ad-<?php echo $Adres['adres_id']; ?>.html}" class="przycisk PrawyBezMargin">{__TLUMACZ:PRZYCISK_USUN}</a>
+                <a href="{__SSL:adres-dostawy-zmien-ad-<?php echo $Adres['adres_id']; ?>.html}" class="przycisk PrawyBezMargin">{__TLUMACZ:PRZYCISK_AKTUALIZUJ_DANE}</a>
+                
+                <?php } ?>
+                
+                <div class="cl"></div>
+
+            </div>
+            
+        <?php
+        }
+        
+    } else {
+        
+        ?>
+
+        <p class="Informacja" style="margin:10px 0 10px 0">{__TLUMACZ:DODATKOWE_ADRESY_DOSTAWY_BRAK}</p> <br />
+        
+    <?php } ?>
+
+    <!-- formularz danych adresowych -->
+
+    <br />
+
+    <form action="{__SSL:adresy-dostawy.html}" method="post" id="daneAdresowe" class="cmxform"> 
+    
+    <div class="error">
+        <span id="span_<?php echo uniqid(); ?>"></span>
+    </div>
+
+    <div class="DaneAdresowe Ramka">
+
+        <strong class="CheckSekcja">{__TLUMACZ:NAGLOWEK_ADRESY_DOSTAWY_NOWY_ADRES}</strong>
+        
+        <br />
+        
+        <p>
+            <span><label class="formSpan" for="imie">{__TLUMACZ:IMIE_KLIENTA}:</label> <em class="required" id="em_<?php echo uniqid(); ?>"></em></span>
+            <input type="text" name="imie" id="imie" style="width:95%" size="40" value="" class="required" />
+        </p> 
+
+        <p>
+            <span><label class="formSpan" for="nazwisko">{__TLUMACZ:NAZWISKO_KLIENTA}:</label> <em class="required" id="em_<?php echo uniqid(); ?>"></em></span>
+            <input type="text" name="nazwisko" id="nazwisko" style="width:95%" size="40" value="" class="required" />
+        </p>
+
+        <p>
+            <span><label class="formSpan" for="nazwa_firmy">{__TLUMACZ:NAZWA_FIRMY_KLIENTA}:</label> </span>
+            <input type="text" name="nazwa_firmy" id="nazwa_firmy" style="width:95%" value="" size="40" />
+        </p>
+
+        <p>
+            <span><label class="formSpan" for="ulica">{__TLUMACZ:ULICA_KLIENTA}:</label> <em class="required" id="em_<?php echo uniqid(); ?>"></em></span>
+            <input type="text" name="ulica" id="ulica" style="width:95%" size="40" value="" class="required" />
+        </p>
+
+        <p>
+            <span><label class="formSpan" for="kod_pocztowy">{__TLUMACZ:KOD_POCZTOWY_KLIENTA}:</label> <em class="required" id="em_<?php echo uniqid(); ?>"></em></span>
+            <input type="text" name="kod_pocztowy" id="kod_pocztowy" size="22" value="" class="required" />
+        </p> 
+
+        <p>
+            <span><label class="formSpan" for="miasto">{__TLUMACZ:MIEJSCOWOSC_KLIENTA}:</label> <em class="required" id="em_<?php echo uniqid(); ?>"></em></span>
+            <input type="text" name="miasto" id="miasto" style="width:95%" size="40" value="" class="required" />
+        </p>
+
+        <p>
+            <span><label class="formSpan" for="wybor_panstwo">{__TLUMACZ:KRAJ_KLIENTA}:</label></span>
+            {__LISTA_PANSTW}
+        </p>
+        
+        <!-- czy pokazywac wojewodztwo (zalezne od konfiguracji sklepu) -->
+
+        <?php if ( KLIENT_POKAZ_WOJEWODZTWO == 'tak' ) { ?>
+        
+            <p>
+                <span><label class="formSpan" for="wybor_wojewodztwo">{__TLUMACZ:WOJEWODZTWO_KLIENTA}:</label></span>
+                {__LISTA_WOJEWODZTW}
+            </p>
+        
+        <?php } ?>
+        
+        <!-- czy pokazywac telefon (zalezne od konfiguracji sklepu) -->
+
+        <?php if ( KLIENT_POKAZ_TELEFON == 'tak' ) { ?>
+        
+            <p>
+                <span><label class="formSpan" for="telefon">{__TLUMACZ:NUMER_TELEFONU_KLIENTA}:</label> <em class="required" id="em_<?php echo uniqid(); ?>"></em></span>
+                <input type="tel" name="telefon" id="telefon" style="width:95%" size="40" value="" class="required" />
+            </p>
+        
+        <?php } ?>        
+
+        <br />
+        
+        <p>
+        
+            <!-- nie kasowac -->
+            <input type="hidden" name="id_klienta" id="id_klienta" value="{__ID_KLIENTA}" />
+            <input type="hidden" name="tok" value="{__TOKEN}" />
+            <input type="hidden" name="akcja" value="zapisz" />
+            
+            <!-- przyciski -->
+            <input class="przyciskWylaczony" type="submit" id="submitButton" value="{__TLUMACZ:PRZYCISK_ZAPISZ}" disabled="disabled" />
+            <a href="{__SSL:panel-klienta.html}" class="przycisk">{__TLUMACZ:PRZYCISK_ANULUJ}</a>                 
+            
+        </p>                    
+    
+    </div>
+
+    </form>
+
+    <?php 
+    unset($Adresy);
+    ?>
+
+</section>

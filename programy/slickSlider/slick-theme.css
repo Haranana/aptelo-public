@@ -1,0 +1,255 @@
+/* Symbole strzalek
+.icon-arrow-right:before {
+  content: "\61";
+}
+.icon-arrow-left:before {
+  content: "\62";
+}
+.icon-chevron-right:before {
+  content: "\63";
+}
+.icon-chevron-left:before {
+  content: "\64";
+}
+.icon-left-dir:before {
+  content: "\65";
+}
+.icon-left-open:before {
+  content: "\66";
+}
+.icon-left-open-big:before {
+  content: "\67";
+}
+.icon-left-open-mini:before {
+  content: "\68";
+}
+.icon-right-dir:before {
+  content: "\69";
+}
+.icon-right-open:before {
+  content: "\6a";
+}
+.icon-right-open-big:before {
+  content: "\6b";
+}
+.icon-right-open-mini:before {
+  content: "\6c";
+}
+.icon-chevron-circle-left:before {
+  content: "\6e";
+}
+.icon-chevron-circle-right:before {
+  content: "\6f";
+}
+.icon-circle:before {
+  content: "\70";
+}
+*/
+
+/*@charset 'UTF-8';*/
+/* Slider */
+.slick-loading .slick-list
+{
+    background: #fff url('../../../programy/slickSlider/ajax-loader.gif') center center no-repeat;
+}
+
+/* Icons */
+@font-face
+{
+    font-family: 'slick';
+    font-weight: normal;
+    font-style: normal;
+
+    src: url('../../../programy/slickSlider/fonts/slick.eot');
+    src: url('../../../programy/slickSlider/fonts/slick.eot?#iefix') format('embedded-opentype'), url('../../../programy/slickSlider/fonts/slick.woff') format('woff'), url('../../../programy/slickSlider/fonts/slick.ttf') format('truetype'), url('../../../programy/slickSlider/fonts/slick.svg#slick') format('svg');
+    font-display: swap;
+}
+/* Arrows */
+
+.slick-prev,
+.slick-next
+{
+    box-sizing: border-box;
+    font-size: 0;
+    position: absolute;
+    top: 50%;
+
+    display: block;
+
+    padding: 0;
+    -webkit-transform: translate(0, -50%);
+    -ms-transform: translate(0, -50%);
+    transform: translate(0, -50%);
+
+    cursor: pointer;
+
+    border: none;
+    outline: none;
+    background: transparent;
+}
+.slick-prev:hover,
+.slick-prev:focus,
+.slick-next:hover,
+.slick-next:focus
+{
+    color: transparent;
+    outline: none;
+    background: transparent;
+}
+.slick-prev:hover:before,
+.slick-prev:focus:before,
+.slick-next:hover:before,
+.slick-next:focus:before
+{
+    opacity: 1;
+}
+.slick-prev.slick-disabled:before,
+.slick-next.slick-disabled:before
+{
+    opacity: 1;
+}
+
+.slick-prev:before,
+.slick-next:before
+{
+    font-family: 'slick';
+    font-size: 20px;
+    opacity: .75;
+    color: white;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.slick-prev
+{
+    left: 10px;
+    z-index:2;
+}
+[dir='rtl'] .slick-prev
+{
+    right: 10px;
+    left: auto;
+}
+.slick-prev:before
+{
+    content: '\62';
+}
+[dir='rtl'] .slick-prev:before
+{
+    content: '\61';
+}
+
+.slick-next
+{
+    right: 10px;
+    z-index:2;
+}
+[dir='rtl'] .slick-next
+{
+    right: auto;
+    left: 10px;
+}
+.slick-next:before
+{
+    content: '\61';
+}
+[dir='rtl'] .slick-next:before
+{
+    content: '\62';
+}
+
+/* Dots */
+.slick-dotted.slick-slider
+{
+    margin-bottom: 0px;
+}
+
+.slick-dots
+{
+    position: relative;
+    padding: 10px 0px 0px 0px;
+    margin: 0;
+    list-style: none;
+    text-align: center;
+    
+}
+.slick-dots li
+{
+    position: relative;
+
+    display: inline-block;
+
+    width: 20px;
+    height: 20px;
+    margin: 0 5px;
+    padding: 0;
+
+    cursor: pointer;
+}
+.slick-dots li button
+{
+    font-size: 0;
+    line-height: 0;
+
+    display: block;
+
+    width: 20px;
+    height: 20px;
+    padding: 5px;
+
+    cursor: pointer;
+
+    color: transparent;
+    border: 0;
+    outline: none;
+    background: transparent;
+}
+.slick-dots li button:hover,
+.slick-dots li button:focus
+{
+    outline: none;
+}
+.slick-dots li button:hover:before,
+.slick-dots li button:focus:before
+{
+    opacity: 1;
+}
+.slick-dots li button:before
+{
+    font-family: 'slick';
+    font-size: 6px;
+    line-height: 20px;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 20px;
+    height: 20px;
+
+    content: '\70';
+    text-align: center;
+
+    opacity: 1;
+    color: black;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.slick-dots li.slick-active button:before
+{
+    opacity: 1;
+    color: black;
+}
+
+@media only screen and (max-width:1023px) { 
+  .slick-dots-desktop .slick-dots { display:none !important; }
+  .slick-arrow-desktop .slick-prev, .slick-arrow-desktop .slick-next { display:none !important; }
+  .slick-arrow-desktop .slick-list { margin:0 !important; }
+}
+@media only screen and (min-width:1024px) { 
+  .slick-dots-mobile .slick-dots { display:none !important; }
+  .slick-arrow-mobile .slick-prev, .slick-arrow-mobile .slick-next { display:none !important; }
+  .slick-arrow-mobile .slick-list { margin:0 !important; }
+}

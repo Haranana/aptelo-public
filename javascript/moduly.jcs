@@ -1,0 +1,479 @@
+// zmianna do okreslania czy byl juz wyswietlony jakis modul staly - zeby nie nakladaly sie na siebie moduly
+var BylModulStaly = false;
+
+var szerokoscEkranuTmp = 0;
+
+$(window).load(function() {
+    //
+    szerokoscEkranuTmp = $(window).width();
+    //
+});
+
+$(document).ready(function(){
+
+    filtryObsluga();
+
+});
+
+// licznik do odliczania promocji
+function odliczaj(o,sek,slowo_dni,slowo_dzien){
+
+    var dni = parseInt(sek / 86400);
+    var godziny = parseInt( sek / 3600 ) % 24;
+    var minuty = parseInt( sek / 60 ) % 60;
+    var sekundy = sek % 60;
+    var wynDni = '';
+    if (dni > 0) {
+        if ( slowo_dzien == undefined ) {
+             wynDni = dni + ' ' + slowo_dni + ' ';
+        } else {
+             if ( dni == 1 ) {
+                  wynDni = dni + ' ' + slowo_dzien + ' ';
+             }
+             if ( dni > 1 ) {
+                  wynDni = dni + ' ' + slowo_dni + ' ';
+             }  
+        }
+    }
+    
+    var wynik = wynDni + (godziny < 10 ? "0" + godziny : godziny) + ":" + (minuty < 10 ? "0" + minuty : minuty) + ":" + (sekundy  < 10 ? "0" + sekundy : sekundy);
+    var wyn = '';
+    for (r = 0; r < wynik.length; r++) {
+        if (parseInt(wynik.charAt(r)) > -1) {
+            wyn = wyn + '<em>'+wynik.charAt(r)+'</em>';
+          } else {
+            wyn = wyn + wynik.charAt(r);
+        }
+    }
+
+    $("#" + o).html(wyn);
+    if (sek > 0) { 
+        setTimeout(function(){odliczaj(o,--sek,slowo_dni,slowo_dzien)},1e3);
+      } else {
+        window.location.reload();
+    }
+
+}
+
+// licznik do odliczania promocji
+function odliczaj_zegar_prosty(o,sek,slowo_dni,slowo_dzien){
+
+    var dni = parseInt(sek / 86400);
+    var godziny = parseInt( sek / 3600 ) % 24;
+    var minuty = parseInt( sek / 60 ) % 60;
+    var sekundy = sek % 60;
+    var wynDni = '';
+    if (dni > 0) {
+        if ( dni == 1 ) {
+             wynDni = '<em>' + dni + '</em> ' + slowo_dzien + ' ';
+        }
+        if ( dni > 1 ) {
+             wynDni = '<em>' + dni + '</em> ' + slowo_dni + ' ';
+        }        
+    }
+    
+    var wynik = wynDni + '<em>' + (godziny < 10 ? "0" + godziny : godziny) + "</em>:<em>" + (minuty < 10 ? "0" + minuty : minuty) + "</em>:<em>" + (sekundy  < 10 ? "0" + sekundy : sekundy) + '</em>';
+
+    $("#" + o).html(wynik);
+    if (sek > 0) { 
+        setTimeout(function(){odliczaj_zegar_prosty(o,--sek,slowo_dni,slowo_dzien)},1e3);
+      } else {
+        window.location.reload();
+    }
+
+}
+
+// licznik do odliczania czasu wysylki
+function odliczaj_zegar_czas_wysylki(o,sek){
+
+    var godziny = parseInt( sek / 3600 ) % 24;
+    var minuty = parseInt( sek / 60 ) % 60;
+    var sekundy = sek % 60;
+
+    var wynik = '<b class="PozycjaZegara">' + (godziny < 10 ? "0" + godziny : godziny) + "</b>h <b class=\"PozycjaZegara\">" + (minuty < 10 ? "0" + minuty : minuty) + "</b>m <b class=\"PozycjaZegara\">" + (sekundy  < 10 ? "0" + sekundy : sekundy) + '</b>s ';
+
+    $("#" + o).html(wynik);
+    if (sek > 0) { 
+        setTimeout(function(){odliczaj_zegar_czas_wysylki(o,--sek)},1e3);
+      } else {
+        window.location.reload();
+    }
+
+}
+
+// wyswietlanie filtrow w boxie
+function filtryBox() {
+
+  // sprawdza czy jest formularz z filtrami
+  if ( $('#filtr').length ) {
+    //
+    wyswietlFiltrBox();
+    sposobWyswietlaniaFiltrow();
+    filtryObsluga();
+    //
+    $('#boxFiltry .BoxNaglowek label').removeAttr('tabindex role'); 
+    //
+    // jezeli jest zmiana ekranu to sprawdzi czy wyswietlac dalej box czy nad listingiem
+    $(window).resize(function() {            
+        //
+        if (szerokoscEkranuTmp != $(window).width()) {
+             sposobWyswietlaniaFiltrow();
+             //
+             szerokoscEkranuTmp = $(window).width();
+             //
+        }
+        //
+    });          
+    //
+  } else {
+    //
+    $('#boxFiltry').remove();
+    //
+  }
+
+}
+
+function sposobWyswietlaniaFiltrow() {
+
+  // w zaleznosci czy klasa Rg jest float = none czy right - wyswietla w boxie lub module
+  
+  var domyslna_szerokosc = 760;
+  var typ_szablonu = '{__TYP_SZABLONU}';
+  
+  if ( typ_szablonu == 'tak' ) {
+       domyslna_szerokosc = 1000;
+  }
+  
+  if ( $('#Strona').outerWidth() < domyslna_szerokosc ) {
+       //
+       wyswietlFiltrModul();
+       filtryObsluga();
+       //
+    } else {
+       //
+       wyswietlFiltrBox();
+       filtryObsluga();
+       //              
+  }
+
+}
+
+function wyswietlFiltrBox() {
+
+  if ( $('.ListingFiltry').css('display') == 'block' ) {
+      
+      // pobiera aktywne filtry
+      var aktywne_filtry = '';
+      if ( $('.AktywneFiltry').length > 0 ) {
+           //
+           aktywne_filtry = '<div class="UzyteTagi">' + $('.AktywneFiltry').html() + '</div>';
+           //
+      }
+      
+      // pobiera zawartosc filtrow listingu
+      var filtry = aktywne_filtry + $('#filtr').html();
+
+      // ukrywa zawartosc filtrow nad listingiem  
+      $('.ListingFiltry').hide();
+
+      // wstawia w box
+      $('#filtryBox').html(filtry);
+
+      // usuwa naglowek 
+      $('#filtryBox .Lf strong').remove();
+      // ukrywa element gdzie byl naglowek
+      $('#filtryBox .Lf').hide();
+
+      $('#filtryBox').append('<div id="filtryWyswietl"></div>');
+      $('#filtryWyswietl').html( $('#filtryBox .Rg').html() );
+      $('#filtryBox .Rg').remove();
+      
+      // wyswietla filtry w boxie
+      $('#boxFiltry').show(); 
+      
+      // wyswietla opcje wyboru
+      $(".Multi").find('.Wybor').addClass("Scroller");
+      $(".Multi").find('.Wybor').show();
+
+      // tylko jezeli box filtrow jest w prawej kolumnie
+      if ( $('#PrawaKolumna #boxFiltry').length ) {
+
+          // zmieni nazwy pol zeby nie bylo duplikatow
+          $('#filtr').find('input').each(function() {
+              //
+              nazwa_tmp = $(this).attr('name');
+              id_tmp = $(this).attr('id');
+              //
+              if ( nazwa_tmp != undefined ) {
+                   $(this).attr('name', 'tmp_' + nazwa_tmp);
+              }
+              if ( id_tmp != undefined ) {
+                   $(this).attr('id', 'tmp_' + id_tmp);
+              }
+              //
+          });  
+          
+          $('#filtr').find('label').each(function() {
+              //
+              for_tmp = $(this).attr('for');
+              id_tmp = $(this).attr('id');
+              //
+              if ( for_tmp != undefined ) {
+                   $(this).attr('for', 'tmp_' + for_tmp);
+              }
+              if ( id_tmp != undefined ) {
+                   $(this).attr('id', 'tmp_' + id_tmp);
+              }
+              //
+          });           
+      
+      }
+
+      $(".ulamek").change(	
+          function () {
+              var wart = $(this).val();
+                  if (wart != '') {
+                  regexp = eval("/,/g");
+                  wart = wart.replace(regexp,".");         
+                  if (isNaN(wart)) {
+                      $(this).val('');
+                     } else {
+                      wart = parseFloat(wart);
+                      $(this).val( wart );
+                  }
+              }
+          }
+      ); 
+      
+  }
+  
+}
+
+function wyswietlFiltrModul() {
+
+  // pobiera zawartosc filtrow z boxu
+  var filtryBox = $('#filtryBox').html();
+
+  // czysci zawartosc filtrow w boxie
+  $('#filtryBox').html('');
+
+  // ukrywa box filtrow
+  $('#boxFiltry').hide();
+  
+  // wyswietla filtry nad listingiem
+  $('.ListingFiltry').show();   
+  
+  // tylko jezeli box filtrow jest w prawej kolumnie
+  if ( $('#PrawaKolumna #boxFiltry').length ) {
+
+      // zmieni nazwy pol zeby nie bylo duplikatow
+      $('#filtr').find('input').each(function() {
+          //      
+          nazwa_tmp = $(this).attr('name');
+          id_tmp = $(this).attr('id');
+          //
+          if ( nazwa_tmp != undefined ) {
+               $(this).attr('name', nazwa_tmp.replace('tmp_', ''));
+          }
+          if ( id_tmp != undefined ) {
+               $(this).attr('id', id_tmp.replace('tmp_', ''));
+          }
+          //
+      }); 
+
+  }
+      
+  // ukrywa opcje wyboru
+  $(".Multi").find('.Wybor').hide();
+
+}
+
+function filtryObsluga() {
+
+  var typ_szablonu = '{__TYP_SZABLONU}';
+  
+  if ( $('.ZastosujUsunFiltry').length > 0 && typ_szablonu == 'tak' && $('.ZastosujUsunFiltryMobile').length == 0 ) {
+      //
+      $('<style>').prop('type', 'text/css').html('@media (min-width:1024px) { .ZastosujUsunFiltryMobile { display: none !important; } }').appendTo('head');
+      //    
+      var kopia = $('.ZastosujUsunFiltry').clone();
+      kopia.addClass('ZastosujUsunFiltryMobile').css({ 'order': '3' });
+      $('.ZastosujUsunFiltry').after(kopia);
+      //
+  }
+
+  if ( typ_szablonu == 'nie' ) {
+
+      // rozwijanie okna filtrow przez klikniecie - dla rwd
+      $(".Multi span").off('click').click(function(){ 
+          if ( $(this).parent().find('.Wybor').css('display') == 'none' ) {
+               $(this).parent().find('.Wybor').stop().slideDown("fast");
+          } else {
+               $(this).parent().find('.Wybor').stop().slideUp("fast");
+          }
+      });     
+
+  }      
+  
+  $(".Multi").off('click').click( function() { 
+      wlaczonyFiltr = false;
+      $(this).find('label').each(function() {
+          //
+          if ( $(this).attr('class') == 'Wlaczony' ) {
+               wlaczonyFiltr = true;
+          }
+          //
+      });
+      //
+      if ( wlaczonyFiltr == true ) {
+          $(this).find('b').addClass('Wlaczony');
+        } else {
+          $(this).find('b').removeClass('Wlaczony');
+      }
+  });  
+
+  $('.Multi .Wybor label').off('click').click( function() {
+      if ( $(this).attr('class') == 'Wlaczony' ) {
+          $(this).removeClass('Wlaczony');
+        } else {
+          $(this).addClass('Wlaczony');
+      }  
+  });
+  
+  $('.Multi .Wybor label a').off('click').click( function() {
+      //
+      var idelem = $(this).attr('data-id');
+      //
+      if ( $('#label_' + idelem).attr('class') == 'Wlaczony' ) {
+          $('#label_' + idelem).removeClass('Wlaczony');
+          $('#' + idelem).prop('checked', false);                  
+        } else {
+          $('#label_' + idelem).addClass('Wlaczony');
+          $('#' + idelem).prop('checked', true); 
+      }  
+      //      
+      ustawScroll();
+      //
+      // sprawdza czy jest formularz z filtrami
+      if ( $('#boxFiltry').length && $('#filtryBox').html() != '' ) {      
+           $('#filtrBox').submit();
+        } else {
+           $('#filtr').submit();
+      }
+      //
+  });  
+  
+  if ( !$('#filtryWyswietl').length ) {
+  
+      // hover oraz tab - przyjecie focusa
+      $(".Multi").on("mouseenter focusin", function() { 
+          //
+          if ($(this).find(".Wybor").css("position") == "absolute") {
+              if ($(window).width() > 1023) {
+                  $(this).find(".Wybor").stop().slideDown("fast");
+              }
+          }
+          //
+      });
+
+      $(".Multi").on("mouseleave", function() { 
+          //
+          const wybor = $(this).find(".Wybor");
+          //
+          if (wybor.css("position") == "absolute") {            
+              setTimeout(() => {
+                  if (!$(this).is(":hover") && !wybor.is(":hover")) {
+                      if ($(window).width() > 1023) {
+                          wybor.stop().slideUp("fast");
+                      }
+                  }
+              }, 100); 
+          }
+          //
+      });
+
+      $(".Multi").on("focusout", function() {   
+          //
+          const wybor = $(this).find(".Wybor");
+          //
+          setTimeout(() => {
+              if (!$(this).is(":focus-within") && !wybor.is(":hover")) {
+                  if ($(window).width() > 1023) {
+                      wybor.stop().slideUp("fast");
+                  }
+              }
+          }, 100);
+          //
+      });
+      
+  }
+
+  // zaznaczenie label wewnatrz filtrow
+  $(".Multi .Wybor label").off("keydown").on("keydown", function (event) {
+      //
+      if (event.key === " " && !event.repeat) {
+          //
+          event.preventDefault(); 
+          event.stopPropagation();
+          //
+          let checkboxId = $(this).attr("for"); 
+          let checkbox = $("#" + checkboxId); 
+          //
+          if (checkbox.length) {
+              //
+              let isChecked = checkbox.prop("checked");
+              checkbox.prop("checked", !isChecked).trigger("change");
+              //
+              if (isChecked) {
+                $(this).removeClass("Wlaczony");
+              } else {
+                $(this).addClass("Wlaczony");
+              } 
+              //
+          }
+          //
+      }
+      //
+  });
+
+  aktualizujTabIndex();
+  
+  $(window).resize(function() {            
+      //
+      if (szerokoscEkranuTmp != $(window).width()) {
+          if ( !$('#filtryBox').length ) {
+              szerokoscEkranuTmp = $(window).width();
+              aktualizujTabIndex();
+          }
+      }
+      //
+  });        
+   
+}
+
+function aktualizujTabIndex() {
+  //
+  var typ_szablonu = '{__TYP_SZABLONU}';
+  //
+  if ( typ_szablonu == 'tak' ) {
+      //  
+      $(".FiltrNaglowek").each(function () {
+          if ($(window).width() < 1024) {            
+            $(this).removeAttr("tabindex");
+          } else {
+            $(this).attr("tabindex", "0");
+          }
+      });
+      //
+      // jezeli jest wyswietlanie w boxie
+      if ( $('#filtryWyswietl').length ) {
+           //
+           $(".FiltrNaglowek").each(function () {
+               $(this).removeAttr("tabindex");
+           });
+           //
+      }
+      //
+  }
+  //
+}

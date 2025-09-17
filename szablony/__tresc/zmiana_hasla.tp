@@ -1,0 +1,56 @@
+<!-- wyglad naglowka strony -->
+
+<h1 class="StrNaglowek">
+    <span>{__TLUMACZ:NAGLOWEK_ZMIANA_HASLA}</span>
+</h1>
+
+<!-- tresc strony -->
+
+<section class="StrTresc">
+
+    <p class="Informacja">
+        {__TLUMACZ:KLIENT_ZMIANA_HASLA_INFORMACJA}
+    </p>
+    
+    <br /> <br />
+    
+    <form action="{__SSL:zmiana-hasla.html}" method="post" id="Zmienhaslo" class="cmxform"> 
+    
+        <div class="error">
+            <span id="span_<?php echo uniqid(); ?>"></span>
+        </div>
+
+        <p>
+            <span>{__TLUMACZ:KLIENT_STARE_HASLO} <em class="required" id="em_<?php echo uniqid(); ?>"></em></span>
+            <input type="password" size="35" style="width:150px" name="haslo_stare" id="haslo_stare" />
+        </p>
+        
+        <p>
+            <span>{__TLUMACZ:KLIENT_NOWE_HASLO} <em class="required" id="em_<?php echo uniqid(); ?>"></em></span>
+            <input type="password" size="35" style="width:150px" name="nowe_haslo" id="nowe_haslo" />
+        </p>
+
+        <p>
+            <span>{__TLUMACZ:KLIENT_POWTORZ_HASLO} <em class="required" id="em_<?php echo uniqid(); ?>"></em></span>
+            <input type="password" size="35" style="width:150px" name="haslo_powtorz" id="haslo_powtorz" />
+        </p>
+        
+        <p>
+        
+            <br />
+            
+            <!-- nie usuwac -->
+            <input type="hidden" name="akcja" value="zapisz" />
+            <input type="hidden" name="id" id="id" value="{__KLIENT_ID}" />
+            
+            <!-- przyciski -->
+            <a href="{__SSL:panel-klienta.html}" class="przycisk">{__TLUMACZ:PRZYCISK_ANULUJ}</a>     
+            <input type="submit" id="submitButton" class="przyciskWylaczony" value="{__TLUMACZ:PRZYCISK_AKTUALIZUJ_DANE}" disabled="disabled" />
+            
+        </p>
+
+    </form>
+  
+</section>
+
+

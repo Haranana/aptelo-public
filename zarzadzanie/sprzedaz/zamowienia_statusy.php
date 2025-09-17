@@ -1,0 +1,133 @@
+<?php
+chdir('../'); 
+
+// wczytanie ustawien inicjujacych system
+require_once('ustawienia/init.php');
+
+// zainicjowanie klasy sprawdzajacej czy uzytkownik ma dostep do modulu
+$prot = new Dostep($db);
+
+if ($prot->wyswietlStrone) {
+
+    Listing::postGet(basename($_SERVER['SCRIPT_NAME']));
+
+    $zapytanie = "select * from orders_status s, orders_status_description sd where s.orders_status_id = sd.orders_status_id and sd.language_id = '".(int)$_SESSION['domyslny_jezyk']['id']."' order by s.orders_status_type, sd.orders_status_name";
+    $sql = $db->open_query($zapytanie);
+
+    // tworzenie paska do nastepnych okien - obliczanie ile bedzie podstron
+    $ile_pozycji = (int)$db->ile_rekordow($sql); // ile jest wszystkich produktow
+    $ile_licznika = ($ile_pozycji / ILOSC_WYNIKOW_NA_STRONIE);
+    if ($ile_licznika == (int)$ile_licznika) { $ile_licznika = (int)$ile_licznika; } else { $ile_licznika = (int)$ile_licznika+1; }
+    $db->close_query($sql);
+    // ******************************************************************************************************************************************************************
+    // obsluga listingu AJAX
+    if (isset($_GET['parametr'])) {
+
+        if ($ile_pozycji > 0) {
+            
+            $zapytanie .= " limit ".$_GET['parametr'];
+            $sql = $db->open_query($zapytanie);
+
+            $listing_danych = new Listing();
+            
+            $tablica_naglowek = array(array('ID','center'),
+                                      array('Nazwa','center'),
+                                      array('Kolor','center'),
+                                      array('Typ','center'),
+                                      array('Domyślny','center'));
+            echo $listing_danych->naglowek($tablica_naglowek);
+            
+            $tekst = '';
+            while ($info = $sql->fetch_assoc()) {
+            
+                  if (isset($_GET['id_poz']) && (int)$_GET['id_poz'] == $info['orders_status_id']) {
+                     $tekst .= '<tr class="pozycja_on" id="sk_'.$info['orders_status_id'].'">';
+                   } else {
+                     $tekst .= '<tr class="pozycja_off" id="sk_'.$info['orders_status_id'].'">';
+                  }         
+
+                  $tablica = array(array($info['orders_status_id'],'center'),
+                                   array($info['orders_status_name'])); 
+
+                  // kolor      
+                  $tablica[] = array('<span class="StatusZamowieniaKolor" style="background:#'.$info['orders_status_color'].'">&nbsp;</span>','center');                                   
+                                   
+                  // typ
+                  switch( $info['orders_status_type'] ) {
+                      case  1: $typ_pola = 'Nowe'; break;
+                      case  2: $typ_pola = 'W realizacji'; break;
+                      case  3: $typ_pola = 'Zamknięte (zrealizowane)'; break;
+                      case  4: $typ_pola = 'Zamknięte (niezrealizowane)'; break;
+                  }      
+                  $tablica[] = array($typ_pola,'center');                   
+
+                  // domyslny
+                  if ($info['orders_status_default'] == '1') { $obraz = '<em class="TipChmurka"><b>Ten status jest domyślny</b><img src="obrazki/aktywny_on.png" alt="Ten status jest domyślny" /></em>'; } else { $obraz = '-'; }              
+                  $tablica[] = array($obraz,'center');                    
+
+                  $tekst .= $listing_danych->pozycje($tablica);
+                  
+                  $tekst .= '<td class="rg_right IkonyPionowo">';
+                  
+                  $zmienne_do_przekazania = '?id_poz='.$info['orders_status_id'];
+                  $tekst .= '<a class="TipChmurka" href="sprzedaz/zamowienia_statusy_komentarze.php?status_id='.$info['orders_status_id'].'"><b>Standardowe komentarze do zamówień</b><img src="obrazki/lista_wojewodztw.png" alt="Standardowe komentarze do zamówień" /></a>';
+                  $tekst .= '<a class="TipChmurka" href="sprzedaz/zamowienia_statusy_edytuj.php'.$zmienne_do_przekazania.'"><b>Edytuj</b><img src="obrazki/edytuj.png" alt="Edytuj" /></a>';
+                  if ( $info['orders_status_default'] != '1' ) {
+                    $tekst .= '<a class="TipChmurka" href="sprzedaz/zamowienia_statusy_usun.php'.$zmienne_do_przekazania.'"><b>Skasuj</b><img src="obrazki/kasuj.png" alt="Skasuj" /></a>';
+                  } else {
+                    $tekst .= '<em class="TipChmurka"><b>Nie można usunąć domyślnego statusu</b><img src="obrazki/kasuj_off.png" alt="Nie można usunąć domyślnego statusu" /></em>';
+                  }                   
+                  
+                  $tekst .= '</td></tr>';
+                  
+            } 
+            $tekst .= '</table>';
+            //
+            echo $tekst;
+            //
+            $db->close_query($sql);
+            unset($listing_danych,$tekst,$tablica,$tablica_naglowek);        
+
+        }
+    }  
+    
+    // ******************************************************************************************************************************************************************
+    // wyswietlanie listingu
+    if (!isset($_GET['parametr'])) { 
+
+        // wczytanie naglowka HTML
+        include('naglowek.inc.php');
+        ?>
+
+        <div id="caly_listing">
+        
+            <div id="ajax"></div>
+            
+            <div id="naglowek_cont">Statusy zamówień</div>     
+
+            <div id="PozycjeIkon">
+                <div>
+                    <a class="dodaj" href="sprzedaz/zamowienia_statusy_dodaj.php">dodaj nową pozycję</a>
+                </div>            
+            </div>
+            <div style="clear:both;"></div>               
+        
+            <div id="wynik_zapytania"></div>
+            <div id="aktualna_pozycja">1</div>
+            <div id="dolny_pasek_stron"></div>
+            <div id="pokaz_ile_pozycji"></div>
+            <div id="ile_rekordow"><?php echo $ile_pozycji; ?></div>
+            
+            <script>
+            $("#wynik_zapytania").html('<div style="padding:10px">Trwa ładowanie danych ...</div>');
+            var skocz = '<?php echo ((isset($_GET['id_poz']) && (int)$_GET['id_poz'] > 0) ? (int)$_GET['id_poz'] : ''); ?>';
+            <?php Listing::pokazAjax('sprzedaz/zamowienia_statusy.php', $zapytanie, $ile_licznika, $ile_pozycji, 'orders_status_id'); ?>
+            </script>             
+
+        </div>
+                    
+        <?php include('stopka.inc.php'); ?>
+
+    <?php }
+
+} ?>

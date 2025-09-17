@@ -1,0 +1,47 @@
+<html>
+  <head>
+    <meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
+    <title>Raty PayU</title>
+    <link rel="stylesheet" href='css/styl.css'>
+  </head>
+<body>
+  <div id='centrowanie'>
+    <div id='segment_1' class='l'><img src='grafika/1.png'></div>
+    <div id='segment_2' class='l'><img src='grafika/2.png'></div>
+    <div id='segment_3' class='l'><img src='grafika/3.png'></div>
+    <div id='oblicz'><img src='grafika/oblicz.png'></div>
+    <div id="installment-calc" ></div> <!-- KALKULATOR -->
+    <div id='segment_5' class='l'><img src='grafika/5.png'></div>
+    <div id='segment_6' class='l'><img src='grafika/6.png'></div>
+    <div id='segment_7' class='l'><img src='grafika/7.png'></div>
+    <div id='segment_8' class='l'><img src='grafika/8.png'></div>
+    <div id='segment_9' class='l'><img src='grafika/9.png'></div>
+    <div id='segment_10' class='l'><img src='grafika/10.png'></div>
+    <div id='segment_11' class='l'><img src='grafika/11.png'></div>
+    <div id='segment_12' class='l'><img src='grafika/12.png'></div>
+  </div>
+
+  <script type="text/javascript" src="http://code.jquery.com/jquery-1.6.min.js"></script>
+  <script src="http://code.jquery.com/ui/1.8.0/jquery-ui.js"></script>
+  <script src="https://secure.payu.com/res/v2/jquery-1.7.2.js"></script>
+  <script src="https://secure.payu.com/res/v2/jquery-ui-1.7.2.min.js"></script>
+  <script src="https://secure.payu.com/res/v2/jquery.i18n.js"></script>
+  <script src="https://secure.payu.com/res/v2/jsrender.js"></script>
+  <script src="https://secure.payu.com/res/v2/openpayu-2.0.js"></script>
+  <script src="https://secure.payu.com/res/v2/widget-installments-2.0.js"></script>
+  <script src="http://www.raty.payu.pl/js/bf78ad4.js"></script>
+
+        
+
+  <script type="text/javascript">
+    var openpayu = openpayu || {};
+    openpayu.options =
+      {
+        interestRate: '13',
+        interestRateWithOut: '16',
+        currencySign: 'PLN'
+      };
+    OpenPayU.Installments.calculator('#installment-calc');
+  </script>
+</body>
+</html>

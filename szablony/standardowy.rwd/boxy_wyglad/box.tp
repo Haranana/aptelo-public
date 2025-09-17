@@ -1,0 +1,17 @@
+<!-- ogolny wyglad boxu -->
+
+<div class="CalyBox">
+  
+    <!-- wyglad naglowka boxu - sprawdza czy box ma miec naglowek -->
+
+    <?php if ($__pA['box_header'] == '1') { ?>
+        <div class="BoxNaglowek">{__NAGLOWEK_BOXU}</div>
+    <?php } ?>
+
+    <!-- tresc boxu -->
+
+    <div class="BoxTresc BoxZawartosc">
+        {__TRESC_BOXU}
+    </div>
+    
+</div>

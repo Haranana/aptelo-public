@@ -1,0 +1,116 @@
+/* zakladka opinie o sklepie - wysuwana zakladka */
+#opinie { padding:0; position:fixed; background:#ffffff; }
+#opinieIkona { position:absolute; }
+#opinieIkona span { display:block; margin:0 2px 4px 2px; width:70px; background:#ff7200; text-align:center; color:#ffffff; font-size:130%; font-weight:bold; font-family:Arial, Tahoma; border-radius:var(--zaokraglenie-5-px); padding:10px; }
+#opinieSklepu { border:1px solid #dbdbdb; display:inline-block; width:250px; padding:10px; }
+#opinieSklepu .Podzial { display:table; width:100%; }
+#opinieSklepu .Podzial .Wiersz div { display:table-cell; vertical-align:middle; }
+#opinieSklepu .Podzial .Wiersz div strong { font-size:160%; }
+#opinieSklepu .Podzial .Wiersz div span { display:block; background:#ff7200; color:#ffffff; border-radius:var(--zaokraglenie-5-px); padding:5px; text-align:center; }
+#opinieSklepu .Podzial .Wiersz div span b { font-size:180%; display:block; margin-top:3px; }
+#opinieSklepu .Podzial .Wiersz { display:table-row; }
+#opinieSklepu .SredniaOcenaSklepuRamka { background:#f1f1f1; margin:10px 0 10px 0; padding:7px; border-radius:var(--zaokraglenie-5-px); }
+#opinieSklepu .SredniaOcenaSklepu { font-size:120%; width:auto; margin:0 auto; }
+#opinieSklepu .SredniaOcenaSklepu b { font-size:180%; color:#ff7200; display:inline-block; padding-left:10px; }
+#opinieSklepu .Oceny { list-style-type:none; padding:0; margin:0 8px 10px 8px; }
+#opinieSklepu .Oceny li { padding:5px 0 5px 0; font-size:90%; }
+#opinieSklepu .Oceny span.Gwiazdki { float:right; line-height:1px !important; margin-top:5px !important; }
+#opinieSklepu .Oceny span.Gwiazdki::before { letter-spacing: 1.0px; }
+#opinieSklepu .IluPoleca { background:#ff7200; color:#ffffff; border-radius:var(--zaokraglenie-5-px); padding:5px; text-align:center; }
+#opinieSklepu .IluPoleca b { display:block; font-size:190%; }
+#opinieSklepu .WszystkieOpinie a { display:block; text-align:center; color:#ff7200; font-size:110%; margin:10px 0 5px 0; }
+#opinieSklepu .WszystkieOpinie a:hover { color:#444444; }
+#opinieSklepu .BrakOpiniiZakladka { padding:15px; text-align:center; }
+
+/* podsumowanie opinii w listingu */
+.PodsumowanieOpiniiSklepu { padding:0 0 20px 0; }
+
+.OcenySklepu { list-style-type:none; margin:0; padding:20px; background:var(--kolor-szary-jasny); display:flex; justify-content:space-between; flex-wrap:wrap; }
+.OcenySklepu li { padding:10px; width:calc(50% - 20px); text-align:center; }
+.OcenySklepu li span { display:block !important; margin-top:5px !important; }
+
+.SumaOcenKontener { padding:5px 0 5px 0; text-align:center; }
+.SumaOcenKontener b { font-size:160%; background:#ff7200; color:#ffffff; border-radius:var(--zaokraglenie-5-px); padding:8px 10px 8px 10px; text-align:center; color:#ffffff; display:inline-block; vertical-align:middle; }
+.SumaOcenKontener span { font-size:110%; padding-left:10px; display:inline-block; vertical-align:middle; }
+@media only screen and (max-width:479px) {
+  .SumaOcenKontener span { display:block; margin-top:10px; padding:0; }
+}
+
+@media only screen and (max-width:799px) {
+  .SumaOcen { padding-bottom:15px; }
+}
+@media only screen and (min-width:800px) {
+  .PodsumowanieOpiniiSklepu { display:flex; justify-content:space-between; align-content:flex-start; align-items:center; flex-wrap:wrap; }
+  .PodsumowanieOpiniiSklepu .cl { display:none; }
+  .SumaOcen { width:calc(50% - 20px); padding-right:20px; }
+  .OcenySklepu { width:calc(50% - 40px); }
+}
+
+/* listing opinii o sklepie */
+.Listing .Opinie { margin:8px 0 8px 0; }
+.Listing .Opinie:last-child { border-bottom:0; }
+.Listing .OcenaSklepu { padding:10px 0 10px 0; }
+.Listing .OcenaSklepu .SredniaOcena { font-size:110%; text-transform:uppercase; margin:0; }
+.Listing .OcenaSklepu .SredniaOcena b { display:inline-block; font-size:180%; margin-left:8px; }
+.Listing .OcenaSklepu .Oceny { list-style-type:none; padding:0; margin:10px 0 10px 0; }
+.Listing .OcenaSklepu .Oceny li { padding:5px 0 5px 0; }
+.Listing .OcenaSklepu .Oceny li:first-child { margin-top:5px; }
+.Listing .OcenaSklepu .Oceny li span { float:right; }
+
+@media only screen and (max-width:799px) {
+  .Listing .OcenaInfo { padding:0 10px 20px 0; }
+}
+@media only screen and (min-width:800px) { 
+  .Listing .Opinie { display:flex; justify-content:space-between; align-content:flex-start; align-items:center; }
+  .Listing .OcenaSklepu { width:45%; }
+  .Listing .OcenaInfo { width:calc(55% - 50px); padding:10px 10px 10px 40px; }
+}
+.Listing .OcenaInfo .AutorData { list-style-type:none; padding:0; margin:5px 0 0 0; }
+.Listing .OcenaInfo .AutorData li { display:inline-block; margin:0 20px 10px 0; }
+.Listing .OcenaInfo .AutorData li:first-child { padding-right:20px; }
+.Listing .OcenaInfo .KomentarzOpinii { margin:10px 0 10px 0; line-height:1.5; }
+.Listing .OcenaInfo .KlientPoleca { margin-top:15px; font-weight:bold; }
+
+.Listing .OcenaInfo .ProduktyZakupil { opacity:0.7; }
+.Listing .OcenaInfo .ProduktyZakupil strong { margin:15px 0 8px 0; display:block; font-weight:bold; }
+.Listing .OcenaInfo .ProduktyZakupil ul { list-style-type:square; padding:0; margin:0; list-style-position: inside; }   
+.Listing .OcenaInfo .ProduktyZakupil ul li { margin:2px 0 3px 0; }
+
+.OpinieRecenzjaProduktu { margin:10px 0 10px 0; }
+.OpinieRecenzjaProduktu b { display:block; margin-bottom:8px; }
+.OpinieRecenzjaProduktuOcena { display:table; }
+.OpinieRecenzjaProduktuOcena span.Gwiazdki { display:inline-block !important; margin-left:10px !important; }
+.OpinieRecenzjaProduktuOcena div { display:table-cell; vertical-align:top; padding-right:40px; }
+@media only screen and (max-width:1023px) {
+  .OpinieRecenzjaProduktuOcena div textarea { max-width:250px; }
+}
+@media only screen and (max-width:799px) {
+  .OpinieRecenzjaProduktuOcena div { display:block; padding:0 0 10px 0; }
+}
+
+/* napisanie opinii o sklepie */
+.StrTresc .Opinia .OpisTekst { line-height:1.5; }
+.StrTresc .Opinia p { margin-bottom:10px; display:block; }
+.StrTresc .Opinia h5 { font-size:120%; margin-bottom:15px; }
+.StrTresc .Opinia .Przyciski a { margin:10px 10px 0 0; }
+.StrTresc .Opinia .OcenaSklepuWybor { list-style-type:none; padding:0; margin:0 0 20px 0; }
+.StrTresc .Opinia span.Gwiazdka { display:inline-block !important; }
+
+.StrTresc .Opinia .OcenaSklepuWybor li span { display:block; }
+.StrTresc .Opinia .OcenaSklepuWybor li > span { padding-bottom:15px; margin-bottom:15px; }
+.StrTresc .Opinia .OcenaSklepuWybor li span.Gwiazdki { display:inline-block; margin-left:30px !important; }
+.StrTresc .Opinia .OcenaSklepuWybor li label { margin:0; padding:0; line-height:normal; min-height:0; height:auto; }
+
+@media only screen and (max-width:479px) {
+  .StrTresc .Opinia .OcenaSklepuWybor li { width:100%; padding:0 0 20px 0; }
+}
+@media only screen and (min-width:480px) {
+  .StrTresc .Opinia .OcenaSklepuWybor { display:flex; justify-content:space-between; align-content:flex-start; flex-wrap:wrap; }  
+}
+@media only screen and (min-width:480px) and (max-width:799px) {
+  .StrTresc .Opinia .OcenaSklepuWybor li { width:calc(50% - 25px); padding:0 25px 30px 0; }
+}
+@media only screen and (min-width:800px) {
+  .StrTresc .Opinia .OcenaSklepuWybor li { width:calc(25% - 25px); padding-right:25px; }
+}
+

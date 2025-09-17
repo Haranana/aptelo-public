@@ -1,0 +1,139 @@
+<!-- wyglad naglowka strony -->
+
+<h1 class="StrNaglowek">
+    <span>{__TLUMACZ:NAPISZ_OPINIE_O_PRODUKCIE} {__NAZWA_PRODUKTU}</span>  
+</h1>
+
+<!-- tresc strony -->
+
+<section class="StrTresc">
+
+    <?php 
+    $BylaRecenzjaKlienta = $__pA; 
+    $IdKlienta = (int)$__pB; 
+    ?>
+
+    <!-- wyswietlany komunikat po zapisaniu recenzji jezeli jest get = sukces -->
+
+    <?php if (isset($_GET['sukces'])) { ?>
+    
+    <p class="Informacja">
+        {__TLUMACZ:NAPISANIE_RECENZJI_SUKCES} <br />
+        {__TLUMACZ:INFO_O_ZATWIERDZENIU_RECENZJI}
+    </p>
+
+    <?php }  ?> 
+    
+    <!-- wyswietlanie formularza napisania recenzji -->
+    
+    <?php if (!isset($_GET['sukces'])) { ?>
+
+    <div class="Recenzja">
+    
+        <?php if ( $BylaRecenzjaKlienta == 'nie' ) { ?>
+    
+        <!-- formularz -->
+        
+        <div class="OpisTekst">
+
+            <form action="{__LINK}" method="post" id="pisanie_recenzji" class="cmxform" <?php echo (($IdKlienta > 0) ? 'enctype="multipart/form-data"' : ''); ?>> 
+
+                <div class="error">
+                    <span id="span_<?php echo uniqid(); ?>"></span>
+                </div>
+
+                <p>
+                    <span><label class="formSpan" for="autor">{__TLUMACZ:AUTOR_RECENZJI}:</label> <em class="required" id="em_<?php echo uniqid(); ?>"></em></span>
+                    <input type="text" size="35" style="width:50%" value="{__IMIE_AUTORA}" name="autor" id="autor" />
+                </p>            
+
+                <p>
+                    <span><label class="formSpan" for="opinia">{__TLUMACZ:OPINIA_O_PRODUKCIE}:</label> <em class="required" id="em_<?php echo uniqid(); ?>"></em></span>
+                    <textarea rows="5" cols="35" style="width:90%" name="opinia" id="opinia" class="required"></textarea>
+                </p> 
+                
+                <?php if ( $IdKlienta > 0 ) { ?>
+                        
+                    <p>
+                       <span><label class="formSpan" for="zdjecie_1">{__TLUMACZ:ZDJECIE_WGRYWANIE}:</label></span>
+                       <input type="file" name="zdjecie_1" id="zdjecie_1" />
+                    </p>
+              
+                <?php } ?>             
+                
+                <p>
+                    <span>{__TLUMACZ:OCENA_PRODUKTU}: <em class="required" id="em_<?php echo uniqid(); ?>"></em></span>
+
+                    <?php if ( Wyglad::TypSzablonu() == true ) { ?>
+
+                        <label for="ocena_5" tabindex="0" aria-label="{__TLUMACZ:RECENZJA_OCENA_5}"><span class="Gwiazdki" id="radio_'.uniqid().'" style="--ocena: 5.0;"></span><input type="radio" id="ocena_5" value="5" name="ocena" checked="checked" />{__TLUMACZ:RECENZJA_OCENA_5}<span class="radio" id="radio_ocena_5"></span></label><br />
+                        <label for="ocena_4" tabindex="0" aria-label="{__TLUMACZ:RECENZJA_OCENA_4}"><span class="Gwiazdki" id="radio_'.uniqid().'" style="--ocena: 4.0;"></span><input type="radio" id="ocena_4" value="4" name="ocena" />{__TLUMACZ:RECENZJA_OCENA_4}<span class="radio" id="radio_ocena_5"></span></label><br />
+                        <label for="ocena_3" tabindex="0" aria-label="{__TLUMACZ:RECENZJA_OCENA_3}"><span class="Gwiazdki" id="radio_'.uniqid().'" style="--ocena: 3.0;"></span><input type="radio" id="ocena_3" value="3" name="ocena" />{__TLUMACZ:RECENZJA_OCENA_3}<span class="radio" id="radio_ocena_3"></span></label><br />
+                        <label for="ocena_2" tabindex="0" aria-label="{__TLUMACZ:RECENZJA_OCENA_2}"><span class="Gwiazdki" id="radio_'.uniqid().'" style="--ocena: 2.0;"></span><input type="radio" id="ocena_2" value="2" name="ocena" />{__TLUMACZ:RECENZJA_OCENA_2}<span class="radio" id="radio_ocena_2"></span></label><br />
+                        <label for="ocena_1" tabindex="0" aria-label="{__TLUMACZ:RECENZJA_OCENA_1}"><span class="Gwiazdki" id="radio_'.uniqid().'" style="--ocena: 1.0;"></span><input type="radio" id="ocena_1" value="1" name="ocena" />{__TLUMACZ:RECENZJA_OCENA_1}<span class="radio" id="radio_ocena_1"></span></label>
+
+                    <?php } else { ?>
+
+                        <label class="formSpan" tabindex="0" for="ocena_5" aria-label="{__TLUMACZ:RECENZJA_OCENA_5}"><img alt="{__TLUMACZ:OCENA_PRODUKTU} 5/5" src="szablony/{__DOMYSLNY_SZABLON}/obrazki/recenzje/ocena_5.png" /></label> <input type="radio" value="5" id="ocena_5" name="ocena" checked="checked" /> <b>{__TLUMACZ:RECENZJA_OCENA_5}</b><br />
+                        <label class="formSpan" tabindex="0" for="ocena_4" aria-label="{__TLUMACZ:RECENZJA_OCENA_4}"><img alt="{__TLUMACZ:OCENA_PRODUKTU} 4/5" src="szablony/{__DOMYSLNY_SZABLON}/obrazki/recenzje/ocena_4.png" /></label> <input type="radio" value="4" id="ocena_4" name="ocena" /> <b>{__TLUMACZ:RECENZJA_OCENA_4}</b><br />
+                        <label class="formSpan" tabindex="0" for="ocena_3" aria-label="{__TLUMACZ:RECENZJA_OCENA_3}"><img alt="{__TLUMACZ:OCENA_PRODUKTU} 3/5" src="szablony/{__DOMYSLNY_SZABLON}/obrazki/recenzje/ocena_3.png" /></label> <input type="radio" value="3" id="ocena_3" name="ocena" /> <b>{__TLUMACZ:RECENZJA_OCENA_3}</b><br />
+                        <label class="formSpan" tabindex="0" for="ocena_2" aria-label="{__TLUMACZ:RECENZJA_OCENA_2}"><img alt="{__TLUMACZ:OCENA_PRODUKTU} 2/5" src="szablony/{__DOMYSLNY_SZABLON}/obrazki/recenzje/ocena_2.png" /></label> <input type="radio" value="2" id="ocena_2" name="ocena" /> <b>{__TLUMACZ:RECENZJA_OCENA_2}</b><br />
+                        <label class="formSpan" tabindex="0" for="ocena_1" aria-label="{__TLUMACZ:RECENZJA_OCENA_1}"><img alt="{__TLUMACZ:OCENA_PRODUKTU} 1/5" src="szablony/{__DOMYSLNY_SZABLON}/obrazki/recenzje/ocena_1.png" /></label> <input type="radio" value="1" id="ocena_1" name="ocena" /> <b>{__TLUMACZ:RECENZJA_OCENA_1}</b>
+
+                    <?php } ?>
+
+                </p>
+                
+                <div class="cl"></div>
+
+                <p>
+                    <input type="hidden" name="akcja" value="zapisz" />
+                    <input type="hidden" name="id_produkt" value="{__ID_PRODUKTU}" />
+                    <input type="hidden" name="klient" value="{__ID_KLIENTA}" />
+                    <input type="hidden" name="tok" value="{__TOKEN}" />
+                    <input type="submit" style="margin-top:15px" id="submitButton" class="przycisk" value="{__TLUMACZ:PRZYCISK_WYSLIJ}" />
+                </p>
+
+                <p class="Informacja" style="margin-top:20px">
+                    {__TLUMACZ:INFO_O_ZATWIERDZENIU_RECENZJI}
+                </p>
+                
+            </form>    
+
+            <!-- informacja o systemie punktow - ile klient otrzyma za napisanie recenzji -->
+
+            <div {__CSS_INFO_O_PUNKTACH_RECENZJI}>
+                
+                <p class="InformacjaOk" style="margin-top:20px">
+                    {__INFO_O_PUNKTACH_RECENZJI}
+                </p>
+                
+            </div>
+
+        </div>
+        
+        <?php } else { ?>
+        
+        <p class="InformacjaOk">
+            {__TLUMACZ:RECENZJA_BYLA}
+        </p>        
+        
+        <?php } ?>
+        
+    </div>
+    
+    <?php } ?>    
+    
+    <div class="cl"></div>
+    
+    <!-- przycisk powrotu do strony glownej -->
+    
+    {__LINK_POWROTU}
+    
+    <a href="/" class="przycisk Prawy">{__TLUMACZ:PRZYCISK_DO_STRONY_GLOWNEJ}</a>   
+    
+    <div class="cl"></div>
+
+</section>
+
+

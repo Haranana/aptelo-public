@@ -1,0 +1,19 @@
+$(document).ready(function() {
+
+    $("#reklamacja").validate({
+      rules: {
+        temat: { required: true },
+        zamowienie_id: { required: true },
+      },
+      messages: {
+        temat: { required: '{__TLUMACZ:BLAD_WYMAGANE_POLE}' },
+        wiadomosc: { required: '{__TLUMACZ:BLAD_WYMAGANE_POLE}' },
+        zamowienie_id: { required: '{__TLUMACZ:BLAD_WYMAGANE_POLE}' },
+      }
+    });
+
+    $('#submitButton').removeAttr('disabled');
+    $("#submitButton").attr('class', 'przycisk');
+    
+});
+

@@ -1,0 +1,100 @@
+$(document).ready(function() {
+
+    if ( !TypPrzegladarki() ) {
+    
+        // funkcja powiekszania zdjecia po najechaniu kursorem
+        pokazOkno();
+        
+    }
+
+});
+
+function pokazOkno() {
+    //
+    var szerokoscTip = {__SZEROKOSC_TIP};
+    var wysokoscTip = {__WYSOKOSC_TIP};
+    //
+    $(".Zoom").hover(function(ep){
+        //
+        if ( $(window).width() > 900 ) {
+              //
+              var nr_zdjecia = 1;
+              //
+              if ( $(this).find('.ZdjecieDrugiePodmiana').length > 0 ) {                
+                   //
+                   var zdjecie = $(this).find('.ZdjecieDrugiePodmiana').find('.Zdjecie').attr('id');
+                   nr_zdjecia = 2;
+                   //
+              } else {
+                   //
+                   var zdjecie = $(this).find('.Zdjecie').attr('id');
+                   //
+              }
+              //
+              var cechy = '';
+              if ( $(this).find('.Zdjecie').attr('data-cechy') != undefined ) {
+                   //
+                   cechy = $(this).find('.Zdjecie').attr('data-cechy');
+                   //
+              }              
+              //
+              var podzielId = zdjecie.split('_');
+              //
+              var x = pozycjaMyszki(ep)[0] + 20;
+              var y = pozycjaMyszki(ep)[1];    
+              //
+              var wspolczynnikPrzesunieciaX = 20;
+              if ( $(window).width() < x + (szerokoscTip * 2) ) {
+                   wspolczynnikPrzesunieciaX = (szerokoscTip + 20) * -1;
+              }
+              var wspolczynnikPrzesunieciaY = 0;
+              if ( $(window).height() - (y - $(window).scrollTop()) < wysokoscTip + 20 ) {
+                  wspolczynnikPrzesunieciaY = (wysokoscTip + 20 - Math.abs($(window).height() - (y - $(window).scrollTop()))) * -1;
+              } 
+              //
+              $('.PowiekszoneZdjecie').remove();
+              //       
+              $('body').prepend('<div class="PowiekszoneZdjecie" id="PowiekszoneZdjecie' + podzielId[1] + '" style="display:none;z-index:99999;position:absolute;top:' + (y + wspolczynnikPrzesunieciaY) + 'px;left:' + (x + wspolczynnikPrzesunieciaX) + 'px;"></div>');
+              $('#PowiekszoneZdjecie').html('');
+              //
+              $.post("inne/obrazek.php?tok={__TOKEN_OBRAZEK}", { id: podzielId[2], cechy: cechy, nr_zdjecia: nr_zdjecia }, function(data) { 
+                  //
+                  if ( data.length > 10 ) {
+                     $('#PowiekszoneZdjecie' + podzielId[1]).html(data);
+                     $('#PowiekszoneZdjecie' + podzielId[1]).fadeIn();
+                  }
+                  //
+              });   
+              //
+              $(this).mousemove( function(e) {
+                  var polozenieX = pozycjaMyszki(e)[0];
+                  var polozenieY = pozycjaMyszki(e)[1];              
+                  //
+                  $('#PowiekszoneZdjecie' + podzielId[1]).css( { top : polozenieY + wspolczynnikPrzesunieciaY, left: polozenieX + wspolczynnikPrzesunieciaX } );
+              });
+        }
+        //
+    }, function() {
+        //
+        if ( $('.PowiekszoneZdjecie').length ) {
+             //
+             $('.PowiekszoneZdjecie').remove();
+             //
+        }
+        //
+    });        
+}
+
+function pozycjaMyszki(e) {
+    var pozX = 0;
+    var pozY = 0;
+    if (!e) var e = window.event;
+    if (e.pageX || e.pageY) {
+         pozX = e.pageX;
+         pozY = e.pageY;
+    } else if (e.clientX || e.clientY) {
+         pozX = e.clientX + document.body.scrollLeft;
+         pozY = e.clientY + document.body.scrollTop;
+    }
+    return [pozX,pozY]
+}

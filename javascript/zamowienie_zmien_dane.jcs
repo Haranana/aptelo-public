@@ -1,0 +1,164 @@
+$(document).ready(function() {
+
+    $("#daneklienta").on("keyup keypress", function(e) {
+      var code = e.keyCode || e.which; 
+      if (code === 13) {               
+          e.preventDefault();
+          return false;
+      }
+    });
+    
+    $('#kod_pocztowy').keyup(function() {
+        $(this).val($(this).val().toUpperCase());
+    });
+
+    $.validator.addMethod("nip", function(value, element) {
+        if (this.optional(element)) {
+            return true;
+        }
+        // nie sprawdza jesli krajem nie jest PL
+        if ($('#wybor_panstwo_firma').val() != {KOD_PL}) {
+            return true;
+        }
+        // sprawdza czy sa tylko cyfry litery i myslniki
+        if (!(/^[0-9\A-Z\-\s]+$/i.test(value))) {
+            return false;
+        }
+        // usuwa myslniki i spacje
+        var nipWithoutDashes = value.replace(/-/g,"");
+        nipWithoutDashes = nipWithoutDashes.replace(/ /g,"");
+        // sprawdza dlugosc - jezeli jest 12 znakow to sprawdza czy pierwsze 2 znaki to PL
+        if ( nipWithoutDashes.length == '12' && nipWithoutDashes.substring(0,2) == 'PL' ) {
+             nipWithoutDashes = nipWithoutDashes.substring(2,12);
+        }
+        var reg = /^[0-9]{10}$/;
+        if(reg.test(nipWithoutDashes) == false) {
+            return false;
+        } else {
+            var digits = (""+nipWithoutDashes).split("");
+            var checksum = (6*parseInt(digits[0]) + 5*parseInt(digits[1]) + 7*parseInt(digits[2]) + 2*parseInt(digits[3]) + 3*parseInt(digits[4]) + 4*parseInt(digits[5]) + 5*parseInt(digits[6]) + 6*parseInt(digits[7]) + 7*parseInt(digits[8]))%11;
+            return (parseInt(digits[9])==checksum);
+        }
+    }, "{__TLUMACZ:BLAD_ZLY_NIP}");
+
+    $.validator.addMethod(
+        "cyfryMyslnikRegex", function(value, element) {
+        return this.optional(element) || /^[0-9\A-Z\-\s]+$/i.test(value);
+    }, "{__TLUMACZ:BLAD_TYLKO_CYFRY_MYSLNIK}");
+    $.validator.addMethod("cyfryliteryRegex", function(value, element) {
+        return this.optional(element) || /[a-zа-яΑ-Ωα-ωίϊΐόάέύϋΰήώ].*[0-9]|[0-9].*[a-zа-яΑ-Ωα-ωίϊΐόάέύϋΰήώ]/i.test(value);
+    }, "{__TLUMACZ:BLAD_LITERY_CYFRY}");
+
+    $("#daneklienta").validate({
+      rules: {
+        nazwa_firmy: { required: function() { return ( $("#tylkoFirma").val() == "1" ) } },
+        imieFaktura: { required: function() { return ( $("input[name='osobowosc']:checked", "#daneklienta").val() == "1" ) } },
+        nazwiskoFaktura: { required: function() { return ( $("input[name='osobowosc']:checked", "#daneklienta").val() == "1" ) } },
+        nazwa_firmyFaktura: { required: function() { return ($("input[name='osobowosc']:checked", "#daneklienta").val() == '0') } },
+        nip_firmyFaktura: { required: function() { return ($("input[name='osobowosc']:checked", "#daneklienta").val() == '0') }, nip: true, cyfryMyslnikRegex: true },
+        kod_pocztowy: { cyfryMyslnikRegex: true },
+        ulica: { cyfryliteryRegex: true },
+        ulicaFaktura: { cyfryliteryRegex: true }
+
+      },
+      messages: {
+        imie: { required: '{__TLUMACZ:BLAD_WYMAGANE_POLE}' },
+        nazwisko: { required: '{__TLUMACZ:BLAD_WYMAGANE_POLE}' },
+        data_urodzenia: { required: '{__TLUMACZ:BLAD_WYMAGANE_POLE}' },     
+        ulica: { required: '{__TLUMACZ:BLAD_WYMAGANE_POLE}' },
+        kod_pocztowy: { required: '{__TLUMACZ:BLAD_WYMAGANE_POLE}' },
+        miasto: { required: '{__TLUMACZ:BLAD_WYMAGANE_POLE}' },
+        telefon: { required: '{__TLUMACZ:BLAD_WYMAGANE_POLE}' },
+        regulamin: { required: '{__TLUMACZ:BLAD_WYMAGANE_POLE}' },
+        przetwarzanie: { required: '{__TLUMACZ:BLAD_WYMAGANE_POLE}' },
+        imieFaktura: { required: '{__TLUMACZ:BLAD_WYMAGANE_POLE}' },
+        nazwiskoFaktura: { required: '{__TLUMACZ:BLAD_WYMAGANE_POLE}' },
+        nazwa_firmyFaktura: { required: '{__TLUMACZ:BLAD_WYMAGANE_POLE}' },   
+        nip_firmyFaktura: { required: '{__TLUMACZ:BLAD_WYMAGANE_POLE}', nip: '{__TLUMACZ:BLAD_ZLY_NIP}' },
+        ulicaFaktura: { required: '{__TLUMACZ:BLAD_WYMAGANE_POLE}' },
+        kod_pocztowyFaktura: { required: '{__TLUMACZ:BLAD_WYMAGANE_POLE}' },
+        miastoFaktura: { required: '{__TLUMACZ:BLAD_WYMAGANE_POLE}' },
+      },
+      submitHandler: function() {
+        var sear = $('#daneklienta').serialize(); 
+        //
+        PreloadWlacz();
+        //
+        $.post("{__SSL:inne/do_zmiany_danych_zamowienie.php}?tok={__TOKEN_ZAMOWIENIE_DANE_OKNO}", { data: sear }, function(data) { 
+            //
+            PreloadWylaczSzybko();
+            //
+            if ( data.length > 10 ) {  
+                var myModal = new jBox('Modal',{ 
+                    content : '<div class="message">'+data+'</div>',
+                    closeButton: false,
+                    closeOnEsc: false,
+                    closeOnMouseleave: false,
+                    closeOnClick: false,
+                    onOpen: function () {
+                        const popupElement = this.wrapper;
+                        setTimeout(function () {
+                            initFocusTrap(popupElement);
+                        }, 50);
+                    }      
+                });
+                myModal.open();
+            } else {
+                $(location).attr('href','zamowienie-potwierdzenie.html');
+            }
+        });
+      }
+	  
+    });
+
+    // weryfikuje pole nip_firmy przy zmianie kraju
+    $("#wybor_panstwo_firma").on("change", function() {
+        $("#nip_firmyFaktura").valid();
+    });
+
+    // sprawdza czy jest pole wojewodztwo
+    if ($('#wybor_panstwo').length) {
+        $("#wybor_panstwo").change( function() {
+          PreloadWlacz();
+          $.ajax({
+            type: "POST",
+            data: "data=" + $(this).val(),
+            url: "{__SSL:inne/wybor_wojewodztwa.php}?tok={__TOKEN_ZAMOWIENIE_DANE}",
+            success: function(msg){
+              PreloadWylaczSzybko();
+              $("#wybor_wojewodztwo_wynik").html(msg).show(); 
+            }
+          });
+        });
+    }
+
+    // sprawdza czy jest pole wojewodztwo do platnosci
+    if ($('#wybor_panstwo_firma').length) {
+        $("#wybor_panstwo_firma").change( function() {
+          PreloadWlacz();
+          $.ajax({
+            type: "POST",
+            data: "data=" + $(this).val(),
+            url: "{__SSL:inne/wybor_wojewodztwa_faktura.php}?tok={__TOKEN_ZAMOWIENIE_DANE}",
+            success: function(msg){
+              PreloadWylaczSzybko();
+              $("#wybor_wojewodztwo_wynik_firma").html(msg).show(); 
+            }
+          });
+        });
+    }
+
+});
+
+function ZmienOsobowosc(nr) {
+    //
+    if ( nr == 1 ) {
+         $('#osobaFizyczna').slideDown();
+         $('#osobaPrawna').slideUp();
+    }
+    if ( nr == 2 ) {
+         $('#osobaFizyczna').slideUp();
+         $('#osobaPrawna').slideDown();
+    }
+    //
+}

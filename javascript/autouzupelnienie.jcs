@@ -1,0 +1,151 @@
+(function($) {
+    $.fn.delayKeyup = function(callback, ms){
+            $(this).keyup(function( event ){
+                var srcEl = event.currentTarget;
+                if( srcEl.delayTimer )
+                    clearTimeout (srcEl.delayTimer );
+                srcEl.delayTimer = setTimeout(function(){ callback( $(srcEl) ); }, ms);
+            });
+            $(this).click(function( event ){
+                var srcEl = event.currentTarget;
+                if( srcEl.delayTimer )
+                    clearTimeout (srcEl.delayTimer );
+                srcEl.delayTimer = setTimeout(function(){ callback( $(srcEl) ); }, ms);
+            });
+        return $(this);
+    };
+})(jQuery);
+
+var blokujAutoUzupelnianie = false;
+var spacjaWcisnieta = false;
+
+(function($) {
+
+    $.AutoUzupelnienie = function( nazwaPolaSzukania, nazwaDiv, nazwaSkryptu, szerokoscPola, nazwaFormularza ) { 
+
+        var autoPodpowiedzi = '{__AUTOPODPOWIEDZI}';
+        
+        if ( autoPodpowiedzi == 'tak' ) {
+
+            var nazwaSzablonu = '{__DOMYSLNY_SZABLON}';        
+            var typ_szablonu = 'stary';
+            
+            if ( nazwaSzablonu.indexOf('.v2') > -1 ) {
+                 typ_szablonu = 'nowy';
+            }
+
+            $("#" + nazwaPolaSzukania).attr("autocomplete", "off");
+
+            // klikniecia poza oknem wyszukiwania zamyka okno
+            $('html').click(function(e) {
+              if ((e.target.id != nazwaDiv && $(e.target).parents('#' + nazwaDiv).length == 0) && (e.target.id != nazwaPolaSzukania && $(e.target).parents('#' + nazwaPolaSzukania).length == 0)) {
+                $('#' + nazwaDiv).hide().html('');
+              }
+            });          
+
+            $("#" + nazwaPolaSzukania).delayKeyup(
+                function () {
+                  
+                    if (blokujAutoUzupelnianie) return;
+
+                    // pozycja pola szukania
+                    var pole = $("#" + nazwaPolaSzukania);
+                                                
+                    // minimalna ilosc znakow w szukaniu to 2
+                    if ( pole.val().length > 1 ) {
+    
+                        if ( typ_szablonu == 'stary' ) {
+                             //
+                             var pozycja = pole.offset();
+                             var wysokoscInput = pole.outerHeight();
+                             //
+                             $('#' + nazwaDiv).remove();
+                             //
+                             $('body').append('<div id="' + nazwaDiv + '" style="display:none"></div>');
+                             $('#' + nazwaDiv).attr('tabindex', '0').css( { width: szerokoscPola, position: 'absolute', top: (pozycja.top + wysokoscInput + 8), left: pozycja.left } );
+                             //
+                        }
+                    
+                        // czysci zawartosc pola podpowiedzi
+                        $('#' + nazwaDiv).html('');  
+
+                        // loader
+                        $('#' + nazwaDiv).show();
+                        $('#' + nazwaDiv).html('<div class="OknoAutouzupelnienia" style="padding:15px"><img src="szablony/{__DOMYSLNY_SZABLON}/obrazki/nawigacja/loader_autouzupelnienie.gif" alt="" /></div>');
+
+                        $.post(nazwaSkryptu, { pole: pole.val(), szablon: typ_szablonu }, 
+                            function(data) { 
+                            
+                                if ( data.length > 10 ) {  
+                                     $('#' + nazwaDiv).html('').show().html(data); 
+                                     $('#InSzukaj').one('blur', function () {
+                                          setTimeout(function () {
+                                              if (typ_szablonu === 'stary') {
+                                                  $('#' + nazwaDiv).find('.PodpowiedzFraza:first').focus();
+                                              }
+                                          }, 50);
+                                     });
+                                  } else {
+                                     $('#' + nazwaDiv).hide().html('');
+                                }
+                                
+                                $('.OknoAutouzupelnieniaZamknij').on('keydown', function(e) {
+                                    if (e.key === ' ' || e.key === 'Spacebar' || e.keyCode === 32 || e.key === 'Enter' || e.keyCode === 13) {
+                                        e.preventDefault(); 
+                                        $('#' + nazwaDiv).hide().html('');
+                                    }
+                                });                                
+                                
+                                $('.OknoAutouzupelnieniaZamknij b').click(function() {
+                                    $('#' + nazwaDiv).hide().html('');
+                                }); 
+                                
+                                $(document).off('keydown.zamknijAutoUzupelnienie').on('keydown.zamknijAutoUzupelnienie', function(e) {
+                                    if (e.key === "Escape") {
+                                        $('#' + nazwaDiv).hide().html('');
+                                        blokujAutoUzupelnianie = true;
+                                        $(document).off('keydown.zamknijAutoUzupelnienie');
+                                        $("#" + nazwaPolaSzukania).focus(); // <<< tutaj dynamicznie focus na input
+                                    }
+                                });
+
+                            } 
+                        );
+                        //
+
+                    }
+
+                }, 700
+            );
+            
+            $("#" + nazwaPolaSzukania).off('input.autoUzupelnienie').on('input.autoUzupelnienie', function() {
+                blokujAutoUzupelnianie = false;
+            });
+            
+            $.pobierzAutoodpowiedz = function( id ) {
+                //
+                var wartoscPobrana = $('#auto_' + id).val();
+                $("#" + nazwaPolaSzukania).val( wartoscPobrana );
+                //
+                $('#' + nazwaDiv).remove();
+                //
+                if ( $('#' + nazwaFormularza).length ) {
+                     $('#' + nazwaFormularza).submit();
+                }
+                if ( $('.' + nazwaFormularza).length ) {
+                     $('.' + nazwaFormularza).submit();
+                }                
+                //
+            }   
+                
+            $.pobierzAutoodpowiedzProdukt = function( url ) {
+                //
+                document.location = url;
+                //
+            }                 
+
+        }            
+
+    };
+
+})(jQuery);    

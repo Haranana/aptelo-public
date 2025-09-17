@@ -1,0 +1,169 @@
+<!-- wyglad naglowka strony -->
+
+<h1 class="StrNaglowek">
+    <span>{__TLUMACZ:NAGLOWEK_OPINIE}</span>  
+</h1>
+
+<!-- tresc strony -->
+
+<section class="StrTresc">
+    
+    <div class="PodsumowanieOpiniiSklepu" {__CSS_PODSUMOWANIE_OPINII}>
+    
+        <div class="SumaOcen">
+        
+            <div class="SumaOcenKontener">
+            
+                <b>{__PROCENT_POLECA}</b>
+                <span>{__TLUMACZ:ILOSC_KLIENTOW_POLECA}</span>
+                
+            </div>
+            
+            <div class="SumaOcenKontener">
+            
+                <b>{__SREDNIA_OCENA}</b>
+                <span>{__TLUMACZ:SREDNIA_OCENA_OPINII}, {__TLUMACZ:ILOSC_OPINII} <strong>{__ILOSC_OPINII}</strong></span>
+                
+            </div>      
+
+        </div>
+
+        <?php if ( Wyglad::TypSzablonu() == true ) { ?>
+
+        <ul class="OcenySklepu">
+            <li><?php echo $GLOBALS['tlumacz']['OCENA_JAKOSC_OBSLUGI']; ?><span class="Gwiazdki" id="radio_<?php echo uniqid(); ?>" style="--ocena: {__OCENA_JAKOSC_OBSLUGI};"></span></li>
+            <li><?php echo $GLOBALS['tlumacz']['OCENA_CZAS_REALIZACJI']; ?><span class="Gwiazdki" id="radio_<?php echo uniqid(); ?>" style="--ocena: {__OCENA_CZAS_REALIZACJI};"></span></li>
+            <li><?php echo $GLOBALS['tlumacz']['OCENA_CENY']; ?><span class="Gwiazdki" id="radio_<?php echo uniqid(); ?>" style="--ocena: {__OCENA_CENY};"></span></li>
+            <li><?php echo $GLOBALS['tlumacz']['OCENA_PRODUKTOW']; ?><span class="Gwiazdki" id="radio_<?php echo uniqid(); ?>" style="--ocena: {__OCENA_PRODUKTOW};"></span></li>
+        </ul>     
+
+        <?php } else { ?>
+
+        <ul class="OcenySklepu">
+            <li class="Ocena_{__OCENA_JAKOSC_OBSLUGI}"><?php echo $GLOBALS['tlumacz']['OCENA_JAKOSC_OBSLUGI']; ?></li>
+            <li class="Ocena_{__OCENA_CZAS_REALIZACJI}"><?php echo $GLOBALS['tlumacz']['OCENA_CZAS_REALIZACJI']; ?></li>
+            <li class="Ocena_{__OCENA_CENY}"><?php echo $GLOBALS['tlumacz']['OCENA_CENY']; ?></li>
+            <li class="Ocena_{__OCENA_PRODUKTOW}"><?php echo $GLOBALS['tlumacz']['OCENA_PRODUKTOW']; ?></li>
+        </ul>     
+
+        <?php } ?>
+
+        <div class="cl"></div>
+    
+    </div>
+
+    <div class="Listing">
+    
+        <!-- tresc strony -->
+        
+        <nav class="ListingNawigacja ListingNawigacjaGora LiniaCala">
+        
+            <!-- odnosniki do kolejnych stron listingu -->
+        
+            <div class="IndexStron">
+            
+                <b>{__TLUMACZ:LISTING_STRONA}</b> {__STRONICOWANIE}
+            
+            </div>
+            
+            <div class="cl"></div>
+            
+            <?php if ( LISTING_WYSWIETLAC_SORTOWANIE == 'tak' ) { ?>
+            
+            <!-- sortowanie listingu -->
+            
+            <div class="Sortowanie{__CSS_LISTING_SORTOWANIE}">
+
+                <form id="sposobsortowania" class="cmxform" action="{__AKTUALNY_LINK}" method="post">
+                
+                    <b>{__TLUMACZ:LISTING_SORTUJ_WG}</b>
+                
+                    {__WYBOR_SORTOWANIE}
+                
+                </form>
+            
+            </div>          
+            
+            <?php } ?>
+
+            <?php if ( LISTING_WYSWIETLAC_ILOSC_WYNIKOW == 'tak' ) { ?>
+            
+            <!-- ilosc wynikow na stronie -->
+        
+            <div class="IloscProdStronie{__CSS_LISTING_POZYCJI_NA_STRONIE}">
+            
+                <form id="iloscprodstrony" class="cmxform" action="{__AKTUALNY_LINK}" method="post">
+                
+                    <div>
+                        <input type="hidden" name="ilosc_na_stronie" id="ilosc_na_stronie" value="" />
+                        <b>{__TLUMACZ:LISTING_WYNIKOW_NA_STRONIE}</b>
+                        <span {__CSS_PRODSTR_1} onclick="str_prod({__LISTA_ILOSC_PROD_1})">{__LISTA_ILOSC_PROD_1}</span>
+                        <span {__CSS_PRODSTR_2} onclick="str_prod({__LISTA_ILOSC_PROD_2})">{__LISTA_ILOSC_PROD_2}</span>
+                        <span {__CSS_PRODSTR_3} onclick="str_prod({__LISTA_ILOSC_PROD_3})">{__LISTA_ILOSC_PROD_3}</span>
+                    </div>
+                    
+                </form>
+                
+            </div>
+            
+            <?php } ?>
+            
+            <div class="cl"></div>
+        
+        </nav>
+        
+        <br />
+        
+        <a href="napisz-opinie-o-sklepie.html" class="przycisk">{__TLUMACZ:NAPISZ_OPINIE}</a>
+        
+        <div class="cl"></div>
+        
+        <br />
+        
+        <!-- listing recenzji -->
+
+        {__LISTA_OPINII}
+
+    </div>
+    
+    <!-- dodatkowa nawigacja na dole listingu -->    
+    
+    <br />
+     
+    <div class="Listing">
+    
+        <nav class="ListingNawigacja ListingNawigacjaDol LiniaCala">
+        
+            <!-- odnosniki do kolejnych stron listingu -->    
+    
+            <div class="IndexStron">
+            
+                <b>{__TLUMACZ:LISTING_STRONA}</b> {__STRONICOWANIE}
+
+            </div>  
+            
+            <?php if ( LISTING_WYSWIETLAC_ILOSC_WYNIKOW == 'tak' ) { ?>
+            <!-- ilosc wynikow na stronie -->
+            
+            <div class="IloscProdStronie">
+                <form id="iloscprodstrony_dol" class="cmxform" action="{__AKTUALNY_LINK}" method="post">
+                    <div>
+                        <input type="hidden" name="ilosc_na_stronie" id="ilosc_na_stronie_dol" value="" />
+                        <b>{__TLUMACZ:LISTING_WYNIKOW_NA_STRONIE}</b>
+                        <span {__CSS_PRODSTR_1} onclick="str_prod({__LISTA_ILOSC_PROD_1},'_dol')">{__LISTA_ILOSC_PROD_1}</span>
+                        <span {__CSS_PRODSTR_2} onclick="str_prod({__LISTA_ILOSC_PROD_2},'_dol')">{__LISTA_ILOSC_PROD_2}</span>
+                        <span {__CSS_PRODSTR_3} onclick="str_prod({__LISTA_ILOSC_PROD_3},'_dol')">{__LISTA_ILOSC_PROD_3}</span>
+                    </div>
+                </form>
+            </div>            
+            <?php } ?>
+
+            <div class="cl"></div>
+
+        </nav>
+            
+    </div>    
+
+</section>
+
+

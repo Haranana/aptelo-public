@@ -1,0 +1,524 @@
+<!-- wyglad naglowka strony -->
+
+<h1 class="StrNaglowek">
+    <span>{__TLUMACZ:NAGLOWEK_KOSZYK}</span> 
+</h1>
+
+<!-- tresc strony -->
+
+<section id="SzczegolyKoszyka">
+
+    <!-- poszczegolne kroki zamowienia - tylko jezeli cos jest w koszyku -->
+
+    <?php if ( $GLOBALS['koszykKlienta']->KoszykIloscProduktow() > 0 ) { ?>
+    
+        <div id="KrokiZamowienia">
+        
+            <div class="KoszykKrok aktywny">
+                <strong>{__TLUMACZ:KROK_1}</strong>
+                <h2>{__TLUMACZ:KROK_1_OPIS}</h2>
+            </div>
+            
+            <div class="KoszykKrok">
+                <strong>{__TLUMACZ:KROK_2}</strong>
+                <p>{__TLUMACZ:KROK_2_OPIS}</p>
+            </div>
+            
+            <div class="KoszykKrok">
+                <strong>{__TLUMACZ:KROK_3}</strong>
+                <p>{__TLUMACZ:KROK_3_OPIS}</p>
+            </div>
+            
+            <div class="KoszykKrok">
+                <strong>{__TLUMACZ:KROK_4}</strong>
+                <p>{__TLUMACZ:KROK_4_OPIS}</p>
+            </div>
+
+        </div>
+        
+    <?php } ?>
+    
+    <!-- tresc koszyka -->
+    
+    <div id="TrescKoszyka">
+
+        <div class="StrTresc">
+        
+            <!-- jezeli jest cos w koszyku -->
+
+            <?php             
+            $ProduktyKoszyka = $__pA;
+            $DodatkoweInformacje = $__pB;
+            $Zalogowany = $__pC;
+            $InformacjaBrakMagazyn = $__pD;
+            
+            if ( $GLOBALS['koszykKlienta']->KoszykIloscProduktow() > 0 ) { ?>
+            
+            <table class="Koszyk">
+            
+                <tr class="Naglowek">
+                    <th class="UkryjMobile">{__TLUMACZ:INFO_FOTO}</th>
+                    <th>{__TLUMACZ:NAZWA_PRODUKTU}</th>
+                    <th>{__TLUMACZ:USUN_PRODUKT}</th>
+                    <th class="UkryjMobile">{__TLUMACZ:CENA}</th>
+                    <th>{__TLUMACZ:ILOSC_PRODUKTOW}</th>
+                    <th>{__TLUMACZ:WARTOSC_PRODUKTOW}</th>
+                </tr>
+                
+                <!-- produkty koszyka -->
+                
+                <?php foreach ($ProduktyKoszyka AS $ProduktKoszyka) { ?>
+                
+                    <tr>
+                        <td class="UkryjMobile"><?php echo $ProduktKoszyka['zdjecie']; ?></td>
+                        <td>
+                            <h3>
+                                <?php echo $ProduktKoszyka['nazwa'] . $ProduktKoszyka['producent'] . $ProduktKoszyka['czas_wysylki'] . $ProduktKoszyka['komentarz'] . $ProduktKoszyka['pola_txt']; ?>
+                                <?php if ( KOSZYK_POKAZ_NUMER_KATALOGOWY == 'tak' ) { ?>
+                                    <span class="Cecha KoszykNrKatalogowy">{__TLUMACZ:NUMER_KATALOGOWY}: <b><?php echo $ProduktKoszyka['nr_katalogowy']; ?></b></span>
+                                <?php } ?>                
+                            </h3>
+                            <?php echo $ProduktKoszyka['brak_magazyn']; ?>                      
+                        </td>
+                        <td><?php echo $ProduktKoszyka['usun']; ?></td>
+                        <td class="UkryjMobile"><?php echo $ProduktKoszyka['cena']; ?></td>
+                        <td><?php echo $ProduktKoszyka['ilosc']; ?></td>
+                        <td><?php echo $ProduktKoszyka['wartosc']; ?></td>
+                    </tr>
+                    
+                    <?php if ( INTEGRACJA_EASYPROTECT_WLACZONY == 'tak' && INTEGRACJA_EASYPROTECT_API != '' ) { ?>
+                    
+                        <tr class="KontenerOchronaEasyProtect" id="ochrona_<?php echo $ProduktKoszyka['id']; ?>" data-id="<?php echo $ProduktKoszyka['id']; ?>"></tr>                      
+                        
+                    <?php } ?>
+
+                <?php } ?>
+                
+                <!-- podsumowanie koszyka -->
+         
+                <tr>
+                    <td colspan="5" class="SumaTekst">{__TLUMACZ:WARTOSC_PRODUKTOW}:</td>
+                    <td class="Suma">{__WARTOSC_KOSZYKA}</td>
+                </tr>         
+                
+            </table>
+            
+            <?php if ( KOSZYK_POKAZ_CZAS_WYSYLKI == 'tak' ) { ?>
+            
+            <div class="InformacjaCzasWysylki">
+                {__MAKSYMALNY_CZAS_WYSYLKI}
+            </div>
+            
+            <?php } ?>
+     
+            <?php if ( $InformacjaBrakMagazyn == true ) { ?>
+            
+                <div class="InformacjaBrakMagazyn">{__TLUMACZ:BRAK_W_MAGAZYNIE_INFO}</div>
+            
+            <?php } ?>
+
+            <?php if ( isset($_SESSION['wczytanyKoszyk']) ) { ?>
+            
+                <div id="WczytanyKoszykInfo" style="margin:15px 0px 20px 0px; border:2px solid #ff0000;padding:15px;text-align:center">
+                
+                      <div class="KoszykWczytanyNaglowek" style="font-size:140%">
+                      
+                          <?php echo $_SESSION['wczytanyKoszyk']; unset($_SESSION['wczytanyKoszyk']); ?>
+                          
+                      </div>
+                      
+                      <?php if ( isset($_SESSION['uwagiKoszyka']) ) { ?>
+                      
+                      <div class="KoszykOpis" style="padding-top:15px">
+                      
+                          <?php echo $_SESSION['uwagiKoszyka']; ?>
+                      
+                      </div>
+                      
+                      <?php } ?>
+                      
+                </div>
+            
+            <?php }  ?>
+
+            <div class="PrzyciskiKoszyka">
+                
+                <?php if ( KOSZYK_SPOSOB_USUWANIA == 'usuwanie wielu zaznaczonych' ) { ?>
+                
+                    <span class="przyciskKoszyk przyciskKoszykUsuniecieWybranych" id="UsunZaznaczoneKoszyk" tabindex="0" role="button" onclick="UsunZaznaczoneKoszyk()" title="{__TLUMACZ:KOSZYK_USUN_ZAZNACZONE}" aria-label="{__TLUMACZ:KOSZYK_USUN_ZAZNACZONE}">{__TLUMACZ:KOSZYK_USUN_ZAZNACZONE}</span> <br />
+                    
+                <?php } ?>
+            
+                <span class="przyciskKoszyk przyciskKoszykPrzelicz" tabindex="0" role="button" onclick="PrzeliczCalyKoszyk()" title="{__TLUMACZ:KOSZYK_PRZELICZ}" aria-label="{__TLUMACZ:KOSZYK_PRZELICZ}">{__TLUMACZ:KOSZYK_PRZELICZ}</span>
+            
+                <span class="przyciskKoszyk przyciskKoszykUsunCaly" tabindex="0" role="button" onclick="UsunCalyKoszyk()" title="{__TLUMACZ:KOSZYK_CALY_USUN}" aria-label="{__TLUMACZ:KOSZYK_CALY_USUN}">{__TLUMACZ:KOSZYK_CALY_USUN}</span>
+                
+                <?php if ( KOSZYK_ZAPIS == 'tak' ) { ?>
+                            
+                    <span class="przyciskKoszyk przyciskKoszykZapisz" tabindex="0" role="button" id="ZapiszKoszyk" title="{__TLUMACZ:KOSZYK_ZAPISZ}" aria-label="{__TLUMACZ:KOSZYK_ZAPISZ}" {__CSS_ZAPISZ_KOSZYK}>{__TLUMACZ:KOSZYK_ZAPISZ}</span>
+                
+                <?php } ?>
+
+                <!-- link do pobrania koszyka w pdf -->
+
+                <div class="LinkPobraniaKoszykaPDF" {__CSS_PDF_KOSZYK}>
+                    <a href="pdf-szczegoly-koszyka.html" rel="nofollow">{__TLUMACZ:KOSZYK_PDF}</a>
+                </div>
+
+            </div>
+
+            <!-- zapisywanie koszyka -->
+            
+            <?php if ( KOSZYK_ZAPIS == 'tak' ) { ?>
+
+                <div id="ZapisKoszyka" style="margin-top:10px; display:none">
+                
+                    <form action="koszyk.html" method="post" class="cmxform" id="KoszykForm">
+                
+                    <?php if ( $Zalogowany == 'tak' ) { ?>
+
+                        <p id="NazwaKoszyka">
+                            <span><label class="formSpan" for="nazwa_koszyka">{__TLUMACZ:KOSZYK_NAZWA}:</label> <em class="required" id="em_<?php echo uniqid(); ?>"></em></span>
+                            <input type="text" size="40" id="nazwa_koszyka" name="nazwa_koszyka" />
+                        </p>
+                        
+                        <p id="OpisKoszyka">
+                            <span><label class="formSpan" for="opis_koszyka">{__TLUMACZ:KOSZYK_OPIS}:</label></span>
+                            <textarea rows="3" cols="70" name="opis_koszyka" id="opis_koszyka"></textarea>
+                        </p>   
+
+                    <?php } ?>
+                    
+                    <?php if ( KOSZYK_ZAPIS_UWAGI == 'tak' ) { ?>
+                    
+                        <p id="UwagiKoszyka">
+                            <span><label class="formSpan" for="opis_koszyka">{__TLUMACZ:UWAGI_DO_KOSZYKA}:</label></span>
+                            <textarea rows="3" cols="70" name="uwagi_koszyka" id="uwagi_koszyka"></textarea>
+                        </p>                      
+
+                    <?php } ?>
+                    
+                    <?php if ( $Zalogowany == 'tak' || KOSZYK_ZAPIS_UWAGI == 'tak' ) { ?>
+                    
+                        <input type="submit" class="przycisk" value="{__TLUMACZ:PRZYCISK_ZAPISZ}" />
+                        
+                    <?php } ?>
+                    
+                    </form>
+                
+                </div>
+            
+            <?php } ?>
+
+            <?php if ( KOSZYK_WAGA_PRODUKTOW == 'tak' ) { ?>
+            
+            <div class="InformacjaWaga" {__WAGA_KOSZYKA_CSS}>
+                {__TLUMACZ:KOSZYK_WAGA_PRODUKTOW} <b>{__WAGA_KOSZYKA} {__TLUMACZ:KOSZYK_WAGA_PRODUKTOW_JM} </b>
+            </div>
+            
+            <?php } ?>
+                        
+            <!-- gratisy -->
+            
+            <?php if ( count(Gratisy::TablicaGratisow()) > 0 ) { ?>
+            <div class="Gratisy LiniaCalaPrzerywana">
+            
+                <p class="InfoGratis">{__TLUMACZ:GRATIS_INFO}</p>
+                
+                {__LISTING_PRODUKTY_GRATISOWE}
+            
+            </div>
+            <?php } ?>
+            
+            <!-- informacja o bezplatnej dostawie -->
+            
+            <div id="BezplatnaDostawa" class="DarmowaWysylkaInformacja" <?php if ( !isset($DodatkoweInformacje['InfoWysylkaDarmo']) ) { echo 'style="display:none;"'; } ?>>
+                {__BEZPLATNA_DOSTAWA}
+            </div>            
+            
+            <!-- ramka wyboru platnosci i wysylki -->
+            
+            <div class="KontenerDostawaPlatnosc">
+            
+                <!-- ramka wyboru dostawy i kraju -->
+            
+                <div class="DostawaWybor">
+                
+                    <h3 {__CSS_KRAJ_DOSTAWY}>{__TLUMACZ:WYBIERZ_KRAJ_DOSTAWY}</h3>
+                    
+                    <div class="DostawaListaWyboru cmxform" {__CSS_WYBOR_PANSTWA}>
+                        {__WYBOR_PANSTWA}
+                    </div>
+                    
+                    <h3>{__TLUMACZ:WYBIERZ_FORME_WYSYLKI}</h3>
+                    
+                    <div class="ListaWyboru">
+                        {__WYBOR_WYSYLKI}
+                    </div>
+                    
+                </div>
+                
+                <div class="Odstep"></div>
+                
+                <!-- ramka wyboru sposobu platnosci -->
+
+                <div class="PlatnoscWybor">
+                
+                    <h3>{__TLUMACZ:WYBIERZ_FORME_PLATNOSCI}</h3>
+                    
+                    <div class="PlatnoscListaWyboru">
+                        {__WYBOR_PLATNOSCI}
+                    </div>
+                    
+                </div>
+ 
+            </div>
+            
+            <!-- podsumowanie koszyka -->
+
+            <div class="KontenerKoszykPodsumowanie">
+            
+                <h3>{__TLUMACZ:CALKOWITA_WARTOSC_ZAMOWIENIA}</h3>
+                
+                <div class="ListaWyboru">
+                
+                    <!-- pozycje podsumowania zamowienia -->
+
+                    <div id="podsumowanie_zamowienia">
+                        {__PODSUMOWANIE_ZAMOWIENIA}
+                    </div>
+
+                </div>
+                
+                <!-- informacja zniżkach od ilości lub wartości koszyka -->
+                
+                <?php if ( isset($DodatkoweInformacje['ZnizkaOdIlosciWartosci']) ) { ?>
+                
+                <div class="Informacja">
+                    {__INFO_ZNIZKA_OD_WARTOSCI_ILOSCI}
+                </div>    
+                
+                <br />
+
+                <div class="cl"></div>
+                
+                <?php } ?>
+                
+            </div>
+            
+            <div class="cl"></div>
+            
+            <!-- opakowanie ozdobne -->
+            
+            <div class="KontenerOpakowanieOzdobne" {__WYSWIETL_OZDOBNE_OPAKOWANIE}>
+            
+                <!-- jezeli klient nie skorzystal z opakowania ozdobnego to jest wyswietlana informacja -->
+            
+                <?php if ( !isset($_SESSION['opakowanieOzdobne']) ) { ?>
+                
+                <h5>{__TLUMACZ:OPAKOWANIE_OZDOBNE}</h5>
+                
+                <div class="FormularzOpakowanieOzdobne">
+                
+                    <p>{__TLUMACZ:OPAKOWANIE_OZDOBNE_INFO} {__WARTOSC_OPAKOWANIA_OZDOBNEGO}</p>
+
+                    <div>
+                        <button type="button" class="przycisk" tabindex="0" role="button" onclick="return AktywujOpakowanieOzdobne()">{__TLUMACZ:PRZYCISK_DODAJ_DO_KOSZYKA}</button>
+                    </div>
+
+                </div>
+                
+                <!-- jezeli klient aktywował opakowanie ozbodne jest wyswietlana informacja i mozliwosc rezygnacji -->
+                
+                <?php } else { ?>
+                
+                    <h5>{__TLUMACZ:OPAKOWANIE_OZDOBNE}</h5>
+                    
+                    <div class="FormularzOpakowanieOzdobne FormularzOpakowanieOzdobneUsuniecie">
+                    
+                        <span>{__TLUMACZ:ZREZYGNUJ_Z_OPAKOWANIA_OZDOBNEGO}</span>
+                        
+                        <span class="UsunOpakowanieOzdobne" tabindex="0" role="button" aria-label="{__TLUMACZ:ZREZYGNUJ_Z_OPAKOWANIA_OZDOBNEGO}" title="{__TLUMACZ:ZREZYGNUJ_Z_OPAKOWANIA_OZDOBNEGO}" onclick="return UsunOpakowanieOzdobne()"></span>
+                        
+                    </div>
+                
+                <?php } ?>
+                
+            </div>                
+            
+            <!-- jezeli klient ma punkty i jest wlaczony system punktow -->
+
+            <?php if ( isset($DodatkoweInformacje['InfoPunktyKlienta']) && $DodatkoweInformacje['InfoPunktyKlienta'] == true ) { ?>
+            
+            <div class="KontenerPunkty">
+            
+                <h3>{__TLUMACZ:NAGLOWEK_PUNKTY_KLIENTA}</h3>
+                    
+                <div class="KontenerInfoPunkty">
+                
+                    <!-- jezeli klient nie skorzystal z punktow wyswietlane jest pole z informacja gdzie moze uzyc punkty -->
+                    
+                    <?php if ( !isset($_SESSION['punktyKlienta']) ) { ?>
+                        
+                        <p>{__INFO_PUNKTY}</p>
+                        
+                        <p>{__INFO_PUNKTY_DO_WYKORZYSTANIA}</p>
+                            
+                        <div class="FormularzPunkty">
+                            
+                            <form id="PunktyForm" class="cmxform" method="post" action="koszyk.html">
+                                
+                                <div>{__TLUMACZ:ILOSC_PUNKTOW_DO_ZAMOWIENIA}:</div>
+                                
+                                <div>
+                                    <input class="required" id="iloscPunkty" type="text" name="punkty" size="30" value="<?php echo $DodatkoweInformacje['WartoscPunktowZamowienia']; ?>" />
+                                    <input id="iloscPunktyMax" type="hidden" name="punktyMax" value="<?php echo $DodatkoweInformacje['WartoscPunktowZamowienia']; ?>" />
+                                    <input id="iloscPunktyMin" type="hidden" name="punktyMin" value="<?php echo SYSTEM_PUNKTOW_MIN_ZAMOWIENIA; ?>" />
+                                </div>
+                                
+                                <div>
+                                    <input type="submit" id="submitButtonPunkty" tabindex="0" role="button" class="przycisk" value="{__TLUMACZ:PRZYCISK_AKTYWUJ}" onclick="return AktywujPunktyKlienta(<?php echo SYSTEM_PUNKTOW_MIN_ZAMOWIENIA .','. $DodatkoweInformacje['WartoscPunktowZamowienia']; ?>)" />
+                                </div>
+                                
+                            </form>
+                                
+                        </div>
+                            
+                        <?php } else { ?>
+                        
+                        <!-- jezeli klient uzyl punkty jest wyswietlana informacja i mozliwosc rezygnacji z punktow w danym zamowieniu -->
+                        
+                        <div class="FormularzPunkty">
+                        
+                            {__INFO_PUNKTY_WYKORZYSTANE}
+                            
+                            {__TLUMACZ:ZREZYGNUJ_Z_PUNKTOW_RABATOWYCH}
+                            
+                            <span class="UsunPunkty" tabindex="0" role="button" aria-label="{__TLUMACZ:ZREZYGNUJ_Z_PUNKTOW_RABATOWYCH}" title="{__TLUMACZ:ZREZYGNUJ_Z_PUNKTOW_RABATOWYCH}" onclick="return UsunPunktKlienta()"></span>
+                            
+                        </div>
+                        
+                        <?php } ?>
+                        
+                    </div>
+                    
+            </div>
+            
+            <br /><br />
+
+            <?php } ?>
+            
+            <!-- dolne informacje w koszyku -->
+
+            <div class="KontenerKoszykPozostale">
+            
+                <!-- raty -->
+
+                <div class="KontenerRaty" {__KALKULATOR_CSS}>
+                
+                    <h5>{__TLUMACZ:OBLICZ_RATE}</h5>
+                    {__KALKULATOR_SANTANDER}
+                    {__KALKULATOR_LUKAS}
+                    {__KALKULATOR_MBANK}
+                    {__KALKULATOR_TPAY}
+                    {__KALKULATOR_PAYURATY}
+                    {__KALKULATOR_BGZ}
+                    {__KALKULATOR_ILEASING}
+                    {__KALKULATOR_IRATY}
+                </div>
+                
+                <!-- kupon rabatowy -->
+                
+                <div class="KontenerKupon" {__WYSWIETL_KUPON}>
+                
+                    <!-- jezeli klient nie skorzystal z kuponu to jest wyswietlana informacja i pole do wpisania kodu kuponu -->
+
+                    <div class="KontenerKuponAktywacja" {__WYSWIETL_KUPON_AKTYWCJA}>
+                    
+                        <h5>{__TLUMACZ:KUPON_RABATOWY}</h5>
+                        
+                        <div class="FormularzKupon">
+                        
+                            <p>{__TLUMACZ:WPISZ_KUPON_RABATOWY}:</p>
+
+                            <div>
+                            
+                                <form id="KuponRabatowyForm" class="cmxform" method="post" action="koszyk.html">
+                                
+                                    <div>
+                                        <input class="required" id="KuponKod" type="text" name="kupon" size="23" value="" />
+                                    </div>
+                                    
+                                    <div>
+                                        <input type="submit" id="submitButton" class="przycisk" value="{__TLUMACZ:PRZYCISK_AKTYWUJ}" onclick="return AktywujKuponRabatowy()" />
+                                    </div>
+                                    
+                                </form>
+                            
+                            </div>
+                            
+                        </div>
+                        
+                    </div>
+                    
+                    <!-- jezeli klient uzyl kuponu jest wyswietlana informacja i mozliwosc rezygnacji z kuponu w danym zamowieniu -->
+
+                    <div class="KontenerKuponUsuniecie" {__WYSWIETL_KUPON_USUNIECIE}>
+                    
+                        <h5>{__TLUMACZ:USUN_KUPON_RABATOWY}</h5>
+                        
+                        <div class="FormularzKupon FormularzKuponUsuniecie">
+                        
+                            <span>{__TLUMACZ:ZREZYGNUJ_Z_KUPONU_RABATOWEGO}</span>
+                            
+                            <span class="UsunKupon" tabindex="0" role="button" aria-label="{__TLUMACZ:ZREZYGNUJ_Z_KUPONU_RABATOWEGO}" title="{__TLUMACZ:ZREZYGNUJ_Z_KUPONU_RABATOWEGO}" onclick="return UsunKuponRabatowy()"></span>
+                            
+                        </div>
+                    
+                    </div>
+
+                </div>
+                
+                <!-- przycisk do kasy -->
+
+                <div class="KontenerKoszykButton">
+                
+                    {__MINIMALNE_ZAMOWIENIE}
+                    {__ZBYT_MALA_ILOSC_PUNKTOW}
+                
+                    <span id="przycisk_zamow" {__DISPLAY_NONE}><a href="{__ZAMOWIENIE_NASTEPNY_KROK}" class="przycisk">{__TLUMACZ:PRZYCISK_DO_KASY} &raquo;</a></span>
+
+                </div>
+
+            </div>
+
+            <!-- przycisk do kontynuuj zakupy -->
+
+            <div class="KontenerKoszykButtonKontynuuj">
+            
+                <a class="przycisk Prawy" href="{__LINK_POPRZEDNIEJ_STRONY}">{__TLUMACZ:PRZYCISK_KONTYNUUJ_ZAKUPY}</a>
+                
+            </div>
+            
+            <div class="cl"></div>
+                    
+            <!-- jezeli nic nie ma w koszyku wyswietli informacje -->
+            
+            <?php } else { ?>
+            
+            {__TLUMACZ:KOSZYK_JEST_PUSTY}
+            
+            <?php } 
+            
+            unset($ProduktyKoszyka, $DodatkoweInformacje, $InformacjaBrakMagazyn);            
+            ?>
+            
+            
+        </div>
+        
+    </div>
+      
+</section>
+
+    
+

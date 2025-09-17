@@ -1,0 +1,1228 @@
+// uzywane do deklarowania czasow w animacjach
+var czasy = new Array();
+var czasOpoznienia = 200;
+
+(function($) {
+
+    $.ProducenciAnimacje = function( suma, szerokosc ) {
+    
+        var SzerNadrzedna = 0;
+        var IloscLogotypow = 0;
+        
+        if ( suma < IloscLogotypow ) {
+             suma = IloscLogotypow;
+        }
+        
+        var SzerProducenta = 0;    
+        var SzerokoscPola = 0;
+        var CalaSzerokosc = 0;
+        
+        setTimeout( function(){ ProducenciAnimacjePrzelicz(suma, szerokosc) }, czasOpoznienia);
+
+        // jezeli jest resize ekranu to zresetuje box i ustawi na nowo parametry
+        $(window).resize(function() {            
+            //
+            ProducenciAnimacjePrzelicz(suma, szerokosc);
+            $('#ProducenciAnimacjaStrzalkaLewa').hide();
+            //
+        });        
+
+        $('#ProducenciAnimacjaStrzalkaLewa').off('click').click( function(){      
+        
+            var JakiMargines = parseInt($('#ProducenciAnimacjaSrodek').css('marginLeft'));
+            
+            if ( JakiMargines < 0 ) {
+            
+                $('#ProducenciAnimacjaStrzalkaLewa').hide();
+                $('#ProducenciAnimacjaSrodek').stop().animate({ marginLeft: JakiMargines + SzerProducenta }, 500, "CofniecieOut", function() {
+                    
+                    if (JakiMargines + SzerProducenta >= 0) {
+                        $('#ProducenciAnimacjaStrzalkaLewa').hide();
+                      } else {
+                        $('#ProducenciAnimacjaStrzalkaLewa').show();
+                    }
+                    
+                    $('#ProducenciAnimacjaStrzalkaPrawa').show();
+                    
+                });
+            
+            }
+
+        });   
+
+        $('#ProducenciAnimacjaStrzalkaPrawa').off('click').click( function(){      
+        
+            var JakiMargines = parseInt($('#ProducenciAnimacjaSrodek').css('marginLeft'));
+            
+            if ( (CalaSzerokosc + JakiMargines) >= (SzerokoscPola + SzerProducenta) ) {
+            
+                $('#ProducenciAnimacjaStrzalkaPrawa').hide();
+                $('#ProducenciAnimacjaSrodek').stop().animate({ marginLeft: JakiMargines + (SzerProducenta * -1) }, 500, "CofniecieOut", function() {
+                
+                    if ( (CalaSzerokosc + (JakiMargines + (SzerProducenta * -1))) <= (SzerokoscPola + SzerProducenta) ) {
+                        $('#ProducenciAnimacjaStrzalkaPrawa').hide();
+                        $('#ProducenciAnimacjaStrzalkaLewa').show();
+                      } else {
+                        $('#ProducenciAnimacjaStrzalkaPrawa').show();
+                        $('#ProducenciAnimacjaStrzalkaLewa').show();
+                    }
+                    
+                });
+            
+            }
+
+        });           
+
+        function ProducenciAnimacjePrzelicz( suma, szerokosc ) {
+        
+            SzerNadrzedna = $('#ProducenciAnimacja').parent().width();
+            IloscLogotypow = parseInt( parseInt(SzerNadrzedna) / (parseInt(szerokosc) + 30) );
+
+            SzerProducenta = parseInt((SzerNadrzedna - 60) / IloscLogotypow);    
+            SzerokoscPola = SzerProducenta * IloscLogotypow;
+            $('#ProducenciAnimacjaSrodek').width( SzerProducenta * suma );
+            CalaSzerokosc = $('#ProducenciAnimacjaSrodek').width();
+            
+            $('#ProducenciAnimacja').css({ width: SzerokoscPola + 'px' });    
+            
+            $('#ProducenciAnimacjaSrodek li').css({ width: SzerProducenta + 'px' });  
+            $('#ProducenciAnimacjaSrodek').css({ marginLeft:0 }); 
+
+            if (suma - 1 <= IloscLogotypow ) {
+            
+                $('#ProducenciAnimacjaStrzalkaPrawa').hide();
+                $('#ProducenciAnimacjaStrzalkaLewa').hide();     
+            
+            } else {
+
+                $('#ProducenciAnimacjaStrzalkaPrawa').show();
+            
+            }
+        
+        }        
+
+    }
+
+})(jQuery);
+
+(function($) {
+
+    var opcje;
+
+    $.fn.BoxAnimacje = function( opcje ) {
+        return this.each(function() {   
+            $.BoxAnimacje( opcje );
+        });
+    };
+    
+    $.BoxAnimacje = function( opcje ) {
+    
+        // modul - id boxu
+        // id - id elementow do animacji
+        // html - jaki element jest animowany
+        // czas - czas co ile jest wykonywana animacja
+        // szybkosc - szybkosc animacji
+        // typ - fade,slide
+        
+        var minPx = 0;
+        var szePx = 0; 
+        var wysImg = parseInt($('#' + opcje.id + '1 .Zdjecie').height());
+
+        setTimeout( function(){ BoxAnimacjePrzelicz(opcje) }, czasOpoznienia);    
+        
+        // jezeli jest resize ekranu to zresetuje box i ustawi na nowo parametry
+        $(window).resize(function() {            
+            BoxAnimacjePrzelicz(opcje);
+        });    
+        
+        function BoxAnimacjePrzelicz( opcje ) {
+        
+            // szuka czy jest klasa boxtresc w boxie
+            var boxTresc = $('#' + opcje.modul).parent('.BoxTresc');
+            var ukryj = false;
+            
+            // jezeli jest klasa boxtresc sprawdzi czy jest widoczna
+            if ( boxTresc.length ) {
+                 if ( boxTresc.css('display') == 'none' ) {
+                      // jezeli nie jest widoczna to ja wlaczy do ustalenia wysokosci elementow
+                      boxTresc.css({ 'display':'block' });
+                      ukryj = true;
+                 }
+            }
+        
+            // reset modulu - ustawia wszystko na pierwszej pozycji
+            $('#' + opcje.modul + ' ' + opcje.html).css({ margin:0 });   
+        
+            // ustawia widoczne wszystkie elementy do obliczenia wysokosci i szerokosci
+            $('#' + opcje.modul + ' ' + opcje.html).show();
+        
+            var modul = $('#' + opcje.modul + ' h3');
+            minPx = 0;
+            szePx = $('#' + opcje.modul).width();
+            
+            for (t = 1; t <= modul.length; t++) {
+                $('#' + opcje.id + t).width( szePx );
+                var el = $('#' + opcje.id + t).outerHeight();
+                if (minPx < el) {
+                    var minPx = el;
+                }
+                if (t > 1) {
+                    $('#' + opcje.id + t).hide();
+                }
+            }
+            
+            // jezeli klasa boxtresc byla niewidoczna to znow ja ukryje po obliczeniu wysokosci
+            if ( ukryj == true ) {
+                 boxTresc.css({ 'display':'none' });
+            }
+            
+            // ustawia wysokosc boxu
+            $('#' + opcje.modul).height( (parseInt(minPx) + 10) + 'px' );
+            
+            clearTimeout(czasy[opcje.id]);
+            
+            // wywoluje cyklicznie funkcje
+            if ( opcje.typ == 'fade' ) {                
+                czasy[opcje.id] = setTimeout(function(){ $.BoxAnimacje.Fade(2, opcje) }, opcje.czas);
+            }
+            if ( opcje.typ == 'slide' ) {
+                czasy[opcje.id] = setTimeout(function(){ $.BoxAnimacje.Slide(2, opcje) }, opcje.czas);
+            }  
+            if ( opcje.typ == 'scrolldown' ) {
+                czasy[opcje.id] = setTimeout(function(){ $.BoxAnimacje.ScrollVert(2, opcje, 'dol') }, opcje.czas);
+            }     
+            if ( opcje.typ == 'scrollup' ) {
+                czasy[opcje.id] = setTimeout(function(){ $.BoxAnimacje.ScrollVert(2, opcje, 'gora') }, opcje.czas);
+            }         
+            if ( opcje.typ == 'scrollleft' ) {
+                czasy[opcje.id] = setTimeout(function(){ $.BoxAnimacje.ScrollHoriz(2, opcje, 'lewo') }, opcje.czas);
+            } 
+            if ( opcje.typ == 'scrollright' ) {
+                czasy[opcje.id] = setTimeout(function(){ $.BoxAnimacje.ScrollHoriz(2, opcje, 'prawo') }, opcje.czas);
+            }
+
+        }
+
+    }
+    
+    // efekt przesuwania w lewo lub prawo
+    $.BoxAnimacje.ScrollHoriz = function( elementId, opcje, kierunek ) {
+        //
+        if ( kierunek == 'prawo' ) {
+            var pomnoz = 1;
+          } else {
+            var pomnoz = -1;
+        }
+        //
+        var przesuw = parseInt( $('#' + opcje.modul).width() );
+        //
+        // zlicza ile jest elementow do animacji
+        var suma = $('#' + opcje.modul + ' ' + opcje.html).length;
+        var elk = 0;
+        if ( elementId - 1 == 0 ) {
+            var elk = suma; 
+          } else {
+            var elk = elementId - 1; 
+        }
+
+        // ukrywa animujac aktualny element
+        $('#' + opcje.id + elk).stop().animate({ marginLeft: (przesuw + 10) * pomnoz }, opcje.szybkosc / 2, function() {
+            // ukrywa wszystkie elementy
+            $('#' + opcje.modul + ' ' + opcje.html).hide();
+            // przesuwanie elementu w miejsce niewidoczne
+            $('#' + opcje.id + elementId).css({ 'margin-left': (przesuw + 10) * pomnoz, 'display': 'block' });            
+            //
+            $('#' + opcje.id + elementId).stop().animate({ marginLeft: '0px' }, opcje.szybkosc, "CofniecieOut", function() {                
+                //
+                clearTimeout(czasy[opcje.id]);
+                //
+                // jezeli licznik bedzie wiekszy niz ilosc elementow do animacji
+                if (elementId + 1 > suma) {
+                    // wroci do pierwszego elementu
+                    czasy[opcje.id] = setTimeout(function(){ $.BoxAnimacje.ScrollHoriz(1, opcje, kierunek) }, opcje.czas) ;
+                  } else {
+                    // animuje kolejny element
+                    czasy[opcje.id] = setTimeout(function(){ $.BoxAnimacje.ScrollHoriz(elementId + 1, opcje, kierunek) }, opcje.czas) ;
+                }
+            });
+        });
+        //
+    };      
+    
+    // efekt przesuwania w gore lub dol
+    $.BoxAnimacje.ScrollVert = function( elementId, opcje, kierunek ) {
+        //
+        if ( kierunek == 'dol' ) {
+            var pomnoz = 1;
+          } else {
+            var pomnoz = -1;
+        }
+        //
+        var przesuw = parseInt( $('#' + opcje.modul).height() );
+        //
+        // zlicza ile jest elementow do animacji
+        var suma = $('#' + opcje.modul + ' ' + opcje.html).length;
+        var elk = 0;
+        if ( elementId - 1 == 0 ) {
+            var elk = suma; 
+          } else {
+            var elk = elementId - 1; 
+        }
+
+        // ukrywa animujac aktualny element
+        $('#' + opcje.id + elk).stop().animate({ marginTop: (przesuw + 10) * pomnoz }, opcje.szybkosc / 2, function() {
+            // ukrywa wszystkie elementy
+            $('#' + opcje.modul + ' ' + opcje.html).hide();
+            // przesuwanie elementu w miejsce niewidoczne
+            $('#' + opcje.id + elementId).css({ 'margin-top': (przesuw + 10) * pomnoz, 'display': 'block' });            
+            //
+            $('#' + opcje.id + elementId).stop().animate({ marginTop: '0px' }, opcje.szybkosc, "CofniecieOut", function() {                
+                //
+                clearTimeout(czasy[opcje.id]);
+                //                
+                // jezeli licznik bedzie wiekszy niz ilosc elementow do animacji
+                if (elementId + 1 > suma) {
+                    // wroci do pierwszego elementu
+                    czasy[opcje.id] = setTimeout(function(){ $.BoxAnimacje.ScrollVert(1, opcje, kierunek) }, opcje.czas) ;
+                  } else {
+                    // animuje kolejny element
+                    czasy[opcje.id] = setTimeout(function(){ $.BoxAnimacje.ScrollVert(elementId + 1, opcje, kierunek) }, opcje.czas) ;
+                }
+            });
+        });
+        //     
+    };    
+    
+    // efekt rozwijania
+    $.BoxAnimacje.Slide = function( elementId, opcje ) {
+        //
+        var suma = $('#' + opcje.modul + ' ' + opcje.html).length;
+        if ( elementId - 1 == 0 ) {
+            $('#' + opcje.id + suma).stop().slideUp( opcje.szybkosc );
+          } else {
+            $('#' + opcje.id + (elementId - 1)).stop().slideUp( opcje.szybkosc );
+        }
+
+        // pokazuje zawartosc boxu jako slide
+        $('#' + opcje.id + elementId).stop().slideDown( opcje.szybkosc, function() {                 
+            //
+            clearTimeout(czasy[opcje.id]);
+            //            
+            // jezeli licznik bedzie wiekszy niz ilosc elementow do animacji
+            if (elementId + 1 > $('#' + opcje.modul + ' ' + opcje.html).length) {
+                // wroci do pierwszego elementu
+                czasy[opcje.id] = setTimeout(function(){ $.BoxAnimacje.Slide(1, opcje) }, opcje.czas) ;
+              } else {
+                // animuje kolejny element
+                czasy[opcje.id] = setTimeout(function(){ $.BoxAnimacje.Slide(elementId + 1, opcje) }, opcje.czas) ;
+            }
+        });
+        //
+    };    
+    
+    // efekt zanikania
+    $.BoxAnimacje.Fade = function( elementId, opcje ) {
+        //
+        // ukrywa wszystkie elementy boxu
+        $('#' + opcje.modul + ' ' + opcje.html).hide();
+        // pokazuje zawartosc boxu jako fade
+        $('#' + opcje.id + elementId).fadeIn( opcje.szybkosc, function() {
+            //
+            clearTimeout(czasy[opcje.id]);
+            //             
+            // jezeli licznik bedzie wiekszy niz ilosc elementow do animacji
+            if (elementId + 1 > $('#' + opcje.modul + ' ' + opcje.html).length) {
+                // wroci do pierwszego elementu
+                czasy[opcje.id] = setTimeout(function(){ $.BoxAnimacje.Fade(1, opcje) }, opcje.czas) ;
+              } else {         
+                // animuje kolejny element
+                czasy[opcje.id] = setTimeout(function(){ $.BoxAnimacje.Fade(elementId + 1, opcje) }, opcje.czas) ;
+            }
+            //
+        });
+        //
+    };
+    
+})(jQuery);
+
+
+(function($) {
+
+    var opcje;
+
+    $.fn.BoxPrzewijanie = function( opcje ) {
+        return this.each(function() {   
+            $.BoxPrzewijanie( opcje );
+        });
+    };
+    
+    $.BoxPrzewijanie = function( opcje ) { 
+
+        var minPx = 0;
+        var szePx = 0; 
+        var wysImg = parseInt($('#' + opcje.id + '1 .Zdjecie').height());
+    
+        setTimeout( function(){ BoxPrzewijaniePrzelicz(opcje) }, czasOpoznienia);    
+
+        // zlicza ile jest elementow do animacji
+        var suma = parseInt($('#' + opcje.modul + ' ' + opcje.html).length);        
+        
+        $('#' + opcje.modul + ' .strzalkaPrawa').off('click').click( function(){      
+            var liOut = $('#' + opcje.modul + ' .AktLicz').html();
+            var li = $('#' + opcje.modul + ' .AktLicz');
+            var it = parseInt(li.html());
+            if (it == suma) {
+                li.html( 1 );
+              } else {
+                li.html( it + 1 );
+            }        
+
+            $.BoxPrzewijanie.Animuj( opcje, szePx, wysImg, li, liOut, 'prawa' );
+
+        });      
+
+        $('#' + opcje.modul + ' .strzalkaLewa').off('click').click( function(){      
+            var liOut = $('#' + opcje.modul + ' .AktLicz').html();
+            var li = $('#' + opcje.modul + ' .AktLicz');
+            var it = parseInt(li.html());
+            if (it == 1) {
+                li.html( suma );
+              } else {
+                li.html( it - 1 );
+            }        
+
+            $.BoxPrzewijanie.Animuj( opcje, szePx, wysImg, li, liOut, 'lewa' );
+
+        });
+
+        // jezeli jest resize ekranu to zresetuje box i ustawi na nowo parametry
+        $(window).resize(function() {
+            BoxPrzewijaniePrzelicz(opcje);
+        });    
+
+        function BoxPrzewijaniePrzelicz( opcje ) {
+        
+            // szuka czy jest klasa boxtresc w boxie
+            var boxTresc = $('#' + opcje.modul).parent('.BoxTresc');
+            var ukryj = false;
+            
+            // jezeli jest klasa boxtresc sprawdzi czy jest widoczna
+            if ( boxTresc.length ) {
+                 if ( boxTresc.css('display') == 'none' ) {
+                      // jezeli nie jest widoczna to ja wlaczy do ustalenia wysokosci elementow
+                      boxTresc.css({ 'display':'block' });
+                      ukryj = true;
+                 }
+            }
+        
+            // reset modulu - ustawia wszystko na pierwszej pozycji
+            $('#' + opcje.modul + ' ' + opcje.html).css({ margin:0 });   
+            $('#' + opcje.modul + ' .AktLicz').html(1);
+        
+            // ustawia widoczne wszystkie elementy do obliczenia wysokosci i szerokosci
+            $('#' + opcje.modul + ' ' + opcje.html).show();
+        
+            var modul = $('#' + opcje.modul + ' h3');
+            minPx = 0;
+            szePx = $('#' + opcje.modul).width();
+            
+            for (t = 1; t <= modul.length; t++) {
+                $('#' + opcje.id + t).width( szePx );
+                var el = $('#' + opcje.id + t).outerHeight();
+                if (minPx < el) {
+                    var minPx = el;
+                }
+                if (t > 1) {
+                    $('#' + opcje.id + t).hide();
+                }
+            }
+            
+            // jezeli klasa boxtresc byla niewidoczna to znow ja ukryje po obliczeniu wysokosci
+            if ( ukryj == true ) {
+                 boxTresc.css({ 'display':'none' });
+            }
+            
+            // ustawia wysokosc boxu          
+            $('#' + opcje.modul).height( (parseInt(minPx) + 10) + 'px' );
+            
+            $.BoxPrzewijanie.Strzalki( opcje, szePx, wysImg, 'pokaz' );
+            
+        }          
+      
+    }
+    
+    $.BoxPrzewijanie.Strzalki = function( opcje, szePx, wysImg, akcja ) {
+        //
+        var lewa = $('#' + opcje.modul + ' .strzalkaLewa');
+        var prawa = $('#' + opcje.modul + ' .strzalkaPrawa');
+        //
+        if ( akcja == 'pokaz') {
+            lewa.css({ 'margin-top': (wysImg/2) + 'px' }); prawa.css({ 'margin-top': (wysImg/2) + 'px', 'margin-left': (szePx-24) + 'px' });
+            lewa.fadeIn('fast'); prawa.fadeIn('fast');
+          } else {
+            lewa.hide(); prawa.hide();      
+        }
+        
+    };    
+    
+    $.BoxPrzewijanie.Animuj = function( opcje, szePx, wysImg, li, liOut, strona ) {
+        // ukrywa animujac aktualny element
+        $.BoxPrzewijanie.Strzalki( opcje, szePx, wysImg, 'ukryj' );
+        $('#' + opcje.id + liOut).stop().animate({ marginLeft: (szePx + 10) * ((strona == 'prawa') ? -1 : 1) }, 300, function() {
+            // ukrywa wszystkie elementy
+            $('#' + opcje.modul + ' ' + opcje.html).hide();
+            // przesuwanie elementu w miejsce niewidoczne
+            $('#' + opcje.id + li.html()).css({ 'margin-left': (szePx + 10) * ((strona == 'prawa') ? 1 : -1) , 'display': 'block' });            
+            $('#' + opcje.id + li.html()).stop().animate({ marginLeft: '0px' }, 600, "CofniecieOut", function() {
+                $.BoxPrzewijanie.Strzalki( opcje, szePx, wysImg, 'pokaz' );
+            });
+        });
+    };     
+
+})(jQuery);
+
+
+(function($) {
+
+    var opcje;
+
+    $.fn.BoxPrzyciski = function( opcje ) {
+        return this.each(function() {   
+            $.BoxPrzyciski( opcje );
+        });
+    };
+    
+    $.BoxPrzyciski = function( opcje ) {
+    
+        var minPx = 0;
+        var szePx = 0;    
+    
+        setTimeout( function(){ BoxPrzyciskiPrzelicz(opcje) }, czasOpoznienia);
+        
+        $('#' + opcje.przyciski + ' b').off('click').click(
+        function(){      
+            //
+            var Poprzedni = TylkoLiczba( $('#' + opcje.przyciski).find('.On').attr("id") );
+            var Aktywny = TylkoLiczba( $(this).attr("id") );
+            //
+            if ( Poprzedni != Aktywny ) {
+                //
+                $('#' + opcje.przyciski + ' b').removeClass('On');
+                $(this).addClass('On');   
+
+                $('#' + opcje.id + 'op' + Poprzedni).stop().animate({ marginLeft: (szePx + 10) * -1 }, 300, function() {
+                    // ukrywa wszystkie elementy
+                    $('#' + opcje.modul + ' ' + opcje.html).hide();
+                    // przesuwanie elementu w miejsce niewidoczne
+                    $('#' + opcje.id + 'op' + Aktywny).css({ 'margin-left': (szePx + 10) * 1 , 'display': 'block' });            
+                    $('#' + opcje.id + 'op' + Aktywny).stop().animate({ marginLeft: '0px' }, 600, "CofniecieOut");
+                });
+                //
+            }
+        });    
+
+        // jezeli jest resize ekranu to zresetuje box i ustawi na nowo parametry
+        $(window).resize(function() {
+            BoxPrzyciskiPrzelicz(opcje);
+        });
+
+        function BoxPrzyciskiPrzelicz( opcje ) {
+        
+            // szuka czy jest klasa boxtresc w boxie
+            var boxTresc = $('#' + opcje.modul).parent('.BoxTresc');
+            var ukryj = false;
+            
+            // jezeli jest klasa boxtresc sprawdzi czy jest widoczna
+            if ( boxTresc.length ) {
+                 if ( boxTresc.css('display') == 'none' ) {
+                      // jezeli nie jest widoczna to ja wlaczy do ustalenia wysokosci elementow
+                      boxTresc.css({ 'display':'block' });
+                      ukryj = true;
+                 }
+            }
+        
+            // reset modulu - ustawia wszystko na pierwszej pozycji
+            $('#' + opcje.przyciski + ' b').removeClass('On');
+            $('#' + opcje.przyciski + ' b:first-child').addClass('On');
+            $('#' + opcje.modul + ' ' + opcje.html).css({ margin:0 });        
+        
+            // ustawia widoczne wszystkie elementy do obliczenia wysokosci i szerokosci
+            $('#' + opcje.modul + ' ' + opcje.html).show();
+        
+            var modul = $('#' + opcje.modul + ' h3');
+            minPx = 0;
+            szePx = $('#' + opcje.modul).width();
+            
+            for (t = 1; t <= modul.length; t++) {
+                $('#' + opcje.id + 'op' + t).width( szePx );
+                var el = $('#' + opcje.id + 'op' + t).outerHeight();
+                if (minPx < el) {
+                    minPx = el;
+                }
+                if (t > 1) {
+                    $('#' + opcje.id + 'op' + t).hide();
+                }
+            }
+            
+            // jezeli klasa boxtresc byla niewidoczna to znow ja ukryje po obliczeniu wysokosci
+            if ( ukryj == true ) {
+                 boxTresc.css({ 'display':'none' });
+            }
+            
+            // ustawia wysokosc boxu           
+            $('#' + opcje.modul).height( (parseInt(minPx) + 10) + 'px' );
+            
+        }
+        
+    }
+
+})(jQuery);
+
+(function($) {
+
+    var opcje;
+
+    $.fn.ModulPrzewijanie = function( opcje ) {
+        return this.each(function() {   
+            $.ModulPrzewijanie( opcje );
+        });
+    };
+    
+    $.ModulPrzewijanie = function( opcje ) {
+
+        var SzerModulu = 0;
+        var IloscMod = 0;
+        var WysModulu = 0;
+        var SzerokoscElementu = 0;
+        
+        // sprawdza jaki jest rodzaj nawigacji
+        if ( $('#' + opcje.modul).find('.StronyAnim').length ) {
+             opcje.rodzajnawigacja = 'przyciski';
+          } else {
+             opcje.rodzajnawigacja = 'strzalki';
+        }
+          
+        setTimeout( function(){ ModulPrzewijanePrzelicz(opcje) }, czasOpoznienia);
+        
+        // jezeli jest resize ekranu to zresetuje modul i ustawi na nowo parametry 
+        $(window).resize(function() {  
+        
+            if ( opcje.animacja == 'tak' ) {
+                clearTimeout(czasy[opcje.id]);
+            }
+            
+            ModulPrzewijanePrzelicz(opcje);
+            
+            if ( opcje.animacja == 'tak' ) {
+                czasy[opcje.id] = setTimeout(function(){ $.ModulPrzewijanie.Animacja( SzerModulu, WysModulu, opcje, IloscMod ) }, opcje.czas);  
+            }
+
+        });
+
+        function ModulPrzewijanePrzelicz( opcje ) {
+        
+            if ( opcje.rodzajnawigacja == 'strzalki' ) {
+                 //
+                 SzerModulu = $('#' + opcje.modul).find('.StronyStrzalki').outerWidth();
+                 //
+              } else {
+                 //
+                 SzerModulu = $('#' + opcje.modul).outerWidth();
+                 //
+            }
+            
+            SzerokoscElementu = SzerModulu / opcje.kolumny;
+            
+            var IloscKolumn = opcje.kolumny;
+            
+            // sprawdzanie szerokosci elementow
+
+            for ( h = 1; h < 4; h++ ) {
+                if ( SzerokoscElementu < ((opcje.rodzajnawigacja == 'strzalki') ? 205 : 225) ) {
+                     IloscKolumn -= 1;
+                     SzerokoscElementu = SzerModulu / IloscKolumn;
+                }
+            }  
+        
+            var IloscPrzyciskow = parseInt( $('#' + opcje.modul + ' li article').length / IloscKolumn );    
+            if ( IloscPrzyciskow != $('#' + opcje.modul + ' li article').length / IloscKolumn ) {
+                 IloscPrzyciskow++;
+            }
+            
+            if ( opcje.rodzajnawigacja == 'przyciski' ) {
+              
+                if ( IloscPrzyciskow < 2 ) {
+                     
+                     $('#' + opcje.modul + ' .StronyAnim').hide();
+                     
+                } else {
+                  
+                     $('#' + opcje.modul + ' .StronyAnim').show();
+                  
+                }
+            
+                if ( IloscPrzyciskow != $('#' + opcje.modul + ' .StronyAnim b').length ) {
+                
+                    $('#' + opcje.modul + ' .StronyAnim').html('');
+                    
+                    IloscMod = 0;
+
+                    for ( t = 1; t <= IloscPrzyciskow; t++ ) { 
+                        //
+                        $('#' + opcje.modul + ' .StronyAnim').append('<b>' + t + '</b>');
+                        IloscMod++;
+                        //
+                    }
+                
+                } else {
+                
+                    IloscMod = IloscPrzyciskow;
+                
+                }
+                
+            }
+            
+            if ( opcje.rodzajnawigacja == 'strzalki' ) {
+              
+                 IloscMod = IloscPrzyciskow;
+                 
+                 if ( $('#' + opcje.modul).find('.IloscStron').length == 0 ) {
+                      //
+                      $('#' + opcje.modul + ' .StronyStrzalki').before('<div class="IloscStron" style="display:none">' + IloscMod + '</div>');
+                      $('#' + opcje.modul + ' .StronyStrzalki').before('<div class="AktualnaStrona" style="display:none">1</div>');
+                      //                      
+                   } else {
+                      //
+                      $('#' + opcje.modul + ' .IloscStron').html(IloscMod);                          
+                      //
+                 }
+                 
+            }
+
+            ModulPrzewijanePrzeliczElement(opcje, SzerokoscElementu);
+
+        }
+        
+        function ModulPrzewijanePrzeliczElement( opcje ) {
+
+            $('#' + opcje.modul + ' li article').css({ width: SzerokoscElementu });    
+
+            // ustawia szerokosci elementow ul i li
+            $('#' + opcje.modul + ' li').css({ width: ($('#' + opcje.modul + ' li article').length * SzerokoscElementu) + 50, opacity: 1 });    
+
+            $('#' + opcje.modul + ' li article').css({ height: 'auto' });
+            
+            var minPx = 0;
+            $('#' + opcje.modul + ' li article').each(function() {
+                var elr = $(this).outerHeight();
+                if (minPx < elr) {
+                    minPx = elr;
+                }                
+            });
+                     
+            $('#' + opcje.modul + ' li').css({ height: minPx, marginLeft: 0 });      
+            $('#' + opcje.modul + ' li article').css({ height: minPx });
+            $('#' + opcje.modul + ' li .ElementyAnimacji').css({ height: minPx }); 
+
+            WysModulu = minPx + 10;
+            
+            if ( opcje.rodzajnawigacja == 'przyciski' ) {
+            
+                // ustawia pierwszy przycisk
+                $('#' + opcje.modul + ' .StronyAnim b').removeClass('On');
+                $('#' + opcje.modul + ' .StronyAnim b:first').addClass('On'); 
+
+                $('#' + opcje.modul + ' .StronyAnim b').off('click').click(function(){    
+                    //
+                    if ( $(this).attr('class') != 'On' ) {
+                        //
+                        var AktywnyClick = $(this).html();
+                        //
+                        // ustawia aktualne podswietlenie przycisku
+                        $('#' + opcje.modul + ' .StronyAnim b').removeClass('On');
+                        $(this).addClass('On');
+                        
+                        $.ModulPrzewijanie.Animacja( SzerModulu, WysModulu, opcje, IloscMod, AktywnyClick ); 
+
+                    }
+                    //
+                }); 
+
+            }
+            
+            if ( opcje.rodzajnawigacja == 'strzalki' ) {
+              
+                $('#' + opcje.modul + ' .AktualnaStrona').html(1);
+            
+                // prawa strzalka
+                $('#' + opcje.modul + ' .PrawaStrzalka').off('click').click(function(){    
+                    //
+                    var AktywnyNumer = parseInt($('#' + opcje.modul + ' .AktualnaStrona').html()) + 1;
+                    //
+                    if ( AktywnyNumer > parseInt($('#' + opcje.modul + ' .IloscStron').html()) ) {
+                         //
+                         $('#' + opcje.modul + ' .AktualnaStrona').html(1);
+                         //
+                      } else {
+                         //
+                         $('#' + opcje.modul + ' .AktualnaStrona').html(AktywnyNumer);
+                         //
+                      }
+                    //
+                    var AktywnyClick = $('#' + opcje.modul + ' .AktualnaStrona').html();
+                    
+                    //
+                    $.ModulPrzewijanie.Animacja( SzerModulu, WysModulu, opcje, IloscMod, AktywnyClick ); 
+                    //
+                }); 
+                
+                // lewa strzalka
+                $('#' + opcje.modul + ' .LewaStrzalka').off('click').click(function(){    
+                    //
+                    var AktywnyNumer = parseInt($('#' + opcje.modul + ' .AktualnaStrona').html()) - 1;
+                    //
+                    if ( AktywnyNumer < 1 ) {
+                         //
+                         $('#' + opcje.modul + ' .AktualnaStrona').html( parseInt($('#' + opcje.modul + ' .IloscStron').html()) );
+                         //
+                      } else {
+                         //
+                         $('#' + opcje.modul + ' .AktualnaStrona').html(AktywnyNumer);
+                         //
+                      }
+                    //
+                    var AktywnyClick = $('#' + opcje.modul + ' .AktualnaStrona').html();
+                    
+                    //
+                    $.ModulPrzewijanie.Animacja( SzerModulu, WysModulu, opcje, IloscMod, AktywnyClick ); 
+                    //
+                });                 
+
+            }            
+
+        }
+
+        if ( opcje.animacja == 'tak' ) {
+            
+            czasy[opcje.id] = setTimeout(function(){ $.ModulPrzewijanie.Animacja( SzerModulu, WysModulu, opcje, IloscMod ) }, opcje.czas);    
+
+            $('#' + opcje.modul + ' li').hover(
+            function() {
+                clearTimeout(czasy[opcje.id]);
+            },
+            function() {
+                czasy[opcje.id] = setTimeout(function(){ $.ModulPrzewijanie.Animacja( SzerModulu, WysModulu, opcje, IloscMod ) }, opcje.czas);    
+            });
+            
+        }
+
+    }   
+
+    $.ModulPrzewijanie.Animacja = function( SzerModulu, WysModulu, opcje, IloscMod, AktywnyClick ) {
+        //
+        if ( opcje.animacja == 'tak' ) {
+             clearTimeout(czasy[opcje.id]);
+        }
+        //
+        if ( AktywnyClick == undefined ) {
+            //
+            if ( opcje.rodzajnawigacja == 'przyciski' ) {
+                 var Aktywny = $('#' + opcje.modul + ' .StronyAnim').find('.On').html();
+            }
+            if ( opcje.rodzajnawigacja == 'strzalki' ) {
+                 var Aktywny = $('#' + opcje.modul + ' .AktualnaStrona').html();
+            }            
+            //
+            var NowyAktywny = parseInt( TylkoLiczba( Aktywny ) ) + 1;
+            //
+            if ( NowyAktywny > IloscMod ) {
+                 NowyAktywny = 1;
+            }
+            //
+          } else {
+            //
+            NowyAktywny = TylkoLiczba( AktywnyClick );
+            //
+        }
+
+        if ( opcje.rodzajnawigacja == 'przyciski' ) {
+          
+            $('#' + opcje.modul + ' .StronyAnim b').removeClass('On');
+            //
+            $('#' + opcje.modul + ' .StronyAnim b').each(function() {
+                if ( $(this).html() == NowyAktywny ) {
+                     $(this).addClass('On');   
+                }
+            })           
+            
+        }
+        
+        if ( opcje.rodzajnawigacja == 'strzalki' ) {
+          
+            $('#' + opcje.modul + ' .AktualnaStrona').html(NowyAktywny);
+            
+        }
+        
+        if ( opcje.typ == 'fade' ) {             
+             $('#' + opcje.modul + ' li').hide();
+             $('#' + opcje.modul + ' li').css({ marginLeft: ( (NowyAktywny - 1) * SzerModulu ) * -1 });
+             $('#' + opcje.modul + ' li').stop().fadeIn();
+        }
+        if ( opcje.typ == 'scrollleft' ) {
+             $('#' + opcje.modul + ' li').stop().animate({ marginLeft: ( (NowyAktywny - 1) * SzerModulu ) * -1 }, 600, "SzybkoOut");
+        }
+        if ( opcje.typ == 'scrolltop' ) {
+             //
+             $('#' + opcje.modul + ' li').css({ marginLeft: ( (NowyAktywny - 1) * SzerModulu ) * -1 });
+             $('#' + opcje.modul + ' li .ElementyAnimacji').css({ marginTop: (WysModulu + 10) * -1 });
+             $('#' + opcje.modul + ' li .ElementyAnimacji').stop().animate({ marginTop: '0px' }, 700, "CofniecieOut");
+        }
+        //
+        if ( opcje.animacja == 'tak' ) {
+             czasy[opcje.id] = setTimeout(function(){ $.ModulPrzewijanie.Animacja( SzerModulu, WysModulu, opcje, IloscMod ) }, opcje.czas);    
+        }
+        //
+    };    
+
+})(jQuery);
+
+
+(function($) {
+
+    var opcje;
+
+    $.fn.ModulAnimacja = function( opcje ) {
+        return this.each(function() {   
+            $.ModulAnimacja( opcje );
+        });
+    };
+    
+    $.ModulAnimacja = function( opcje ) {
+    
+        var iloscMod = $('#' + opcje.przyciski + ' b').length;
+
+        setTimeout( function(){ ModulAnimacjaPrzelicz(opcje) }, czasOpoznienia);
+        
+        // jezeli jest resize ekranu to zresetuje modul i ustawi na nowo parametry
+        $(window).resize(function() {            
+            //
+            ModulAnimacjaPrzelicz(opcje);
+            //
+            if ( opcje.animacja == 'tak' ) {
+                 czasy[opcje.id] = setTimeout(function(){ $.ModulAnimacja.Animacja( opcje, '#p_' + opcje.id + '2', iloscMod ) }, opcje.czas); 
+            }
+            //
+        });          
+
+        $('#' + opcje.przyciski + ' b').off('click').click( function(){      
+            $.ModulAnimacja.Animacja( opcje, this, iloscMod );
+        });     
+        
+        if ( opcje.animacja == 'tak' ) {
+             //
+             $('#' + opcje.modul + ' ul').hover(
+             function() {
+                clearTimeout(czasy[opcje.id]);
+             },
+             function() {
+                //
+                var Zaznacz = parseInt(TylkoLiczba( $('#' + opcje.przyciski).find('.On').attr("id") )) + 1;
+                if ( Zaznacz > iloscMod ) {
+                     Zaznacz = '1';
+                }
+                //
+                clearTimeout(czasy[opcje.id]);
+                czasy[opcje.id] = setTimeout(function(){ $.ModulAnimacja.Animacja( opcje, '#p_' + opcje.id + Zaznacz, iloscMod ) }, opcje.czas); 
+                //
+             });        
+             //
+        }     
+
+        function ModulAnimacjaPrzelicz( opcje ) {
+            //
+            $('#' + opcje.modul).find('ul').css({ width: $('#' + opcje.modul).outerWidth(), opacity: 1 });
+            $('#' + opcje.modul).find('li').css({ 'float' : 'none' });
+            //
+            // wyrownanie wysokosci
+            var danaWysokosc = 0;
+            //
+            if ( opcje.animacja == 'tak' ) {
+                 clearTimeout(czasy[opcje.id]);
+            }
+            //
+            $('#' + opcje.modul + ' ' + opcje.html).css("min-height", "inherit");
+            $('#' + opcje.modul + ' ' + opcje.html).show();
+            //
+            $('#' + opcje.modul + ' ' + opcje.html).each(function() {
+                if ($(this).outerHeight() > danaWysokosc) {
+                    danaWysokosc = $(this).outerHeight();
+                }
+            });
+            //
+            // zeruje ustawienia modulu
+            $('#' + opcje.modul + ' ' + opcje.html).hide();
+            $('#' + opcje.przyciski + ' b').removeClass('On');
+            //
+            // ustawia domyslnie pierwszy element
+            $('#p_' + opcje.id + '1').addClass('On');
+            $('#' + opcje.id + '1').show();
+            //            
+            $('#' + opcje.modul + ' ' + opcje.html).css("min-height", danaWysokosc);            
+            //
+            
+            if ( opcje.animacja == 'tak' ) {
+                 czasy[opcje.id] = setTimeout(function(){ $.ModulAnimacja.Animacja( opcje, '#p_' + opcje.id + '2', iloscMod ) }, opcje.czas);   
+            }
+            
+        }
+        
+    };
+
+    $.ModulAnimacja.Animacja = function( opcje, elem, iloscMod ) {  
+
+        if ( opcje.animacja == 'tak' ) {
+             clearTimeout(czasy[opcje.id]);
+        }
+        //     
+        var Aktywny = TylkoLiczba( $(elem).attr("id") );
+        //
+        if ( $(elem).attr('class') != 'On' ) {
+            //
+            $('#' + opcje.przyciski + ' b').removeClass('On');
+            $(elem).addClass('On');   
+
+            $('#' + opcje.modul + ' ' + opcje.html).hide();
+            
+            $('#' + opcje.id + Aktywny).fadeIn('slow');
+            
+            //
+            if ( opcje.animacja == 'tak' ) {
+                 //
+                 if ( Aktywny == iloscMod ) {
+                      var Pokaz = '#p_' + opcje.id + '1';
+                    } else {
+                      var Pokaz = '#p_' + opcje.id + ( parseInt(Aktywny) + 1 );
+                 }                
+                 //        
+                 czasy[opcje.id] = setTimeout(function(){ $.ModulAnimacja.Animacja( opcje, Pokaz, iloscMod ) }, opcje.czas); 
+                 //            
+            }
+            //            
+        }
+        //
+    };
+    
+})(jQuery);
+
+
+(function($) {
+
+    var opcje;
+
+    $.fn.ModulAnimacjaSpadanie = function( opcje ) {
+        return this.each(function() {   
+            $.ModulAnimacjaSpadanie( opcje );
+        });
+    };
+    
+    $.ModulAnimacjaSpadanie = function( opcje ) {
+    
+        var iloscMod = $('#' + opcje.przyciski + ' b').length;
+
+        setTimeout( function(){ ModulAnimacjaSpadaniePrzelicz(opcje) }, czasOpoznienia);
+        
+        // jezeli jest resize ekranu to zresetuje modul i ustawi na nowo parametry
+        $(window).resize(function() {   
+            //
+            ModulAnimacjaSpadaniePrzelicz(opcje);
+            //
+            if ( opcje.animacja == 'tak' ) {
+                 clearTimeout(czasy[opcje.id]);
+                 czasy[opcje.id] = setTimeout(function(){ $.ModulAnimacjaSpadanie.Animacja( opcje, '#p_' + opcje.id + '2', iloscMod ) }, opcje.czas);   
+            }
+            //
+        });
+
+        function ModulAnimacjaSpadaniePrzelicz( opcje ) {
+          
+            $('#' + opcje.modul).find('ul').css({ width: $('#' + opcje.modul).outerWidth(), opacity: 1 });
+            $('#' + opcje.modul).find('li').css({ 'float' : 'none' });
+        
+            $('#' + opcje.modul + ' ' + opcje.html).show();
+            $('#' + opcje.modul + ' ' + opcje.html + ' .Znikanie').css({ height: 'auto', width: 'auto', margin: 0 });
+            $('#' + opcje.modul + ' ' + opcje.html + ' .Skakanie').css({ height: 'auto', width: 'auto', margin: 0 });
+        
+            // zeruje modul do pierwszego produktu i oblicza wysokosc elementow li - sprawdzi
+            // co jest wyzsze: opis czy zdjecie i taka ustawi wysokosc
+            var minPx = 0;
+            $('#' + opcje.modul + ' ' + opcje.html).each(function() {
+                var min1 = $(this).find('.Znikanie').outerHeight();
+                var min2 = $(this).find('.Skakanie').outerHeight();
+
+                minPxTmp = min2;
+                if ( min1 > min2 ) {
+                     minPxTmp = min1;
+                }
+                
+                if ( minPx < minPxTmp ) {
+                     minPx = minPxTmp;
+                }
+                
+                delete minPxTmp;
+            });
+              
+            $('#' + opcje.modul + ' ' + opcje.html).css({ 'height': minPx + 5, 'overflow': 'hidden' });
+
+            $('#' + opcje.modul + ' ' + opcje.html).hide();
+            $('#' + opcje.modul + ' ' + opcje.html + ':first-child').show();
+            
+            $('#' + opcje.przyciski + ' b').removeClass('On');
+            $('#' + opcje.przyciski + ' b:first-child').addClass('On');              
+            //     
+        
+        };
+        
+        $('#' + opcje.przyciski + ' b').off('click').click( function(){      
+            $.ModulAnimacjaSpadanie.Animacja( opcje, this, iloscMod );
+        });     
+        
+        if ( opcje.animacja == 'tak' ) {
+             //
+             $('#' + opcje.modul + ' ul').hover( function() {
+                clearTimeout(czasy[opcje.id]);
+             },
+             function() {
+                //
+                var Zaznacz = parseInt(TylkoLiczba( $('#' + opcje.przyciski).find('.On').attr("id") )) + 1;
+                if ( Zaznacz > iloscMod ) {
+                     Zaznacz = '1';
+                }
+                //
+                clearTimeout(czasy[opcje.id]);
+                czasy[opcje.id] = setTimeout(function(){ $.ModulAnimacjaSpadanie.Animacja( opcje, '#p_' + opcje.id + Zaznacz, iloscMod ) }, opcje.czas); 
+                //
+             });        
+             //
+             czasy[opcje.id] = setTimeout(function(){ $.ModulAnimacjaSpadanie.Animacja( opcje, '#p_' + opcje.id + '2', iloscMod ) }, opcje.czas);   
+             //
+        }        
+
+    };
+
+    $.ModulAnimacjaSpadanie.Animacja = function( opcje, elem, iloscMod ) {  
+
+        if ( opcje.animacja == 'tak' ) {
+             clearTimeout(czasy[opcje.id]);
+        }
+        //     
+        var Aktywny = TylkoLiczba( $(elem).attr("id") );
+        //
+        if ( $(elem).attr('class') != 'On' ) {
+            //
+            $('#' + opcje.przyciski + ' b').removeClass('On');
+            $(elem).addClass('On');   
+
+            $('#' + opcje.modul + ' ' + opcje.html).hide();
+            
+            $('#' + opcje.id + Aktywny).show();
+            
+            // lewa strona
+            var SzerokoscElementu = $('#' + opcje.id + Aktywny + ' .Znikanie').width();
+
+            // zdjecie produktu
+            var WysokoscElementu = $('#' + opcje.id + Aktywny + ' .FotoPrawe').height();
+            $('#' + opcje.id + Aktywny + ' .Skakanie').css({ 'margin-top': (WysokoscElementu + 20) * -1 });               
+            
+            $('#' + opcje.id + Aktywny + ' .Znikanie').width( SzerokoscElementu );
+            $('#' + opcje.id + Aktywny + ' .Znikanie').css({ 'margin-left': (SzerokoscElementu + 50) * -1, opacity: 0 });  
+            
+            $('#' + opcje.id + Aktywny + ' .Znikanie').stop().animate({ marginLeft: 0, opacity: 1 }, 700, "SzybkoOut");
+            $('#' + opcje.id + Aktywny + ' .Skakanie').stop().animate({ marginTop: 0 }, 900, "SkakanieWolneOut");
+
+            if ( opcje.animacja == 'tak' ) {
+                 //
+                 if ( Aktywny == iloscMod ) {
+                      var Pokaz = '#p_' + opcje.id + '1';
+                    } else {
+                      var Pokaz = '#p_' + opcje.id + ( parseInt(Aktywny) + 1 );
+                 }                
+                 //        
+                 czasy[opcje.id] = setTimeout(function(){ $.ModulAnimacjaSpadanie.Animacja( opcje, Pokaz, iloscMod ) }, opcje.czas); 
+                 //            
+            }            
+
+        }
+        //
+    };
+    
+})(jQuery);
+
+
+(function($) {
+
+    $.WszystkieProdukty = function( szablon, rwd_kontenter, rwd_pozycje, rwd_css_bok, rwd_css_dol ) {
+    
+        if ( szablon == undefined ) {
+             szablon = 'moduly/produkty_okna.php';
+        }
+        if ( rwd_kontenter == undefined ) {
+             rwd_kontenter = '.OknaRwd';
+        }
+        if ( rwd_pozycje == undefined ) {
+             rwd_pozycje = '.OknoRwd';
+        }
+        if ( rwd_css_bok == undefined ) {
+             rwd_css_bok = 'LiniaPrawaBrak';
+        }
+        if ( rwd_css_dol == undefined ) {
+             rwd_css_dol = 'LiniaDolnaBrak';
+        }
+        
+        $('#WszystkieProduktyGlowne .ModulPrzyciski b').off('click').click( function(){      
+            //
+            $('#WszystkieProduktyGlowne').css({ opacity: 0.2 });
+            
+            $('#LadowanieWszystkie').width( $('#WszystkieProdukty').width() );
+            $('#LadowanieWszystkie').height( $('#WszystkieProdukty').height() - 50 );
+            $('#LadowanieWszystkie').show();
+            //
+            var Aktywny = TylkoLiczba( $(this).attr("id") );
+            //
+            $.post(szablon, { nr: Aktywny }, function(data) {
+                //
+                $('#LadowanieWszystkie').hide();
+                //                
+                $('#WszystkieProduktyGlowne').css({ opacity: 0 });
+                $('#WszystkieProduktyGlowne').html(data);
+                
+                // ukrywanie pol inputa do wpisania ilosci przy kupowaniu jezeli jest wylaczona opcja w listingach i modulach
+                var ukryjInput = '{__UKRYWANIE_INPUTOW_ILOSCI}';
+                if ( ukryjInput == 'nie' ) {
+                     $('.Zakup input').hide();
+                     $('.Zakup em').hide();
+                }                          
+                
+                // musi byc fade bo nie ladowaly sie do konca obrazki i nie mozna bylo wyskalowac okien
+                $('#WszystkieProdukty').hide();
+                $('#WszystkieProdukty').fadeIn( 500, function() {
+                    RWD_Skalowanie({ kontener: rwd_kontenter, pozycje: rwd_pozycje, cssDol: rwd_css_dol });
+                });
+                     
+                var powiekszanieZdjecia = '{__ZDJECIE_POWIEKSZANIE}';
+                // funkcja powiekszania zdjecia po najechaniu kursorem
+                if ( powiekszanieZdjecia == 'tak' ) {
+                     pokazOkno();
+                }
+                
+                $('#WszystkieProduktyGlowne').animate({ opacity: 1 }, 700); 
+                //
+                $.scrollTo('#WszystkieProduktyGlowne',400, {offset:-90});
+                //                  
+                
+            });
+        });     
+
+    };
+    
+})(jQuery);
+

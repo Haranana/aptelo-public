@@ -1,0 +1,35 @@
+<!-- wyglad boxu kategorii -->
+
+<!-- wyglad naglowka boxu - sprawdza czy box ma miec naglowek -->
+
+<div class="CalyBoxKategorie">
+
+    <input class="CheckboxNawigacja CheckboxNawigacja" type="checkbox" id="CalyBoxCheckbox-<?php echo $__pA['box_id']; ?>" />
+
+    <?php if ($__pA['box_header'] == '1') { ?>
+    
+        <div class="BoxNaglowekKategorie">
+        
+            <label for="CalyBoxCheckbox-<?php echo $__pA['box_id']; ?>"> 
+            
+                {__NAGLOWEK_BOXU}
+                
+            </label>
+            
+        </div>
+        
+    <?php } ?>
+
+    <!-- tresc boxu kategorii -->
+
+    <div class="BoxKategorieAktualnosci BoxZawartosc">
+    
+        <div class="BoxOdstep">
+        
+            {__TRESC_BOXU}
+            
+        </div>
+        
+    </div>
+    
+</div>

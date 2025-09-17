@@ -1,0 +1,51 @@
+$(document).ready(function() {
+  
+    $("#przypomnienie").on("keyup keypress", function(e) {
+      var code = e.keyCode || e.which; 
+      if (code === 13) {               
+          e.preventDefault();
+          return false;
+      }
+    });
+    
+    $("#przypomnienie").validate({
+      rules: {
+        emailprzypomnienie: { 
+          email: true, 
+          required: true
+        }
+      },
+      messages: {
+        emailprzypomnienie: { email: '{__TLUMACZ:BLAD_ZLY_EMAIL}', required: '{__TLUMACZ:BLAD_WYMAGANE_POLE}' },
+      },
+      submitHandler: function() {
+        PreloadWlacz();
+        var sear = $('#przypomnienie').serialize(); 
+        $.post("{__SSL:inne/do_przypomnienie.php}?tok={__TOKEN_PRZYPOMNIENIE_OKNO}", { data: sear }, function(data) { 
+            PreloadWylaczSzybko();
+            if ( data.length > 10 ) {          
+                var myModal = new jBox('Modal',{ 
+                    content : '<div class="message">'+data+'</div>',
+                    closeButton: false,
+                    closeOnEsc: false,
+                    closeOnMouseleave: false,
+                    closeOnClick: false,
+                    onOpen: function () {
+                        const popupElement = this.wrapper;
+                        setTimeout(function () {
+                            initFocusTrap(popupElement);
+                        }, 50);
+                    }      
+                });
+                myModal.open();
+            }
+        });
+        return false;
+      }          
+    });
+
+    //wlacza przycisk submit jesli dziala u klienta javascript
+    $('#submitButtonHaslo').removeAttr('disabled');
+    $("#submitButtonHaslo").attr('class', 'przycisk');
+
+});

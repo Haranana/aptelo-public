@@ -1,0 +1,31 @@
+/* ukrywanie modulu dla malych rozdzielczosci --- nie zmieniac nazwy styli, nie usuwac --- */
+@media only screen and (max-width:1023px) {
+  /* klasa do ukrywania modulu */
+  .ModulRwdUkryj { display:none; }
+}
+@media only screen and (min-width:1024px) {
+  /* klasa do ukrywania modulu dla duzych rozdzielczosci */
+  .ModulMobileRwdWyswietl { display:none; }
+}
+
+/* newsletter */
+.ModulNewsletter { background:var(--kolor-szary-jasny-2); margin:10px 0 20px 0; padding:0; text-align:left; display:flex; border:1px solid var(--kolor-linia); }
+.ModulNewsletter strong { display:flex; align-content:center; align-items:center; padding:0 30px 0 30px; display:inline-block; font-size:200%; text-transform:uppercase; }
+#newsletterModul { padding:10px 20px; }
+.ModulNewsletter p span:first-child { text-align:left; }
+.ModulNewsletter #emailNewsletterModul { max-width:80%; width:80%; margin:0 auto; margin-top:10px; margin-bottom:20px; padding:12px; }
+@media only screen and (max-width:799px) {
+  .ModulNewsletter strong { font-size:180%; padding:20px 0; }
+  .ModulNewsletter p span:first-child { font-size:100%; }
+  .ModulNewsletter #emailNewsletterModul { max-width:80%; width:80%; }
+}
+.ModulNewsletter span { display:block; margin:0; }
+.ModulNewsletter small { display:flex; justify-content:flex-start; color:var(--kolor-szary-ciemny-2); }
+.ModulNewsletter .PoleZgodNewsletterModul { margin:10px 0 10px 0; text-align:left; }
+#BladDanychNewsletterModul .error { display:inline-block; }
+@media only screen and (max-width:799px) {
+  .ModulNewsletter { flex-direction:column; }
+}
+
+/* wyglad bannerow statycznych */
+.BanneryStatyczne { display:block; text-align:center; margin:5px; }

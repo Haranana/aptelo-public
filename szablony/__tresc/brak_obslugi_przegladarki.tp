@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html lang="pl">
+<head>
+    <meta charset="utf-8" />
+    <title>{__META_TYTUL}</title>
+    <meta name="Keywords" content="{__META_SLOWA_KLUCZOWE}" />
+    <meta name="Description" content="{__META_OPIS}" />
+    <meta name="robots" content="index,follow" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body style="color:#504f4f; font-size:100%; font-family: Arial, Tahoma, Verdana, sans-serif; font-weight:normal">
+
+<section style="position:absolute; top:40%; left:50%; margin-left:-200px;">
+
+    <div style="width:360px; padding:20px; border:1px solid #ccc; text-align:center;">
+       
+      <b>Przeglądarka nie jest obsługiwana przez sklep. Zalecamy skorzystanie z bezpieczniejszych przeglądarek.</b>
+
+    </div>
+    
+</section>
+
+</body>
+</html>

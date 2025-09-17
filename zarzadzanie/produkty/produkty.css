@@ -1,0 +1,612 @@
+/* ikona allegro przy zakladce */
+.a_href_info_zakl span { position:absolute; margin:0px 0px 0px 5px; width:46px; height:17px; background:url('../obrazki/logo/logo_allegro_male.png') no-repeat left bottom; display:inline-block; }
+#zakl_id_21 .maleSukces { margin-left:10px; padding-left:22px; }
+#zakl_id_21 .maleInfo { color:#a3a3a3; }
+
+/* okno kategorii allegro */
+.catSelect { width:150px; }
+
+ul.jqueryFileTree { line-height:1.8; padding:0px; margin:0px; }
+ul.jqueryFileTree li { list-style:none; padding:0px; padding-left:20px; margin:4px 2px 4px 2px; white-space:nowrap; }
+ul.jqueryFileTree a { color:#3f5d6b; text-decoration:none; }
+ul.jqueryFileTree a:hover { text-decoration:underline; }
+
+.jqueryFileTree li.directory { background:url(../obrazki/folder.png) left top no-repeat; }
+.jqueryFileTree li.expanded { background:url(../obrazki/folder_otwarty.png) left top no-repeat; }
+.jqueryFileTree li.file { background:url(../obrazki/plik.png) left top no-repeat; }
+.jqueryFileTree li.wait { background:url(../obrazki/spinner.gif) left top no-repeat; }
+
+#catsPL { display:none; }
+.treeBox { width:350px; margin:10px 0px 5px 175px; height:300px; border:1px solid #c1c1c1; overflow:auto; padding:5px; background:#f6f7f6; -moz-border-radius:4px; -webkit-border-radius:4px; -khtml-border-radius:4px; border-radius:4px; }
+@media only screen and (max-width:1023px) { 
+ .treeBox { margin:10px 0px 5px 155px; }
+}
+.cmxform .jqueryFileTree label { margin:0px; padding:0px; }
+
+@media only screen and (max-width:1023px) { 
+ .ProduktInfoLewe { padding:0px 0px 10px 0px; }
+ .ProduktInfoPrawe { padding:10px 0px 10px 25px; }
+}
+@media only screen and (min-width:1024px) { 
+ .ProduktGlowneInformacje { width:100%; display:table; }
+ .ProduktInfoLewe { display:table-cell; vertical-align:top; width:60%; }
+ .ProduktInfoPrawe { display:table-cell; vertical-align:top; width:40%; }
+}
+
+/* obsluga okna kategorii */
+.OknoKategoriiKontener { margin-bottom:10px; border:1px solid #c1c1c1; padding:2px; -moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px; -khtml-border-radius:4px; }
+.OknoNaglowek { background:url('../obrazki/tlo.png') repeat-x left bottom; text-shadow:#fff 1px 1px 1px; font-weight:bold; color:#2b595b; }
+@media only screen and (max-width:1023px) { 
+ .OknoNaglowek { padding:5px 7px 5px 7px; }
+ .OknoNaglowek .RozwinKategorie { cursor:pointer; padding:5px 0px 5px 0px; display:block; background:url('../obrazki/menu_rozwijane_ciemne.png') no-repeat right center; font-size:130%; text-transform:uppercase; letter-spacing:2px; }
+ .OknoKategoriiKontener .OknoKategorii { display:none; }
+}
+@media only screen and (min-width:1024px) { 
+ .OknoNaglowek { padding:10px 7px 10px 7px; }
+}
+
+/* lista kategorii do jakich jest przypisany produkt */
+.MaleInfoKat { display:block; padding:9px 0px 9px 25px; font-weight:normal; background:url('../obrazki/kategoria.png') no-repeat left center; }
+
+/* nr katalogowy */
+.MaleNrKatalogowy { display:block; padding-top:5px; padding-bottom:2px; font-weight:normal; color:#5b5a5a; }
+
+/* producent */
+.MaleProducent { display:block; padding-top:2px; padding-bottom:2px; font-weight:normal; color:#29682c; }
+
+/* cena zakupu */
+.MaleCenaZakupu { background:url('../obrazki/plakietka.png') no-repeat left center; display:block; padding:10px 0px 10px 25px; font-weight:normal; color:#8d8d8d; }
+
+/* id zewnetrzne */
+.MaleIdZewnetrzne { background:url('../obrazki/allegro_archiwum.png') no-repeat left center; display:block; padding:5px 0px 5px 25px; font-weight:normal; color:#8d8d8d; }
+.MaleIdZewnetrzne b { color:#009bd9; }
+  
+/* info o aukcji */
+.InfoAllegro { padding-top:5px; width:100px; height:30px; }
+.InfoAllegro div { display:none; position:absolute; margin:-5px 0px 0px 55px; background:#ffffff; padding:10px; border:1px dotted #ff0000; z-index:500; }
+.InfoAllegro td { padding:3px 6px 3px 6px !important; background:#ffffff !important; color:#3f5d6b; border:1px solid #c1c1c1 !important; text-align:center; }
+.InfoAllegro td:nth-child(2) { text-align:left; }
+.InfoAllegro td:nth-child(3) { white-space:nowrap; }
+.InfoAllegro tr:first-child td { padding:5px 6px 5px 6px !important; background:#f0f0f0 !important; font-weight:normal; text-decoration:none; }
+.InfoAllegro a { color:#3f5d6b; }
+.InfoAllegro a:hover { color:#ff0000; }
+.InfoAllegro span { white-space:nowrap; display:block; }
+.InfoAllegro b { display:block; margin-bottom:2px; color:#3f5d6b; }
+.InfoAllegro .czas { color:#939393; font-size:10px; margin-bottom:5px; }
+
+.CenaProduktuPole { width:80px; text-align:left; }
+
+/* ceny */
+.cena { font-weight:normal; line-height:1.8; }
+.cena input { margin:3px 0px 5px 0px; display:block; }
+.cena img { float:right; margin:2px 0px 0px 0px; }
+.Waluta { font-weight:normal; color:#8f8f8f; line-height:15px; margin:7px 2px 3px 6px; }
+.Waluta span { font-weight:bold; color:#1d7100; line-height:15px; }
+
+.opcje { color:#6779a7; font-weight:normal; list-style-type:none; padding:0px 10px 0px 10px; margin:0px; }
+.opcje li { display:inline-block; vertical-align:middle; margin:3px; }
+@media only screen and (max-width:1279px) { 
+ .wyswietlListing { display:none; }
+}
+
+/* edycja produktu */
+.TabelaCenaRamka { margin-left:2px; display:inline-block; padding:5px; border:1px dotted #c1c1c1; }
+.TabelaCena { color:#3f5d6b; }
+.TabelaCena td { padding:3px; text-decoration:none; }
+.TabelaCenaNaglowek { font-weight:bold; color:#3f5d6b; text-decoration:none; }
+.TabelaCena span { display:block; padding:5px; background:#e5e5e5; font-weight:normal; color:#3f5d6b; text-decoration:none; }
+
+#InfoCechy { max-width:200px; display:none; }
+
+/* zdjecia */
+.RamkaFoto { margin-left:8px; border:1px solid #c1c1c1; padding:2px 4px 2px 4px; -moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px; -khtml-border-radius:4px; }
+.TabelaFotoNaglowek { border:0px !important; margin:0px 5px 0px 5px !important; }
+.TabelaFotoNaglowek .PozycjaFoto { min-height:1px; padding:0px; }
+.TabelaFotoNaglowek span { display:block; text-align:center; padding:8px; background:#e5e5e5; font-weight:normal; color:#3f5d6b; text-decoration:none; }
+.TabelaFoto span.zdjecie_tbl { position:relative; background:#ffffff; border:1px solid #e5e5e5; padding:5px; font-size:0px; display:block; }
+.TabelaFoto span.zdjecie_tbl img { display:inline-block; font-size:0px; position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); }
+@media only screen and (max-width:1279px) {
+  .TabelaFoto input { width:60%; }
+}
+@media only screen and (min-width:1280px) {
+  .TabelaFoto input { width:75%; }
+}
+
+.TabelaFoto { color:#3f5d6b; border:1px dotted #9e9f9e; margin:10px 5px 15px 5px; padding:5px 0px 5px 0px; position:relative; overflow:visible; }
+.TabelaFotoPozycja:before { content:""; width:22px; height:16px; position:absolute; left:10px; top:-15px; z-index:2; background:url("../obrazki/strzalka_gora.png") #ffffff no-repeat center center; filter:alpha(opacity=0); opacity:0; 
+  transition: all 0.20s ease-in-out;
+	-moz-transition: all 0.20s ease-in-out;
+	-webkit-transition: all 0.20s ease-in-out;
+}
+.TabelaFotoPozycja:after { content:""; width:22px; height:16px; position:absolute; left:28px; top:-15px; z-index:2; background:url("../obrazki/strzalka_dol.png") #ffffff no-repeat center center; filter:alpha(opacity=0); opacity:0; 
+  transition: all 0.20s ease-in-out;
+	-moz-transition: all 0.20s ease-in-out;
+	-webkit-transition: all 0.20s ease-in-out;
+}
+.TabelaFotoPozycja:hover:before, .TabelaFotoPozycja:hover:after { top:-8px; filter:alpha(opacity=100); opacity:1; }
+.TabelaFoto:hover { cursor:move; border:1px dotted #ff0000; }
+
+.PozycjaFoto { text-align:center; float:left; border-top:2px solid #fff; border-right:4px solid #fff; min-height:80px; 
+  -webkit-background-clip:content-box; -moz-background-clip:content-box; background-clip:content-box;  
+	-webkit-box-sizing:border-box; -moz-box-sizing:border-box; box-sizing:border-box;
+}
+
+@media only screen and (max-width:1279px) {
+  .PozycjaFoto .TipIkona { display:none; }
+  .PozycjaKol2 img { width:30px; height:auto; }
+  .PozycjaKol2 span.zdjecie_tbl { width:40px; height:auto; }
+}
+
+@media only screen and (max-width:1279px) {
+  .PozycjaKol1 { width:12%; white-space:nowrap; padding-top:20px; }  
+  .PozycjaKol2 { width:15%; padding-top:8px; }  
+  .PozycjaKol3 { width:33%; }
+  .PozycjaKol4 { width:30%; padding-top:20px; }   
+  .PozycjaKol5 { width:10%; padding-top:8px; }  
+}
+@media only screen and (min-width:1280px) {
+  .PozycjaKol1 { width:8%; white-space:nowrap; padding-top:30px; }  
+  .PozycjaKol2 { width:15%; padding-top:8px; }  
+  .PozycjaKol3 { width:37%; padding:10px 0px 10px 0px; }  
+  .PozycjaKol4 { width:35%; padding-top:10px; }   
+  .PozycjaKol5 { width:5%; padding-top:12px; }  
+}
+
+.PozycjaKol5 { border-right:0px; }
+
+.PozycjaPodKol3 { text-align:left; padding-left:20px; }
+@media only screen and (max-width:1279px) {
+  .PozycjaPodKol3 { padding-left:10px; }
+}
+
+/* mp3 */
+.TabelaMp3 { color:#3f5d6b; width:100%; }
+.TabelaMp3 td { padding:2px; text-decoration:none; text-align:center; height:40px; }
+.TabelaMp3_naglowek td { height:auto; }
+.TabelaMp3 span { display:block; text-align:center; padding:8px; margin-bottom:5px; background:#e5e5e5; font-weight:normal; color:#3f5d6b; text-decoration:none; }
+@media only screen and (max-width:1279px) {
+  .TabelaMp3 input { width:60%; }
+}
+@media only screen and (min-width:1280px) {
+  .TabelaMp3 input { width:75%; }
+}
+
+.ModulInfo { border:1px dotted #c1c1c1; margin:5px 2px 5px 2px; padding:5px; color:#3f5d6b; }
+.ModulInfo .dat { display:inline-block; width:100px; padding-right:5px; }
+.ModulInfo div { padding:4px; }
+.ModulInfo label.error { margin-left:110px !important; }
+@media only screen and (max-width:1023px) { 
+ .ModulInfo label.error { width:140px !important; }
+}
+@media only screen and (min-width:1024px) { 
+ .ModulInfo label.error { width:240px !important; }
+}
+
+#ListaCechProduktu .RamkaCech { border:1px solid #c1c1c1; padding:2px 2px 20px 2px; overflow-x:auto; -webkit-box-sizing:border-box; -moz-box-sizing:border-box; box-sizing: border-box; -moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px; -khtml-border-radius:4px; }
+@media only screen and (max-width:1023px) { 
+ #ListaCechProduktu .RamkaCech { max-width:505px; }
+}
+@media only screen and (min-width:1024px) and (max-width:1279px) { 
+ #ListaCechProduktu .RamkaCech { max-width:735px; }
+}
+@media only screen and (min-width:1280px) and (max-width:1599px) { 
+ #ListaCechProduktu .RamkaCech { max-width:935px; }
+}
+@media only screen and (min-width:1600px) { 
+ #ListaCechProduktu .RamkaCech { max-width:1100px; }
+}
+.CechyNaglowek { padding:10px; padding-top:0px; color:#3f5d6b; font-weight:bold; text-decoration:none; }
+.CechyProd td { padding-left:10px; color:#3f5d6b; }
+
+.PolaTxt { margin:4px 0px 4px -2px; }
+.PolaTxt td { padding-left:10px; color:#3f5d6b; }
+.PolaTxt span { color:#a1a1a1; }
+
+.InneWarianty { margin:4px 0px 4px -2px; }
+.InneWarianty td { padding:2px 0 2px 10px; color:#3f5d6b; }
+
+/* edycja cech produktu */
+.TabelaCechy { color:#3f5d6b; width:100%; }
+.TabelaCechy .NazwaCechy { font-weight:bold; color:#ff0000; background:#f4f2f2; padding:6px; padding-left:15px; }
+.TabelaCechy .NazwaCechyKasuj { font-weight:bold; color:#ff0000; background:#f4f2f2; padding:6px; }
+.TabelaCechy td { border:2px solid #fff; padding:4px; padding-left:7px; padding-right:7px; text-decoration:none; }
+.TabelaCechy tr:nth-child(2) td { padding-top:7px; }
+.TabelaCechy .Nagl { text-align:center; padding:8px; background:#e5e5e5; font-weight:normal; color:#3f5d6b; text-decoration:none; }
+
+@media only screen and (max-width:1599px) {
+  .TabelaCechy select, .TabelaCechy input { max-width:100px !important; }
+}
+@media only screen and (min-width:1600px) {
+  .TabelaCechy select, .TabelaCechy input { max-width:130px !important; }
+}
+
+.ZdjecieCechy input { max-width:90% !important; width:auto !important; }
+
+.CechyInfo { padding:10px; margin-bottom:8px; }
+
+.NaglowekLinki { margin:5px; margin-bottom:10px; text-align:left; padding:8px; background:#ebe9e9; font-weight:bold; color:#1e749d; text-decoration:none; }
+.NaglowekLinki span { font-size:12px; color:#ff0000; }
+
+#ZnizkiRamka { border:1px dotted #c1c1c1; padding:10px; margin-left:23px; margin-top:20px; width:70%; }
+#ZnizkiTytul { color:#3f5d6b; text-decoration:none; font-weight:bold; padding-bottom:10px; }
+.Znizka { padding-top:8px; color:#3f5d6b; }
+
+/* niski stan magazynowy */
+.NiskiStan { color:#ff0000; }
+.NiskiStan input { color:#ff0000; }
+
+/* opis ilosc dla jm */
+#OpisIlosci { color:#3f5d6b; padding:5px 0px 8px 0px; display:none; line-height:1.5; }
+
+/* status jezeli kategoria jest wylaczona */
+.wylKat { background:url("../obrazki/uwaga_mala.png") no-repeat top center; display:inline-block; padding:2px; padding-top:15px; }
+
+/* padding dla ajaxa */
+.padAjax { padding:10px; display:inline-block; }
+
+/* wybor z listy */
+@media only screen and (max-width:1023px) {
+  .cmxform .ms-container { margin-top:10px; background:transparent url('../obrazki/arrow.png') no-repeat 242px 53px; }
+  .cmxform .ms-container ul.ms-list { width:230px; height:250px; }
+}
+@media only screen and (min-width:1024px) {
+  .cmxform .ms-container { margin:-20px 0px 0px 152px; background:transparent url('../obrazki/arrow.png') no-repeat 262px 53px; }
+  .cmxform .ms-container ul.ms-list { width:250px; height:250px; }
+}
+.cmxform .ms-container:after { content:"."; display:block; height:0; line-height:0; font-size:0; clear:both; min-height:0; visibility:hidden; }
+.cmxform .ms-container .ms-selectable, .ms-container .ms-selection { background:#fff; border:1px #ccc solid; float:left; -moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px; -khtml-border-radius:4px; overflow:hidden; }
+.cmxform .ms-selected { display:none; }
+.cmxform .ms-container .ms-selectable { margin-right:50px; }
+.cmxform .ms-container ul { margin:0; list-style-type:none; }
+.cmxform .ms-container ul.ms-list { padding:1px 0px; overflow-y:auto; }
+.cmxform .ms-container .ms-selectable li.ms-elem-selectable,.cmxform .ms-container .ms-selection li.ms-elem-selected { border-bottom:1px #eee solid; padding:5px 10px; color:#555; }
+.cmxform .ms-container .ms-selection li.ms-elem-selected { padding-left:22px;color:#101010; }
+.cmxform .ms-container .ms-selectable li.disabled,.cmxform .ms-container .ms-selection li.disabled { background-color:#eee; color:#aaa; }
+.cmxform .ms-container li.ms-elem-selectable:not(.disabled):hover,.cmxform .ms-container .ms-selection li:not(.disabled):hover { cursor:pointer; background-color:#eee; color:#000; }
+.cmxform .ms-container .ms-selection li:not(.disabled):hover { background:#eee url('../obrazki/delete.png') no-repeat 3px 5px; }
+.cmxform h4 { font-size:110%; background:#e7e7e7; text-align:center; line-height:3; }
+
+/* wylaczenie kupowania */
+.BezKupowania { display:block; text-align:center; background:url("../obrazki/bez_kupowania.png") no-repeat center top; height:20px; }
+/* wylaczenie kontroli magazynu */
+.BezMagazynu { display:block; text-align:center; background:url("../obrazki/brak_kontroli_magazynu.png") no-repeat center top; height:20px; margin:5px 0px 0px 2px; }
+/* wylaczenie kontroli magazynu */
+.DataDostepnosciWylaczona { display:block; text-align:center; background:url("../obrazki/uwaga.png") no-repeat center top; height:20px; margin:5px 0px 0px 2px; }
+
+.wylaczony { color:#acacac; cursor:auto; }
+
+/* link do wyswietlania kombinacji cech */
+#Kombinacje { line-height:1.5; font-size:12px; margin:10px; font-weight:bold; color:#1d6a34; background:url("../obrazki/kategoria.png") no-repeat left center; padding:8px 0px 8px 25px; cursor:pointer; }
+#Kombinacje:hover { color:#ff0000; }
+#Kombinacje span { color:#8e8e8e; display:block; }
+
+.RamkaCechRodzaj { margin:0px 0px 25px 8px; border:1px solid #c1c1c1; padding:4px; -moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px; -khtml-border-radius:4px; }
+#WyborRodzajuCechy { font-weight:bold; color:#3f5d6b; background:#e5e5e5; padding:8px; }
+
+.poziom { margin:3px 0px 3px 0px; white-space:nowrap; }
+
+.SortZdjecie { width:20px !important; text-align:center; }
+
+.cmxform .modul label.error, label.error { color:red; font-weight:normal; background:transparent url(../obrazki/blad.png) no-repeat left center; padding-left:20px; display:block; margin-left:100px; width:180px; }
+
+/* ikonki */
+.PoleObrazek { background:url(../obrazki/image_cechy.png) no-repeat left center; padding:2px 0px 2px 30px !important; color:#1e749d !important; }
+.PoleTekst { background:url(../obrazki/plik.png) no-repeat left center; padding:2px 0px 2px 25px !important; color:#1e749d !important; }
+.SlownikPola { vertical-align:middle; display:inline-block; margin-left:5px; width:16px; height:16px; background:url('../obrazki/lista_wojewodztw.png') no-repeat; cursor:pointer; }
+.PozycjeSlownika { display:none; margin:5px 0px 0px 169px; max-height:100px; }
+
+/* szybka edycja produktu */
+.EdycjaProduktu { padding-right:15px; position:relative; }
+.EdycjaProduktu .edpr { width:12px; height:12px; display:inline-block; background:url(../obrazki/edytuj_male.png) no-repeat; position:absolute; right:5px; bottom:0px; cursor:pointer; filter:alpha(opacity=30); -moz-opacity:0.3; opacity:0.3; }
+.EdycjaProduktu:hover .edpr { filter:alpha(opacity=100); -moz-opacity:1; opacity:1; }
+.EdycjaProduktu input, .EdycjaProduktu textarea, .EdycjaProduktu select { margin:3px 0px 3px 0px; max-width:200px; }
+.EdycjaProduktu .przycisk_ajax { margin:-10px 0px 5px 0px; }
+
+/* pamietanie kategorii */
+#PozycjeIkon input { float:left; margin-left:10px; }
+.PamietajKategorie { display:inline-block; padding:2px 0px 0px 5px; }
+
+/* obrazki do cech */
+.RozwinFoto { text-align:center; }
+.RozwinFoto img { cursor:pointer; }
+.ZdjecieCechy { height:32px; float:right; }
+@media only screen and (max-width:1023px) { 
+ .ZdjecieCechy input { max-width:200px !important; }
+}
+.ZapiszObraz { background:url("../obrazki/export.png") no-repeat left center; width:16px; height:16px; display:inline-block; margin:8px 0px 0px 8px; cursor:pointer; float:right; }
+.UsunObraz { background:url("../obrazki/kasuj.png") no-repeat left center; width:16px; height:16px; display:inline-block; margin:8px 0px 0px 8px; cursor:pointer; float:right; }
+.ZapisObrazka { margin:4px 0px 0px 8px; float:left; }
+.CechaZdjecie { background:#f1f1f1; padding:8px 10px 8px 10px; display:none; }
+
+.TbZnizkaCena td { padding-right:6px; }
+.TbZnizkaCena td div { padding:3px 0px 3px 10px; }
+.WynikZnizek input { margin:0px 6px 0px 2px; }
+
+.ZobaczSklep { margin-left:50px; background:url("../obrazki/domek.png") no-repeat left center; padding:6px 0px 6px 25px; display:inline-block; }
+#NazwaProduktu { font-size:120%; }
+
+.WykluczonaWysylka { display:inline-block; vertical-align:middle; }
+.OpcjeDarmowaWysylka { display:inline-block; vertical-align:middle; }
+.DarmowaUkryj { filter:alpha(opacity=30); -moz-opacity:0.5; opacity:0.5; }
+
+.KosztyPaczkomaty { background:url("../obrazki/logo/logo_inpost_produkty.png") no-repeat left center; padding:0px 0px 0px 55px !important; margin-left:10px; }
+
+.WynikProduktowProduktyKopiuj { margin:0px 0px 20px 10px; }
+.WynikProduktowProduktyKopiuj  span { display:block; padding-bottom:10px; font-weight:bold; }
+
+@media only screen and (max-width:1023px) { 
+  .GlownyListingKategorieEdycja { margin-right:10px; }
+}
+@media only screen and (min-width:1024px) { 
+  .GlownyListingKategorieEdycja { display:table-cell; width:30%; vertical-align:top; }
+  .GlownyListingProduktyEdycja { display:table-cell; width:70%; vertical-align:top; }
+}
+
+.WybranyProdukt { padding:2px; margin-bottom:10px; }
+.WybranyProdukt .WynikNaglowek { font-family:Inder, Arial; font-size:130%; }
+.WynikProduktowLista { margin:0px 0px 20px 10px; }
+.WynikProduktowLista span { display:block; padding-bottom:10px; font-weight:bold; }
+.WynikRamka { border:1px solid #c1c1c1; margin:0px 8px 10px 8px; -moz-border-radius:4px; -webkit-border-radius:4px; -khtml-border-radius:4px; border-radius:4px; overflow:hidden; }
+
+/* lista produktow */
+.WynikNaglowek { display:block; padding-top:4px; padding-left:3px; }
+.WynikNaglowekDodanie { font-family:Inder, Arial; font-size:130%; display:block; padding:10px; color:#ff0000; }
+.WynikNaglowekBrak { display:block; }
+.WynikNaglowekBrak span { background:url('../obrazki/awaria_maly.png') no-repeat left center; padding:5px 0px 5px 30px !important; font-weight:bold; margin:5px 0px 0px 10px; }
+#WynikPrzewijany { max-height:300px; overflow-y:scroll; border:1px solid #c1c1c1; margin-right:10px; -moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px; -khtml-border-radius:4px; }
+.TabelaProdukt { color:#3f5d6b; width:100%; border:0px; }
+.TabelaProdukt td { border:3px solid #fff; text-align:center; }
+.TabelaProdukt .prot td { background:#f4f2f2; padding:4px; text-decoration:none; }
+.TabelaProdukt span { white-space:nowrap; display:block; padding:5px; background:#e5e5e5; font-weight:normal; color:#3f5d6b; text-decoration:none; }
+
+/* zaznaczenie produktow */
+.ZaznaczWybraneLista { margin:15px 8px 5px 28px; padding-left:25px; background:url('../obrazki/strzalka.png') no-repeat left center; }
+.ZaznaczWybraneLista div { cursor:pointer; display:inline-block; margin:0px 8px 0px 8px; color:#6e6e6e; }
+.ZaznaczWybraneLista div:hover { color:#ff0000; }
+.WybierzProdukty { margin:0px 0px 0px 18px; }
+.WybierzProdukty button { padding:8px 5px 8px 5px; }
+
+#OknoDodawaniaCechy { margin:20px 10px 10px 10px; border:1px solid #c3c1c1; background:#f4f2f2; -moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px; -khtml-border-radius:4px; }
+#OknoDodawaniaPola, .OknoDodawaniaPola { margin:10px 5px 20px 5px; border:1px solid #c3c1c1; background:#f4f2f2; -moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px; -khtml-border-radius:4px; }
+#OknoDodawaniaPolaTekstowego { margin:30px 5px 20px 5px; border:1px solid #c3c1c1; background:#f4f2f2; -moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px; -khtml-border-radius:4px; }
+.CechyTlo, .PolaTlo { border:4px solid #fff; padding:10px; -moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px; -khtml-border-radius:4px; position:relative; }
+.CechyDodawanieNaglowek, .PolaDodawanieNaglowek { font-family:Inder, Arial; font-size:140%; padding:8px; text-shadow:#fff 1px 1px 1px; color:#2b595b; }
+.DodanieCechy, .DodaniePola { padding-top:8px; }
+.DodaniePolaTekstowego { margin:20px 0px 0px 10px; }
+.DodanieCechy .dodaj, .DodaniePola .dodaj, .DodaniePolaTekstowego .dodaj { cursor:pointer; }
+.DodawanieCechy label, .DodawaniePola label { padding-left:15px !important; }
+.PrzyciskDodaj { margin:10px 10px 0px 10px; }
+.PrzyciskDodajPole { margin:10px 10px 0px -5px; }
+.ZamknijDodanie { z-index:10; position:absolute; right:10px; top:10px; cursor:pointer; display:inline-block; background:url('../obrazki/zamknij.png') no-repeat left center; width:26px; height:26px; }
+
+.SkladnikiZestawu { border:1px solid #c3c1c1; padding:10px 15px 10px 15px; margin:15px 8px 10px 8px; -moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px; -khtml-border-radius:4px; }
+.NaglowekZestawu { font-family:Inder, Arial; font-size:160%; font-weight:bold; color:#666; margin:0px 0px 15px 0px; }
+
+#SzukanieProduktu { padding:8px 12px 8px 12px; background:#ebebeb; -moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px; -khtml-border-radius:4px; }
+#SzukanieProduktu div { float:left; }
+#SzukanieProduktu div.cl { float:none !important; }
+#SzukanieProduktu input { width:250px; margin-left:5px; }
+#SzukanieProduktu span { cursor:pointer; float:left; display:inline-block; margin-top:7px; width:16px; height:16px; margin-left:8px; background:url('../obrazki/szukaj.png') no-repeat left bottom; }
+#ProduktyLista { margin-top:15px; }
+#ProduktyLista .przyciskNon, #ProduktyListaDodane .przyciskNon { margin:0px; padding:4px 10px 4px 10px; }
+#ProduktyListaDodane { margin-bottom:15px; }
+
+#ProduktyListaDodane #WynikPrzewijany, #ProduktyLista #WynikPrzewijany { margin-right:0px; }
+#ProduktyListaDodane #WynikPrzewijany .TabelaProdukt tr:first-child td { background:#e5e5e5; }
+
+@media only screen and (max-width:1023px) { 
+  #ProduktyListaDodane #WynikPrzewijany, #ProduktyLista #WynikPrzewijany { max-width:500px; overflow-x:scroll; }
+}
+
+#SumaKoncowaPoRabacie { margin:10px 0px 10px 0px; text-align:right; font-family:Inder, Arial; font-size:130%; color:#666; border-top:1px solid #dbdbdb; padding-top:10px; }
+#KoncowaCenaZestawu { color:#659205; }
+
+#SumaKoncowa { margin:15px 0px 5px 0px; text-align:right; font-family:Inder, Arial; font-size:110%; color:#666; }
+#SumaRabatZestawu { margin:5px 0px 5px 0px; text-align:right; font-family:Inder, Arial; font-size:110%; color:#666; }
+
+.MalyNrKat { font-size:11px; color:#888; margin-top:5px; }
+
+.ListaZestawu { margin:0px; list-style-type:none; padding:0px; }
+.ListaZestawu li { margin:3px 0px 3px 0px; font-size:11px; }
+.ListaZestawu li a.PrdWylaczony { color:#868686; background:url('../obrazki/tak_off.png') no-repeat left center; padding:2px 0px 2px 20px; }
+.ListaZestawu li a.PrdWlaczony { color:#868686; background:url('../obrazki/tak.png') no-repeat left center; padding:2px 0px 2px 20px; }
+.ListaZestawu li a:hover { color:#ff0000; }
+.TytulZestawLista { display:block; margin:15px 0px 5px 0px; color:#47863a; }
+
+.objasnienia { margin:10px 15px 10px 10px; }
+
+.CechaCenaNettoBrutto { background:#e8e8e8; padding:5px 0px 5px 8px; text-align:right; }
+.CechaCenaNettoBrutto .poziom { display:inline-block; margin:3px 10px 3px 3px; }
+.CechaCenaNettoBrutto .CechaOpis { display:inline-block; margin:3px 0px 3px 10px; }
+
+.ListaPorownywarek { border:1px solid #dbdbdb; }
+.ListaPorownywarek ul { list-style-type:none; padding:0px 15px 10px 15px; margin:0px; }   
+.ListaPorownywarek ul li { display:inline-block; vertical-align:top; width:45%; margin:1px 0px 1px 0px; }
+.ListaPorownywarek ul li:nth-child(2n+1) { clear:both; }
+
+/* edycja zakladki allegro */
+
+@media only screen and (max-width:1023px) {
+  .OknoKategorieAllegro { margin-left:154px; max-width:70%; }
+}
+@media only screen and (min-width:1024px) {
+  .OknoKategorieAllegro { margin-left:174px; max-width:70%; }
+}
+
+.OknoKategorieAllegroSciezka { border-bottom:1px solid #dbdbdb; padding:0px 0px 10px 0px; color:#2b595b; font-size:120%; font-family:Inder, Arial; margin-bottom:10px; }
+.OknoKategorieAllegroSciezka span { display:inline-block; margin:0px 5px 0px 5px; position:relative; cursor:pointer; }
+.OknoKategorieAllegroSciezka span:hover { color:#ff0000; }
+.OknoKategorieAllegroSciezka span:nth-child(n+2) { padding-left:15px; }
+.OknoKategorieAllegroSciezka span:nth-child(n+2):before { content:"/"; color:#999999; font-size:14px; font-weight:normal; position:absolute; top:0px; left:0px; }
+.OknoKategorieAllegroSciezka span:last-child { font-weight:bold; color:#ff0000; }
+
+.WyborKategorie { padding:0px 0px 0px 5px; font-size:100%; display:none; }
+.WyborKategorie span { display:inline-block; color:#00a790; cursor:pointer; }
+.WyborKategorie span:hover { color:#ff0000; }
+
+.OknoKategorieAllegro { margin-top:5px; margin-bottom:15px; padding:10px; border:1px solid #c1c1c1; -moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px; -khtml-border-radius:4px; }
+.OknoKategorieAllegro li { float:left; padding:5px; cursor:pointer;
+  -webkit-background-clip:content-box; -moz-background-clip:content-box; background-clip:content-box;  
+	-webkit-box-sizing:border-box; -moz-box-sizing:border-box; box-sizing:border-box;
+}
+.OknoKategorieAllegro li:hover { color:#ff0000; }
+@media only screen and (max-width:1023px) {
+  .OknoKategorieAllegro li { width:50%; }
+}
+@media only screen and (min-width:1024px) and (max-width:1599px) {
+  .OknoKategorieAllegro li { width:33%; }
+}
+@media only screen and (min-width:1600px) {
+  .OknoKategorieAllegro li { width:25%; }
+}
+
+.OpisWystawianieAukcji { margin:30px 10px 20px 10px; border:1px solid #c1c1c1; -moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px; -khtml-border-radius:4px; padding:10px 10px 15px 10px; position:relative; overflow:visible; }
+.OpisWystawianieAukcji .NrWiersza { position:absolute; top:-8px; font-family:Inder, Arial; left:30px; background:#ffffff; z-index:5; font-size:120%; color:#09789d; padding:0px 20px 0px 20px; border-left:1px solid #c1c1c1; border-right:1px solid #c1c1c1; }
+#Opis_nr_1 .KasujPoleOpisuAllegro { display:none; }
+
+.NowyWierszOpisu { margin:10px 10px 20px 10px; }
+.NowyWierszOpisu span { cursor:pointer; }
+.NowyWierszOpisu span:hover { color:#ff0000; }
+
+.WyborOpisu { list-style-type:none; padding:0px; margin:5px 0px 25px 0px; border-bottom:1px dashed #ccc; }   
+.WyborOpisu li.SposobWyswietlania, .WyborOpisu li.KasujPoleOpisuAllegro { display:inline-block; vertical-align:top; cursor:pointer; margin:5px 20px 5px 0px; opacity:0.6; filter:alpha(opacity=60); 
+  transition: all 0.20s ease-in-out;
+	-moz-transition: all 0.20s ease-in-out;
+	-webkit-transition: all 0.20s ease-in-out;
+}
+.WyborOpisu li.SposobWyswietlania:hover, .WyborOpisu li.KasujPoleOpisuAllegro:hover, .WyborOpisu li.Wl { opacity:1; filter:alpha(opacity=100); }
+@media only screen and (max-width:1023px) {
+  .WyborOpisu li:nth-child(1) { display:block !important; line-height:normal !important; margin-top:15px !important; }
+  .WyborOpisu li:nth-child(2) { margin-left:10px !important; }
+}
+@media only screen and (max-width:1279px) {
+  .WyborOpisu li.SposobWyswietlania { margin:9px 20px 9px 0px; }
+  .WyborOpisu li.SposobWyswietlania img { width:auto; height:25px; }
+}
+.WyborOpisu li:first-child { display:inline-block; vertical-align:middle; margin:5px 20px 10px 10px; line-height:32px; font-size:110%; color:#858585; }
+.OpisFoto { width:100%; }
+.OpisFoto td { width:50%; vertical-align:middle; text-align:center; padding:10px 20px 10px 20px; }
+
+.WyborOpisu li.PrzesunPoleOpisuAllegro { display:inline-block; vertical-align:top; margin:13px 5px 5px 10px; }
+.WyborOpisu li.PrzesunPoleOpisuAllegro .PrzesunGora { display:inline-block; background:url("../obrazki/strzalka_gora.png") no-repeat center center; width:25px; height:16px; cursor:pointer; }
+.WyborOpisu li.PrzesunPoleOpisuAllegro .PrzesunDol { display:inline-block; background:url("../obrazki/strzalka_dol.png") no-repeat center center; width:25px; height:16px; cursor:pointer; }
+
+.WyborOpisu li.PrzesunPoleOpisuAllegro .PrzesunGora, .WyborOpisu li.PrzesunPoleOpisuAllegro .PrzesunDol { opacity:0.6; filter:alpha(opacity=60); 
+  transition: all 0.20s ease-in-out;
+	-moz-transition: all 0.20s ease-in-out;
+	-webkit-transition: all 0.20s ease-in-out;
+}
+.WyborOpisu li.PrzesunPoleOpisuAllegro .PrzesunGora:hover, .WyborOpisu li.PrzesunPoleOpisuAllegro .PrzesunDol:hover { opacity:1; filter:alpha(opacity=100); }
+
+.WierszeOpisu .OpisWystawianieAukcji:first-child .PrzesunGora { display:none; } 
+.WierszeOpisu .OpisWystawianieAukcji:last-child .PrzesunDol { display:none; } 
+
+.OpisEdytora { text-align:left; line-height:1.5; padding:15px; border:1px dashed #dbdbdb; }
+.OpisEdytora h1 { font-size:140%; margin:0px; font-weight:bold; }
+.OpisEdytora h2 { font-size:120%; margin:0px; font-weight:bold; }
+.OpisEdytora ul { margin:20px 0px 20px 0px !important; padding:0px !important; list-style-type:disc !important; }
+.OpisEdytora ul li { margin-left:30px !important; }
+.OpisEdytora ol { margin:20px 0px 20px 0px !important; padding:0px !important; list-style-type:decimal !important; }
+.OpisEdytora ol li { margin-left:30px !important; }
+.OpisEdytora p { margin:15px 0px 15px 0px !important; padding:0px !important; }
+
+.PustyOpisEdytora { height:200px; background:url("../obrazki/allegro_opis.png") no-repeat center center }
+@media only screen and (max-width:1279px) {
+  .PustyOpisEdytora { background-size:auto 150px; }
+}
+
+.PrzyciskiEdytora { text-align:left; margin:20px 0px 10px 0px; }
+.PrzyciskiEdytora span { margin:0px !important; }
+.PrzyciskiEdytora .ZapiszOpis { display:none; }
+
+.ListaFoto img { cursor:pointer; }
+
+@media only screen and (max-width:1023px) { 
+  .ListaFoto img, .ListaFotoEdycja img { max-width:200px; height:auto; }
+}
+@media only screen and (min-width:1024px) and (max-width:1279px) {
+  .ListaFoto img, .ListaFotoEdycja img { max-width:200px; height:auto; }
+}
+@media only screen and (min-width:1280px) and (max-width:1599px) {
+  .ListaFoto img, .ListaFotoEdycja img { max-width:250px; height:auto; }
+}
+@media only screen and (min-width:1600px) {
+  .ListaFoto img, .ListaFotoEdycja img { max-width:300px; height:auto; }
+}
+
+.FotoDlugie img { max-width:100% !important; height:auto; }
+
+.WyborCechStock { margin:10px 10px 0px 10px; }
+.WyborCechStock div { padding:5px 0px 5px 0px; }
+.WyborCechStock span { width:150px; display:inline-block; margin-right:5px; }
+.UsunCeche { background:url('../obrazki/kasuj.png') no-repeat left center; display:inline-block; width:16px; height:16px; cursor:pointer; }
+
+.PozycjeNiewidoczne { font-size:110%; font-weight:bold; color:#4f8822; padding:20px 0px 8px 25px; }
+.NotatkiKont { margin:0px 30px 0px 25px; }
+#notatki { width:100%;
+  -webkit-box-sizing:border-box; -moz-box-sizing:border-box; box-sizing:border-box; 
+  -webkit-background-clip:content-box; -moz-background-clip:content-box; background-clip:content-box;
+}
+
+.NrReferencyjne { margin:20px 30px 0px 25px; }
+.NrReferencyjne table { width:100%; }
+.NrReferencyjne table th { background:#f1f1f1; padding:8px; text-align:center; }
+.NrReferencyjne table td { padding:5px; }
+.NrReferencyjne table tr:nth-child(2) td { padding-top:12px; }
+.NrReferencyjne table td:first-child { text-align:center; }
+.NrReferencyjne table td input, .NrReferencyjne table textarea { width:98%;
+  -webkit-box-sizing:border-box; -moz-box-sizing:border-box; box-sizing:border-box; 
+  -webkit-background-clip:content-box; -moz-background-clip:content-box; background-clip:content-box;
+}
+
+.PoleEdycja { width:45px; text-align:center; }
+.IloscCechy { background:url("../obrazki/uwaga.png") no-repeat top center; display:block; padding-top:20px; }
+
+.LinkPodobne { color:#0094f2; }
+.LinkPodobne:hover { color:#ff0000; }
+
+.LinkPowiazane { color:#369403; }
+.LinkPowiazane:hover { color:#ff0000; }
+
+.LinkAkcesoria { color:#bd6405; }
+.LinkAkcesoria:hover { color:#ff0000; }
+
+/* linki powiazane */
+
+.TabelaLinkiPowiazane { color:#3f5d6b; width:100%; }
+.TabelaLinkiPowiazane td { padding:2px; text-decoration:none; text-align:center; height:40px; }
+.TabelaLinkiPowiazaneNaglowek td { height:auto; }
+.TabelaLinkiPowiazane span { display:block; text-align:center; padding:8px; margin-bottom:5px; background:#e5e5e5; font-weight:normal; color:#3f5d6b; text-decoration:none; }
+@media only screen and (max-width:1279px) {
+  .TabelaLinkiPowiazane input { width:60%; }
+}
+@media only screen and (min-width:1280px) {
+  .TabelaLinkiPowiazane input { width:75%; }
+}
+
+.PrzeliczProporcje { display:inline-block; background:url('../obrazki/odswiez.png') no-repeat left center; background-size:16px 16px; padding-left:22px; margin-left:20px; cursor:pointer; }
+.PrzeliczProporcje:hover { color:#ff0000; }
+
+/* recenzje */
+.NaglowekRecenzja { margin:10px; text-align:left; padding:8px; background:#ebe9e9; font-weight:bold; color:#1e749d; text-decoration:none; }
+.NaglowekRecenzja span { font-size:12px; color:#ff0000; }
+
+.RecenzjaProduktu { padding:10px 15px 10px 15px; }
+.DataDodania { padding-bottom:8px; font-weight:normal; }
+.Wystawil { padding-bottom:8px; font-weight:normal; }
+.Ocena { padding-bottom:8px; font-weight:normal; }
+.Komentarz { font-weight:normal; color:#838383; border-top:1px solid #dbdbdb; border-bottom:1px solid #dbdbdb; padding:10px 0 10px 0; margin:10px 0 10px 0; }
+.RecenzjaOdpowiedz { position:relative; color:#838383; overflow:visible; border-bottom:1px solid #dbdbdb; padding:0 0 10px 25px; margin:0 0 10px 0; }
+
+.OdpowiedzSkasuj { display:inline-block; cursor:pointer; position:absolute; top:10px; left:0px; }
+
+.RecenzjaBezZakupu { background:url('../obrazki/tak_off.png') no-repeat left center; padding:0 0 0 25px; }
+.RecenzjaZakup { background:url('../obrazki/tak.png') no-repeat left center; padding:0 0 0 25px; }
+.KlientKupowal { background:url('../obrazki/tip.png') no-repeat left center; padding:0 0 0 25px; margin-top:10px; }
+
+.NapiszOdpowiedz a { display:inline-block; background:url('../obrazki/powrot.png') no-repeat left center; background-size:16px 16px; padding-left:25px; }
+.UsunRecenzje a { display:inline-block; background:url('../obrazki/kasuj.png') no-repeat left center; background-size:16px 16px; padding-left:25px; }
+.EdytujRecenzje a { display:inline-block; background:url('../obrazki/edytuj.png') no-repeat left center; background-size:16px 16px; padding-left:25px; }
+
+.PrzyciskiRecenzje { display:flex; flex-wrap:wrap; }
+.PrzyciskiRecenzje > div { margin:5px 20px 5px 0; }

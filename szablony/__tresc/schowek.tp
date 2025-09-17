@@ -1,0 +1,74 @@
+<!-- wyglad naglowka strony -->
+
+<h1 class="StrNaglowek">
+    <span>{__TLUMACZ:NAGLOWEK_SCHOWEK}</span> 
+</h1>
+
+<!-- tresc strony -->
+
+<section class="StrTresc">
+
+    <!-- opis schowka -->
+
+    <p class="Informacja" style="margin-top:0px">
+    
+        {__TLUMACZ:SCHOWEK_INFO}
+    
+        <!-- wartosc schowka -->
+        
+        <?php if ( UKRYJ_CENY == 'tak' ) { ?>
+
+            <span class="SchowekWartosc">
+                <span class="Kom">{__TLUMACZ:WARTOSC_PRODUKTOW}:</span>
+                <span class="Kom">{__WARTOSC_PRODUKTOW_SCHOWKA}</span>
+            </span>
+            
+        <?php } ?>
+    
+    </p>
+    
+    <br />
+    
+    <!-- listing produktow schowka -->
+
+    <div class="Listing">
+    
+        <div id="Porownywanie" {__CSS_POROWNANIE}>
+        
+            <div class="Lf">
+                <strong>{__TLUMACZ:LISTING_PRODUKTY_DODANE_DO_POROWNANIA}</strong>
+            </div>
+            
+            <div class="Rg" id="przyciskPorownywania" {__CSS_PRZYCISK_POROWNANIE}>
+                <span id="oknoPorownywarki" class="przycisk oknoAjax">{__TLUMACZ:PRZYCISK_POROWNAJ_PRODUKTY}</span>
+            </div> 
+
+            <div class="cl"></div>        
+
+            <div id="ListaProduktowPorownanie">
+            
+                {__PRODUKTY_DO_POROWNANIA}
+            
+            </div>
+            
+        </div>         
+
+        {__LISTA_PRODUKTOW}
+
+    </div>
+    
+    <!-- przycisk do usuniecia calego schowka -->
+    
+    <?php if ( isset($GLOBALS['schowekKlienta']) && $GLOBALS['schowekKlienta']->IloscProduktow > 0 ) { ?>
+    
+    <br />
+    
+    <span class="przycisk Rg" onclick="UsunCalySchowek()">{__TLUMACZ:SCHOWEK_CALY_USUN}</span>
+    
+    <div class="cl"></div>
+    
+    <?php } ?>
+
+</section>
+
+

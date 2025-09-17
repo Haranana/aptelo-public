@@ -1,0 +1,153 @@
+var head  = document.getElementsByTagName('head')[0];
+var link  = document.createElement('link');
+link.rel  = 'stylesheet';
+link.type = 'text/css';
+link.href = 'czat/czat.css';
+head.appendChild(link);
+
+function czat_aktualizuj(start) {
+
+    $.post("czat/czat.php", 
+       { czat_info: czat_info, czat_foto: czat_foto, czat_link: czat_link, ip: $('#Czat').attr('data-ip'), tok: $('#Czat').attr('data-id') }, function(data) { 
+           //
+           var stary = $('#TrescCzat').html();
+           //
+           if ( stary != data ) {
+               $('#TrescCzat').html( data );
+               //
+               if ( czat_tryb == 'nie' && $('#KonsultantNiedostepny').css('display') == 'block' ) {
+                    //
+                    $('#Czat').hide();
+                    //
+               } else {
+                    //
+                    $('#Czat').show();
+                    //
+               }
+               //
+               var d = $('#TrescCzat');
+               d.scrollTop(d.prop("scrollHeight"));                        
+               //
+               if ( start != 1 ) {
+                    //
+                    // dzwiek tylko jezeli ostatnia wiadomosc od konsultanta
+                    var ostatni_wpis = false;
+                    $('#TrescCzat div').each(function() {
+                       //
+                       if ( $(this).attr('class').indexOf("InfoAdmin") > -1 ) {
+                            ostatni_wpis = true;
+                       } else {
+                            ostatni_wpis = false;
+                       }                       
+                       //
+                    });
+                    // jezeli ostatni wpis jest od konsultanta 
+                    if ( ostatni_wpis == true ) {
+                         var audio = document.getElementById("audio");
+                         audio.play();            
+                    }
+                    //
+               }
+               //
+           }
+           //
+    });  
+         
+    setTimeout('czat_aktualizuj()', 5000);
+    
+}   
+    
+$(window).load(function() {
+    //
+    $('body').append('{__DIV_CZAT}');
+    //
+    $.post("czat/czat.php", 
+        { start: 1, czat_info: czat_info, czat_foto: czat_foto, czat_link: czat_link, ip: $('#Czat').attr('data-ip'), tok: $('#Czat').attr('data-id') },
+        function(data) { 
+            //
+            $('#Czat').html(data);
+            czat_aktualizuj(1);                       
+            //   
+            if ( czat_tryb == 'nie' && $('#KonsultantNiedostepny').css('display') == 'block' ) {
+                 //
+                 $('#Czat').hide();
+                 //
+            }
+            //            
+            // skrypty czatu 
+            if ( $('#Strona').outerWidth() < 700 ) {
+                 $('body').css({ 'padding-bottom' : 100 });          
+            } else {
+                 $('body').css({ 'padding-bottom' : 0 });
+            }    
+            //
+            var szerokoscEkranuCzat = $(window).width();
+            $(window).resize(function() {
+                //
+                if (szerokoscEkranuCzat != $(window).width()) {
+                    if ( $('#Strona').outerWidth() < 700 ) {
+                         $('body').css({ 'padding-bottom' : 100 });          
+                    } else {
+                         $('body').css({ 'padding-bottom' : 0 });
+                    }
+                }
+                //
+            });
+    
+            //
+            if ( $('#doDolu').length && (czat_tryb == 'tak' || (czat_tryb == 'nie' && $('#KonsultantNiedostepny').css('display') == 'none')) ) {
+                 //
+                 $('#doDolu').hide();
+                 //
+            }
+            //
+            $('#WiadomoscCzat button').click(function() {
+                //
+                if ( $('#KlientCzat').val() != '' ) {
+                    
+                    var fraza = $('#KlientCzat').val();
+                    $('#TrescCzat').addClass('CzatLadowanie');
+                    if ( fraza.length > 0 ) {
+                         $.post("czat/czat.php", 
+                            { wpis: 1, tresc: $('#KlientCzat').val(), czat_info: czat_info, czat_foto: czat_foto, czat_link: czat_link, ip: $('#Czat').attr('data-ip'), tok: $('#Czat').attr('data-id') },
+                            function(data) { 
+                                //
+                                $('#KlientCzat').val('');
+                                $('#TrescCzat').removeClass('CzatLadowanie').html( $('#TrescCzat').html() + data);
+                                $('.InfoRozmowa').remove();
+                                var d = $('#TrescCzat');
+                                d.scrollTop(d.prop("scrollHeight"));                        
+                                //
+                         }); 
+                    }
+                
+                }
+                //
+            });
+            //
+            $('#IkonaCzat, #Czat .CzatWitaj').click(function() {
+                //
+                var dolCzat = parseInt($('#Czat').css('bottom'));
+                //
+                $('#DaneCzatu').stop().slideDown('fast', function() {
+                    $('#IkonaCzatZwin').show();
+                    ustawCookie('czat',1,1);
+                    //
+                    var d = $('#TrescCzat');
+                    d.scrollTop(d.prop("scrollHeight"));         
+                    //
+                });
+                //
+            });
+            $('#IkonaCzatZwin').click(function() {
+                //
+                var dolCzat = parseInt($('#Czat').css('bottom'));
+                //
+                $('#DaneCzatu').stop().slideUp('fast', function() {
+                    $('#IkonaCzatZwin').hide();
+                    ustawCookie('czat',0,1);     
+                });
+                //
+            }); 
+    });            
+});

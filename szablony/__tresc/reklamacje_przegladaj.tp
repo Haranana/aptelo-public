@@ -1,0 +1,78 @@
+<!-- wyglad naglowka strony -->
+
+<h1 class="StrNaglowek">
+    <span>{__TLUMACZ:NAGLOWEK_PRZEGLADANIE_REKLAMACJI}</span>
+</h1>
+
+<!-- tresc strony -->
+
+<section class="StrTresc">
+
+    <!-- tablica z reklamacjami - sprawdzi czy sa jakies reklamacje klienta -->
+
+    <?php
+    $TablicaReklamacji = $__pA;
+
+    if ( count($TablicaReklamacji) > 0 ) {
+
+        foreach ( $TablicaReklamacji as $Reklamacja ) { ?>
+
+            <div class="PozycjaReklamacjaLista LiniaPoziom" style="margin-bottom:10px">
+            
+                <div class="Tytul">{__TLUMACZ:NUMER_REKLAMACJI}: <?php echo $Reklamacja['numer_zgloszenia']; ?></div>
+                
+                <div class="SzczegolyData">
+                    
+                    <em class="DataZlozenia"><b><?php echo $Reklamacja['data_zgloszenia']; ?></b></em> <br /> 
+                    <em class="StatusZamowienia">{__TLUMACZ:STATUS_REKLAMACJI}: <b><?php echo $Reklamacja['status_zgloszenia']; ?></b></em>
+                    
+                </div>
+                
+                <div class="cl"></div>
+
+                <div class="SzczegolySzerokie" style="padding:0px">
+                
+                    <strong>{__TLUMACZ:NAGLOWEK_SZCZEGOLY_REKLAMACJI}</strong>
+                    
+                    <ul>
+                        <li>{__TLUMACZ:NUMER_ZAMOWIENIA_REKLAMOWANEGO}: <b><?php echo $Reklamacja['numer_zamowienia']; ?></b></li>
+                        <li>{__TLUMACZ:TYTUL_REKLAMACJI}: <b><?php echo $Reklamacja['tytul_zgloszenia']; ?></b></li>
+                        <li>{__TLUMACZ:DATA_MODYFIKACJI}: <b><?php echo $Reklamacja['data_modyfikacji']; ?></b></li>
+                    </ul>
+                    
+                </div>
+                
+                <a href="{__SSL:reklamacje-szczegoly-rs-<?php echo $Reklamacja['numer_zgloszenia']; ?>.html}" class="przycisk PrawyBezMargin">{__TLUMACZ:PRZYCISK_SZCZEGOLY}</a>
+                
+                <div class="cl"></div>
+                
+            </div>
+
+        <?php
+        }
+        unset($Reklamacja);
+
+    } else { ?>
+    
+        <!-- jezeli nie ma reklamacji wyswietli komunikat -->
+    
+        <p class="Informacja">
+            {__TLUMACZ:BRAK_DANYCH_DO_WYSWIETLENIA}
+        </p>
+        
+    <?php }
+    
+    unset($TablicaReklamacji);
+    ?>
+        
+    <div class="cl"></div>
+    
+    <!-- przycisk powrotu do panelu klienta -->
+
+    <a href="{__SSL:panel-klienta.html}" class="przycisk Lewy">{__TLUMACZ:PRZYCISK_PANEL_KLIENTA}</a>   
+    
+    <div class="cl"></div>
+
+</section>
+
+

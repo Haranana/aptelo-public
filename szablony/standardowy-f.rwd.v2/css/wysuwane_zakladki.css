@@ -1,0 +1,48 @@
+/* wysuwane zakladki */
+#wysZakladki { position:fixed; display:block; left:0; }
+/* facebook */
+#fb { width:304px; background:var(--kolor-bialy); padding:0; position:fixed; }
+#fb_ikona { position:absolute; width:45px; height:45px; background:url('../szablony/standardowy-f.rwd.v2/obrazki/zakladki/fb.png') no-repeat; }
+#ramkaFb { border:2px solid #0070cf; font-size:0; }
+/* gg */
+#gg { width:230px; background:#dadada; padding:0; position:fixed; }
+#gg_ikona { position:absolute; width:45px; height:45px; background:url('../szablony/standardowy-f.rwd.v2/obrazki/zakladki/gg.png') no-repeat; }
+#ramkaGg { border:2px solid #c1c1c1; font-size:0; }
+/* nasza klasa */
+#nk { width:304px; background:#21537f; padding:0; position:fixed; }
+#nk_ikona { position:absolute; width:45px; height:45px; background:url('../szablony/standardowy-f.rwd.v2/obrazki/zakladki/nk.png') no-repeat; }
+#ramkaNk { border:2px solid #21537f; }
+/* youtube */
+#yt { width:304px; background:#1f1f1f; padding:0; position:fixed; }
+#yt_ikona { position:absolute; width:45px; height:45px; background:url('../szablony/standardowy-f.rwd.v2/obrazki/zakladki/youtube.png') no-repeat; }
+#ramkaYt { border:2px solid #1f1f1f; padding:5px; }
+/* google plus */
+#gp { width:330px !important; background:#fff; padding:0; position:fixed; }
+#gp_ikona { position:absolute; width:45px; height:45px; background:url('../szablony/standardowy-f.rwd.v2/obrazki/zakladki/google.png') no-repeat; }
+#ramkaGp { border-bottom:2px solid #004f95; border-right:2px solid #004f95; }
+/* twitter */
+#tw { width:304px; background:#60b9dd; padding:0; position:fixed; }
+#tw_ikona { position:absolute; width:45px; height:45px; background:url('../szablony/standardowy-f.rwd.v2/obrazki/zakladki/twitter.png') no-repeat; }
+#ramkaTw { border:2px solid #60b9dd; }
+/* instagram */
+#in { width:240px; background:var(--kolor-bialy); padding:0; position:fixed; }
+#in_ikona { position:absolute; width:45px; height:45px; background:url('../szablony/standardowy-f.rwd.v2/obrazki/zakladki/instagram.png') no-repeat; }
+#ramkaIn { border:2px solid #9d6b53; padding:5px 0 0 5px; }
+/* pinterest */
+#pinte { width:330px; background:var(--kolor-bialy); padding:0; position:fixed; }
+#pinte_ikona { position:absolute; width:45px; height:45px; background:url('../szablony/standardowy-f.rwd.v2/obrazki/zakladki/pinterest.png') no-repeat; }
+#ramkaPinte { border:2px solid #e60023; width:326px; }
+#ramkaPinte span { border-radius:0; }
+/* allegro opinie */
+#allegro_opinie { width:444px; background:var(--kolor-bialy); padding:0; position:fixed; }
+#allegro_opinie_ikona { position:absolute; width:45px; height:45px; background:url('../szablony/standardowy-f.rwd.v2/obrazki/zakladki/allegro.png') no-repeat; }
+#ramkaAgOpinie { border:2px solid #ff5602; width:440px; }
+#ramkaAgOpinie .NaglowekOpinieAllegro { line-height:1.3; margin:15px 15px 25px 15px; background:#3ec43d; padding:5px; text-align:center; color:var(--kolor-bialy); font-size:120%; }
+#ramkaAgOpinie .OcenyAllegro { margin:5px 15px 5px 15px; font-size:110%; line-height:22px; }
+#ramkaAgOpinie .OcenyAllegro div:nth-child(1) { float:left; width:220px; margin-left:5px; }
+#ramkaAgOpinie .OcenyAllegro div:nth-child(2) { float:left; width:100px; text-align:center; }
+#ramkaAgOpinie .OcenyAllegro div:nth-child(3) { float:right; text-align:right; margin-right:5px; }
+#ramkaAgOpinie .SredniaOcenAllegro { margin:25px 5px 15px 5px; text-align:center; font-size:140%; }
+#ramkaAgOpinie .ListaAukcjiAllegro { margin:15px 5px 15px 5px; text-align:center; }
+#ramkaAgOpinie .ListaAukcjiAllegro a { background:#ff5a00; padding:10px 20px 10px 20px; font-weight:bold; color:var(--kolor-bialy); display:inline-block; font-size:110%; text-transform:uppercase; }
+#ramkaAgOpinie .ListaAukcjiAllegro a:hover { background:#444444; }

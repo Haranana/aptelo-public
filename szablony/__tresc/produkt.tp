@@ -1,0 +1,1192 @@
+<!-- karta produktu -->
+
+<!-- nie wolno usuwac zadnych elementow ktore maja id - ich usuniecie moze powodowac niepoprawne dzialanie sklepu -->
+
+<?php
+$Produkt = $__pA;
+$NajtanszaWysylka = $__pB;
+$WyswietlaniePrzyciskuSzybkiZakup = $__pC;
+$Zalogowany = $__pD;
+?>
+
+{__TRUSTISTO_KOD_PRODUKT}
+{__FB_KOD_GLOWNY}
+{__DOMODI_PIXEL}
+{__WP_PIXEL_KOD}
+{__KLAVIYO_PRODUKT}
+
+<section id="RamkaProduktu" itemscope itemtype="https://schema.org/Product">
+
+    <div id="KartaProduktu">
+    
+        <!-- glowne zdjecie produktu i miniaturki pod spodem -->
+
+        <div id="ZdjeciaProduktu" style="width:<?php echo (SZEROKOSC_OBRAZEK_SREDNI + 60); ?>px">
+        
+            <div class="ZdjeciaKontener" style="width:<?php echo SZEROKOSC_OBRAZEK_SREDNI; ?>px">
+            
+                <!-- duze zdjecie produktu -->
+
+                <div id="ZdjeciaDuze">
+                
+                    {__ZDJECIA_DUZE}
+                        
+                </div>
+                
+                <!-- miniaturki zdjec -->
+                
+                <div class="DodatkoweZdjecia">    
+                            
+                    {__ZDJECIA_MINIATURKI}
+                    
+                </div>
+                
+            </div>
+            
+        </div>
+        
+        <div id="InformacjeProduktu" style="width:calc(100% - <?php echo (SZEROKOSC_OBRAZEK_SREDNI + 60); ?>px)">
+        
+            <!-- ikonki: nowosc, promocja itp -->
+        
+            <div class="Ikonki">
+                {__IKONKI}
+            </div>
+            
+            <!-- nazwa produktu i obok miniaturka logo producenta -->
+        
+            <div class="NazwaProducent">
+            
+                <h1 itemprop="name">{__NAZWA_PRODUKTU}</h1>
+                
+                <meta itemprop="productID" content="<?php echo $Produkt->info['id']; ?>" />
+                
+                <?php if ( $Produkt->info['zestaw'] == 'nie' && KARTA_PRODUKTU_PRODUCENT == 'tak' && $Produkt->info['nazwa_producenta'] != '' ) { ?>
+                
+                    <div class="Producent" itemprop="brand" itemtype="https://schema.org/Brand" itemscope>
+                        <div itemprop="name" content="<?php echo $Produkt->info['nazwa_producenta']; ?>">{__PRODUCENT}</div>
+                    </div>
+                    
+                <?php } ?>
+            
+            </div>
+
+            <!-- WIDGET TRUSTMATE - hornet -->
+            {__TRUSTMATE_KOD_PRODUKT_HORNET}
+
+            <!-- tagi produktu -->
+            
+            <?php if ( TAGI_PRODUKTU == 'tak' ) { ?>
+
+            <div id="Tagi">
+            
+                <strong>{__TLUMACZ:TAGI}</strong>
+            
+                {__TAGI}
+                
+            </div>
+            
+            <?php } ?>
+                
+            <!-- srednia ocena produktu -->
+            
+            <?php 
+            // srednia ocena produktu
+            if ( count($Produkt->recenzje) > 0 && PRODUKT_RECENZJE == 'tak' && RECENZJE_STATUS == 'tak' ) { ?>  
+            
+                <div class="SredniaOcena">
+                    <div>{__TLUMACZ:SREDNIA_OCENA_PRODUKTU} ({__SREDNIA_OCENA_ILOSC_TEKST}/5):</div>
+                    <div>{__SREDNIA_OCENA_GWIAZDKI}</div>
+                    <div>({__TLUMACZ:ILOSC_GLOSOW} {__SREDNIA_OCENA_ILOSC_GLOSOW})</div>
+                </div>
+                
+                <div itemprop="aggregateRating" itemscope itemtype="https://schema.org/AggregateRating">
+                  <meta itemprop="reviewCount" content="{__SREDNIA_OCENA_ILOSC}" />
+                  <meta itemprop="ratingValue" content="{__SREDNIA_OCENA_ILOSC_TEKST}" />
+                </div>
+
+            <?php } ?>
+            
+            <!-- ile osob kupilo produkt --> 
+            <?php if ($Produkt->iloscKupionych > 0 && KARTA_PRODUKTU_ZAKUPY_HISTORIA == 'tak' ) { ?>
+                <div id="IloscKupionych">
+                    {__ZAKUPY_HISTORIA}
+                </div>
+            <?php } ?>
+
+            <!-- tabela z dostepnoscia, nr kat, czas wysylki, dodatkowe pola itp -->
+                        
+            <?php if ( !empty($Produkt->info['data_dostepnosci']) || $Produkt->info['zegar_dostepnosci'] == 'tak' ) { ?>
+            
+            <div id="DataDostepnosci">
+                
+                <?php if ( !empty($Produkt->info['data_dostepnosci']) ) { ?>
+                
+                <div class="miganie">
+                    {__TLUMACZ:DOSTEPNY_OD_DNIA} <b>{__DATA_DOSTEPNOSCI}</b>
+                </div>
+                
+                <?php } ?>
+
+                <?php if ( $Produkt->info['zegar_dostepnosci'] == 'tak' ) { ?>
+                
+                <div class="ZegarDataDostepnosci">
+                
+                    {__TLUMACZ:ZAKUPU_BEDZIE_MOZNA_DOKONAC}
+
+                    <span id="sekundy_dostepnosci_<?php echo $Produkt->info['id']; ?>"></span>
+                    {__FUNKCJA_ZEGAR_DOSTEPNOSCI}
+
+                </div>       
+                
+                <?php } ?>
+            
+            </div>     
+            
+            <?php } ?>
+            
+            {__DODATKOWY_OPIS_1}
+            {__PARAMETRY_PRODUKTU_CSS}
+
+            <div class="ListaOpisy">
+
+                <?php if ( !empty($Produkt->dostepnosc['dostepnosc']) && KARTA_PRODUKTU_DOSTEPNOSC == 'tak' ) { ?>   
+                <p id="Dostepnosc" class="TbPoz miganieSek">
+                    <span>{__TLUMACZ:DOSTEPNOSC}:</span> <strong>{__DOSTEPNOSC}</strong>
+                </p>
+                <?php } ?>
+                
+                <?php if ( !empty($Produkt->czas_wysylki) && KARTA_PRODUKTU_CZAS_WYSYLKI == 'tak' ) { ?>   
+                <p id="CzasWysylki" class="TbPoz">
+                    <span>{__TLUMACZ:CZAS_WYSYLKI}:</span> <strong>{__CZAS_WYSYLKI}</strong>
+                </p>
+                <?php } ?>        
+
+                <?php if ( is_array($NajtanszaWysylka) && KARTA_PRODUKTU_KOSZTY_WYSYLKI == 'tak' ) { ?>
+                <p id="KosztWysylki" class="TbPoz">
+                    <span>{__TLUMACZ:KOSZT_WYSYLKI}:</span> <strong id="InfoOpisWysylka">{__TLUMACZ:KOSZT_WYSYLKI_OD} {__NAJTANSZY_KOSZT_WYSYLKI} <span id="tipWysylka" style="display:none;">{__SPOSOB_WYSYLKI_TIP}</span></strong>
+                </p>                
+                <?php } ?>
+                
+                <?php if ( !empty($Produkt->info['nr_katalogowy']) && KARTA_PRODUKTU_NR_KATALOGOWY == 'tak' ) { ?>            
+                <p id="NrKatalogowy" class="TbPoz">
+                    <span>{__TLUMACZ:NUMER_KATALOGOWY}:</span> <strong itemprop="mpn">{__NR_KATALOGOWY}</strong>
+                </p>
+                <?php } ?>
+                
+                <?php if ( !empty($Produkt->info['kod_producenta']) && KARTA_PRODUKTU_NR_PRODUCENTA == 'tak' ) { ?>              
+                <p id="KodProducenta" class="TbPoz">
+                    <span>{__TLUMACZ:KOD_PRODUCENTA}:</span> <strong itemprop="sku">{__KOD_PRODUCENTA}</strong>
+                </p>
+                <?php } ?>
+
+                <?php if ( MAGAZYN_SPRAWDZ_STANY == 'tak' && ( (KARTA_PRODUKTU_MAGAZYN == 'tak' && $Produkt->info['kontrola_magazynu'] > 0) || KARTA_PRODUKTU_MAGAZYN_BRAK_KONTROLI == 'tak' ) ) { ?>  
+                <p id="StanMagazynowy" class="TbPoz">
+                    <span>{__TLUMACZ:STAN_MAGAZYNOWY}:</span> <strong>{__STAN_MAGAZYNOWY}</strong>
+                </p>
+                <?php } ?>
+                
+                <?php if ( !empty($Produkt->info['ean']) && KARTA_PRODUKTU_EAN == 'tak' ) { ?>
+                <p id="KodEan" class="TbPoz">
+                    <span>{__TLUMACZ:KOD_EAN}:</span> <strong itemprop="gtin13">{__KOD_EAN}</strong>
+                </p>
+                <?php } ?>
+                
+                <?php if ( !empty($Produkt->info['pkwiu']) && KARTA_PRODUKTU_PKWIU == 'tak' ) { ?>
+                <p id="Pkwiu" class="TbPoz">
+                    <span>{__TLUMACZ:PKWIU}:</span> <strong>{__KOD_PKWIU}</strong>
+                </p>
+                <?php } ?> 
+                
+                <?php if ( !empty($Produkt->stan_produktu) && KARTA_PRODUKTU_STAN_PRODUKTU == 'tak' ) { ?>   
+                <p id="StanProduktu" class="TbPoz">
+                    <span>{__TLUMACZ:STAN_PRODUKTU}:</span> <strong>{__STAN_PRODUKTU}</strong>
+                </p>
+                <?php } ?> 
+
+                <?php if ( !empty($Produkt->gwarancja) && KARTA_PRODUKTU_GWARANCJA == 'tak' ) { ?>   
+                <p id="GwarancjaProduktu" class="TbPoz">
+                    <span>{__TLUMACZ:GWARANCJA}:</span> <strong>{__GWARANCJA}</strong>
+                </p>
+                <?php } ?> 
+
+                <?php if ( KARTA_PRODUKTU_WAGA == 'tak' ) { ?>   
+                <p id="WagaProduktu" class="TbPoz" {__WAGA_PRODUKTU_CSS}>
+                    <span>{__TLUMACZ:WAGA_PRODUKTU}:</span> <strong>{__WAGA_PRODUKTU}</strong>
+                </p>
+                <?php } ?>                 
+                
+                <?php if ( !empty($Produkt->info['klasa_energetyczna']) ) { ?>
+                <p id="KlasaEnergetyczna" class="TbPoz">
+                    <span>{__TLUMACZ:KLASA_ENERGETYCZNA}:</span> <strong>{__KLASA_ENERGETYCZNA}</strong>
+                </p>
+                <?php } ?>
+
+                <!-- dodatkowe pola do produktu  -->
+                
+                <?php if ( count($Produkt->dodatkowePolaFoto) > 0 ) { ?>
+
+                    <?php foreach ( $Produkt->dodatkowePolaFoto as $Pole ) { ?>
+                    
+                    <p id="poleDodatkowe_<?php echo $Pole['id']; ?>" class="TbPoz TbPozPoleDodatkowe">
+                        <span class="TbPozPoleDodatkoweNazwa"><?php echo $Pole['nazwa']; ?>:</span> <strong><?php echo $Pole['wartosc']; ?></strong>
+                    </p>
+                    
+                    <?php } ?>
+                    
+                <?php } ?>
+
+            </div>
+            
+            <!-- formularz kupowania -->
+            
+            <form action="{__PLIK_FORMULARZA}" method="post" id="FormKartaProduktu" class="cmxform" autocomplete="off" {__TRYB_FORMULARZA}> 
+            
+                <!-- jezeli produkt ma cechy lub opcje komentarza do produktu -->
+            
+                <?php if ( ( $Produkt->cechyIlosc > 0 || $Produkt->info['komentarze_do_produktu'] == 'tak' || count($Produkt->dodatkowePolaTekstowe) > 0 ) && ($Produkt->info['jest_cena'] == 'tak' || KARTA_PRODUKTU_CECHY_ZALOGOWANI == 'widoczne') ) { ?>
+                
+                    <div id="CechyProduktu">
+                    
+                    {__OPCJE_PRODUKTU}
+                    
+                    <?php if ( $Produkt->info['komentarze_do_produktu'] == 'tak' ) { ?>
+                        <p class="KomentarzeDoProduktu">
+                            <label for="komentarz_{__ID_PRODUKTU_UNIKALNE}" class="formSpan" style="display:block;margin-bottom:10px">{__TLUMACZ:KOMENTARZ_PRODUKTU}</label> <textarea id="komentarz_{__ID_PRODUKTU_UNIKALNE}" rows="5" cols="40"></textarea>
+                        </p>
+                    <?php } ?>                      
+
+                    <?php if ( count($Produkt->dodatkowePolaTekstowe) > 0 ) { ?> 
+                        <div id="PoleTekstoweProduktu" data-id="PoleId_{__ID_PRODUKTU_UNIKALNE}">
+                            {__POLA_TEKSTOWE}
+                            <input type="hidden" id="wgrywane" name="wgrywane" value="" />
+                        </div>
+                    <?php } ?>  
+
+                    </div>      
+      
+                <?php } ?>      
+                
+                <!-- linki powiazane -->
+                
+                <?php if ( count($Produkt->LinkiPowiazane) > 0 ) { ?>
+                
+                    <div id="LinkiPowiazaneProduktu">
+
+                        <?php foreach ( $Produkt->LinkiPowiazane as $GrupaLinkowPowiazanych ) { ?>
+                                                    
+                            <div class="GrupaLinkow">
+                            
+                                <div class="GrupaLinkowTytul"><?php echo $GrupaLinkowPowiazanych['nazwa_grupy']; ?></div>
+                                
+                                <div class="GrupaLinkowOpis"><?php echo $GrupaLinkowPowiazanych['opis_grupy']; ?></div>
+                            
+                            </div>
+                            
+                            <ul>
+                            
+                            <?php foreach ( $GrupaLinkowPowiazanych['linki'] as $LinkPowiazany ) { ?>
+  
+                                <li>
+                                
+                                    <?php 
+                                    echo '<a href="' . $LinkPowiazany['sam_url'] . '" data-nazwa="' . $LinkPowiazany['nazwa'] . '">';
+
+                                    if ( $LinkPowiazany['samo_zdjecie'] != '' ) {
+                                         //
+                                         echo $LinkPowiazany['foto'];
+                                         //
+                                      } else {
+                                         //
+                                         echo $LinkPowiazany['nazwa'];
+                                         //
+                                    }
+                                    
+                                    echo '</a>';
+                                    ?>
+                                
+                                </li>
+                                
+                            <?php } ?> 
+
+                            </ul>
+                                  
+                        <?php } ?>
+
+                    </div>
+                
+                <?php } ?>
+
+                <!-- cena produktu razem z przyciskiem kupowania --> 
+
+                <?php if ( $Produkt->info['jest_cena'] == 'tak' ) { ?>
+                
+                    <div class="SekcjaCen">
+                        <div class="CenyProduktu" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                        
+                            <?php if ( count($Produkt->kupon) > 0 ) { ?>
+                            
+                                <div id="InfoKupon" class="KuponWartosc" data-rodzaj="{__RODZAJ_KUPONU}" data-wartosc="{__WARTOSC_KUPONU}" data-vat="{__STAWKA_VAT}">
+                                <div class="InformacjaOk">{__TLUMACZ:CENA_Z_KODEM}: <strong>{__KOD_KUPONU}</strong></div>
+                            
+                            <?php } else if ( count($Produkt->kupon_dostawa) > 0 ) { ?>
+                            
+                                <div id="InfoKupon" class="KuponWysylka">
+                                
+                                    <div class="InformacjaOk">{__TLUMACZ:DARMOWA_DOSTAWA_Z_KUPONEM} {__DLA_WYBRANYCH_WYSYLEK}: <strong>{__KOD_KUPONU}</strong></div>
+                                
+                                </div>
+                            
+                            <?php } ?>
+                            
+                            <!-- glowna cena produktu -->
+                            
+                            <!-- jezeli wyswietlane jednoczenie netto i brutto -->
+
+                            <?php if (CENY_BRUTTO_NETTO == 'tak' && $Produkt->info['tylko_za_punkty'] == 'nie') { ?>
+                            
+                                <p id="CenaGlownaProduktuBrutto" {__CSS_KUPON}>
+                                    {__TLUMACZ:CENA_BRUTTO}: <strong><span itemprop="price" content="<?php echo $Produkt->info['cena_brutto_bez_formatowania']; ?>">{__CENA_BRUTTO}</span></strong> {__JEDNOSTKA_MIARY}
+                                </p>
+                                
+                                <p id="CenaGlownaProduktuNetto">
+                                    {__TLUMACZ:CENA_NETTO}: <strong>{__CENA_NETTO}</strong>
+                                </p>     
+                                
+                            <?php } else { ?>
+                            
+                                <p id="CenaGlownaProduktuBrutto" {__CSS_KUPON}>
+                                    {__TLUMACZ:CENA}: <strong><span itemprop="price" content="<?php echo $Produkt->info['cena_brutto_bez_formatowania']; ?>">{__CENA_BRUTTO}</span></strong> {__JEDNOSTKA_MIARY}
+                                </p> 
+                                
+                            <?php } ?>
+
+                            <?php if ( count($Produkt->kupon) > 0 ) { ?>
+                            
+                                </div>
+
+                            <?php } ?>
+                            
+                            <p id="KosztRozmiaru" {__CSS_WARTOSC_JEDNOSTKOWA}>
+                            
+                                {__WARTOSC_JEDNOSTKOWA_INFORMACJA}
+                                
+                            </p>
+                            
+                            <!-- informacje o rabacie ceny -->
+                            
+                            <?php if ( $Produkt->info['rabat_produktu'] > 0 && $Produkt->info['produkt_dnia'] == 'nie' ) { ?>
+                            
+                                <p id="InfoRabaty">
+                                    {__INFO_O_RABATACH_PRODUKTU}
+                                </p>          
+                                
+                            <?php } ?>                   
+                            
+                            <!-- cena poprzednia (promocyjna) -->
+                            
+                            <?php if ( $Produkt->info['cena_poprzednia_bez_formatowania'] > 0 ) { ?>
+                            
+                                <p id="CenaPoprzednia" {__CSS_KUPON}>
+                                    {__TLUMACZ:CENA_POPRZEDNIA}: <strong>{__CENA_POPRZEDNIA}</strong>
+                                </p>
+                                
+                            <?php } ?>
+                            
+                            <!-- cena katalogowa -->
+                            
+                            <?php if ( $Produkt->info['cena_katalogowa_bez_formatowania'] > 0 && KARTA_PRODUKTU_CENA_KATALOGOWA == 'tak' ) { ?>
+                            
+                                <p id="CenaKatalogowa">
+                                    {__TLUMACZ:CENA_KATALOGOWA}: <strong>{__CENA_KATALOGOWA}</strong>
+                                </p>
+                                
+                                <?php if ( KARTA_PRODUKTU_CENA_KATALOGOWA_OSZCZEDZASZ == 'tak' && $Produkt->info['tylko_za_punkty'] == 'nie' ) { ?>
+                                
+                                <p id="CenaKatalogowaOszczedzasz">
+                                    {__TLUMACZ:OSZCZEDZASZ}: <strong>{__CENA_OSZCZEDZASZ}</strong>
+                                </p>
+                                
+                                <?php } ?>
+                                
+                            <?php } ?>         
+
+                            <div id="ProduktZegar" {__CSS_ZEGAR_PROMOCJI}>
+                            
+                                <div class="Odliczanie"><span id="sekundy_karta_<?php echo $Produkt->info['id']; ?>"></span>{__TLUMACZ:CZAS_DO_KONCA_PROMOCJI}</div>
+                                {__FUNKCJA_ZEGAR_PROMOCJI}
+
+                            </div>
+
+                            <!-- link do znizek od ilosci -->
+                            
+                            <?php if ( !empty($Produkt->znizkiZalezneOdIlosci)&& $Produkt->info['produkt_dnia'] == 'nie' ) { ?>
+                            
+                            <p id="ZnizkiOdIlosci" class="miganie">
+                                <span>
+                                    {__TLUMACZ:ZNIZKI_OD_ILOSCI_INFO} - <strong>{__TLUMACZ:ZOBACZ_SZCZEGOLY}</strong>.
+                                </span>
+                            </p>
+                            
+                            <?php } ?>
+                            
+                            <!-- historia cen produktu --> 
+                            
+                            <?php if ( HISTORIA_CEN == 'tak' ) { ?>
+                            
+                                <p id="HistoriaCenProduktu" {__CSS_HISTORIA_CENY}>
+                                    <span class="Informacja">{__TEKST_HISTORIA_CENY}</span>
+                                </p>
+                                
+                            <?php } ?>                            
+            
+                            <!-- systemy ratalne -->
+                            <div id="PlatnosciRatalne">{__RATY_SANTANDER}{__RATY_LUKAS}{__RATY_MBANK}{__RATY_PAYURATY}{__PAYURATY_WIDGET}{__RATY_TPAY}{__RATY_BGZ}{__RATY_ILEASING}{__RATY_IRATY}{__RATY_LEASELINK}{__GRAFIKA_PAYPO}</div>
+                            {__RATY_COMFINO}
+                            
+                            <!-- dane strukturalne -->
+                            <meta itemprop="priceCurrency" content="<?php echo $_SESSION['domyslnaWaluta']['kod']; ?>" />
+                            <meta itemprop="availability" content="https://schema.org/{__MICRODATA_AVAILABILITY}" />
+                            <meta itemprop="itemCondition" content="{__MICRODATA_CONDITION}" />
+                            <meta itemprop="url" content="<?php echo ADRES_URL_SKLEPU . '/'. $Produkt->info['adres_seo']; ?>" />
+                            <meta itemprop="priceValidUntil" content="2080-01-01" />
+                            {__MICRODATA_RETURN_POLICY}
+                            {__MICRODATA_SHIPPING_DETAILS}                            
+                            
+                        </div>
+
+                        <!-- przycisk kupowania -->
+                        
+                        <div class="Przyciski">
+
+                            <div id="PrzyciskKupowania" {__CSS_KOSZYK}>
+                            
+                                <div class="PrzyciskIlosc">
+                                
+                                    <div class="PoleIlosciKoszyka">{__INPUT_ILOSC}</div>
+
+                                    <div class="PolePrzyciskiKoszyka">{__PRZYCISK_KUP}</div>
+                                
+                                </div>
+                                
+                                <!-- przycisk szybkiego zakupu 1 klikniecie -->
+                                
+                                <?php if ( $WyswietlaniePrzyciskuSzybkiZakup == 'tak' ) { ?>
+                                
+                                <p><button class="przycisk" id="SzybkiZakup" data-id="{__ID_PRODUKTU_UNIKALNE}">{__TLUMACZ:PRZYCISK_ZAKUP_JEDNO_KLINIECIE}</button></p>
+                                
+                                <?php } ?>
+
+                                <p id="ZakupPrzezAllegro">
+                                
+                                    {__ZAKUP_PRZEZ_ALLEGRO}
+                                    
+                                </p>
+
+                            </div>
+                            
+                            <!-- informacja o braku produktu - ukryta jezeli produkt jest dostepny - nie kasowac !! -->
+                            
+                            <p id="InfoNiedostepny" class="miganieSek" {__CSS_INFO_KOSZYK}>
+                            
+                                {__INFO_NIEDOSTEPNY}
+                                
+                                <?php if ( KARTA_PRODUKTU_ZAPYTANIE_DOSTEPNOSC == 'tak' ) { ?>
+                                
+                                <br /> <button class="przycisk" id="PowiadomDostepnosc" data-id="{__ID_PRODUKTU_UNIKALNE}" {__CSS_INFO_POWIADOMIENIE}>{__TLUMACZ:POWIADOM_O_DOSTEPNOSCI_PRODUKTU}</button>
+                                
+                                <?php } ?>
+                                
+                            </p>
+                            
+                            <!-- przycisk do schowka -->
+                            
+                            <p id="PrzyciskSchowek" {__CSS_SCHOWKA}>
+                                {__PRZYCISK_SCHOWEK}
+                            </p>
+                            
+                        </div>
+                        
+                    </div>
+
+                <?php } else { ?>                
+                
+                    <br /><span class="CenaDlaZalogowanych">{__INFO_BRAK_CENY_PRODUKTU}</span>
+                
+                <?php } ?>
+                
+                <!-- zestaw produktow -->
+                
+                <?php if ( $Produkt->info['zestaw'] == 'tak' && count($Produkt->zestawProdukty) > 0 ) { ?>
+                
+                    <div id="ZestawProduktow">
+                    
+                        <strong class="ZestawTytul">{__TLUMACZ:ZESTAW_ZAWIERA}</strong>
+                        
+                        <ul>
+                        
+                            <?php
+                            foreach ( $Produkt->zestawProdukty as $ProduktZestawu ) {   
+                                //
+                                echo '<li>
+                                          <span>' . $ProduktZestawu['foto'] . '</span>
+                                          <span>' . $ProduktZestawu['link'] . ' (' . $ProduktZestawu['ilosc'] . ' ' . $ProduktZestawu['jednostka_miary'] . ')</span>
+                                      </li>';
+                                //
+                            }                        
+                            ?>
+                        
+                        </ul>
+                        
+                        <div class="ZestawTaniej">
+                        
+                            {__TLUMACZ:W_ZESTAWIE_TANIEJ} <b>{__ZESTAW_TANIEJ}</b>
+                            
+                        </div>
+
+                    </div>
+                
+                <?php } ?>
+                
+                <!-- ponizej - nie kasowac !! -->
+                
+                <div>
+                    <input id="InputCenaKoncowaBrutto" value="{__CENA_BRUTTO_BEZ_FORMATOWANIA}" type="hidden" />
+                    <input id="InputWybraneCechy_{__ID_PRODUKTU_UNIKALNE}" value="" type="hidden" />
+                    <input id="CenaPunkty" value="{__CENA_PRODUKTU_PKT}" type="hidden" />
+                    <input id="parametry" value="{__ID_PRODUKTU_UNIKALNE};{__CENA_BRUTTO_BEZ_FORMATOWANIA};{__CENA_NETTO_BEZ_FORMATOWANIA};{__CENA_POPRZEDNIA_BEZ_FORMATOWANIA};{__CENA_KATALOGOWA_BEZ_FORMATOWANIA}" type="hidden" />                    
+                    <input id="parametryLukas" value="{__LUKAS_PARAMETRY}" type="hidden" />
+                    <input id="parametrySantander" value="{__SANTANDER_PARAMETRY}" type="hidden" />
+                    <input id="parametryMbank" value="{__MBANK_PARAMETRY}" type="hidden" />
+                    <input id="parametryComfino" value="{__COMFINO_PARAMETRY}" type="hidden" />
+                    <input id="parametryIleasing" value="{__ILEASING_PARAMETRY}" type="hidden" />
+                    <input id="parametryIraty" value="{__IRATY_PARAMETRY}" type="hidden" />
+                    <input id="parametryLeaselink" value="{__LEASELINK_PARAMETRY}" type="hidden" />
+                    <input id="parametryPayURaty" value="{__PAYURATY_PARAMETRY}" type="hidden" />
+                    <input id="parametryBgz" value="{__BGZRATY_PARAMETRY}" type="hidden" />
+                </div>
+                
+            </form>
+
+            <!-- system punktow - informacja o ilosci punktow za produkt -->
+            
+            <div {__CSS_INFO_PUNKTY}>
+            
+                <p id="InformacjaPunkty" class="InformacjaOk">
+                    {__INFO_O_PUNKTACH_PRODUKTU}
+                </p>
+                
+            </div>
+            
+            <!-- zegar odliczajacy czas do wysylki -->
+            
+            <?php if ( PRODUKT_ZEGAR_WYSYLKI == 'tak' ) { ?>
+
+                <div class="ZegarCzasWysylkiKartaProduktu ZegarCzasWysylkiDostepny" data-status="{__ZEGAR_CZASU_WYSYLKI_STATUS}" {__CSS_ZEGAR_CZASU_WYSYLKI}>
+
+                    {__TLUMACZ:ZAMOW_DO_GODZINY} <b class="GodzinaWysylki">{__MAKSYMALNA_GODZINA_WYSYLKI}.</b> {__TLUMACZ:ZAMOWIENIE_WYSLEMY_DATA}
+                            
+                    <div>
+                        {__TLUMACZ:POZOSTALO_CZAS}
+                        <span id="sekundy_czas_<?php echo $Produkt->info['id']; ?>"></span>
+                        {__FUNKCJA_ZEGAR_CZASU_WYSYLKI} 
+                    </div>
+
+                </div>
+                
+                <div class="ZegarCzasWysylkiKartaProduktu ZegarCzasWysylkiNieaktywny" {__CSS_ZEGAR_CZASU_WYSYLKI_NIEAKTYWNY}>
+
+                    <div class="Informacja" style="display:inline-block">{__TLUMACZ:WYSLEMY_NASTEPNEGO_DNIA}</div>
+
+                </div>            
+            
+            <?php } ?>
+            
+            <!-- inne warianty po ean, nr kat, kodzie producenta -->
+
+            <?php if ( count($Produkt->InneWarianty) > 1 ) { ?>
+            
+                <div id="InneWariantyProduktu">
+                
+                    <div class="InneWariantyNaglowek">{__TLUMACZ:INNE_WARIANTY_PRODUKTU}</div>
+                
+                    {__LISTING_INNE_WARIANTY_PRODUKTU}
+
+                </div>
+            
+            <?php } ?>
+            
+            {__DODATKOWY_OPIS_2}
+                               
+        </div>
+
+    </div>
+    
+    <!-- podziel sie -->
+    
+    <?php if (INTEGRACJA_PODZIEL_SIE_WLACZONY == 'tak' && strpos((string)INTEGRACJA_PODZIEL_SIE_STRONY, 'karta') > -1) { ?>    
+    
+        <ul id="PodzielSie">            
+            <?php if ( isset($Produkt->podziel_sie['Wykop']) ) { ?>
+            <li><a class="wykop" href="https://www.wykop.pl/dodaj/link/?url={__ADRES_STRONY_PRODUKTU}&amp;title={__NAZWA_PRODUKTU_PODZIEL_SIE}" rel="nofollow" title="{__TLUMACZ:PODZIEL_SIE_LINK} Wykop.pl"></a></li> 
+            <?php } ?>
+            <?php if ( isset($Produkt->podziel_sie['LinkedIn']) ) { ?>
+            <li><a class="linkedin" href="https://www.linkedin.com/shareArticle?mini=true&amp;url={__ADRES_STRONY_PRODUKTU}&amp;title={__NAZWA_PRODUKTU_PODZIEL_SIE}" rel="nofollow" title="{__TLUMACZ:PODZIEL_SIE_LINK} LinkedIn"></a></li>
+            <?php } ?>
+            <?php if ( isset($Produkt->podziel_sie['Pinterest']) ) { ?>            
+            <li><a class="pinterest" href="https://pinterest.com/pin/create/button/?url={__ADRES_STRONY_PRODUKTU}&amp;media={__URL_ZDJECIE_DUZE}&amp;description={__NAZWA_PRODUKTU_PODZIEL_SIE}" rel="nofollow" title="{__TLUMACZ:PODZIEL_SIE_LINK} Pinterest"></a></li>
+            <?php } ?>
+            <?php if ( isset($Produkt->podziel_sie['Twitter']) ) { ?>            
+            <li><a class="twitter" href="https://twitter.com/share?url={__ADRES_STRONY_PRODUKTU}&amp;text={__NAZWA_PRODUKTU_PODZIEL_SIE}" rel="nofollow" title="{__TLUMACZ:PODZIEL_SIE_LINK} Twitter"></a></li>
+            <?php } ?>
+            <?php if ( isset($Produkt->podziel_sie['Facebook']) ) { ?>            
+            <li><a class="facebook" href="https://www.facebook.com/sharer/sharer.php?u={__ADRES_STRONY_PRODUKTU}" rel="nofollow" title="{__TLUMACZ:PODZIEL_SIE_LINK} Facebook"></a></li>
+            <?php } ?>
+        </ul>   
+
+        <div class="cl"></div>
+            
+    <?php } ?>
+    
+    <!-- linki z ikonami -->
+        
+    <div id="GlowneLinkiProduktu" {__CSS_LINKI_PRODUKTU}>
+        
+        {__LINK_ZAPYTANIA_O_PRODUKT}
+        
+        {__LINK_POLEC_PRODUKT}
+        
+        {__LINK_NEGOCJUJ_CENE}
+        
+        {__LINK_PRODUKT_PDF}
+        
+    </div>
+    
+    <?php if ( $__Parametr['Zestawy'] == 'tak' ) { ?>
+    
+        <div class="ZestawyListing">
+    
+            <div class="StrNaglowek">
+            
+                <span>{__TLUMACZ:PRODUKT_W_ZESTAWACH}</span>
+                
+            </div>
+              
+            <input class="CheckboxZestaw" type="checkbox" id="CheckboxZestaw" />
+      
+            <div class="ZestawyListingProdukty">
+            
+                {__LISTING_ZESTAWY_PRODUKTU}
+                
+            </div>
+
+        </div>
+    
+    <?php } ?>
+
+    <!-- zakladki informacyjne -->
+    
+    <div id="ZakladkiProduktu">
+    
+        <div id="TloZakladek">
+        
+            <ul id="Zakladki">
+            
+                <!-- zakladka opis -->
+                <li id="z_opis" class="aktywna">{__TLUMACZ:ZAKLADKA_OPIS_PRODUKTU}</li>
+                
+                <!-- zakladka dodatkowe zakladki -->
+                <?php
+                $z = 1;
+                if ( count($Produkt->dodatkoweZakladki) > 0 ) {  
+                    foreach ( $Produkt->dodatkoweZakladki as $DodatkowaZakladka ) {
+                        echo '<li id="z_zakladka' . $z . '">' . $DodatkowaZakladka['nazwa'] . '</li>';
+                        $z++;
+                    }
+                }
+                unset($z, $DodatkowaZakladka);
+                ?>
+                
+                <!-- akcesoria dodatkowe -->
+                <?php if ( $__Parametr['AkcesoriaDodatkoweIlosc'] > 0 ) { ?>
+                <li id="z_akcesoria">{__TLUMACZ:ZAKLADKA_AKCESORIA} (<?php echo $__Parametr['AkcesoriaDodatkoweIlosc']; ?>)</li>
+                <?php } ?>            
+                
+                <!-- produkty powiazane -->
+                <?php if ( $__Parametr['ProduktyPowiazaneIlosc'] > 0 ) { ?>
+                <li id="z_powiazane">{__TLUMACZ:NAGLOWEK_PRODUKTY_POWIAZANE} (<?php echo $__Parametr['ProduktyPowiazaneIlosc']; ?>)</li>
+                <?php } ?>                  
+                
+                <!-- zakladka linki -->
+                <?php if ( count($Produkt->Linki) > 0 ) { ?>
+                <li id="z_linki">{__TLUMACZ:ZAKLADKA_LINKI} (<?php echo count($Produkt->Linki); ?>)</li>
+                <?php } ?>
+                
+                <!-- zakladka pliki -->
+                <?php if ( count($Produkt->Pliki) > 0 ) { ?>
+                <li id="z_pliki">{__TLUMACZ:ZAKLADKA_DO_POBRANIA} (<?php echo count($Produkt->Pliki); ?>)</li>
+                <?php } ?> 
+
+                <!-- zakladka filmy youtube -->
+                <?php if ( count($Produkt->Youtube) > 0 ) { ?>
+                <li id="z_youtube">{__TLUMACZ:ZAKLADKA_YOUTUBE} (<?php echo count($Produkt->Youtube); ?>)</li>
+                <?php } ?>
+
+                <!-- zakladka filmy flv -->
+                <?php if ( count($Produkt->FilmyFlv) > 0 ) { ?>
+                <li id="z_flv">{__TLUMACZ:ZAKLADKA_FILMYFLV} (<?php echo count($Produkt->FilmyFlv); ?>)</li>
+                <?php } ?>   
+
+                <!-- zakladka pliki mp3 -->
+                <?php if ( count($Produkt->Mp3) > 0 ) { ?>
+                <li id="z_mp3">{__TLUMACZ:ZAKLADKA_MUZYKA} (<?php echo count($Produkt->Mp3); ?>)</li>
+                <?php } ?>   
+                
+                <!-- zakladka pliki faq -->
+                <?php if ( count($Produkt->Faq) > 0 ) { ?>
+                <li id="z_faq">{__TLUMACZ:ZAKLADKA_FAQ} (<?php echo count($Produkt->Faq); ?>)</li>
+                <?php } ?>                   
+
+                <!-- zakladka recenzje produktu -->
+                <?php if (PRODUKT_RECENZJE == 'tak' && RECENZJE_STATUS == 'tak') { ?>                
+                    <li id="z_recenzje">{__TLUMACZ:ZAKLADKA_RECENZJE} (<?php echo count($Produkt->recenzje); ?>)</li>
+                <?php } ?>
+                
+                <!-- zakladka zakupy produktu -->
+                <?php if ($Produkt->iloscKupionych > 0 && KARTA_PRODUKTU_ZAKLADKA_ZAKUPY == 'tak' ) { ?>
+                    <li id="z_zakupy">{__TLUMACZ:ZAKLADKA_ZAKUPY} (<?php echo $Produkt->iloscKupionych; ?>)</li>
+                <?php } ?>
+                
+            </ul>
+            
+            <div class="cl"></div>
+            
+        </div>
+
+        <div id="TresciZakladek">
+        
+            <!-- tresc zakladki opis -->
+            <div class="widoczna tz_opis GlownyOpisProduktu"  itemprop="description">
+            
+                {__OPIS_PRODUKTU}
+                
+                <!-- dodatkowe pola do produktu (pod opisem produktu) -->
+                
+                <?php if ( count($Produkt->dodatkowePolaOpis) > 0 ) { ?>
+                    
+                    <div class="DodatkowePolaOpis">
+                    
+                        <?php foreach ( $Produkt->dodatkowePolaOpis as $Pole ) { ?>
+                        
+                        <p id="poleDodatkowe_<?php echo $Pole['id']; ?>" class="TbPoz TbPozPoleDodatkowe">
+                            <span class="TbPozPoleDodatkoweNazwa"><?php echo $Pole['nazwa']; ?>:</span> <strong><?php echo $Pole['wartosc']; ?></strong>
+                        </p>
+                        
+                        <?php } ?>
+                        
+                    </div>
+                    
+                <?php } ?>
+
+                <!-- informacje o rozporzadzeniu gpsr -->
+                
+                <?php if ( $Produkt->info['zestaw'] == 'nie' && ( $Produkt->info['nazwa_producenta'] != '' || $Produkt->info['informacja_o_bezpieczenstwie'] != '' ) ) { ?>
+                  
+                    <div class="DaneGpsr" style="padding-top:30px">
+
+                    <?php if ( !empty($Produkt->info['informacja_o_bezpieczenstwie']) ) { ?>
+                    
+                        <div class="InfoBezpieczenstwie FormatEdytor" style="padding-bottom:20px">
+                            
+                            <h4>{__TLUMACZ:INFORMACJA_O_BEZPIECZENSTWIE}</h4> 
+                            
+                            {__INFORMACJA_O_BEZPIECZENSTWIE}
+                            
+                        </div>
+                    
+                    <?php } ?>
+                    
+                    {__INFORMACJE_O_PRODUCENCIE}
+                    
+                    </div>
+                    
+                <?php } ?>
+
+            </div>
+
+            <!-- tresc dodatkowe zakladki -->
+            <?php
+            $z = 1;
+            if ( count($Produkt->dodatkoweZakladki) > 0 ) {  
+                foreach ( $Produkt->dodatkoweZakladki as $DodatkowaZakladka ) {
+                    echo '<div class="ukryta tz_zakladka' . $z . '">' . $DodatkowaZakladka['tresc'] . '</div>';
+                    $z++;
+                }
+            }
+            unset($z, $DodatkowaZakladka);
+            ?>    
+            
+            <!-- akcesoria dodatkowe -->
+            <?php if ( $__Parametr['AkcesoriaDodatkoweIlosc'] > 0 ) { ?>
+            <div class="ukryta tz_akcesoria">
+                {__LISTING_AKCESORIA}
+            </div>
+            <?php } ?>         
+
+            <!-- produkty powiazane -->
+            <?php if ( $__Parametr['ProduktyPowiazaneIlosc'] > 0 ) { ?>
+            <div class="ukryta tz_powiazane">
+                {__LISTING_PRODUKTY_POWIAZANE}
+            </div>
+            <?php } ?>             
+
+            <!-- tresc zakladki linki -->
+            <?php if ( count($Produkt->Linki) > 0 ) { ?>
+            <div class="ukryta tz_linki ListaPozycjiKartaProduktu">
+            
+                <ul>
+                <?php 
+                foreach ( $Produkt->Linki as $Link ) {
+                    echo '<li>
+                            <a class="okno" href="' . $Link['link'] . '">' . $Link['nazwa'] . '</a>
+                            <span class="opisPlikLink">' . $Link['opis'] . '</span>
+                          </li>';
+                }
+                ?>
+                </ul>  
+                
+            </div> 
+            <?php } ?>
+
+            <!-- tresc zakladki pliki -->
+            <?php if ( count($Produkt->Pliki) > 0 ) { ?>
+            <div class="ukryta tz_pliki ListaPozycjiKartaProduktu">
+            
+                <ul>
+                <?php
+                foreach ( $Produkt->Pliki as $Plik ) {
+                    echo '<li>
+                            <a href="' . $Plik['plik'] . '" ' . ((KARTA_PRODUKTU_PLIKI_DYNAMICZNE == 'tak') ? 'rel="nofollow"' : '') . '>' . $Plik['nazwa'] . '</a>
+                            <span class="opisPlikLink">' . $Plik['opis'] . '</span>
+                          </li>';
+                }
+                ?>
+                </ul>
+                
+            </div>
+            <?php } ?>
+            
+            <!-- tresc zakladki youtube -->
+            <?php if ( count($Produkt->Youtube) > 0 ) { ?>
+            <div class="ukryta tz_youtube">
+            
+                <div class="FilmyYoutubeFlvProdukt">
+            
+                <?php
+                foreach ( $Produkt->Youtube as $Film ) {   
+                    //
+                    echo '<div class="FilmYoutubeFlv" style="width:' . $Film['szerokosc'] . 'px">
+                            <div id="film_' . $Film['id_film'] . '"></div>
+                            <strong>' . $Film['nazwa'] . '</strong>
+                            <span class="opisPlikLink">' . $Film['opis'] . '</span>
+                          </div>';
+                    //
+                }
+                ?>
+                
+                </div>
+                
+            </div>
+            <?php } ?> 
+
+            <!-- tresc zakladki filmy FLV -->
+            <?php if ( count($Produkt->FilmyFlv) > 0 ) { ?>
+            <div class="ukryta tz_flv">
+            
+                <div class="FilmyYoutubeFlvProdukt">
+            
+                <?php
+                foreach ( $Produkt->FilmyFlv as $Film ) {   
+                    //
+                    echo '<div class="FilmYoutubeFlv" style="width:' . $Film['szerokosc'] . 'px">
+                            <div id="flv_' . $Film['id_film'] . '"></div>
+                            <strong>' . $Film['nazwa'] . '</strong>
+                            <span class="opisPlikLink">' . $Film['opis'] . '</span>
+                          </div>';
+                    //
+                }
+                ?>
+                
+                </div>
+                
+            </div>
+            <?php } ?>    
+
+            <!-- tresc zakladki pliki Mp3 -->
+            <?php if ( count($Produkt->Mp3) > 0 ) { ?>
+            <div class="ukryta tz_mp3">
+            
+                <?php
+                foreach ( $Produkt->Mp3 as $Mp3 ) {   
+                    //
+                    echo '<div class="PlikiMp3">
+                            <div id="mp3_' . $Mp3['id_mp3'] . '"></div>
+                            <div>' . $Mp3['nazwa'] . '</div>
+                          </div>';
+                    //
+                }
+                ?>
+
+            </div>
+            <?php } ?>     
+
+            <!-- tresc zakladki faq -->
+            <?php if ( count($Produkt->Faq) > 0 ) { ?>
+            <div class="ukryta tz_faq FaqLista">
+            
+                <?php
+                foreach ( $Produkt->Faq as $Faq ) {
+                    echo '<details>
+                              <summary>' . $Faq['pytanie'] . '</summary>
+                              <div>' . $Faq['odpowiedz'] . '</div>
+                          </details>';
+                }
+                ?>
+
+            </div>
+            <?php } ?>             
+
+            <!-- tresc zakladki recenzje produktu -->
+
+            <?php if (PRODUKT_RECENZJE == 'tak' && RECENZJE_STATUS == 'tak') { ?>
+            
+            <div class="ukryta tz_recenzje">
+            
+                <?php if ( count($Produkt->recenzje) > 0 && $Produkt->info['podsumowanie_recenzji'] != '' ) { ?> 
+            
+                <div class="PodsumowanieRecenzji">
+                
+                    <strong>{__TLUMACZ:PODSUMOWANIE_RECENZJI}</strong>
+                
+                    <?php echo $Produkt->info['podsumowanie_recenzji']; ?>
+
+                </div>
+                
+                <?php } ?>
+                
+                <?php if ( count($Produkt->recenzje) > 0 ) { ?>
+                
+                    <div class="SredniaOcenaPaskiRecenzji">
+
+                        <div class="SredniaOcenaRecenzje">
+                        
+                            <span>{__TLUMACZ:SREDNIA_OCENA_PRODUKTU}</span> {__SREDNIA_OCENA_ILOSC_TEKST}/5
+                        
+                        </div>
+                                            
+                        <div class="PaskiRecenzji">
+                      
+                            <?php for ( $o = 5; $o > 0; $o-- ) { ?>
+
+                                <div class="PasekRecenzja" data-nr="<?php echo $o; ?>" data-ilosc="{__OCENA_ILOSC_<?php echo $o; ?>}">
+                                    <div><span class="Gwiazdki" style="--ocena:<?php echo $o; ?>"></span></div>
+                                    <div><span style="width:{__OCENA_PASEK_<?php echo $o; ?>}%"></span></div>
+                                    <div class="RecenzjaIle">{__OCENA_ILOSC_<?php echo $o; ?>}</div>
+                                </div>
+                                
+                            <?php } ?>
+                           
+                        </div>
+                      
+                    </div>
+
+                    <?php if ( count($Produkt->recenzjeZdjecia) > 0 ) { ?>
+                    
+                        <div class="ZdjeciaRecenzji">
+                    
+                        <?php foreach ( $Produkt->recenzjeZdjecia as $Zdjecie ) { ?>
+                        
+                            <div><?php echo $Zdjecie['recenzja_zdjecie_klienta']; ?></div>
+                        
+                        <?php } ?>
+                        
+                        </div>
+                        
+                    <?php } ?>
+                    
+                    <div class="WyswietlOceny cmxform">
+                    
+                        <label class="formSpan" for="TylkoOceny">{__TLUMACZ:RECENZJE_POKAZ}</label>
+                        
+                        <select id="TylkoOceny">
+                            <option value="0">{__TLUMACZ:RECENZJE_WSZYSTKIE}</option>
+                            <option value="5" {__OCENA_SELECT_5}>{__TLUMACZ:RECENZJE_OCENA_5}</option>
+                            <option value="4" {__OCENA_SELECT_4}>{__TLUMACZ:RECENZJE_OCENA_4}</option>
+                            <option value="3" {__OCENA_SELECT_3}>{__TLUMACZ:RECENZJE_OCENA_3}</option>
+                            <option value="2" {__OCENA_SELECT_2}>{__TLUMACZ:RECENZJE_OCENA_2}</option>
+                            <option value="1" {__OCENA_SELECT_1}>{__TLUMACZ:RECENZJE_OCENA_1}</option>
+                        </select>
+                    
+                    </div>
+                    
+                <?php } ?>
+            
+                <?php foreach ( $Produkt->recenzje as $Recenzja ) { ?>
+                
+                    <div class="Recenzja PozycjaRecenzja PozycjaRecenzja-<?php echo $Recenzja['recenzja_ocena']; ?>" itemscope itemprop="review" itemtype="https://schema.org/Review">  
+                    
+                        <span itemscope itemprop="author" itemtype="https://schema.org/Person">
+                            {__TLUMACZ:AUTOR_RECENZJI}: <b itemprop="name" content="<?php echo $Recenzja['recenzja_oceniajacy']; ?>"><?php echo $Recenzja['recenzja_oceniajacy']; ?></b>
+                        </span>
+                        
+                        <span itemscope itemprop="reviewRating" itemtype="https://schema.org/Rating">
+                            {__TLUMACZ:OCENA_PRODUKTU}: <?php echo $Recenzja['recenzja_ocena_obrazek']; ?>
+                            <meta itemprop="ratingValue" content="<?php echo $Recenzja['recenzja_ocena']; ?>" />
+                            <meta itemprop="bestRating" content="5" />
+                        </span>
+                        
+                        <span>
+                            {__TLUMACZ:DATA_NAPISANIA_RECENZJI}: <b itemprop="datePublished" content="<?php echo $Recenzja['recenzja_data_dodania']; ?>"><?php echo $Recenzja['recenzja_data_dodania']; ?></b>
+                        </span>
+                        
+                        <div class="RecenzjaOpis">
+                            <p itemprop="reviewBody"><?php echo $Recenzja['recenzja_tekst']; ?></p>
+                            <?php if ( $Recenzja['recenzja_odpowiedz'] != '' ) { ?>
+                                <p style="font-style:italic;line-height:1.5;margin-top:10px">{__TLUMACZ:ODPOWIEDZ_SKLEPU} <br /> <?php echo $Recenzja['recenzja_odpowiedz']; ?></p>
+                            <?php } ?>
+                        </div>
+                        
+                        <?php if ( $Recenzja['potwierdzony_zakup'] == 'tak' ) { ?>                        
+                        <div class="InformacjaOk">{__TLUMACZ:RECENZJA_POTWIERDZONA}</div>                        
+                        <?php } ?>  
+                        
+                    </div>
+                
+                <?php } ?>  
+                
+                <!-- informacja ze nikt nie napisal recenzji do produktu -->
+                
+                <?php if ( count($Produkt->recenzje) == 0 ) { ?> 
+                
+                    <p class="Informacja" style="margin-top:10px">
+                        {__INFO_O_BRAKU_RECENZJI}
+                    </p>
+                
+                <?php } else { ?>
+                
+                    <p class="Informacja" style="margin-top:20px">
+                        {__TLUMACZ:RECENZJE_WERYFIKACJA}
+                    </p>                
+                
+                <?php } ?>
+                
+                <!-- informacja o punktach za napisanie recenzji -->
+                
+                <?php if ( SYSTEM_PUNKTOW_STATUS == 'tak' && (int)SYSTEM_PUNKTOW_PUNKTY_RECENZJE > 0 && Punkty::PunktyAktywneDlaKlienta() ) { ?>
+                
+                    <p class="InformacjaOk" style="margin-top:10px">
+                        {__INFO_O_PUNKTACH_RECENZJI}
+                    </p>
+                
+                <?php } ?>                 
+
+                <?php if ((RECENZJE_DODAWANIE == 'tak' && $Zalogowany == 'tak') || RECENZJE_DODAWANIE == 'nie') { ?>
+
+                    <button class="przycisk Prawy" id="NapiszRecenzje" data-id="{__ID_PRODUKTU_UNIKALNE}">{__TLUMACZ:PRZYCISK_NAPISZ_RECENZJE}</button>
+                    
+                    <div class="cl"></div>
+
+                    <div id="FormularzRecenzji"></div>
+                    
+                <?php } else { ?>
+                
+                    <p class="InformacjaOk" style="margin-top:10px">
+                        {__TLUMACZ:INFO_RECENZJA_KONIECZNE_ZALOGOWANIE}
+                    </p>
+                
+                <?php } ?>
+
+                <div class="cl"></div>
+                
+                {__KOMENTARZE_FACEBOOK}            
+                
+            </div>
+            
+            <?php } ?>
+            
+            <!-- zakupy produktu -->
+            <?php if ( $Produkt->iloscKupionych > 0 && KARTA_PRODUKTU_ZAKLADKA_ZAKUPY == 'tak' ) { ?>
+            
+            <div class="ukryta tz_zakupy">
+            
+                <?php foreach ( $Produkt->tablicaKupionych as $Zakup ) { ?>
+                    <p class="TbPoz">
+                        <span>{__TLUMACZ:KLIENT}: <b><?php echo $Zakup['klient']; ?></b>,</span> <span>{__TLUMACZ:DATA_ZAKUPU} <b><?php echo $Zakup['data_zamowienia']; ?></b></span>
+                    </p> 
+                <?php } ?>
+
+            </div>
+            
+            <?php } ?>              
+
+        </div>
+    
+    </div>
+
+</section>
+    
+<!-- produkty podobne, klienci kupili takze, pozostale produkty z .... -->
+
+<div class="PozostaleProdukty">
+
+    <!-- jezeli sa wlaczone produkty podobna na karcie produktu (menu Konfiguracja / Konfiguracja sklepu / Ustawienia produktu oraz ich ilosc jest wieksza od 0 -->
+
+    <?php if ( $__Parametr['ProduktyPodobneIlosc'] > 0 ) { ?>
+    
+        <div class="StrNaglowek"><span>{__TLUMACZ:NAGLOWEK_PRODUKTY_PODOBNE}</span></div>
+        
+        <div class="StrTresc">{__LISTING_PRODUKTY_PODOBNE}</div>
+        
+    <?php } ?>
+    
+    <!-- jezeli sa wlaczone produkty ktorzy klienci kupili takze .. na karcie produktu (menu Konfiguracja / Konfiguracja sklepu / Ustawienia produktu oraz ich ilosc jest wieksza od 0 -->
+    
+    <?php if ( $__Parametr['KlienciKupiliTakzeIlosc'] > 0 ) { ?>
+    
+        <div class="StrNaglowek"><span>{__TLUMACZ:NAGLOWEK_KLIENCI_KUPILI_TAKZE}</span></div>
+        
+        <div class="StrTresc">{__LISTING_KLIENCI_ZAKUPILI_TAKZE}</div>
+
+    <?php } ?>
+    
+    <!-- jezeli sa wlaczone pozostale produkty z kategorii lub producenta na karcie produktu (menu Konfiguracja / Konfiguracja sklepu / Ustawienia produktu oraz ich ilosc jest wieksza od 0 -->
+    
+    <?php if ( $__Parametr['PozostaleProduktyIlosc'] > 0 ) { ?>
+    
+        <div class="StrNaglowek"><span>{NAGLOWEK_POZOSTALE_PRODUKTY_Z_KATEGORII_PRODUCENTA}</span></div>
+        
+        <div class="StrTresc">{__LISTING_PRODUKTY_POZOSTALE_Z_KATEGORII_PRODUCENTA}</div>
+        
+    <?php } ?>
+    
+</div>
+
+<!-- WIDGET TRUSTMATE - ferret -->
+{__TRUSTMATE_KOD_PRODUKT_FERRET}
+
+<script>
+{__KOD_YOUTUBE}
+{__KOD_FLV}
+{__KOD_MP3}
+{__FUNKCJA_CECH}
+{__INFO_TIP_WYSYLKA}
+</script>    
+
+<?php
+unset($Produkt, $NajtanszaWysylka);
+?>
+<!-- WIDGET TRUSTMATE - badger -->
+{__TRUSTMATE_KOD_PRODUKT_BADGER}
+
+<!-- Ceneo Zaufane Opinie Plus -->
+{__CENEO_ZAUFANE_OPINIE_RECENZJE}

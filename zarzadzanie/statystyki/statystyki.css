@@ -1,0 +1,176 @@
+.TabelaStatystyki { border:1px solid #fff; width:100%; }
+.TabelaStatystyki td { vertical-align:middle; padding:4px; border:1px dotted #c0d9e6; }
+.TabelaStatystyki .TyNaglowek td { white-space:normal !important; }
+
+.RamkaStatystyki { border:1px solid #c1c1c1; overflow:visible; padding:1px; -moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px; -khtml-border-radius:4px; width:98%; margin:0px auto; margin-bottom:10px; }
+
+/* link produktu */
+.TabelaStatystyki .linkProd { width:90%; }
+.TabelaStatystyki .linkProd a { background: url("../obrazki/zobacz.png") no-repeat left center; padding:2px; display:inline-block; padding-left:25px; text-align:left; font-weight:normal; text-decoration:none; }
+.TabelaStatystyki .linkProd a:hover { color:#ff0000; }
+
+/* wyglad kolejnosci */
+.poKolei { text-align:center; font-weight:normal; color:#0683b2; text-decoration:none; }
+
+/* wyglad wyniku */
+.wynikStat { white-space: nowrap; text-align:right; font-weight:bold; color:#048b14; text-decoration:none; }
+.wynikStat span { font-weight:normal; color:#9d9d9d; display:inline-block; padding-right:8px; padding-left:3px; }
+
+.WyczyscStat { text-align:center; }
+.WyczyscStat img { display:block; font-size:0px; }
+
+.WykresStatystki { margin:10px; z-index:0; text-align:center; }
+.WykresStatystki div { display:inline-block; }
+
+@media only screen and (max-width:1023px) { 
+  .WykresStatystki div.SzerokiWykres { width:700px; }
+}
+@media only screen and (min-width:1024px) and (max-width:1279px) {
+  .WykresStatystki div.SzerokiWykres { width:920px; }
+}
+@media only screen and (min-width:1280px) and (max-width:1599px) {
+  .WykresStatystki div.SzerokiWykres { width:1120px; }
+}
+@media only screen and (min-width:1600px) {
+  .WykresStatystki div.SzerokiWykres { width:1300px; }
+}
+
+/* wykres sprzedazy */
+.MalyWykres { width:49%; margin:10px 0px 10px 0px; }
+@media only screen and (max-width:1279px) {
+  .MalyWykres { width:98%; float:none !important; margin:0px auto; padding:10px 0px 10px 0px; }
+}
+
+.WykresStatystki h3, .MalyWykres h3 { text-align:center; font-size:120%; font-family:Inder, Arial; line-height:1.5; min-height:40px; }
+
+#wyborJezyka { margin:10px; }
+#wyborJezyka td { padding-right:7px; }
+#wyborJezyka span { font-weight:bold; color:#696969; display:inline-block; }
+#wyborJezyka img { border:1px solid #d8d8d8; border-bottom:1px solid #939393; border-right:1px solid #939393; }
+#wyborJezyka .aktywny { font-weight:normal; text-decoration:none; display:inline-block; -webkit-opacity: 1; -moz-opacity: 1; opacity: 1; }
+#wyborJezyka .nieaktywny { font-weight:normal; text-decoration:none; display:inline-block; -webkit-opacity: 0.4; -moz-opacity: 0.4; opacity: 0.4; }
+
+#zakresDat { margin:10px; float:left; font-weight:bold; color:#696969; }
+#zakresDat span { display: inline-block; font-weight:bold; padding:5px 5px 5px 0px; }
+
+#nazwaKoszyka { margin:5px 10px 15px 10px; float:left; font-weight:bold; color:#696969; }
+#nazwaKoszyka span { display: inline-block; font-weight:bold; padding:5px 5px 5px 0px; }
+
+/* raport kategorii */
+.NazwaNaglowek { background:#f1f1f1 }
+.NazwaNaglowek td { padding:8px; text-align:left; font-weight:normal; text-decoration:none; }
+.NazwaNaglowek span { font-weight:bold; color:#116985; }
+.TabelaStatystyki .Firma { font-weight:bold; color:#098206; }
+.TabelaStatystyki .nrKat { padding-left:10px; padding-right:10px; text-align:left; font-weight:normal; color:#898989; text-decoration:none; }
+.TabelaStatystyki .inne { padding-left:10px; padding-right:10px; text-align:center; font-weight:normal; text-decoration:none; }
+.TabelaStatystyki .znizki { line-height:1.8; width:35%; padding-left:10px; padding-right:10px; text-align:right; font-weight:normal; text-decoration:none; }
+.TabelaStatystyki .znizki span { display:inline-block; width:60px; font-weight:bold; color:#347f94; }
+.TabelaStatystyki .znizki strong { font-weight:bold; color:#834c43; }
+.TabelaStatystyki .znizki table { border:0px; width:100%; }
+.TabelaStatystyki .znizki td { padding:1px; border:0px; text-align:right; }
+.TabelaStatystyki .walutaZam { white-space: nowrap;  padding-left:10px; padding-right:10px; text-align:right; font-weight:normal; text-decoration:none; }
+.TabelaStatystyki .nazwa { padding-left:10px; padding-right:10px; text-align:left; font-weight:normal; color:#647e86; text-decoration:none; }
+.TabelaStatystyki .wybierzInny { white-space: nowrap;  text-align:right; }
+.TabelaStatystyki .wybierzInny a { background:url('../obrazki/kasuj.png') no-repeat left center; padding-left:22px; font-weight:bold; color:#016f24; text-decoration:none; }
+.TabelaStatystyki .wybierzInny a:hover { color:#ff0000; text-decoration:none; }
+.TabelaStatystyki .statZdjecie { width:60px; }
+.TabelaStatystyki .statZdjecie div { background:#fff; border:1px solid #c1c1c1; margin:2px; text-align:center; padding:8px; margin:0px auto; }
+.linkCecha { display:block; padding-top:3px; padding-bottom:3px; font-weight:normal; color:#797979; text-decoration:none; }
+
+.WynikProduktowStatystyka span { display:block; padding-bottom:10px; font-weight:bold; }
+.WybieranieKategorii { margin:10px 0px 0px 0px; }
+
+@media only screen and (max-width:1279px) {
+  .GlownyListingKategorieEdycja { margin-right:10px; }
+  .WynikProduktowGratisy { margin:10px 0px 10px 0px; }
+  .WynikProduktowStatystyka { margin:10px 10px 0px 10px; }
+}
+@media only screen and (min-width:1280px) { 
+  .GlownyListingKategorieEdycja { display:table-cell; width:30%; vertical-align:top; }
+  .GlownyListingProduktyEdycja { display:table-cell; width:70%; vertical-align:top; }  
+  .WynikProduktowStatystyka { margin-left:10px; }
+}
+
+/* lista produktow */
+.WynikNaglowek { display:block; padding-top:4px; padding-left:3px; }
+.WynikNaglowekDodanie { font-family:Inder, Arial; font-size:130%; display:block; padding:10px; color:#ff0000; }
+.WynikNaglowekBrak { display:block; }
+.WynikNaglowekBrak span { background:url('../obrazki/awaria_maly.png') no-repeat left center; padding:5px 0px 5px 30px !important; font-weight:bold; margin:5px 0px 0px 10px; }
+#WynikPrzewijany { max-height:300px; overflow-y:scroll; border:1px solid #c1c1c1; margin-right:10px; -moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px; -khtml-border-radius:4px; }
+.TabelaProdukt { color:#3f5d6b; width:100%; border:0px; }
+.TabelaProdukt td { border:3px solid #fff; text-align:center; }
+.TabelaProdukt .prot td { background:#f4f2f2; padding:4px; text-decoration:none; }
+.TabelaProdukt span { white-space:nowrap; display:block; padding:5px; background:#e5e5e5; font-weight:normal; color:#3f5d6b; text-decoration:none; }
+
+/* wybor sposobu w okresowym raporcie */
+#wybor { font-weight:bold; color:#696969; margin-left:10px; margin-bottom:15px; margin-top:5px; }
+#wybor span { display: inline-block; font-weight:bold; padding-right:5px; }
+
+/* zamowienia wg typu */
+.TblNaglowek { font-weight:bold; text-align:left; }
+
+/* ------------ dolny pasek podstron bez ajaxa ------------ */
+#DolneStrony { width:98%; text-align:left; margin:0px auto; margin-top:10px; margin-bottom:8px;  }
+.PrzyciskNieaktywny { -moz-border-radius:4px; -webkit-border-radius:4px; -khtml-border-radius:4px; border-radius:4px; margin:2px; padding:8px; padding-top:5px; padding-bottom:5px; background:#9d9d9d; font-family: Verdana, Tahoma, Arial, sans-serif; font-size: 11px; font-weight:bold; color:#fff; text-decoration:none; display:inline-block; }
+.PrzyciskNieaktywny:hover { background:#525252; color:#fff; text-decoration:none; }
+.PrzyciskAktywny { -moz-border-radius:4px; -webkit-border-radius:4px; -khtml-border-radius:4px; border-radius:4px; margin:2px; padding:8px; padding-top:5px; padding-bottom:5px; background:#525252; font-family: Verdana, Tahoma, Arial, sans-serif; font-size: 11px; font-weight:bold; color:#fff; text-decoration:none; display:inline-block; }
+.PrzyciskAktywny:hover { background:#525252; color:#fff; text-decoration:none; }
+#IleStrona { display:block; text-align:left; font-weight:bold; clear:both; padding:3px; }
+
+.WyborProducenta { margin-left:10px; max-width:650px; width:95%; border:1px solid #c1c1c1; padding-bottom:10px; padding-top:5px; background:#f6f7f6; -moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px; -khtml-border-radius:4px; }
+.WyborProducenta  a { font-weight:bold; text-decoration:none; display:block; padding:3px; padding-left:10px; }
+.WyborProducenta  a:hover { font-weight:bold; color:#ff0000; text-decoration:none; text-decoration:none; }
+
+#wyszukaj span { padding-right:3px; }
+div .Export { background:url('../obrazki/export.png') no-repeat left center;  display:inline-block; padding-left:22px; font-weight:bold; color:#016f24; text-decoration:none; }
+div .Export:hover { color:#ff0000; text-decoration:none; }
+
+#prel { margin:10px; line-height:24px; }
+#prel img { float:left; margin-right:15px; }
+
+.WyszukajRadio { margin:12px 20px 0px 0px; float:left; }
+.WyszukajCheckbox { margin-top:8px; float:left; }
+
+.NaglowekWaluta { margin:10px 0px 10px 10px; text-align:center; font-size:120%; font-family:Inder, Arial; }
+
+/* sciezka do kategorii */
+.sciezkaKat { color:#848383 !important; display:inline !important; width:auto !important; font-weight:normal !important; }
+
+@media only screen and (max-width:1023px) {
+  #wyszukaj_ikona { margin-top:5px !important; }
+}
+
+#statForm #wyszukaj_ikona { margin-top:8px; }
+#statForm .wyszukaj_przycisk { margin-top:6px !important; }
+
+.ListaKlientow { max-height:800px; overflow-y:scroll; margin:5px 10px 8px 10px; }
+.ListaKlientow td:first-child, .ListaKlientow td:nth-child(2) { text-align:center; }
+.ListaKlientow td { text-align:left; }
+.ListaKlientow .Firma { font-weight:bold; color:#098206; display:block; margin-bottom:3px; }
+.ListaKlientow .MalyMail { background: url('../obrazki/maly_mail.gif') left center no-repeat; padding:4px; padding-left:15px; color:#064661; display:inline-block; }
+
+/* wyglad cechy w podgladzie koszyka klienta */
+
+@media only screen and (max-width:1023px) { 
+  .PodgladKoszyka { width:640px; }
+}
+@media only screen and (min-width:1024px) and (max-width:1279px) {
+  .PodgladKoszyka { width:840px; }
+}
+@media only screen and (min-width:1280px) and (max-width:1599px) {
+  .PodgladKoszyka { width:1020px; }
+}
+@media only screen and (min-width:1600px) {
+  .PodgladKoszyka { width:1100px; }
+}
+
+.NaglowekSrodek td { text-align:center; text-shadow:#fff 1px 1px 1px; font-weight:bold; color:#2b595b; padding:10px 7px 10px 7px; background:url('../obrazki/tlo.png') #f5f5f5 repeat-x left bottom; }
+.Lista td { text-align:center; }
+.WglCecha { color:#5b5a5a; font-weight:normal; margin-bottom:2px; }
+.WglCecha a { display:inline !important; }
+.ZaklCent td { text-align:center; }
+.NazwaProduktu a { font-weight:bold; margin-bottom:5px; color:#084a5b; display:block; }
+.NazwaProduktu a:hover { color:#ff0000; }
+.PodgladKoszyka td { border-right:2px solid #fff; }
+
+.InneIkony a, .InneIkony em { display:inline-block; padding:2px 5px 2px 5px; cursor:pointer; }

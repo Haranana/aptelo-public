@@ -1,0 +1,373 @@
+/* ukrywanie boxu dla malych rozdzielczosci --- nie zmieniac nazwy styli, nie usuwac --- */
+
+@media only screen and (max-width:1023px) {
+  /* klasa do ukrywania boxu */
+  .BoxRwdUkryj { display:none; }
+  .BoxRwd .BoxZawartosc { max-height:0; overflow:hidden; opacity:0; visibility:hidden; transition:all 0.30s ease-in-out; }
+  /* klasa do minimalizowania boxu */
+  .BoxRozwinZwin { display:inline-block; }
+}
+@media only screen and (min-width:1024px) {
+  .BoxRwd .BoxZawartosc { display:block; }
+  .BoxRozwinZwin { display:none; }
+}
+
+/* rozwijanie / zwijanie boxu --- nie zmieniac nazwy styli, nie usuwac --- */
+.BoxRozwinZwin { position:absolute; top:0; right:-10px; bottom:0; width:20px; cursor:pointer; }
+
+/* dla normalnych boxow --- nie zmieniac nazwy styli, nie usuwac --- */
+.BoxNaglowek .BoxRozwin { background:url('../szablony/standardowy-c.rwd.v2/obrazki/szablon/strzalka_dol.svg') no-repeat center center; background-size:20px 20px; filter:var(--filtr-bialy); transition:all 0.30s ease-in-out; }
+.CalyBox .CheckboxNawigacja:checked ~ .BoxNaglowek .BoxRozwin { transform:rotate(180deg); }
+
+/* dla boxu kategorii gdzie ma sie pokazac ikona menu --- nie zmieniac nazwy styli, nie usuwac --- */
+.BoxNaglowekKategorie .BoxRozwin { background:url('../szablony/standardowy-c.rwd.v2/obrazki/szablon/strzalka_dol.svg') no-repeat center center; background-size:20px 20px; filter:var(--filtr-bialy); transition:all 0.30s ease-in-out; }
+.CalyBoxKategorie .CheckboxNawigacja:checked ~ .BoxNaglowekKategorie .BoxRozwin { transform:rotate(180deg); }
+
+/* ramka boxu - z marginesem --- nie zmieniac nazwy styli, nie usuwac --- */
+.CalyBox { margin-bottom:20px; }
+
+/* ramka boxu kategorii - z marginesem --- nie zmieniac nazwy styli, nie usuwac --- */
+.CalyBoxKategorie { margin-bottom:20px;  }
+
+/* ukrywanie boxu w malych rozdzielczosciach */
+.CalyBoxKategorie .BoxNaglowekKategorie label, .CalyBox .BoxNaglowek label { display:block; position:relative; }
+.CalyBoxKategorie .CheckboxNawigacja:checked ~ .BoxZawartosc, .CalyBox .CheckboxNawigacja:checked ~ .BoxZawartosc { max-height:5000px; opacity:1; visibility:visible; } 
+
+/* wyglad naglowka boxu --- nie zmieniac nazwy styli, nie usuwac --- */
+.BoxNaglowek { position:relative; border-radius:var(--zaokraglenie-5-px); margin:0; padding:10px; font-size:130%; font-weight:bold; background:var(--kolor-naglowek-box); color:var(--kolor-bialy); text-transform:uppercase; border-bottom:2px solid var(--kolor-szablonu); }
+
+/* wyglad naglowka boxu kategorii --- nie zmieniac nazwy styli, nie usuwac --- */
+.BoxNaglowekKategorie { text-shadow:1px 1px var(--kolor-szary-ciemny); position:relative; border-radius:var(--zaokraglenie-5-px); margin:0; padding:10px; font-size:130%; font-weight:bold; background:var(--kolor-naglowek-box-kategorie); color:var(--kolor-bialy); text-transform:uppercase; }
+
+@media only screen and (max-width:1023px) {
+  .BoxNaglowek, .BoxNaglowekKategorie { padding-right:20px; border:0; }
+}
+
+.BoxOdstep { margin-top:5px; border-radius:var(--zaokraglenie-5-px); position:relative; }
+
+/* wyglad ogolny boxu --- nie zmieniac nazwy styli, nie usuwac --- */
+.BoxTresc { overflow:hidden; position:relative; }
+.BoxTresc .BoxOdstep { padding:10px; background:var(--kolor-tlo-box); border:1px solid var(--kolor-linia); }
+.BoxTresc .WszystkieKreska { text-align:center; padding:10px 10px 5px 10px; border-top:1px solid var(--kolor-linia); }
+.BoxTresc .Wszystkie { text-align:center; margin:10px 10px 5px 10px; }
+.BoxTresc .Wszystkie a, .BoxTresc .WszystkieKreska a { background:url('../szablony/standardowy-c.rwd.v2/obrazki/szablon/strzalka_prawo.svg') no-repeat left center; background-size:16px 16px; padding-left:20px; display:inline-block; }
+.BoxTresc .SrodekCentrowany { text-align:center; padding:10px; }
+
+/* box standardowy z kategoriami */
+.BoxKategorie { overflow:hidden; position:relative; }
+.BoxKategorie .BoxOdstep { background:var(--kolor-tlo-box-kategorie); overflow:hidden; }
+.BoxKategorie ul { list-style-type:none; padding:0; margin:0; }
+.BoxKategorie div div { border-bottom:1px solid rgba(255,255,255,0.15); transition:all 0.30s ease-in-out; }
+.BoxKategorie div > ul > li:last-child > div:last-child { border:0; }
+.BoxKategorie div div:hover { background:var(--kolor-szablonu); color:var(--kolor-bialy); }
+.BoxKategorie div div:hover a { color:var(--kolor-bialy); }
+.BoxKategorie a { padding:10px 15px 10px 15px; font-weight:bold; display:block; color:var(--kolor-bialy); font-size:110%; }
+.BoxKategorie li li a { padding:8px 15px 8px 25px; display:block; font-weight:normal; font-size:100%; }
+.BoxKategorie li li li a { padding:8px 15px 8px 35px; }
+.BoxKategorie li li li li a { padding:8px 15px 8px 45px; }
+.BoxKategorie li li li li li a { padding:8px 15px 8px 55px; }
+.BoxKategorie em { display:inline-block; margin-left:5px; font-weight:normal; font-style:normal; font-size:80%; }
+.BoxKategorie .Aktywna { color:var(--kolor-szablonu); font-weight:bold; }
+
+/* jezeli wlaczone jest wyswietlanie ikonek */
+.BoxKategorie a.KategoriaIkona { display:flex; justify-content:flex-start; align-items:center; }
+.BoxKategorie li a span { display:inline-block; }
+.BoxKategorie li a span img { max-width:40px !important; }
+.BoxKategorie li a span.GrafikaLink { padding-right:10px; width:40px; text-align:center; }
+.BoxKategorie li a span.IkonaLink { width:calc(100% - 50px); }
+
+/* opis kategorii */
+.BoxKategorie small { display:block; margin:3px 0 0 0; font-size:80%; }
+
+/* box kategorii rozwijanych */
+.BoxKategorieRozwijane { overflow:hidden; position:relative; }
+.BoxKategorieRozwijane .BoxOdstep { background:var(--kolor-tlo-box-kategorie); overflow:hidden; }
+.BoxKategorieRozwijane ul { list-style-type:none; padding:0; margin:0; }
+.BoxKategorieRozwijane div div { border-top:1px solid rgba(255,255,255,0.15); position:relative; transition:all 0.30s ease-in-out; }
+.BoxKategorieRozwijane div > ul:first-child > li:first-child > div:first-child { border:0; }
+.BoxKategorieRozwijane div div:hover { background:var(--kolor-szablonu); color:var(--kolor-bialy); }
+.BoxKategorieRozwijane div div:hover a { color:var(--kolor-bialy); }
+.BoxKategorieRozwijane a { padding:10px 15px 10px 15px; font-weight:bold; display:inline-block; color:var(--kolor-bialy); margin-left:25px; font-size:110%; }
+.BoxKategorieRozwijane li ul { display:none; }
+.BoxKategorieRozwijane li li a { position:relative; padding:8px 15px 8px 15px; font-weight:normal; display:inline-block; margin:0 0 0 40px; font-size:100%; }
+.BoxKategorieRozwijane li li a::before { content:""; display:inline-block; position:absolute; top:5px; left:0; bottom:5px; width:1px; border-left:1px solid var(--kolor-linia); } 
+.BoxKategorieRozwijane li li a::after { content:""; display:inline-block; position:absolute; top:50%; left:0; width:8px; border-top:1px solid var(--kolor-linia); } 
+.BoxKategorieRozwijane li li li a { margin-left:57px; }
+.BoxKategorieRozwijane li li li li a { margin-left:74px; }
+.BoxKategorieRozwijane li li li li li a { margin-left:91px; }
+.BoxKategorieRozwijane em { display:inline-block; margin-left:5px; font-weight:normal; font-style:normal; font-size:80%; }
+.BoxKategorieRozwijane .Aktywna { color:var(--kolor-szablonu); font-weight:bold; }
+.BoxKategorieRozwijane .Rozwin { position:absolute; display:inline-block; cursor:pointer; width:18px; height:18px; top:50%; left:10px; transform:translateY(-50%); }
+.BoxKategorieRozwijane .Plus { background:url('../szablony/standardowy-c.rwd.v2/obrazki/szablon/plus.svg') no-repeat; background-size:18px 18px; filter:var(--filtr-bialy); }
+.BoxKategorieRozwijane .Minus { background:url('../szablony/standardowy-c.rwd.v2/obrazki/szablon/minus.svg') no-repeat; background-size:18px 18px; filter:var(--filtr-bialy); }
+
+/* jezeli wlaczone jest wyswietlanie ikonek */
+.BoxKategorieRozwijane a.KategoriaIkona { display:flex; justify-content:flex-start; align-items:center; }
+.BoxKategorieRozwijane li a span { display:inline-block; }
+.BoxKategorieRozwijane li a span img { max-width:40px !important; }
+.BoxKategorieRozwijane li a span.GrafikaLink { padding-right:10px; width:40px; text-align:center; }
+.BoxKategorieRozwijane li a span.IkonaLink { width:calc(100% - 50px); }
+
+/* opis kategorii */
+.BoxKategorieRozwijane small { display:block; margin:3px 0 0 0; font-size:80%; }
+
+/* box kategorii wysuwanych */
+.BoxKategorieWysuwane .BoxOdstep { background:var(--kolor-tlo-box-kategorie); }
+.BoxKategorieWysuwane ul { list-style-type:none; padding:0; margin:0; }
+.BoxKategorieWysuwane a { border-bottom:1px solid rgba(255,255,255,0.15); position:relative; transition:all 0.30s ease-in-out; }
+.BoxKategorieWysuwane li { position:relative; }
+.BoxKategorieWysuwane li a { padding:10px 30px 10px 15px; font-weight:bold; display:block; color:var(--kolor-bialy); position:relative; font-size:110%; }
+.BoxKategorieWysuwane li li a { font-weight:normal; font-size:100%; }
+.BoxKategorieWysuwane em { display:inline-block; margin-left:5px; font-weight:normal; font-style:normal; font-size:80%; }
+.BoxKategorieWysuwane .Aktywna { color:var(--kolor-szablonu); font-weight:bold; }
+
+@media only screen and (max-width:1023px) {
+  .BoxKategorieWysuwane li .PrzyciskMobilny { z-index:5; cursor:pointer; position:absolute; top:4px; right:5px; display:inline-block; width:30px; height:30px; background:url('../szablony/standardowy-c.rwd.v2/obrazki/szablon/strzalka_dol.svg') no-repeat center center; background-size:20px 20px; filter:var(--filtr-bialy); }
+  .BoxKategorieWysuwane li ul { max-height:0; overflow:hidden; visibility:hidden; opacity:0; transition:all 0.30s ease-in-out; }
+  .BoxKategorieWysuwane li .CheckboxRozwinKategorieWysuwane:checked ~ ul { max-height:5000px; opacity:1; visibility:visible; }
+  .BoxKategorieWysuwane li li a { padding-left:27px; }
+  .BoxKategorieWysuwane li li li a { padding-left:42px; }
+  .BoxKategorieWysuwane li li li li a { padding-left:57px; }
+  .BoxKategorieWysuwane li li li li li a { padding-left:72px; }  
+  .BoxKategorieWysuwane ul:first-child > li:first-child > a { border-top-left-radius:5px; border-top-right-radius:5px; }
+  .BoxKategorieWysuwane ul:first-child > li:last-child > a { border-bottom-left-radius:5px; border-bottom-right-radius:5px; border:0; }  
+  .BoxKategorieWysuwane a:hover { background:var(--kolor-szablonu); color:var(--kolor-bialy); }
+}
+@media only screen and (min-width:1024px) {
+  .BoxKategorieWysuwane a.Rozwin::before { content:''; position:absolute; top:0; right:10px; bottom:0; width:15px; background:url('../szablony/standardowy-c.rwd.v2/obrazki/szablon/strzalka_prawo.svg') no-repeat right center; background-size:15px 15px; filter:var(--filtr-bialy); }
+  .BoxKategorieWysuwane a .PrzyciskMobilny { display:none; }
+  .BoxKategorieWysuwane li ul { max-height:0; visibility:hidden; opacity:0; transition:all 0.30s ease-in-out; position:absolute; top:0; left:calc(100% + 15px); width:230px; background:var(--kolor-tlo-box-kategorie); z-index:10000; border-radius:var(--zaokraglenie-5-px); }
+  .BoxKategorieWysuwane li:hover > ul, .BoxKategorieWysuwane li:focus-within > ul { left:calc(100% + 3px); max-height:10000px; visibility:visible; opacity:1; }  
+  .BoxKategorieWysuwane ul > li:first-child > a { border-top-left-radius:var(--zaokraglenie-5-px); border-top-right-radius:var(--zaokraglenie-5-px); }
+  .BoxKategorieWysuwane ul > li:last-child > a { border-bottom-left-radius:var(--zaokraglenie-5-px); border-bottom-right-radius:var(--zaokraglenie-5-px); border:0; }
+  .BoxKategorieWysuwane ul > li:hover > a { background:var(--kolor-szablonu); color:var(--kolor-bialy); }
+}
+
+/* jezeli wlaczone jest wyswietlanie ikonek */
+.BoxKategorieWysuwane a.KategoriaIkona { display:flex; justify-content:flex-start; align-items:center; }
+.BoxKategorieWysuwane li a span { display:inline-block; }
+.BoxKategorieWysuwane li a span img { max-width:40px !important; }
+.BoxKategorieWysuwane li a span.GrafikaLink { padding-right:10px; width:40px; text-align:center; }
+.BoxKategorieWysuwane li a span.IkonaLink { width:calc(100% - 50px); }
+
+/* opis kategorii */
+.BoxKategorieWysuwane small { display:block; margin:3px 0 0 0; font-size:80%; }
+
+/* box standardowy z kategoriami aktualnosci */
+.BoxKategorieAktualnosci { overflow:hidden; position:relative; }
+.BoxKategorieAktualnosci .BoxOdstep { background:var(--kolor-tlo-box-kategorie); overflow:hidden; }
+.BoxKategorieAktualnosci ul { list-style-type:none; padding:0; margin:0; }
+.BoxKategorieAktualnosci div div { border-top:1px solid rgba(255,255,255,0.15); position:relative; transition:all 0.30s ease-in-out; }
+.BoxKategorieAktualnosci div > ul:first-child > li:first-child > div:first-child { border:0; }
+.BoxKategorieAktualnosci div div:hover { background:var(--kolor-szablonu); color:var(--kolor-bialy); }
+.BoxKategorieAktualnosci div div:hover a { color:var(--kolor-bialy); }
+.BoxKategorieAktualnosci a { padding:10px 15px 10px 15px; font-weight:bold; display:block; color:var(--kolor-bialy); font-size:110%; }
+.BoxKategorieAktualnosci li li a { padding:8px 10px 8px 30px; display:block; font-weight:normal; font-size:100%; }
+.BoxKategorieAktualnosci .Aktywna { color:var(--kolor-szablonu); font-weight:bold; }
+
+/* wyzerowanie ustawien */
+.BoxTresc ul { list-style-type:none; padding:0; margin:0; }
+
+/* linki aktualnosci - kalendarz przy dacie */
+.BoxTresc .Lista .Data { background:url('../szablony/standardowy-c.rwd.v2/obrazki/szablon/kalendarz.svg') no-repeat left center; background-size:18px 18px; padding:2px 2px 2px 25px; display:block; margin:10px 0 5px 0; font-style:normal; font-weight:normal; }
+
+/* brak ostatniej linii */
+.BezLinii li:last-child { border:0 !important; }
+
+/* definiowanie boxu np dla nasz hit - tylko lista produktow */
+.BoxTresc .Lista h4 a { font-weight:normal; }
+.BoxTresc .Lista li { padding:10px 0 10px 0; border-bottom:1px solid var(--kolor-linia); }
+.BoxTresc .Lista li a { display:block; }
+.BoxTresc .Lista h3 a { font-size:100%; }
+.BoxTresc .Lista .OpisText { margin:10px 0 10px 0; text-align:left; font-style:italic; }
+
+/* box bestsellery lista z numeracja */
+.BoxTresc .ListaNumer li { display:flex; flex-wrap:nowrap; justify-content:space-between; align-items:center; padding:10px 0 10px 0; border-bottom:1px solid var(--kolor-linia); }
+.BoxTresc .ListaNumer h3 { width:calc(100% - 40px); padding:5px 0 5px 0; }
+.BoxTresc .ListaNumer h3 a { font-size:100%; }
+.BoxTresc .ListaNumer span { width:40px; }
+.BoxTresc .ListaNumer b { display:inline-block; color:var(--kolor-szary-ciemny); width:15px; text-align:center; padding:3px 5px 3px 5px; margin-right:6px; background:var(--kolor-szary-jasny); border-radius:var(--zaokraglenie-4-px); }
+
+/* box ankiet */
+.BoxTresc .Ankieta { padding:10px; text-align:center; }
+.BoxTresc .Ankieta h4 { display:block; margin-bottom:10px; }
+.BoxTresc .Ankieta .Pytania { display:inline-block; margin:0 auto; text-align:left !important; list-style-type:none; padding:0; }
+.BoxTresc .Ankieta .Pytania input { float:left; margin:0 5px 0 0 !important; }
+.BoxTresc .Ankieta .Pytania li { text-align:left; margin-bottom:5px; }
+.BoxTresc .Ankieta .Pytania li b { font-weight:normal; }
+.BoxTresc .Ankieta #BladAnkiety { display:inline-block; font-weight:normal; background:transparent url('../szablony/standardowy-c.rwd.v2/obrazki/formularz/info.svg') no-repeat left center; filter:var(--filtr-czerwony); background-size:16px 16px; margin:10px 0 0 0; padding:2px 0 2px 25px; }
+.BoxTresc .Ankieta div { margin-top:10px; }
+
+/* definiowanie boxu np dla nasz hit z miniaturkami 50x50 */
+.BoxImgMaly li .PrdDane { padding:5px 0 5px 0; }
+.BoxImgMaly li .PrdDane a { margin-bottom:8px; display:block; }
+.BoxImgMaly li { display:flex; flex-wrap:nowrap; justify-content:space-between; align-items:center; padding:10px 0 10px 0; border-bottom:1px solid var(--kolor-linia); }
+.BoxImgMaly li .Img { padding:5px 0 5px 0; text-align:center; }
+.BoxImgMaly h3 a, .BoxImgMaly .Cena, .BoxImgMaly .CenaPoprzednia, .BoxImgMaly .CenaPromocyjna { font-size:100%; }
+.BoxImgMaly .PrdDane .OpisText { margin:10px 0 10px 0; text-align:left; font-style:italic; }
+
+/* definiowanie boxu np dla nasz hit z wiekszymi obrazkami */
+.BoxImgDuzy { text-align:center; padding:10px 0 10px 0; border-bottom:1px solid var(--kolor-linia); }
+.BoxImgDuzy a { display:inline-block; position:relative; overflow:hidden; }
+.BoxImgDuzy h3 a { margin:10px 0 10px 0; }
+.BoxImgDuzy h3 a, .BoxImgDuzy .Cena, .BoxImgDuzy .CenaPoprzednia, .BoxImgDuzy .CenaPromocyjna { font-size:100%; }
+
+/* recenzja w boxie, tresc aktualnosci, teksty drobne w boxach */
+.BoxTresc .OpisText { text-align:center; margin:10px 0 10px 0; font-style:italic; }
+.BoxTresc .OpisText img { margin-top:6px; }
+.BoxTresc .OpisText span { font-style:normal; margin-top:5px !important; }
+
+/* box koszyka - szczegolowy */
+.BoxKoszykSzczegoly { line-height:1.2 }
+.BoxKoszykSzczegoly ul { list-style-type:none; padding:0; margin:0; }
+.BoxKoszykSzczegoly li { display:flex; flex-wrap:nowrap; justify-content:space-between; align-items:center; padding:10px 0 10px 0; border-bottom:1px solid var(--kolor-linia); }
+.BoxKoszykSzczegoly li .PrdDane { padding:5px 0 5px 0; }
+.BoxKoszykSzczegoly li .PrdDane .Cena { margin-top:5px; }
+.BoxKoszykSzczegoly li .Img { padding:5px 0 5px 0; text-align:center; }
+.BoxKoszykSzczegoly .Podsumowanie { margin-top:15px; display:flex; flex-wrap:nowrap; justify-content:center; align-items:center; }
+.BoxKoszykSzczegoly .Podsumowanie div { padding:5px; }
+.BoxKoszykSzczegoly .PrzyciskKoszyk { margin:15px 0 7px 0; text-align:center; }
+.BoxKoszykSzczegoly .PustyKoszyk { display:block; margin:10px; text-align:center; }
+.BoxKoszykSzczegoly h3 a, .BoxKoszykSzczegoly .Cena, .BoxKoszykSzczegoly .CenaPoprzednia, .BoxKoszykSzczegoly .CenaPromocyjna { font-size:100%; }
+
+/* box cennika */
+.Cennik { text-align:center; display:flex; flex-direction:column; flex-wrap:wrap; justify-content:flex-start; align-content:flex-start; align-items:flex-start; }
+.Cennik a { display:inline-block; margin:5px; background-size:40px 40px; padding:10px 0 10px 45px; }
+.CennikPdf { background:url('../szablony/standardowy-c.rwd.v2/obrazki/cennik/pdf.svg') no-repeat left center; }
+.CennikHtml { background:url('../szablony/standardowy-c.rwd.v2/obrazki/cennik/html.svg') no-repeat left center; }
+.CennikXls { background:url('../szablony/standardowy-c.rwd.v2/obrazki/cennik/xls.svg') no-repeat left center; }
+
+/* box producenci chmura tekst */
+.BoxTresc .ProducenciChmura a { display:inline-block; margin:5px; }
+
+/* box producenci - przewijana lista */
+.BoxTresc .ProducenciLista { overflow-y:auto; }
+.BoxTresc .ProducenciLista a { display:block; margin:5px 5px 5px 10px; }
+
+/* definiowanie boxu statystyki */
+.BoxTresc .Stat li { padding:10px 0 10px 0; margin:0; border-bottom:1px solid var(--kolor-linia); }
+.BoxTresc .Stat li:last-child { border-bottom:0; }
+
+/* definiowanie boxu jezyka */
+.BoxTresc .Flaga { padding:5px; }
+.BoxTresc .FlagaOff { cursor:pointer; opacity:0.6; }
+
+/* definiowanie boxu waluty */
+.BoxTresc .Waluty { text-align:center; padding:10px 0 0 0; }
+
+/* box chmura tagow */
+#tagCloud { text-align:center; padding:5px; overflow:hidden; font-size:80%; }
+#tagCloud a { display:inline-block; margin:2px; padding:2px; }
+
+/* box porownywarki produktow */
+.BoxPorownywarka { padding:10px; }
+.BoxPorownywarka a { display:block; margin-left:35px; }
+#ListaProduktowPorownanieBox span { background:url('../szablony/standardowy-c.rwd.v2/obrazki/szablon/krzyzyk.svg') no-repeat right center; background-size:25px 25px; width:25px; height:25px; position:absolute; top:0; left:0; cursor:pointer; display:inline-block; }
+#ListaProduktowPorownanieBox li { margin-bottom:10px; position:relative; }
+.BoxPorownywarka #przyciskPorownywaniaBox { margin-top:25px; text-align:center; }
+
+/* box schowka */
+.BoxSchowek { padding:10px; text-align:center; line-height:1.2 }
+.BoxSchowek .Cena { display:inline-block; vertical-align:top; }
+.BoxSchowek .WartoscSchowka { margin:0 auto; padding:5px 0 15px 0; display:flex; justify-content:center; align-items:center; }
+.BoxSchowek .WartoscSchowka div { padding:0 3px 0 3px; }
+
+/* box reklamacji */
+.BoxReklamacja { padding:10px; text-align:left; line-height:1.5 }
+.BoxReklamacja span { font-weight:bold; }
+.BoxReklamacja a { padding:2px 5px 2px 5px; font-weight:normal; display:block; }
+
+/* box newsletter */
+.BoxNewsletter { padding:10px; text-align:center; }
+.BoxNewsletter .NewsletterOpis { line-height:1.5;  }
+.BoxNewsletter .PoleAdresu { margin:15px 0 15px 0; }
+.BoxNewsletter .PoleZgod > br { display:none; }
+.BoxNewsletter #emailNewsletter { width:95%; margin:0 auto; }
+.BoxNewsletter small { font-size:80%; margin:10px 0 10px 0; opacity:0.5; }
+.BoxNewsletter small label { padding-left:30px; }
+
+/* definiowanie boxu z miniaturka i opisem */
+.BoxImgTekst { text-align:left; border-bottom:1px solid var(--kolor-linia); padding:10px 0 10px 0; }
+.BoxImgTekst img { float:left; margin-right:12px; margin-bottom:8px; }
+.BoxImgTekst h3 { margin-bottom:8px; }
+.BoxImgTekst h3 a, .BoxImgTekst .Cena, .BoxImgTekst .CenaPoprzednia, .BoxImgTekst .CenaPromocyjna { font-size:100%; }
+.BoxImgTekst .OpisText { margin:10px 0 10px 0; text-align:left; font-style:italic; }
+
+/* box wyszukiwania */
+.BoxWyszukiwania { margin:10px 0 10px 0; text-align:center; line-height:1.2; }
+.BoxWyszukiwania .PoleFrazy { margin-top:10px; }
+.BoxWyszukiwania #InBoxSzukaj { width:90%; margin:0 auto; }
+.SzukZaawansowane { border-top:1px solid var(--kolor-linia); display:block; margin:15px 0 5px 0; padding-top:10px; text-align:center; }
+
+/* box z grafikami, bannerami */
+.BoxTresc .Grafiki { list-style-type:none; padding:0; margin:0; }
+.BoxTresc .Grafiki li { padding:10px; margin-bottom:8px; text-align:center; }
+.BoxTresc .Grafiki span { cursor:pointer; }
+.BoxTresc .Reklamy { list-style-type:none; padding:0; margin:0; }
+.BoxTresc .Reklamy li { margin-bottom:8px; text-align:center; overflow:hidden; }
+
+/* box kontakt */
+.BoxKontakt { list-style-type:none; padding:0; margin:0; }
+.BoxKontakt li { padding:10px 0 10px 0; margin:0; border-bottom:1px solid var(--kolor-linia); }
+.BoxKontakt li:last-child { border:0; }
+.BoxKontakt li b { display:block; margin-bottom:2px; }
+
+.BoxKontakt .PortaleSpolecznoscioweKontakt { margin:10px 0 0 0; display:flex; flex-wrap:wrap; justify-content:flex-start; align-items:flex-start; }
+.BoxKontakt .PortaleSpolecznoscioweKontakt li { padding:0px; margin:0px 7px 7px 0px; border:0px; background-size:30px 30px !important; }
+.BoxKontakt .PortaleSpolecznoscioweKontakt li a { font-size:0px; display:block; width:30px; height:30px; }
+.BoxKontakt .PortaleSpolecznoscioweKontakt .PortaleFacebook { background:url('../szablony/standardowy-c.rwd.v2/obrazki/portale/facebook.svg') no-repeat; }
+.BoxKontakt .PortaleSpolecznoscioweKontakt .PortaleInstagram { background:url('../szablony/standardowy-c.rwd.v2/obrazki/portale/instagram.svg') no-repeat; }
+.BoxKontakt .PortaleSpolecznoscioweKontakt .PortaleYoutube { background:url('../szablony/standardowy-c.rwd.v2/obrazki/portale/youtube.svg') no-repeat; }
+.BoxKontakt .PortaleSpolecznoscioweKontakt .PortaleLinkedIn { background:url('../szablony/standardowy-c.rwd.v2/obrazki/portale/linkedin.svg') no-repeat; }
+.BoxKontakt .PortaleSpolecznoscioweKontakt .PortaleTwitter { background:url('../szablony/standardowy-c.rwd.v2/obrazki/portale/twitter.svg') no-repeat; }
+.BoxKontakt .PortaleSpolecznoscioweKontakt .PortalePinterest { background:url('../szablony/standardowy-c.rwd.v2/obrazki/portale/pinterest.svg') no-repeat; }
+.BoxKontakt .PortaleSpolecznoscioweKontakt .PortaleTiktok { background:url('../szablony/standardowy-c.rwd.v2/obrazki/portale/tiktok.svg') no-repeat; }
+
+/* box filtrow */
+.BoxTresc #filtrBox { margin:5px 0 5px 0; }
+.BoxTresc .ZakresCen { margin-left:-5px; padding:5px 0 20px 0; border-bottom:1px solid var(--kolor-linia); }
+.BoxTresc .ZakresCen b { display:block; margin:0 5px 15px 5px; font-size:110%; }
+.BoxTresc .ZakresCen input { margin:0 5px 0 5px; }
+
+.BoxTresc .ZakresNumeryczny { margin-left:-5px; padding:15px 0 20px 0; border-bottom:1px solid var(--kolor-linia); }
+.BoxTresc .ZakresNumeryczny b { display:block; margin:0 5px 15px 5px; font-size:110%; }
+.BoxTresc .ZakresNumeryczny input { margin:0 5px 0 5px; }
+
+.BoxTresc .Multi { padding:10px 0 10px 0; border-bottom:1px solid var(--kolor-linia); }
+.BoxTresc .Multi span { display:block; padding:5px 0 5px 0; }
+
+.BoxTresc .Multi b { position:relative; display:block; min-height:20px; line-height:20px; padding-left:0; font-size:110%; }
+.BoxTresc .Multi b.Wlaczony { color:var(--kolor-szablonu); position:relative; display:block; min-height:20px; line-height:20px; }
+
+.BoxTresc .Multi .Wybor { z-index:999; overflow-y:auto; overflow-x:hidden; max-height:200px; margin:5px 0 5px 0; border:0; }
+
+.BoxTresc .Multi .Wybor li { padding:4px 0 4px 0; position:relative; }
+.BoxTresc .Multi .Wybor li input { display:none; }
+
+/* filtr tekstowy */
+.BoxTresc .Multi .Wybor li label { padding-left:0; margin-bottom:0; }
+.BoxTresc .Multi .Wybor li label::before { content:""; display:block; position:absolute; line-height:1rem; width:20px; height:20px; text-align:center; background-color:var(--kolor-tlo-pola); border:1px solid var(--kolor-ramka-pola); margin-right:10px; transform:translate(0,0); box-sizing:border-box; transition:all 0.30s ease-in-out; border-radius:var(--zaokraglenie-checkbox); }
+
+.BoxTresc .Multi .Wybor li label:hover::before { border:1px solid var(--kolor-ramka-pola-hover); border-radius:var(--zaokraglenie-checkbox); }
+.BoxTresc .Multi .Wybor li label::after { content:""; position:absolute; display:none; left:6px; top:2px; width:4px; height:10px; border:solid var(--kolor-radio-zaznaczony); border-top-width:medium; border-right-width:medium; border-bottom-width:medium; border-left-width:medium; border-width:0 3px 3px 0; transform:rotate(45deg); }
+
+.BoxTresc .Multi .Wybor li label a { padding-left:30px; display:block; }
+.BoxTresc .Multi .Wybor li label.Wlaczony::before { background-color:var(--kolor-tlo-radio-zaznaczony); }
+.BoxTresc .Multi .Wybor li label.Wlaczony::after { display:block; }
+.BoxTresc .Multi .Wybor li input:checked ~ label.Wlaczony::before { background-color:var(--kolor-tlo-radio-zaznaczony); border:solid 1px var(--kolor-tlo-radio-zaznaczony); border-radius:var(--zaokraglenie-checkbox); }
+
+/* filtr obrazkowy */
+.BoxTresc .FiltryCechyObrazek .Wybor li label { cursor:pointer; width:auto; display:table-cell; padding:0 5px 0 0; vertical-align:middle; }
+.BoxTresc .FiltryCechyObrazek .Wybor li label::after { content:""; position:absolute; display:none; left:6px; top:7px; width:4px; height:10px; border:solid #ffffff; border-top-width:medium; border-right-width:medium; border-bottom-width:medium; border-left-width:medium; border-width:0 3px 3px 0; transform:rotate(45deg); }
+.BoxTresc .FiltryCechyObrazek .Wybor li div { font-size:0; display:table-cell; padding-right:8px; cursor:pointer; vertical-align:middle; }
+
+.BoxTresc #filtryWyswietl a { display:block; font-size:110%; background:url('../szablony/standardowy-c.rwd.v2/obrazki/szablon/krzyzyk.svg') right center no-repeat; background-size:20px 20px; margin:10px 5px 0 5px; padding:2px 22px 2px 0; }
+.BoxTresc #filtryWyswietl a:hover { color:var(--kolor-szablonu); }
+.BoxTresc .cl { float:none !important; }
+.BoxTresc #filtryWyswietl { text-align:right; }
+.BoxTresc #filtryWyswietl input { margin-top:10px; }
+ 
+#filtryBox .UzyteTagi { margin:0 0 10px 0; }
+#filtryBox .UzyteTagi a { position:relative; line-height:normal; display:block; text-align:left; border:1px solid var(--kolor-linia); cursor:pointer; margin:0 0 8px 0; padding:5px 30px 5px 5px; background:url('../szablony/standardowy-c.rwd.v2/obrazki/szablon/krzyzyk.svg') no-repeat right 5px center; background-size:20px 20px; }
+#filtryBox .UzyteTagi a:hover { text-decoration:line-through; }
+#filtryBox .UzyteTagi a small { color:var(--kolor-szary-ciemny); }

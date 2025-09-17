@@ -1,0 +1,476 @@
+/* karta produktu */
+
+/* cala ramka produktu */
+#RamkaProduktu { border:1px solid #dbdbdb; padding:10px; margin-bottom:10px; }
+#RamkaProduktu img { max-width:100%; height:auto; }
+
+@media only screen and (max-width:1023px) {
+  #ZdjeciaProduktu { width:100% !important; }
+  .ZdjeciaKontener { width:calc(100% - 60px) !important; }
+  #InformacjeProduktu { text-align:left; width:100% !important; }
+}
+@media only screen and (min-width:1024px) {
+  #KartaProduktu { display:table; border-collapse:collapse; border-spacing:0; width:100%; }
+  #ZdjeciaProduktu { display:table-cell; text-align:center; vertical-align:top; }
+  #InformacjeProduktu { display:table-cell; text-align:left; vertical-align:top; padding-left:20px; } 
+}
+
+/* kontener zdjec */
+.ZdjeciaKontener { margin:0px auto; }
+#ZdjeciaProduktu a, #ZdjeciaProduktu img { display:block; outline:none; border:none; margin:auto; max-width:100%; }
+#ZdjeciaProduktu #ZdjeciaDuze { margin:0px auto; margin-bottom:10px; text-align:center; }
+
+/* dodatkowe zdjecia */
+#ZdjeciaProduktu .DodatkoweZdjecia { margin:20px 0 20px 0; }
+#ZdjeciaProduktu .DodatkoweZdjecia div { margin:0 auto; cursor:pointer; text-align:center; outline:none; }
+#ZdjeciaProduktu .DodatkoweZdjecia div img { display:block; margin:auto; font-size:0; border:1px solid #ffffff; padding:10px; }
+#ZdjeciaProduktu .DodatkoweZdjecia div img:hover, #ZdjeciaProduktu .DodatkoweZdjecia div img:focus { border:1px solid #b7b7b7; }
+#ZdjeciaProduktu .DodatkoweZdjecia div.slick-current img { border:1px solid #b7b7b7; }
+
+/* przyciski przewijana zdjec */
+#ZdjeciaProduktu .slick-prev { left:-30px; }
+#ZdjeciaProduktu .slick-next { right:-30px; }
+#ZdjeciaProduktu .slick-prev::before, #ZdjeciaProduktu .slick-next::before { color:#b7b7b7 !important; }
+
+/* ikonki */
+@media only screen and (max-width:1023px) {
+  .Ikonki { margin:10px; text-align:center; }
+}
+@media only screen and (min-width:1024px) {
+  .Ikonki { margin:0px 10px 0px 10px; }
+}
+.Ikonki span { background:#525252; display:inline-block; margin:4px 4px 4px 0px; -webkit-border-radius:2px; -moz-border-radius:2px; border-radius:2px; -khtml-border-radius:2px; }
+.Ikonki b { display:inline-block; color:#ffffff; padding:5px 8px 5px 8px; text-transform:uppercase; }
+
+/* lupa zdjecia */
+#ZoomZdjecia { position:absolute; background:url('../obrazki/kartaProduktu/zoom_zdjecia.png') no-repeat; width:90px; height:90px; display:inline-block; }
+
+/* nazwa produktu i logo producenta */
+.NazwaProducent { display:table; border-collapse: collapse; border-spacing:0; width:100%; margin:5px 0px 5px 0px; }
+.NazwaProducent h1 { font-family:Roboto, Arial, Tahoma, Verdana, sans-serif; display:table-cell; color:#e10101; font-size:200%; font-weight:normal; vertical-align:middle; padding-left:10px; }
+.NazwaProducent .Producent { display:table-cell; text-align:right; vertical-align:middle; padding-left:25px; }
+
+/* srednia ocena */
+.SredniaOcena { margin:5px 10px 10px 10px; display:table; }
+.SredniaOcena div { display:table-cell; padding:4px 7px 0px 0px; vertical-align:top; line-height:1.5; }
+.SredniaOcena .WszystkieRecenzje { text-decoration:underline; cursor:pointer; font-weight:bold; }
+
+/* tabelka z dostepnoscia, nr kat etc */
+.ListaOpisy { border:1px dotted #dbdbdb;  background:#f1f1f1; margin:3px 0px 0px 0px; padding:5px 10px 5px 10px; }
+.ListaOpisy .TbPoz { display:table; margin:6px 0px 6px 0px; }
+.ListaOpisy .TbPoz strong, .TbPoz span { display:table-cell; vertical-align:middle; text-align:left; padding-right:5px; }
+.ListaOpisy .TbPoz span { width:110px; }
+.ListaOpisy .TbPoz strong a { font-weight:bold; }
+
+/* data dostepnosci */
+#DataDostepnosci { color:#ff0000; margin:15px 0px 15px 10px; font-size:110%; }
+#DataDostepnosci .ZegarDataDostepnosci span { font-size:140%; font-weight:bold; white-space:nowrap; }
+#DataDostepnosci .ZegarDataDostepnosci span em { font-style:normal; }
+#DataDostepnosci .ZegarDataDostepnosci { margin-top:5px; }
+
+/* sekcja cech, cechy i przyciski */
+@media only screen and (max-width:799px) {
+  .SekcjaCen { margin:10px 0px 5px 0px; }
+  .CenyProduktu { padding:10px 0px 0px 10px; }
+  .Przyciski { padding:10px 0px 0px 10px; }
+}
+@media only screen and (min-width:800px) and (max-width:1023px) { 
+  .SekcjaCen { display:table; margin:10px 0px 5px 0px; width:100%; }
+  .CenyProduktu { display:table-cell; padding:10px 10px 0px 10px; vertical-align:top; }
+  .Przyciski { display:table-cell; text-align:right; padding:10px 10px 0px 10px; vertical-align:top; }
+}
+@media only screen and (min-width:1024px) and (max-width:1279px) { 
+  .SekcjaCen { margin:10px 0px 5px 0px; }
+  .CenyProduktu { padding:10px 0px 0px 10px; }
+  .Przyciski { padding:10px 0px 0px 10px; }
+}
+@media only screen and (min-width:1280px) { 
+  .SekcjaCen { display:table; margin:10px 0px 5px 0px; width:100%; }
+  .CenyProduktu { display:table-cell; padding:10px 10px 0px 10px; vertical-align:top; }
+  .Przyciski { display:table-cell; text-align:right; padding:10px 10px 0px 10px; vertical-align:top; }
+}
+
+/* przycisk kupowania */
+@media only screen and (max-width:799px) {
+  #PrzyciskKupowania { text-align:left; }
+}
+@media only screen and (min-width:800px) and (max-width:1023px) {
+  #PrzyciskKupowania { text-align:right; }
+}
+@media only screen and (min-width:1024px) and (max-width:1279px) {
+  #PrzyciskKupowania { text-align:left; }
+}
+@media only screen and (min-width:1280px) {
+  #PrzyciskKupowania { text-align:right; }
+}
+#PrzyciskKupowania { display:block; margin-bottom:5px; }
+#PrzyciskKupowania input { margin:6px 7px 10px 7px; }
+#PrzyciskKupowania .DoKoszykaKartaProduktu { text-align:center; font-family:Roboto, Arial, Tahoma, Verdana, sans-serif; font-size:140%; text-transform:uppercase; cursor:pointer; overflow:hidden; display:inline-block; padding:7px 10px 7px 40px; background:url('../obrazki/przyciski/tlo_przycisku_koszyka.png') #525252 no-repeat left center; border:0px; color:#ffffff; font-weight:bold; 
+  -webkit-border-radius:3px; -moz-border-radius:3px; border-radius:3px; -khtml-border-radius:3px; white-space:nowrap; 
+  transition: all 0.20s ease-in-out;
+	-moz-transition: all 0.20s ease-in-out;
+	-webkit-transition: all 0.20s ease-in-out;
+	-o-transition: all 0.20s ease-in-out;
+}
+#PrzyciskKupowania .DoKoszykaKartaProduktu:hover { padding:7px 40px 7px 10px; background:url('../obrazki/przyciski/tlo_przycisku_koszyka.png') #525252 no-repeat right center; }
+
+#ZakupPrzezAllegro a { display:inline-block; font-weight:bold; padding:7px 90px 7px 10px; border:2px solid #ff5a00; color:#ffffff; background:url('../obrazki/przyciski/allegro.png') #ff5a00 no-repeat right center; 
+  -webkit-border-radius:3px; -moz-border-radius:3px; border-radius:3px; -khtml-border-radius:3px; 
+  transition: all 0.20s ease-in-out;
+	-moz-transition: all 0.20s ease-in-out;
+	-webkit-transition: all 0.20s ease-in-out;
+	-o-transition: all 0.20s ease-in-out;  
+}
+#ZakupPrzezAllegro a:hover { background:url('../obrazki/przyciski/allegro.png') #ff5a00 no-repeat left center; padding:7px 10px 7px 90px; }
+
+/* szybki zakup przez 1 klikniecie */
+#SzybkiZakup { font-size:90%; margin-right:0px; }
+#FormSzybkiZakup { display:none; margin:10px; }
+#FormSzybkiZakup span.Informacja { display:inline-block; }
+
+/* powiadomienie o dostepnosci produktu */
+#PowiadomDostepnosc { font-size:90%; margin-right:0px; }
+#FormPowiadomienieDostepnosc { display:none; margin:10px; }
+#FormPowiadomienieDostepnosc span.Informacja { display:inline-block; }
+
+#InfoNiedostepny .Info, #PrzyciskKupowania .Info { width:170px; background:url('../obrazki/szablon/info.png') no-repeat right center; text-align:right; display:inline-block; padding:7px 35px 7px 0px; font-size:110%; } 
+
+/* komentarz do produktu */
+.KomentarzeDoProduktu { line-height:1.5; margin:10px 0px 5px 0px; }
+
+/* ceny produktu */
+#CenaPoprzednia strong { font-family:Roboto, Arial, Tahoma, Verdana, sans-serif; font-size:130%; text-decoration:line-through; white-space:nowrap; font-weight:normal; }
+#CenaKatalogowa strong { font-family:Roboto, Arial, Tahoma, Verdana, sans-serif; font-size:130%; text-decoration:line-through; white-space:nowrap; font-weight:normal; }
+#CenaKatalogowaOszczedzasz strong { font-family:Roboto, Arial, Tahoma, Verdana, sans-serif; white-space:nowrap; color:#ffffff; background:#e10101; font-size:130%; padding:3px 10px 3px 10px; margin-left:5px; 
+  -webkit-border-radius:2px; -moz-border-radius:2px; border-radius:2px; -khtml-border-radius:2px;
+}
+#CenaGlownaProduktuBrutto strong { font-family:Roboto, Arial, Tahoma, Verdana, sans-serif; font-size:210%; white-space:nowrap; }
+#CenaGlownaProduktuBrutto span { display:inline-block; margin:0px; }
+#CenaGlownaProduktuNetto strong { font-family:Roboto, Arial, Tahoma, Verdana, sans-serif; font-size:140%; white-space:nowrap; }
+
+/* ceny produktu z kodem rabatowym */
+#InfoKupon { position: relative; border:1px solid #dbdbdb; width:fit-content; padding:8px; margin-bottom:15px; -webkit-border-radius:3px; -moz-border-radius:3px; border-radius:3px; -khtml-border-radius:3px;  }
+#InfoKupon::before, #InfoKupon::after { display:block; position:absolute; width:0; height:0; content:""; border-style:solid; }
+#InfoKupon::before { bottom:-10px; left:12px; z-index:2; border-color:#ffffff transparent transparent; border-width:5px; }
+#InfoKupon::after { bottom:-12px; left:11px; z-index:1; border-color:#dbdbdb transparent transparent;border-width:6px; }
+#CenaGlownaProduktuBrutto.CenaZKuponem strong span { color:#e10101; font-size:140%; }
+#CenaPoprzednia.CenaZKuponem { opacity:1.0; }
+#CenaPoprzednia.CenaZKuponem strong { font-size:190%; opacity:1.0; text-decoration:none; font-weight:bold; }
+#InfoKupon .InformacjaOk { background:none; padding: 7px 0px 7px 0px; }
+
+
+/* przycisk do schowka */
+@media only screen and (max-width:799px) {
+  #PrzyciskSchowek { text-align:left; }
+}
+@media only screen and (min-width:800px) and (max-width:1023px) {
+  #PrzyciskSchowek { text-align:right; }
+}
+@media only screen and (min-width:1024px) and (max-width:1279px) {
+  #PrzyciskSchowek { text-align:left; }
+}
+@media only screen and (min-width:1280px) {
+  #PrzyciskSchowek { text-align:right; }
+}
+#PrzyciskSchowek { padding:0px; margin:0px; }
+#PrzyciskSchowek span { white-space:nowrap; display:inline-block; cursor:pointer; background:url('../obrazki/przyciski/schowek.png') no-repeat; background-position:left center; padding:3px 0px 3px 22px; 
+  transition: all 0.20s ease-in-out;
+	-moz-transition: all 0.20s ease-in-out;
+	-webkit-transition: all 0.20s ease-in-out;
+	-o-transition: all 0.20s ease-in-out;
+}
+#PrzyciskSchowek span:hover { color:#e10101; background-position:right center; padding:3px 22px 3px 0px; }
+
+/* tabela z cechami produktu */
+#CechyProduktu { padding:10px 10px 0px 10px; }
+#CechyProduktu td { padding:4px 10px 5px 0px; }
+#CechyProduktu .Radio { margin-bottom:2px; }
+#CechyProduktu .Foto { display:inline-block; margin:4px 8px 4px 0px; }
+#CechyProduktu .Foto div { text-align:center; }
+
+/* lista linkow powiazanych */
+#LinkiPowiazaneProduktu { margin:20px 10px 0px 10px; }
+#LinkiPowiazaneProduktu .GrupaLinkow .GrupaLinkowTytul { margin-bottom:10px; font-size:120%; font-weight:bold; }
+#LinkiPowiazaneProduktu ul { list-style-type:none; padding:0px; margin:15px 0px 15px 0px; }
+#LinkiPowiazaneProduktu ul li { display:inline-block; vertical-align:top; margin:0px 10px 10px 0px; border:1px solid #dbdbdb; }
+#LinkiPowiazaneProduktu ul li a { display:block; padding:5px; }
+#LinkiPowiazaneProduktu ul li img { max-width:200px !important; height:auto; font-size:0px; display:block; }
+
+/* lista produktow innych wariantow - po ean, nr kat itd */
+#InneWariantyProduktu { margin:20px 0 20px 10px; }
+#InneWariantyProduktu .InneWariantyNaglowek { margin-bottom:10px; font-size:120%; font-weight:bold; }
+#InneWariantyProduktu .ListaInneWarianty { display:flex; align-items:flex-start; justify-content:flex-start; flex-wrap:wrap; }
+#InneWariantyProduktu .ListaInneWarianty .OknoWariant { border:1px solid #dbdbdb; background:#fff; margin:0 10px 10px 0; padding:5px; transition:all 0.30s ease-in-out; }
+#InneWariantyProduktu .ListaInneWarianty .OknoWariant.Aktywny, #InneWariantyProduktu .ListaInneWarianty .OknoWariant:hover { border:1px solid #e10101; }
+#InneWariantyProduktu .ListaInneWarianty .OknoWariant img { max-width:70px !important; border:0; box-shadow:none; }
+#InneWariantyProduktu .ListaInneWarianty .OknoWariant a { display:block; }
+#InneWariantyProduktu .ListaInneWarianty .Foto img { display:inline-block; vertical-align:top; font-size:0; }
+#InneWariantyProduktu .OknoWariantNazwa { justify-content:flex-start; align-items:stretch; }
+#InneWariantyProduktu .OknoWariantNazwa .OknoWariant { text-align:center; width:120px; }
+#InneWariantyProduktu .OknoWariantNazwa .OknoWariant .ProduktCena .Cena, #InneWariantyProduktu .OknoWariantNazwa .OknoWariant .ProduktCena .CenaPromocyjna { font-size:100%; }
+#InneWariantyProduktu .OknoWariantNazwa a span { display:block; padding-top:8px; font-size:90%; }
+#InneWariantyProduktu .OknoWariantNazwa a span:first-child { padding:0; }
+
+/* informacja przy cechach - informacja ze nie ma wystarczajacej ilosci w magazynie */
+#OstrzezenieIlosci { color:#ff0000; margin:10px 0px 10px 0px; }
+
+/* znizki zalezne od ilosci */
+#ZnizkiOdIlosci { margin:20px 10px 0px 10px; }
+#ZnizkiOdIlosci span { display:inline-block; cursor:pointer; background:url('../obrazki/kartaProduktu/znizki_od_ilosci.png') no-repeat left center; padding:10px 10px 10px 40px; font-weight:normal; }
+#ZnizkiOdIlosci strong { font-weight:normal; color:#ff0000; }
+
+/* historia cen produktu */
+#HistoriaCenProduktu { margin-top:15px; }
+#HistoriaCenProduktu span { display:inline-block; font-weight:normal; margin:0; }
+
+/* informacja o rabacie produktu */
+#InfoRabaty { color:#ff0000; width:180px; }
+
+/* tabela w popup o znizkach od ilosci */
+.ZnizkiInfo { width:90%; margin:0px auto; margin-top:15px; }
+.ZnizkiInfo .Naglowek td { background:#e6e6e6; font-weight:bold; }
+.ZnizkiInfo td { padding:5px; border:1px solid #dbdbdb; }
+
+/* informacja o systemie punktow */
+#InformacjaPunkty { text-align:left; margin:10px; }
+#InformacjaPunkty span { font-weight:bold; }
+
+/* glowne linki - zapytanie o produkt, polec */
+#GlowneLinkiProduktu { border-top:1px dotted #dbdbdb; padding:5px 10px 0px 10px; margin:0px 0px 10px 0px; }
+#GlowneLinkiProduktu a { display:inline-block; padding:5px 0px 5px 25px; margin-right:30px; opacity:0.7; filter:alpha(opacity=70); text-transform:uppercase; 
+  transition: all 0.20s ease-in-out;
+	-moz-transition: all 0.20s ease-in-out;
+	-webkit-transition: all 0.20s ease-in-out;
+	-o-transition: all 0.20s ease-in-out;
+}
+#GlowneLinkiProduktu a:hover { opacity:1; filter:alpha(opacity=100); padding:5px 0px 5px 30px; margin-right:25px; }
+#GlowneLinkiProduktu .ZapytanieProdukt { background:url('../obrazki/kartaProduktu/pytanie.png') no-repeat left center; }
+#GlowneLinkiProduktu .PolecProdukt { background:url('../obrazki/kartaProduktu/znajomy.png') no-repeat left center; }
+#GlowneLinkiProduktu .NegocjujCene { background:url('../obrazki/kartaProduktu/negocjacja.png') no-repeat left center; }
+#GlowneLinkiProduktu .LinkPDF { background:url('../obrazki/kartaProduktu/pdf.png') no-repeat left center; }
+
+/* zakladki */
+#ZakladkiProduktu { margin-top:10px; }
+#ZakladkiProduktu #Zakladki { list-style-type:none; padding:0px; margin-top:0px }
+#ZakladkiProduktu #Zakladki li { float:left; margin:0px 5px 5px 0px; background:#ebebeb; padding:9px 15px 9px 15px; font-size:130%; font-weight:normal; font-family:Roboto, Arial, Tahoma, Verdana, sans-serif;
+  -webkit-border-radius:3px; -moz-border-radius:3px; border-radius:3px; -khtml-border-radius:3px;
+  transition: all 0.20s ease-in-out;
+	-moz-transition: all 0.20s ease-in-out;
+	-webkit-transition: all 0.20s ease-in-out;
+	-o-transition: all 0.20s ease-in-out;  
+}
+#ZakladkiProduktu #Zakladki li:hover { cursor:pointer; background:#e10101; color:#ffffff; }
+#ZakladkiProduktu #Zakladki li.aktywna { background:#e10101; color:#ffffff; font-weight:normal; }
+#ZakladkiProduktu #TresciZakladek { border:1px solid #dbdbdb; padding:10px; line-height:1.5; overflow:hidden; }
+#ZakladkiProduktu #TresciZakladek .widoczna { display:block; }
+#ZakladkiProduktu #TresciZakladek .ukryta { display:none; }
+#ZakladkiProduktu #TresciZakladek .TbPoz { display:table; margin:5px 0px 5px 0px; }
+#ZakladkiProduktu #TresciZakladek .TbPoz strong, .TbPoz span { display:table-cell; vertical-align:middle; text-align:left; padding-right:5px; }
+#ZakladkiProduktu #TresciZakladek .TbPoz strong a { font-weight:bold; }
+#ZakladkiProduktu #TresciZakladek ul { list-style-type:disc; padding:0px; margin:0px 0px 0px 15px; }
+#ZakladkiProduktu #TresciZakladek li { margin:3px; }
+#ZakladkiProduktu #TresciZakladek li a { font-weight:bold; }
+#ZakladkiProduktu #TresciZakladek .opisPlikLink { display:block; margin:5px 0px 5px 0px; }
+#ZakladkiProduktu #TresciZakladek .FilmYoutubeFlv { margin:0px auto; padding:10px 0px 25px 0px; text-align:center; max-width:100%; }
+@media only screen and (max-width:479px) { 
+  #ZakladkiProduktu #TresciZakladek .FilmYoutubeFlv object, #ZakladkiProduktu #TresciZakladek .FilmYoutubeFlv iframe { width:270px; height:210px; }
+}
+@media only screen and (min-width:480px) and (max-width:799px) { 
+  #ZakladkiProduktu #TresciZakladek .FilmYoutubeFlv object, #ZakladkiProduktu #TresciZakladek .FilmYoutubeFlv iframe { width:380px; height:202px; }
+}
+@media only screen and (min-width:800px) and (max-width:1023px) { 
+  #ZakladkiProduktu #TresciZakladek .FilmYoutubeFlv object, #ZakladkiProduktu #TresciZakladek .FilmYoutubeFlv iframe { width:450px; height:337px; }
+}
+#ZakladkiProduktu #TresciZakladek .FilmYoutubeFlv strong { display:block; margin:5px 0px 5px 0px; }
+#ZakladkiProduktu #TresciZakladek .PlikiMp3 { display:table; }
+#ZakladkiProduktu #TresciZakladek .PlikiMp3 div { display:table-cell; padding:5px; vertical-align:middle; }
+#ZakladkiProduktu #TresciZakladek .Recenzja { margin:8px 0px 8px 0px; line-height:1.5; border-bottom:1px dotted #dbdbdb; }
+#ZakladkiProduktu #TresciZakladek .Recenzja span { float:left; display:inline-block; width:33%; }
+#ZakladkiProduktu #TresciZakladek .Recenzja span:nth-child(3) { text-align:right; }
+#ZakladkiProduktu #TresciZakladek .Recenzja div.RecenzjaOpis { clear:both; padding:10px 0px 10px 0px; line-height:1.2; }
+#ZakladkiProduktu #TresciZakladek .Recenzja div.InformacjaOk { clear:both; margin-bottom:5px; font-weight:bold; }
+#ZakladkiProduktu #TresciZakladek .tz11 .Prawy { margin-top:10px; }
+
+#TresciZakladek .PodsumowanieRecenzji { padding-bottom:20px; line-height:1.6; }
+#TresciZakladek .PodsumowanieRecenzji > strong { font-size:120%; padding-bottom:10px; display:block; }
+
+#TresciZakladek .ZdjeciaRecenzji { display:flex; align-content:flex-start; align-items:center; flex-wrap:wrap; }
+#TresciZakladek .ZdjeciaRecenzji > div { margin:0 15px 15px 0; }
+#TresciZakladek .ZdjeciaRecenzji > div img { max-width:120px !important; width:auto; max-height:120px !important; height:auto; }
+
+/* srednia ocena + pasek graficzny recenzji */
+.SredniaOcenaPaskiRecenzji { padding:20px 0px 20px 0px; display:flex; align-content:flex-start; align-items:center; flex-wrap:wrap; }
+@media only screen and (max-width:799px) { 
+  .SredniaOcenaPaskiRecenzji > div { width:100%; padding:10px 0 10px 0; }
+}
+.SredniaOcenaRecenzje { text-align:center; padding:0 20px 0 0; }
+.SredniaOcenaRecenzje { font-size:200%; }
+.SredniaOcenaRecenzje span { font-size:13px; display:block; padding-bottom:10px; }
+@media only screen and (min-width:800px) { 
+  .PaskiRecenzji { padding:0 20px 0 20px; }
+}
+.PasekRecenzja { height:15px; margin-bottom:10px; display:flex; align-content:flex-start; align-items:center; cursor:pointer; }
+.PasekRecenzja > div { margin-right:10px; }
+.PasekRecenzja > div:nth-child(2) { flex:1; margin-top:2px; background:#f1f1f1; width:350px; height:12px; position:relative; overflow:hidden; border-radius:2px; }
+.PasekRecenzja > div:nth-child(2) span { display:block; background:#ff7200; position:absolute; top:0; bottom:0; border-radius:3px; }
+.PasekRecenzja > div:nth-child(3) { width:20px; text-align:center; }
+.PasekRecenzja .Gwiazdki { --gwiazdka-ocena:calc(var(--ocena) / 5 * 100%); display:inline-block; font-size:20px; font-family:Arial; line-height:1; margin:0 !important; padding:0 !important; line-height:1.0 !important; }
+.PasekRecenzja .Gwiazdki::before { content:'★★★★★'; letter-spacing:3px; background:linear-gradient(90deg, #ff7200 var(--gwiazdka-ocena), #f1f1f1 var(--gwiazdka-ocena)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+.WyswietlOceny { display:flex; align-content:flex-start; align-items:center; padding:20px 0 20px 0; }
+.WyswietlOceny select { margin-left:10px; }
+
+/* wysuwane ikonki podziel sie */
+#PodzielSie { list-style-type:none; padding:0px; margin:10px 0px 5px 0px; text-align:right; }
+#PodzielSie li { float:right; display:inline-block; vertical-align:top; margin:4px 2px 4px 2px; 
+  transition: all 0.20s ease-in-out;
+	-moz-transition: all 0.20s ease-in-out;
+	-webkit-transition: all 0.20s ease-in-out;
+}
+#PodzielSie li:hover { margin:0px 2px 8px 2px; }
+#PodzielSie a { display:inline-block; width:32px; height:32px; }
+#PodzielSie .facebook { background:url('../obrazki/podziel_ikony/podziel_sie.png') no-repeat 0px 0px; }
+#PodzielSie .twitter { background:url('../obrazki/podziel_ikony/podziel_sie.png') no-repeat 0px -32px; }
+#PodzielSie .pinterest { background:url('../obrazki/podziel_ikony/podziel_sie.png') no-repeat 0px -64px; }
+#PodzielSie .linkedin { background:url('../obrazki/podziel_ikony/podziel_sie.png') no-repeat 0px -96px; }
+#PodzielSie .wykop { background:url('../obrazki/podziel_ikony/podziel_sie.png') no-repeat 0px -128px; }
+
+/* elementy wspolne */
+#RamkaProduktu .LiniaPrawa { border-right:1px dotted #dbdbdb; }
+#RamkaProduktu .LiniaDolna { border-bottom:1px dotted #dbdbdb; }
+
+/* listing akcesoria dodatkowe */
+#TresciZakladek .Okno { text-align:center; position:relative; padding:10px 5px 10px 5px; float:left;
+  -webkit-background-clip:content-box; -moz-background-clip:content-box; background-clip:content-box;  
+	-webkit-box-sizing:border-box; -moz-box-sizing:border-box; box-sizing:border-box;
+}
+#TresciZakladek .Okno a { padding:7px 10px 10px 10px; display:inline-block; }
+#TresciZakladek .Okno .Foto { display:inline-block; }
+#TresciZakladek .Okno .Zdjecie { margin:0px 0px 10px 0px; }
+#TresciZakladek .Okno .Zakup { display:inline-block; margin:0px auto; }
+#TresciZakladek .Okno .Zakup { margin-top:10px; }
+#TresciZakladek .Okno .Zakup .InputIlosc { float:left; text-align:center; width:30px; margin:4px 5px 4px 0px; }
+#TresciZakladek .Okno .Zakup em { display:inline-block; float:left; font-style:normal; margin:10px 15px 5px 0px; }
+
+/* produkty pozostale, podobne, klienci kupili takze */
+.PozostaleProdukty { margin:20px 0px 20px 0px; }
+
+/* listing produkty pozostale, podobne, klienci kupili takze */
+.PozostaleProdukty .Okno { text-align:center; position:relative; padding:10px 5px 10px 5px; float:left;
+  -webkit-background-clip:content-box; -moz-background-clip:content-box; background-clip:content-box;  
+	-webkit-box-sizing:border-box; -moz-box-sizing:border-box; box-sizing:border-box;
+  border-right:1px dotted #dbdbdb; border-bottom:1px dotted #dbdbdb;
+}
+.PozostaleProdukty .Okno a { padding:7px 10px 10px 10px; display:inline-block; }
+.PozostaleProdukty .Okno .Foto { display:inline-block; }
+.PozostaleProdukty .Okno .Zdjecie { margin:0px 0px 10px 0px; }
+.PozostaleProdukty .Okno .Zakup { display:inline-block; margin:0px auto; }
+.PozostaleProdukty .Okno .Zakup { margin-top:10px; }
+.PozostaleProdukty .Okno .Zakup .InputIlosc { float:left; text-align:center; width:30px; margin:4px 5px 4px 0px; }
+.PozostaleProdukty .Okno .Zakup em { display:inline-block; float:left; font-style:normal; margin:10px 15px 5px 0px; }
+
+/* tabela z systemami ratalnymi */
+#PlatnosciRatalne { padding:10px 0px 0px 0px; }
+#PlatnosciRatalne .RatySantander { margin: 0px; }
+
+/* opis do cech produktow, dodatkowych pol etc */
+.CechaOpis { background:url('../obrazki/kartaProduktu/info_male.png') no-repeat left center; padding:2px 0px 2px 22px; cursor:pointer; }
+#InfoOpisWysylka { display:inline-block; background:url('../obrazki/kartaProduktu/info_male.png') no-repeat left center; padding:2px 0px 2px 22px; cursor:help; }
+.jBox-content #tipWysylka { line-height:1.4; width:auto; }
+.jBox-content #tipWysylka b { display:block; margin-bottom:8px; }
+.jBox-content #tipWysylka span { font-weight:normal; display:block; margin:3px 0; width:auto; }
+
+/* pola tekstowe do produktu */
+.TxtOpis { background:url('../obrazki/kartaProduktu/info_male.png') no-repeat left center; padding:2px 0px 2px 22px; cursor:pointer; }
+#PoleTekstoweProduktu { line-height:1.5; margin:10px 0px 5px 0px; }
+#PoleTekstoweProduktu span { display:block; margin:10px 0px 3px 0px; }
+#PoleTekstoweProduktu input, #PoleTekstoweProduktu textarea { width:80%; }
+#PoleTekstoweProduktu img { padding:8px; max-width:70px; max-height:70px; }
+#PoleTekstoweProduktu .blad { display:block; padding:5px 0px 5px 0px; color:#ff0000; font-weight:bold; }
+#PoleTekstoweProduktu .wgrano { font-weight:normal; display:block; background:url('../obrazki/nawigacja/ok.png') no-repeat left center; padding:4px 0px 4px 22px; }
+
+#Tagi { margin:10px 10px 0px 10px; }
+#Tagi strong { display:inline-block; margin:0px 5px 5px 0px; }
+#Tagi ul { display:inline-block; list-style-type:none; padding:0px; margin:0px; } 
+#Tagi li { display:inline-block; margin:0px 5px 5px 0px; opacity:0.7; filter:alpha(opacity=70); }
+#Tagi li:hover { opacity:1; filter:alpha(opacity=100); }
+
+#ZestawProduktow { margin:15px 0px 0px 0px; }
+#ZestawProduktow .ZestawTytul { display:block; margin:0px 0px 15px 10px; font-size:130%; }
+#ZestawProduktow ul { list-style-type:none; padding:0px; margin:0px; }
+#ZestawProduktow ul li { display:table; width:100%; margin-bottom:5px; }
+#ZestawProduktow ul li span { display:table-cell; vertical-align:middle; border:1px solid #dbdbdb; }
+#ZestawProduktow ul li span:first-child { width:60px; padding:3px; text-align:center; }
+#ZestawProduktow ul li span:last-child { padding:3px 10px 3px 10px; }
+#ZestawProduktow ul li a { font-size:110%; font-weight:bold; }
+#ZestawProduktow .ZestawTaniej { display:block; margin:15px 0px 5px 10px; font-size:120%; }
+#ZestawProduktow .ZestawTaniej b { font-size:120%; }
+
+/* listing zestawow do jakich dodany jest produkt */
+.CheckboxZestaw { display:none; }
+.ZestawyListing { padding:10px 0 0 0; }
+.ZestawyListingProdukty .ProduktZestawPozycja { padding-bottom:10px; }
+.ZestawyListingProdukty .ProduktZestawPozycja:nth-child(n+2) { padding:0; margin:0; max-height:0; overflow:hidden; opacity:0; transition:all 0.30s ease-in-out; }
+#CheckboxZestaw:checked ~ .ZestawyListingProdukty .ProduktZestawPozycja { max-height:500px; opacity:1; }
+#CheckboxZestaw:checked ~ .ZestawyListingProdukty .WszystkieZestawy label { display:none; }
+
+.ProduktZestaw > div { padding:10px 0 10px 0; }
+@media only screen and (min-width:1024px) { 
+  .ProduktZestaw { display:flex; justify-content:space-between; align-content:flex-start; align-items:flex-start; }
+  .ProduktZestaw > div:nth-child(1) { width:calc(50% - 10px); padding-right:10px; }
+  .ProduktZestaw > div:nth-child(2) { width:calc(50% - 10px); padding-left:10px; }
+}
+.ProduktZestaw .ProduktZestawFoto { display:flex; justify-content:center; align-items:center; flex-wrap:wrap; }
+.ProduktZestaw .ProduktZestawFoto > div { padding:10px; position:relative; }
+.ProduktZestaw .ProduktZestawFoto > div img { max-width:70px !important; }
+@media only screen and (min-width:1024px) { 
+  .ProduktZestaw .ProduktZestawFoto > div { padding:10px 40px 10px 20px; }
+  .ProduktZestaw .ProduktZestawFoto > div:last-child { padding-right:20px; }
+  .ProduktZestaw .ProduktZestawFoto > div::before { content:'+'; font-size:40px; font-family:Arial; opacity:0.5; position:absolute; top:50%; right:0; transform:translate(0%, -50%); }
+  .ProduktZestaw .ProduktZestawFoto > div:last-child::before { display:none; }
+  .ProduktZestaw .ProduktZestawFoto > div img { max-width:100px !important; }
+}
+.ProduktZestaw .ProduktZestawLinki h4 a { font-size:130%; font-weight:bold; display:block; margin-bottom:15px; }
+.ProduktZestaw .ProduktZestawLinki > div { display:flex; justify-content:space-between; align-items:flex-start; padding-bottom:10px; }
+.ProduktZestaw .ProduktZestawLinki > div div:last-child a { font-weight:bold; }
+.ProduktZestaw .ProduktZestawLinki > div div:last-child { white-space:nowrap; padding-left:15px; text-align:right; }
+.ProduktZestaw .ProduktZestawLinki > div div:last-child .CenaPoprzednia { display:inline-block; margin-right:10px; }
+.ProduktZestaw .ProduktyZestawuSuma { margin-top:15px; padding-top:15px; align-items:center !important; }
+.ProduktZestaw .ProduktyZestawuSuma .Cena { font-weight:bold; font-size:20px; }
+.ProduktZestaw .ProduktyZestawuTaniej { padding-top:5px; white-space:wrap !important; }
+.ProduktZestaw .ProduktyZestawuTaniej b { display:inline-block; vertical-align:middle; color:#ff0000; }
+.WszystkieZestawy { text-align:center; padding:5px 0 15px 0; }
+.WszystkieZestawy label { text-decoration:underline; cursor:pointer; letter-spacing:1px; }
+
+#ProduktZegar { margin:30px 0px 10px 0px; }
+#ProduktZegar .Odliczanie { display:block; font-size:110%; font-weight:bold; color:#e10101; }
+#ProduktZegar .Odliczanie span { display:block; color:#5c5c5c; margin:0px 0px 10px 0px; font-size:19px; font-weight:bold; font-family: Arial, Tahoma, Verdana, sans-serif; }
+#ProduktZegar .Odliczanie span em { display:inline-block; background:#5c5c5c; color:#ffffff; font-style:normal; padding:2px 5px 2px 5px; margin:1px; 
+                                  -webkit-border-radius:4px; -moz-border-radius:4px; border-radius: 4px; -khtml-border-radius:4px; }
+
+#IloscKupionych { margin: 10px 0px 10px 10px; font-weight:bold }
+
+#KosztRozmiaru { opacity:0.7; margin:5px 0px 15px 0px; font-size:90%; }
+
+/* wyglad etykiety energetycznej */
+.KlasaEnergetyczna { color:#fff; height:20px; line-height:20px; padding:0 5px 0 8px; display:inline-block; vertical-align:top; position:relative; margin-right:20px; }
+.KlasaEnergetyczna::before { content:''; position:absolute; top:0; right:-10px; bottom:0; width:20px; width:0; height:0; border-top:10px solid transparent; border-bottom:10px solid transparent; border-left:10px solid blue; }
+.KlasaEnergetyczna-Appp, .KlasaEnergetyczna-App, .KlasaEnergetyczna-Ap, .KlasaEnergetyczna-A { background:#16a451; }
+.KlasaEnergetyczna-Appp::before, .KlasaEnergetyczna-App::before, .KlasaEnergetyczna-Ap::before, .KlasaEnergetyczna-A::before { border-left-color:#16a451; }
+.KlasaEnergetyczna-B { background:#54b54d; }
+.KlasaEnergetyczna-B::before { border-left-color:#54b54d; }
+.KlasaEnergetyczna-C { background:#aed331; }
+.KlasaEnergetyczna-C::before { border-left-color:#aed331; }
+.KlasaEnergetyczna-D { background:#f7ec1d; }
+.KlasaEnergetyczna-D::before { border-left-color:#f7ec1d; }
+.KlasaEnergetyczna-E { background:#f6b216; }
+.KlasaEnergetyczna-E::before { border-left-color:#f6b216; }
+.KlasaEnergetyczna-F { background:#f15a25; }
+.KlasaEnergetyczna-F::before { border-left-color:#f15a25; }
+.KlasaEnergetyczna-G { background:#eb2023; }
+.KlasaEnergetyczna-G::before { border-left-color:#eb2023; }
+.PdfEtykietaEnergetyczna { font-size:90%; text-decoration:underline; font-weight:normal !important; }
+
+/* zegar czasu wysylki */
+.ZegarCzasWysylkiKartaProduktu { margin:20px 0 10px 0; background:#f5f5f5; border-radius:5px; text-align:center; padding:10px; line-height:1.5; }
+.ZegarCzasWysylkiKartaProduktu > div { padding-top:5px; }
+.ZegarCzasWysylkiKartaProduktu b { display:inline-block; vertical-align:top; padding:0 2px 0 2px; }

@@ -1,0 +1,279 @@
+/*
+Copyright (c) 2003-2021, CKSource - Frederico Knabben. All rights reserved.
+For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
+*/
+
+body
+{
+	font-family:sans-serif, Arial, Verdana, "Trebuchet MS", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+	font-size:14px;
+	color:#333;
+	background-color:#fff;
+	margin:20px;
+}
+
+img { max-width:100% !important; height:auto; }
+
+.cke_editable
+{
+	font-size:14px;
+	line-height:normal;
+	word-wrap:break-word;
+}
+
+blockquote
+{
+	font-style:italic;
+	font-family:Georgia, Times, "Times New Roman", serif;
+	padding:2px 0;
+	border-style:solid;
+	border-color:#ccc;
+	border-width:0;
+}
+
+.cke_contents_ltr blockquote
+{
+	padding-left:20px;
+	padding-right:8px;
+	border-left-width:5px;
+}
+
+.cke_contents_rtl blockquote
+{
+	padding-left:8px;
+	padding-right:20px;
+	border-right-width:5px;
+}
+
+a
+{
+	color:#0782C1;
+}
+
+hr
+{
+	border:0px;
+	border-top:1px solid #ccc;
+}
+
+img.right
+{
+	border:1px solid #ccc;
+	float:right;
+	margin-left:15px;
+	padding:5px;
+}
+
+img.left
+{
+	border:1px solid #ccc;
+	float:left;
+	margin-right:15px;
+	padding:5px;
+}
+
+pre
+{
+	white-space:pre-wrap; /* CSS 2.1 */
+	word-wrap:break-word; /* IE7 */
+	-moz-tab-size:4;
+	tab-size:4;
+}
+
+.marker
+{
+	background-color:Yellow;
+}
+
+span[lang]
+{
+	font-style:italic;
+}
+
+figure
+{
+	text-align:center;
+	outline:solid 1px #ccc;
+	background:rgba(0,0,0,0.05);
+	padding:10px;
+	margin:10px 20px;
+	display:inline-block;
+}
+
+figure > figcaption
+{
+	text-align:center;
+	display:block; /* For IE8 */
+}
+
+a > img {
+	padding:1px;
+	margin:1px;
+	border:none;
+	outline:1px solid #0782C1;
+}
+
+.code-featured
+{
+	border:5px solid red;
+}
+
+.math-featured
+{
+	padding:20px;
+	box-shadow:0 0 2px rgba(200, 0, 0, 1);
+	background-color:rgba(255, 0, 0, 0.05);
+	margin:10px;
+}
+
+.image-clean
+{
+	border:0;
+	background:none;
+	padding:0;
+}
+
+.image-clean > figcaption
+{
+	font-size:.9em;
+	text-align:right;
+}
+
+.image-grayscale
+{
+	background-color:white;
+	color:#666;
+}
+
+.image-grayscale img, img.image-grayscale
+{
+	filter:grayscale(100%);
+}
+
+.embed-240p
+{
+	max-width:426px;
+	max-height:240px;
+	margin:0 auto;
+}
+
+.embed-360p
+{
+	max-width:640px;
+	max-height:360px;
+	margin:0 auto;
+}
+
+.embed-480p
+{
+	max-width:854px;
+	max-height:480px;
+	margin:0 auto;
+}
+
+.embed-720p
+{
+	max-width:1280px;
+	max-height:720px;
+	margin:0 auto;
+}
+
+.embed-1080p
+{
+	max-width:1920px;
+	max-height:1080px;
+	margin:0 auto;
+}
+
+/* formatowanie do szablonow */
+
+ol,ul,dl
+{
+	padding:0;
+  margin:20px 0 20px 0;
+  list-style-position:inside;
+}
+
+ul { list-style-type:disc; }
+ol { list-style-type:decimal; }
+
+h1,h2,h3,h4,h5,h6
+{
+	font-weight:normal;
+	line-height:normal;
+  padding:0;
+  margin:0 0 20px 0;
+}
+
+h1 { font-size:32px; }
+h2 { font-size:24px; }
+h3 { font-size:20px; }
+h4 { font-size:16px; }
+h5 { font-size:12px; }
+h6 { font-size:11px; }
+
+table { border-collapse:collapse; border-spacing:0; margin:0; font-weight:normal; }
+
+aside, article, nav, section, footer, header { display:block; margin:0; padding:0; }
+
+li h1, li h2, li h3, li h4, li h5, li h6, li p, li div { margin:0; display:inline-block; font-weight:normal; line-height:normal; }
+
+.EdytorKolumny { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:15px; }
+@media only screen and (max-width:700px) {
+  .EdytorKolumny { flex-wrap:wrap; }
+}
+.WyrownanieGora { align-items:flex-start; }
+.WyrownanieSrodek { align-items:center; }
+.WyrownanieDol { align-items:flex-end; }
+  
+.EdytorKolumna-20 { width:20%; }
+.EdytorKolumna-25 { width:25%; }
+.EdytorKolumna-33 { width:33.333%; }
+.EdytorKolumna-50 { width:50%; }
+.EdytorKolumna-66 { width:66.666%; }
+.EdytorKolumna-75 { width:75%; }
+.EdytorKolumna-100 { width:100%; }
+
+/* 1 kolumna */
+.EdytorKolumny-1 .EdytorKolumna-1 { padding:5px; border:2px dashed #dbdbdb; }
+  
+/* 2 kolumny */
+.EdytorKolumny-2 .EdytorKolumna-1 { padding:5px; margin-right:5px; border:2px dashed #dbdbdb; }
+.EdytorKolumny-2 .EdytorKolumna-2 { padding:5px; margin-left:5px; border:2px dashed #dbdbdb; }
+
+@media only screen and (max-width:699px) {
+  .EdytorKolumny-2 .EdytorKolumna { margin:0 0 10px 0; width:100%; }
+}
+
+/* 3 kolumny */
+.EdytorKolumny-3 .EdytorKolumna-1 { padding:5px; margin-right:5px; border:2px dashed #dbdbdb; }
+.EdytorKolumny-3 .EdytorKolumna-2 { padding:5px; margin:0 5px 0 5px; border:2px dashed #dbdbdb; }
+.EdytorKolumny-3 .EdytorKolumna-3 { padding:5px; margin-left:5px; border:2px dashed #dbdbdb; }
+
+@media only screen and (max-width:699px) {
+  .EdytorKolumny-3 .EdytorKolumna { margin:0 0 10px 0; width:100%; }
+}
+
+/* 4 kolumny */
+.EdytorKolumny-4 .EdytorKolumna-1 { padding:5px; margin-right:5px; border:2px dashed #dbdbdb; }
+.EdytorKolumny-4 .EdytorKolumna-2 { padding:5px; margin:0 5px 0 5px; border:2px dashed #dbdbdb; }
+.EdytorKolumny-4 .EdytorKolumna-3 { padding:5px; margin:0 5px 0 5px; border:2px dashed #dbdbdb; }
+.EdytorKolumny-4 .EdytorKolumna-4 { padding:5px; margin-left:5px; border:2px dashed #dbdbdb; }
+
+@media only screen and (max-width:699px) {
+  .EdytorKolumny-4 .EdytorKolumna-1, .EdytorKolumny-4 .EdytorKolumna-3 { width:calc(50% - 19px); padding:5px; margin:0 5px 10px 0; border:2px dashed #dbdbdb; }
+  .EdytorKolumny-4 .EdytorKolumna-2, .EdytorKolumny-4 .EdytorKolumna-4 { width:calc(50% - 19px); padding:5px; margin:0 0 10px 5px; border:2px dashed #dbdbdb; }
+}
+
+/* 5 kolumn */
+.EdytorKolumny-5 .EdytorKolumna-1 { padding:5px; margin-right:5px; border:2px dashed #dbdbdb; }
+.EdytorKolumny-5 .EdytorKolumna-2 { padding:5px; margin:0 5px 0 5px; border:2px dashed #dbdbdb; }
+.EdytorKolumny-5 .EdytorKolumna-3 { padding:5px; margin:0 5px 0 5px; border:2px dashed #dbdbdb; }
+.EdytorKolumny-5 .EdytorKolumna-4 { padding:5px; margin:0 5px 0 5px; border:2px dashed #dbdbdb; }
+.EdytorKolumny-5 .EdytorKolumna-5 { padding:5px; margin-left:5px; border:2px dashed #dbdbdb; }
+
+@media only screen and (max-width:699px) {
+  .EdytorKolumny-5 { justify-content:center; }
+  .EdytorKolumny-5 .EdytorKolumna { width:calc(33.33% - 24px); padding:5px; margin:5px; border:2px dashed #dbdbdb; }
+}
+

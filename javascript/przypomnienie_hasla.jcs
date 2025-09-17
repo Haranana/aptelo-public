@@ -1,0 +1,68 @@
+$(document).ready(function() {
+
+    $("#przypomnienie").on("keyup keypress", function(e) {
+      var code = e.keyCode || e.which; 
+      if (code === 13) {               
+          e.preventDefault();
+          return false;
+      }
+    });
+
+    $("#email").keyup(function () {
+        $("#haslo").val('');
+    });
+
+    $("#przypomnienie").validate({
+      onkeyup: false,
+      focusInvalid: false,
+      focusCleanup: true,
+      rules: {
+        email: { required: true, email: true,
+                 remote: {
+                     url: "{__SSL:inne/logowanie.php?zmiana_hasla}&tok={__TOKEN_PRZYPOMNIENIE}",
+                     type: 'POST',
+                     data: {
+                        email: function() { return $("#email").val(); },
+                        klient: function() { return $("#klient").val(); }      
+                     }              
+                 }
+        },
+        nowe_haslo: { required: true, },
+        powtorz_haslo: { equalTo: "#nowe_haslo" }                 
+      },
+      messages: {
+        email: { required: '{__TLUMACZ:BLAD_WYMAGANE_POLE}', remote: '{__TLUMACZ:BLAD_LOGIN_ISTNIEJE}' },
+        nowe_stare: { required: '{__TLUMACZ:BLAD_WYMAGANE_POLE}' },
+        powtorz_haslo: { equalTo: '{__TLUMACZ:BLAD_HASLA_SA_ROZNE}' }      
+      },
+      submitHandler: function() {
+        PreloadWlacz();
+        var sear = $('#przypomnienie').serialize(); 
+        $.post("{__SSL:inne/do_przypomnienie_hasla.php}?tok={__TOKEN_PRZYPOMNIENIE_OKNO}", { data: sear }, function(data) { 
+            PreloadWylaczSzybko();
+            if ( data.length > 10 ) {        
+                var myModal = new jBox('Modal',{ 
+                    content : '<div class="message">'+data+'</div>',
+                    closeButton: false,
+                    closeOnEsc: false,
+                    closeOnMouseleave: false,
+                    closeOnClick: false,
+                    onOpen: function () {
+                        const popupElement = this.wrapper;
+                        setTimeout(function () {
+                            initFocusTrap(popupElement);
+                        }, 50);
+                    }      
+                });
+                myModal.open();
+            }
+        });
+        return false;
+      }          
+    });
+
+    // wlacza przycisk submit jesli dziala u klienta javascript
+    $('#submitButton').removeAttr('disabled');
+    $("#submitButton").attr('class', 'przycisk');  
+
+});

@@ -1,0 +1,230 @@
+/* oznaczenie klienta firmy */
+.Firma { display:inline-block; padding-bottom:2px; font-weight:bold; color:#098206; }
+
+.MalyTelefon { background: url('../obrazki/maly_telefon.gif') left center no-repeat; padding:4px; padding-left:15px; color:#064661; display:block; }
+.MalyMail { background: url('../obrazki/maly_mail.gif') left center no-repeat; padding:4px; padding-left:15px; color:#064661; display:inline-block; }
+
+/* cena */
+.ListaZamowien { border-right:2px solid #fff; border-left:0px !important; }
+.ListaZamowien .InfoCena { white-space:nowrap; color:#8f0a0a; font-weight:bold; display:block; text-align:right; }
+.ListaZamowien td { text-align:center; }
+.ListaZamowien td:nth-child(4) { text-align:left; }
+.ListaZamowien .div_naglowek td:nth-child(4) { text-align:center; }
+.ListaZamowien .tblZoom td { text-align:left; white-space:normal; }
+.ListaZamowien td:last-child { white-space:nowrap; }
+.ListaZamowien .tblZoom td:last-child { white-space:normal; }
+
+@media only screen and (min-width:1024px) and (max-width:1279px) {
+  .ListaZamowien .podglad_zoom, .ListaZamowien .okno_zoom { width:650px; max-height:400px; }
+}
+@media only screen and (min-width:1280px) and (max-width:1599px) {
+  .ListaZamowien .podglad_zoom, .ListaZamowien .okno_zoom { width:850px; max-height:400px; }
+}
+@media only screen and (min-width:1600px) {
+  .ListaZamowien .podglad_zoom, .ListaZamowien .okno_zoom { width:950px; max-height:500px; }
+}
+
+/* mail przy rabatach producentow i kategorii */
+.Maili { display:inline-block; background: url('../obrazki/maly_mail.gif') left center no-repeat; padding:4px; padding-left:15px; color:#064661; }
+.NazwaKatProd { color:#0f7795; font-weight:bold; }
+.SciezkaKategorii { color:#848383; }
+
+/* lista produktow */
+.WynikNaglowek { display:block; padding-top:4px; padding-left:3px; }
+.WynikNaglowekDodanie { font-family:Inder, Arial; font-size:130%; display:block; padding:10px; color:#ff0000; }
+.WynikNaglowekBrak { display:block; }
+.WynikNaglowekBrak span { background:url('../obrazki/awaria_maly.png') no-repeat left center; padding:5px 0px 5px 30px !important; font-weight:bold; margin:5px 0px 0px 10px; }
+#WynikPrzewijany { max-height:300px; overflow-y:scroll; border:1px solid #c1c1c1; margin-right:10px; -moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px; -khtml-border-radius:4px; }
+.TabelaProdukt { color:#3f5d6b; width:100%; border:0px; }
+.TabelaProdukt td { border:3px solid #fff; text-align:center; }
+.TabelaProdukt .prot td { background:#f4f2f2; padding:4px; text-decoration:none; }
+.TabelaProdukt span { white-space:nowrap; display:block; padding:5px; background:#e5e5e5; font-weight:normal; color:#3f5d6b; text-decoration:none; }
+
+@media only screen and (max-width:1279px) {
+  .ListaKlientow { max-width:98%; }
+  .LabelTabela { padding:0px 5px 0px 10px; }
+  .TabelaKlientow { margin:5px 4px 0px 8px; }
+}
+@media only screen and (min-width:1280px) { 
+  .ListaKlientow { max-width:80%; width:800px; }
+  .LabelTabela { padding:0px 1px 0px 10px; display:table-cell; vertical-align:top; }
+  .TabelaKlientow { display:table-cell; vertical-align:top; }
+}
+
+.ListaKlientow { max-height:300px; overflow-y:scroll; margin:5px 0px 8px 2px; }
+.ListaKlientow td:first-child, .ListaKlientow td:nth-child(2) { text-align:center; }
+.ListaKlientow td { text-align:left; }
+.ListaKlientow .Firma { font-weight:bold; color:#098206; display:block; margin-bottom:3px; }
+.ListaKlientow .MalyMail { background: url('../obrazki/maly_mail.gif') left center no-repeat; padding:4px; padding-left:15px; color:#064661; display:inline-block; }
+
+/* leganda ikon */
+#Legenda { margin-right:0px; text-align:right; }
+#Legenda span { line-height:1.5; }
+#Legenda .StalyKlient { margin-left:20px; display:inline-block; background: url("../obrazki/medal.png") no-repeat left center; padding-left:25px; }
+#Legenda .BezKonta { margin-left:20px; display:inline-block; background: url("../obrazki/gosc.png") no-repeat left center; padding-left:25px; }
+#Legenda .KlientPP { margin-left:20px; display:inline-block; background: url("../obrazki/pp.png") no-repeat left center; padding-left:25px; }
+
+/* wyglad cechy w podgladzie koszyka i schowka klienta */
+.NaglowekSrodek td { text-align:center; text-shadow:#fff 1px 1px 1px; font-weight:bold; color:#2b595b; padding:10px 7px 10px 7px; background:url('../obrazki/tlo.png') #f5f5f5 repeat-x left bottom; }
+.Lista td { text-align:center; }
+.WglCecha { color:#5b5a5a; font-weight:normal; margin-bottom:2px; }
+.WglCecha a { display:inline !important; }
+.ZnizkiKlienta { text-align:right; font-weight:bold; color:#347f94; width:80px; }
+.TypZnizki { text-align:center; font-weight:normal; color:#2e728f; width:100px; }
+/* uzywane w koszyku, podgladzie schowka do centrowania td */
+.ZaklCent td { text-align:center; }
+.NazwaProduktu a { font-weight:bold; margin-bottom:5px; color:#084a5b; display:block; }
+.NazwaProduktu a:hover { color:#ff0000; }
+.PodgladKoszyka td { border-right:2px solid #fff; }
+
+.Daty { display:inline-block; line-height:1.5; padding-top:4px; padding-bottom:4px; font-weight:bold; }
+
+/* link do produktu w schowku, koszyku, punktach */
+.LinkKoszyk a { font-weight:bold; text-decoration:none; display:block; margin-bottom:5px; color:#084a5b; }
+.LinkKoszyk a:hover { font-weight:bold; color:#ff0000; text-decoration:none; }
+.LinkPunkty a { font-weight:normal; text-decoration:none; }
+.LinkPunkty a:hover { font-weight:normal; color:#ff0000; text-decoration:none; }
+.LinkPunkty strong { color:#347f94; }
+
+/* ogolna ilosc punktow */
+#PunktyTabela { width:100%; margin-bottom:10px; }
+#OgolnaIloscPkt { font-weight:bold; color:#016F24; text-decoration:none; }
+#OgolnaIloscPkt span { font-size:14px; color:#356e81; }
+
+/* kolor statusu */
+.StatusPunktowKolor { width:17px; height:17px; display:inline-block; }
+.StatusyPunktow { padding-top:7px; font-weight:normal; text-decoration:none; display:block; float:right; text-align:left; padding-left:20px; }
+
+.GrupyNewslettera { padding:10px; }
+.GrupyNewslettera td { padding-right:3px; }
+
+/* klient gosc */
+.KlientGosc { background: url("../obrazki/gosc.png") no-repeat left center; padding:2px; padding-left:25px; font-size:12px; color:#ff0000; display:block; margin:12px; margin-top:0px; }
+
+@media only screen and (max-width:1279px) {
+  .WybieranieKategoriiProducenta { margin:5px 0px 0px 10px; }
+  .WybieranieKategoriiProducenta #drzewo, .WybieranieKategoriiProducenta #drzewo_kategorii { max-width:98%; }
+}
+@media only screen and (min-width:1280px) { 
+  .WybieranieKategoriiProducenta { margin:-45px 0px 0px 174px; }
+  .WybieranieKategoriiProducenta #drzewo, .WybieranieKategoriiProducenta #drzewo_kategorii { max-width:50%; }
+}
+
+@media only screen and (max-width:1279px) {
+  .GlownyListingKategorieEdycja { margin-right:10px; }
+  .WybieranieProduktow { margin:5px 0px 0px 10px; }
+  .WynikProduktowRabatProdukty { margin:10px 0px 10px 0px; }
+}
+@media only screen and (min-width:1280px) { 
+  .GlownyListingKategorieEdycja { display:table-cell; width:30%; vertical-align:top; }
+  .GlownyListingProduktyEdycja { display:table-cell; width:70%; vertical-align:top; }
+  .WybieranieProduktow { margin:-45px 0px 0px 174px; }
+  .WynikProduktowRabatProdukty { margin-left:10px; }
+}
+
+.WyborProducentaRabat { max-height:300px; overflow-y:auto; }
+
+.WynikProduktowRabatProdukty span { display:block; padding-bottom:10px; font-weight:bold; }
+
+@media only screen and (max-width:1023px) { 
+  .DodatkowePolaKlient { margin-left:163px; }
+}
+@media only screen and (min-width:1024px) { 
+  .DodatkowePolaKlient { margin-left:183px; }
+}
+
+/* podglad koszyka klienta */
+@media only screen and (max-width:1023px) { 
+  .PodgladKoszyka { width:640px; }
+}
+@media only screen and (min-width:1024px) and (max-width:1279px) {
+  .PodgladKoszyka { width:840px; }
+}
+@media only screen and (min-width:1280px) and (max-width:1599px) {
+  .PodgladKoszyka { width:1020px; }
+}
+@media only screen and (min-width:1600px) {
+  .PodgladKoszyka { width:1100px; }
+}
+
+/* dodatkowe adresy dostawy */
+.DodatkoweAdresy { display:block; font-weight:normal; font-size:130%; font-family:Inder, Arial; color:#2b595b; margin:20px 0px 10px 25px; }
+.AdresDodatkowy { background: url("../obrazki/ksiazka.png") no-repeat left center; margin:0px 20px 0px 25px; padding:10px 0px 10px 50px; border-top:1px dotted #ccc; }
+.AdresDodatkowy:last-child { border-bottom:1px dotted #ccc; }
+.AdresDodatkowy a { float:right; margin-left:5px; }
+.AdresDodatkowy ul { list-style-type:none; padding:0px; margin:0px; float:left; }
+.AdresDodatkowy li { margin:3px 0px 3px 0px; }
+
+/* do maila od aktywacji konta */
+.WyslijMail td:first-child { padding-left:12px; }
+.WyslijMail input { margin-bottom:5px; }
+.WyslijMail .error, .GrupyBlad .error { margin-left:0px !important; }
+.MailWyslano { margin:10px; margin-left:15px; background:url('../obrazki/newsletter_wyslano.png') no-repeat left center; padding:5px; padding-left:40px; line-height:2; display:inline-block; font-weight:bold; color:#04a001; text-decoration:none; }
+
+.CzarnaLista td { background:url('../obrazki/kratka_czarna_lista.jpg') !important; }
+.CzarnaListaId { background:url('../obrazki/czarna_lista.png') no-repeat center top; padding:40px 0px 0px 0px; min-width:32px; }
+.CzarnaListaUsun { opacity:0.3; filter:alpha(opacity=30); }
+.KlientCzarnaLista { background:url('../obrazki/kratka_czarna_lista.jpg'); margin:0px 20px 15px 20px; }
+.KlientCzarnaLista span { display:block; text-transform:uppercase; color:#ff0000; font-weight:bold; font-size:110%; letter-spacing:1px; background:url('../obrazki/czarna_lista.png') no-repeat 10px center; padding:15px 10px 15px 60px; }
+
+/* cecha */
+.MaleInfoCecha { display:block; padding-top:4px; color:#5b5a5a; }
+.NieMoznaKupowac { color:#ff0000; }
+
+div .WyslijPowiadomienie { background:url('../obrazki/wyslij_mail.png') no-repeat left center; line-height:1.5; display:inline-block; padding-left:22px; font-weight:bold; color:#016f24; text-decoration:none; margin-right:5px; }
+div .WyslijPowiadomienie:hover { color:#ff0000; text-decoration:none; }
+
+#DanePowiadomien { margin:10px; }
+#DanePowiadomien div { display:block; text-align:left; margin-bottom:8px; font-weight:normal; text-decoration:none; }
+#DanePowiadomien span { font-weight:bold; color:#0c617d; }
+.InfoOpisCecha { color:#828282 !important; font-weight:normal !important; }
+.MailWyslano { margin:10px; margin-left:15px; background:url('../obrazki/newsletter_wyslano.png') no-repeat left center; padding:5px; padding-left:40px; line-height:2; display:inline-block; font-weight:bold; color:#04a001; text-decoration:none; }
+
+/* wyglad opiekuna */
+.Opiekun { font-weight: normal; color:#51c95a; text-decoration: none; font-size:10px; display:block; text-align:center; padding-top:8px; }
+.Opiekun span { font-weight: bold; color:#445b6e; text-decoration: none; font-size:10px; display:block; text-align:center; padding-top:3px; }
+
+.SzukajCeidg { background:url('../obrazki/nip_ceidg.png') no-repeat left 15px center #ececec; padding:15px 15px 15px 115px; margin:10px; }
+.SzukajCeidg input { margin:0px 5px 0px 5px; }
+
+.DataZapisania { display:inline-block; background:url('../obrazki/kalendarz.png') no-repeat left center; padding:0px 0px 0px 25px; margin-left:3px; color:#666; }
+
+div .Export { background:url('../obrazki/export.png') no-repeat left center; line-height:1.5; display:inline-block; padding-left:22px; font-weight:bold; color:#016f24; text-decoration:none; margin-right:5px; }
+div .Export:hover { color:#ff0000; text-decoration:none; }
+
+div .Import { background:url('../obrazki/import.png') no-repeat left center; line-height:1.5; display:inline-block; padding-left:22px; font-weight:bold; color:#016f24; text-decoration:none; }
+div .Import:hover { color:#ff0000; text-decoration:none; }
+
+.RamkaImport { border:1px solid #c1c1c1; padding:2px; -moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px; -khtml-border-radius:4px; display:inline-block; margin-left:10px; }
+
+.NaglowekEksport { font-weight:bold; text-decoration:none; padding:10px; font-size:110%; }
+
+.LegnedaImport { padding:12px; }
+.LegnedaImport .ostrzezenie { padding-top:5px; padding-bottom:2px; }
+
+.RamkaWarunki { border-top:1px dotted #ccc; border-bottom:1px dotted #ccc; padding:8px 0px 8px 0px; margin:8px 10px 8px 10px; } 
+.RamkaWarunki p { padding-left:0px !important; }
+.RamkaWarunki b { font-weight:bold; color:#3f5d6b; text-decoration:none; display:block; margin-top:5px; margin-bottom:10px; }
+.RamkaWarunki strong { padding:5px 5px 9px 2px; display:inline-block; font-size:110%; }
+
+#sukcesAktualizacji { margin:10px; margin-left:15px; background:url('../obrazki/newsletter_wyslano.png') no-repeat left center; padding:5px; padding-left:40px; line-height:2; display:inline-block; font-weight:bold; color:#04a001; text-decoration:none; }
+#sukcesAktualizacji strong { color:#ff0000; font-size:14px; }
+
+.NrIp { background:url('../obrazki/info_male.png') no-repeat left center; padding:2px; padding-left:20px; display:inline; text-align:left; cursor:pointer; }
+.NrIp:hover { color:#ff0000; }
+
+/* szczegoly ip */
+#LadujeDane { padding:8px; }
+#LadujeDane span { padding:4px; padding-left:30px; background:url('../obrazki/_loader_small.gif') no-repeat left center; text-decoration:none; }
+.IdWyglad { position:absolute; margin-top:15px; margin-left:0px; padding:8px; border:1px dotted #ce0f0f; display:none; background:#fff; z-index:999; text-align:left; }
+#TablicaIp span { border:0px; width:auto; padding:1px; }
+#TablicaIp .Opis { width:90px; display:inline-block; padding:3px; text-decoration:none; }
+#TablicaIp .Wartosc { display:inline-block; padding:3px; color:#0b6121; text-decoration:none; font-weight:bold; }
+.ZamknijIp { background:url('../obrazki/zamknij.png') no-repeat left center; text-align:left; display:block; margin:8px 0px 0px 2px; padding:8px 0px 8px 35px !important; cursor:pointer; color:#ff0000; text-decoration:none; }
+.ZamknijIp:hover { color:#323232; text-decoration:none; }
+
+.RodzajUrzadzania { padding:8px 4px 0px 4px; }
+.RodzajUrzadzania b { color:#348dd8; }
+
+.JezykiMailaZmiana a { display:inline-block; margin-right:10px; color:#3f5d6b; background:url('../obrazki/aktywny_off.png') no-repeat left center; padding:5px 0px 5px 25px; }
+.JezykiMailaZmiana a.AktywnyJezyk { background:url('../obrazki/aktywny_on.png') no-repeat left center; }

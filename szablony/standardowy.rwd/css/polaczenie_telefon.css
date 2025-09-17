@@ -1,0 +1,47 @@
+/* kontakt telefoniczny */
+#TloKontaktSluchawka { position:fixed; left:0px; top:0px; bottom:0px; right:0px; background-color:rgba(0, 0, 0, 0.8); z-index:1002; display:none; }
+#TloKontaktSluchawka #KontaktSluchawkaZamknij { cursor:pointer; position:absolute; right:-15px; top:-15px; }
+#TloKontaktSluchawka #KontaktSluchawkaZamknij span { width:30px; height:30px; background:url('../obrazki/nawigacja/zamknij_banner_popup.png'); display:inline-block; }
+
+@media only screen and (max-width:799px) { 
+  #TloKontaktSluchawka .KontaktSluchawkaOkno { width:80%; }
+}
+@media only screen and (min-width:800px) {
+  #TloKontaktSluchawka .KontaktSluchawkaOkno { width:560px; }
+}
+#TloKontaktSluchawka .KontaktSluchawkaOkno { position:fixed; left:50%; top:50%; background:#ffffff; z-index:1003; border:4px solid #242424; -moz-border-radius:12px; -webkit-border-radius:12px; border-radius:12px; -khtml-border-radius:12px; 
+  -webkit-transform: translate(-50%, -50%); transform: translate(-50%, -50%);
+}
+#TloKontaktSluchawka .KontaktSluchawkaOknoKont { padding:40px; text-align:center; }
+#TloKontaktSluchawka .NaglowekKontaktSluchawka { font-size:180%; font-weight:bold; margin-bottom:10px; }
+#TloKontaktSluchawka .NaglowekMniejszyKontaktSluchawka { font-size:140%; font-weight:bold; margin-bottom:10px; }
+
+#TloKontaktSluchawka .KontaktSluchawkaPole { margin:20px 0px 10px 0px; }
+#TloKontaktSluchawka .KontaktSluchawkaPole input { font-size:150%; text-align:center; padding:12px; width:80%; border-width:2px; }
+#TloKontaktSluchawka .KontaktSluchawkaPrzycisk span { width:60%; padding:12px !important; font-size:130%; text-align:center; margin:0px; }
+#TloKontaktSluchawka small { display:block; margin-top:15px; color:#aaaaaa; font-size:80%; }
+
+#BladDanychSluchawka { padding:0px 0px 10px 0px; display:none; }
+#BladDanychSluchawka span { color:#ff0000; font-size:110%; font-weight:normal; background:url('../obrazki/formularz/blad.png') no-repeat left center; display:inline-block; padding:2px 0px 2px 25px; }
+
+#WyslanieDanychSluchawka { padding:10px; color:#ff0000; font-size:130%; font-weight:bold; display:none; }
+
+#TelefonIkona { position:fixed; background:url('../obrazki/zakladki/telefon.png') no-repeat; background-size:70px 70px; cursor:pointer;
+  animation:TelefonAnimacja 5s 2.5s infinite linear; display:block; transition:0.5s all; -moz-transition:0.5s all; -webkit-transition:0.5s all; outline:none; width:70px; height:70px;
+}
+.SluchawkaDolnyPrawy { bottom:80px; right:10px; }
+.SluchawkaDolnyLewy { bottom:80px; left:10px; }
+.SluchawkaGornyPrawy { top:80px; right:10px; }
+.SluchawkaGornyLewy { top:80px; left:10px; }
+
+@media only screen and (max-width:799px) { 
+  #TelefonIkona { width:50px; height:50px; bottom:20px; right:20px; background-size:50px 50px; }
+}
+@keyframes TelefonAnimacja {
+  from { -webkit-transform: scale3d(1, 1, 1); transform: scale3d(1, 1, 1); }
+  20% { -webkit-transform: scale3d(1, 1, 1); transform: scale3d(1, 1, 1); }
+  21%, 22% { -webkit-transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -6deg); transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -6deg); }
+  23%, 26%, 29%, 31% { -webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 6deg); transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 6deg); }
+  25%, 27%, 30% { -webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -6deg); transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -6deg); }
+  0%, 33% { -webkit-transform: scale3d(1, 1, 1); transform: scale3d(1, 1, 1); }
+}

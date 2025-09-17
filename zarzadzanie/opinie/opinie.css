@@ -1,0 +1,22 @@
+/* do listingu */
+.Komentarz { display:block; font-weight:normal; color:#838383; }
+
+.TabelaOcen { display:table; }
+.TabelaOcen .Wiersz { display:table-row; }
+.TabelaOcen .Wiersz div { display:table-cell; vertical-align:middle; padding:3px 10px 3px 0px; white-space:nowrap; font-size:90%; color:#838383; }
+.TabelaOcen .Wiersz div:last-child { padding:7px 0px 3px 0px; }
+
+.TabelaEdycja { margin:10px 0px 20px 0px; }
+.TabelaEdycja strong { font-weight:normal; display:block; margin-bottom:10px; }
+.TabelaEdycja td { padding-right:40px; }
+
+.OcenaTabela { padding-left:12px; }
+.OcenaTabela td { line-height:2; }
+
+.SredniaOcena { font-size:180%; font-weight:bold; }
+
+.OpiniaOdpowiedz { margin:10px 30px 0px 0px; position:relative; overflow:visible; }
+.OdpowiedzSkasuj { display:inline-block; cursor:pointer; position:absolute; top:0px; right:-25px; }
+
+.FotoOpinie { margin-top:10px; }
+.FotoOpinie img { max-width:150px; max-height:100px; width:auto; height:auto; }

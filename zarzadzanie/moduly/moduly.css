@@ -1,0 +1,68 @@
+/* wybor z listy */
+@media only screen and (max-width:1023px) {
+  .cmxform .ms-container { margin:10px 0px 0px 15px; background:transparent url('../obrazki/arrow.png') no-repeat 282px 53px; }
+  .cmxform .ms-container ul.ms-list { width:270px; height:250px; }
+  .BrakMarginesuRwd { margin-left:25px !important; }
+}
+@media only screen and (min-width:1024px) {
+  .cmxform .ms-container { margin:-20px 0px 0px 183px; background:transparent url('../obrazki/arrow.png') no-repeat 262px 53px; }
+  .cmxform .ms-container ul.ms-list { width:250px; height:250px; }
+}
+.cmxform .ms-container:after { content:"."; display:block; height:0; line-height:0; font-size:0; clear:both; min-height:0; visibility:hidden; }
+.cmxform .ms-container .ms-selectable, .ms-container .ms-selection { background:#fff; border:1px #ccc solid; float:left; -moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px; -khtml-border-radius:4px; overflow:hidden; }
+.cmxform .ms-selected { display:none; }
+.cmxform .ms-container .ms-selectable { margin-right:50px; }
+.cmxform .ms-container ul { margin:0; list-style-type:none; }
+.cmxform .ms-container ul.ms-list { padding:1px 0px; overflow-y:auto; }
+.cmxform .ms-container .ms-selectable li.ms-elem-selectable,.cmxform .ms-container .ms-selection li.ms-elem-selected { border-bottom:1px #eee solid; padding:5px 10px; color:#555; }
+.cmxform .ms-container .ms-selection li.ms-elem-selected { padding-left:22px;color:#101010; }
+.cmxform .ms-container .ms-selectable li.disabled,.cmxform .ms-container .ms-selection li.disabled { background-color:#eee; color:#aaa; }
+.cmxform .ms-container li.ms-elem-selectable:not(.disabled):hover,.cmxform .ms-container .ms-selection li:not(.disabled):hover { cursor:pointer; background-color:#eee; color:#000; }
+.cmxform .ms-container .ms-selection li:not(.disabled):hover { background:#eee url('../obrazki/delete.png') no-repeat 3px 5px; }
+.cmxform h4 { font-size:110%; background:#e7e7e7; text-align:center; line-height:3; }
+
+.RodzajKosztow { margin:-25px 0px 0px -2px; }
+
+/* tabela do opisu cen */
+.OpisPlatnosciRamka { border:1px solid #b3b3b3; -moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px; -khtml-border-radius:4px; width:95%; padding:0px 0px 2px 2px; }
+.OpisPlatnosci { width:100%; }
+.OpisPlatnosci td { padding:6px; padding-left:8px; text-decoration:none; border-bottom:1px dotted #b3b3b3; }
+.OpisPlatnosci tr:last-child td { border:0px; }
+.OpisPlatnosciNaglowek td { padding:2px 2px 0px 0px; font-weight:bold; color:#3f5d6b; text-decoration:none; border:0px; }
+.OpisPlatnosci span { display:block; padding:7px; background:#e5e5e5; font-weight:bold; color:#3f5d6b; text-decoration:none; }
+
+/* drzewo kategorii w platnosciach */
+#DrzewoPlatnosci { border:1px solid #c1c1c1; padding:5px 15px 10px 0px; background:#f6f7f6; -moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px; -khtml-border-radius:4px; overflow:hidden; }
+@media only screen and (max-width:1023px) {
+  #DrzewoPlatnosci { margin:-35px 0px 10px 163px; max-width:400px; }
+}
+@media only screen and (min-width:1024px) {
+  #DrzewoPlatnosci { margin:-35px 0px 10px 183px; max-width:600px; }
+}
+
+.KontenerPlatnosci { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:flex-start; }
+.KontenerPlatnosci > div { font-size:120%; color:#052554; border:1px solid #c1c1c1; border-radius:4px; margin-bottom:15px; line-height:1.5; background:#f8f8f8; }
+
+@media only screen and (max-width:1023px) {  
+  .KontenerPlatnosci > div, .KontenerPlatnosciPelny > div { width:100% !important; margin:0 0 15px 0; }
+}
+@media only screen and (min-width:1024px) {
+  .KontenerPlatnosci > div:nth-child(1) { width:calc(50% - 12px); margin-right:10px; }
+  .KontenerPlatnosci > div:nth-child(2) { width:calc(50% - 12px); margin-left:10px; }
+  .KontenerPlatnosciPelny > div { width:100% !important; margin:0 0 15px 0; }
+}
+
+.PlatnosciPodzialPrzyciskow { display:flex; flex-wrap:nowrap; justify-content:space-between; align-items:center; padding-top:10px; }
+
+.PozycjaPlatnosciPrzelewy24 { padding:10px 10px 10px 180px; background:url('../obrazki/logo/przelewy24.png') no-repeat left 20px center; background-size:140px 47px; }
+.PozycjaPlatnosciTpay { padding:10px 10px 10px 180px; background:url('../obrazki/logo/tpay.png') no-repeat left 20px center; background-size:140px 28px; }
+
+.PozycjaPlatnosci > div span { cursor:pointer; text-decoration:underline; display:inline-block; font-weight:bold; padding-top:5px; font-size:12px; color:#12a702; }
+.PozycjaPlatnosci > div span:hover { color:#ff0000; }
+
+.PozycjaPlatnosci > div b { color:#ff0000; }
+.PozycjaPlatnosci > div a.PlatnosciKonto { text-align:center; display:inline-block; background:#ff0000; color:#fff; padding:7px 10px 7px 10px; border-radius:4px; margin:0 3px 0 3px; font-weight:bold; }
+.PozycjaPlatnosci > div a.PlatnosciKonto:hover { background:#000; }
+
+.OpisPozycjaPlatnosci { display:none; font-size:14px; padding:0 15px 15px 15px; border-top:1px solid #dbdbdb; }
+.OpisPozycjaPlatnosci p { padding-top:15px; }

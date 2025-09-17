@@ -1,0 +1,185 @@
+$(document).ready(function() {
+
+    $('.PorownanieIlosc').attr('tabindex', '0').attr('role', 'button');
+
+    $(document).on('keydown', '.PorownanieIlosc', function (event) {
+      
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          $(this).trigger('click');
+        }
+        
+    });
+  
+    var modalPorownywarka = new jBox('Modal', {
+        //
+        animation: 'zoomIn',
+        ajax: {
+            url: 'inne/porownywarka.php?tok={__TOKEN_POROWNYWARKA}',
+            method: 'post',
+            reload: 'strict',
+            setContent: false,
+            success: function (response) {
+              this.setContent(response);
+            }
+        }
+        //
+    });
+
+    $(document).on('click', '#oknoPorownywarki, .PorownanieIlosc', function () {
+        //
+        modalPorownywarka.open();
+        //
+    });
+
+    $('#PorownanieNaglowek').hover(function() {
+        //
+        if ( $('.PorownywanieRozwijane').length ) {
+             //
+             $('.PorownywanieRozwijane').html('<div class="RozwinietaWersjaPelna RozwinietaWersja"><div class="ZawartoscPorownaniaLadowanie"></div></div>');
+             //
+             $.post("inne/rozwijany_porownanie.php?tok={__TOKEN_POROWNYWARKA}", { id: 'porownanie' }, function(data) { 
+             
+                  $('.PorownywanieRozwijane').html(data);
+                  
+             });
+        }
+        //
+    }, function() {
+        //
+        $('.PorownywanieRozwijane').html('');
+        //
+    });
+    
+});
+
+// funkcja porownywania produktow - dodaje do porownania w listingu produktow
+function Porownaj(id, akcja) {
+    
+    PreloadWlacz();
+    
+    if (akcja == 'wl') {
+        //
+        $.post("inne/do_porownania.php?tok={__TOKEN_POROWNYWARKA}", { id: id, akcja: akcja }, function(data) {
+        
+        if ( data.info != 'MAX') {
+    
+            PreloadWylacz();
+            
+            $('#id' + id).removeClass('Porownaj'); 
+            $('#id' + id).addClass('PorownajWlaczone'); 
+            $('#id' + id).attr('onclick', $('#id' + id).attr('onclick').replace('wl','wy'));
+            $('#ListaProduktowPorownanie').html(data.info);
+            //
+            // ile jest produktow
+            if ($('#ListaProduktowPorownanie span').length > 1) {
+                $('#przyciskPorownywania').show();
+              } else {
+                $('#przyciskPorownywania').hide();
+            }
+            //
+            $('#Porownywanie').slideDown("fast");  
+            
+            // aktualizacja ilosci porownywarki
+            if ( $('.PorownanieIlosc').length ) {
+                 $('.PorownanieIlosc').find('.PozycjaIlosc').html(data.ilosc);
+            }
+            
+            // porownanie w naglowku
+            if (parseInt(data.ilosc) > 0) {
+                $('#PorownanieNaglowek,.PorownanieNaglowek').show();
+              } else {
+                $('#PorownanieNaglowek,.PorownanieNaglowek').hide();
+            }
+                  
+        } else {
+          
+            PreloadWylaczSzybko(); 
+                  var myModal = new jBox('Modal',{ 
+                      content : '<div class="message">'+data.tekst+'</div>',
+                      closeButton: true,
+                      closeOnEsc: true,
+                      closeOnMouseleave: true,
+                      closeOnClick: true,
+                      onOpen: function () {
+                          const popupElement = this.wrapper;
+                          setTimeout(function () {
+                              initFocusTrap(popupElement);
+                          }, 50);
+                      }      
+                  });
+                  myModal.open();
+                  
+        }
+
+        }, "json");
+        //
+    } else {
+        //
+        $.post("inne/do_porownania.php?tok={__TOKEN_POROWNYWARKA}", { id: id, akcja: akcja }, function(data) { 
+        
+            PreloadWylacz();
+            
+            // jezeli wyswietla sie na stronie link
+            if ( $('#id' + id).length ) {
+                 $('#id' + id).removeClass('PorownajWlaczone'); 
+                 $('#id' + id).addClass('Porownaj');            
+                 $('#id' + id).attr('onclick', $('#id' + id).attr('onclick').replace('wy','wl'));
+            }
+            $('#ListaProduktowPorownanie').html(data.info);
+            //
+            // ile jest produktow
+            if ($('#ListaProduktowPorownanie span').length > 1) {
+                $('#przyciskPorownywania').show();
+              } else {
+                $('#przyciskPorownywania').hide();
+            }
+            //            
+            if (data.info == '') {
+                $('#Porownywanie').slideUp("fast");
+            }           
+
+            // aktualizacja ilosci porownywarki
+            if ( $('.PorownanieIlosc').length ) {
+                 $('.PorownanieIlosc').find('.PozycjaIlosc').html(data.ilosc);
+            }            
+            
+            // porownanie w naglowku
+            if (parseInt(data.ilosc) > 0) {
+                $('#PorownanieNaglowek,.PorownanieNaglowek').show();
+              } else {
+                $('#PorownanieNaglowek,.PorownanieNaglowek').hide();
+            }                 
+            
+        }, "json"); 
+        //
+    }
+};    
+
+// funkcja porownywania produktow - w boxie porownywarki
+function PorownajBox(id, akcja) {
+    PreloadWlacz();
+    $.post("inne/do_porownania.php?tok={__TOKEN_POROWNYWARKA}", { id: id, akcja: 'wy', box: 'tak' }, function(data) {  
+
+        $('#ListaProduktowPorownanieBox').html(data.info);
+        //
+        // ile jest produktow
+        if ($('#ListaProduktowPorownanieBox span').length > 1) {
+            $('#przyciskPorownywaniaBox').show();
+          } else {
+            $('#przyciskPorownywaniaBox').hide();
+        }
+        
+        // aktualizacja ilosci porownywarki
+        if ( $('.PorownanieIlosc').length ) {
+             $('.PorownanieIlosc').find('span').html(data.ilosc);
+        }    
+        
+        if ($('#ListaProduktowPorownanieBox span').length == 0) {
+            window.location.reload();
+          } else {
+            PreloadWylaczSzybko(); 
+        }
+
+    }, "json");  
+}; 

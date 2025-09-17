@@ -1,0 +1,667 @@
+/* producenci */
+.Producenci .Producent { text-align:center; position:relative; background-clip:content-box; box-sizing:border-box; }
+.Producenci .Producent .ElementListingRamka { z-index:2; position:relative; padding:10px; margin:10px; height:calc(100% - 20px); background-clip:border-box; box-sizing:border-box; display:flex; flex-direction:column; }
+
+.Producenci .Producent h3 { margin:10px 0 5px 0; }
+.Producenci .Producent em { display:inline-block; margin-left:5px; font-weight:normal; font-style:normal; color:var(--kolor-szary-ciemny); }
+
+/* recenzje - szczegoly pojedynczej recenzji oraz napisanie recenzji */
+.StrTresc .Recenzja .OpisTekst { line-height:1.5; }
+.StrTresc .Recenzja p { margin-bottom:10px; display:block; }
+.StrTresc .Recenzja .Przyciski a { margin:10px 10px 0 0; }
+.StrTresc .Recenzja .OpisTekst label { font-weight:normal; display:inline-block; vertical-align:top; }
+.StrTresc .Recenzja .OpisTekst span.Gwiazdki { display:inline-block; margin-right:15px !important; }
+
+/* ankieta - wyniki szczegolowe ankiety */
+.StrTresc .Odpowiedzi { margin:0 auto; }
+.StrTresc .Odpowiedzi td { padding:5px; width:50%; position:relative; }
+@media only screen and (max-width:799px) {
+  .StrTresc .Odpowiedzi { width:100%; }
+  .StrTresc .Odpowiedzi td { display:block; width:calc(100% - 10px); }
+  .StrTresc .Odpowiedzi tr td:first-child { padding-top:15px; }
+}
+.StrTresc .Slupek { position:relative; }
+.StrTresc .Slupek::before { content:''; display:inline-block; position:absolute; left:5px; top:5px; bottom:5px; right:5px; background:var(--kolor-szary-jasny); border-radius:var(--zaokraglenie-3-px); }
+.StrTresc .Slupek div { position:relative; background:var(--kolor-szablonu); width:10px; height:23px; border-radius:var(--zaokraglenie-3-px); }
+.StrTresc .Odpowiedz { text-align:right; }
+@media only screen and (max-width:799px) {
+  .StrTresc .Odpowiedz { text-align:center; }
+}
+.StrTresc .Odpowiedz strong { display:inline-block; margin-right:5px; }
+.StrTresc .sumaGlosow { text-align:center; }
+
+/* wyszukiwanie zaawansowane */
+#WyszukiwanieZaawansowane .WyszukajFraze { padding:15px; margin:0 0 20px 0; background:var(--tlo-szare); border-radius:var(--zaokraglenie-5-px); }
+#WyszukiwanieZaawansowane p { padding:5px 5px 5px 15px; margin:0; }
+#WyszukiwanieZaawansowane label span.radio, #WyszukiwanieZaawansowane label span.check { left:initial; left:0; transform:translateY(-25%); }
+
+#WyszukiwanieZaawansowane p label { display:flex; align-items:center; flex-wrap:wrap; padding:0; margin:0; }
+#WyszukiwanieZaawansowane p label b { position:relative; padding:5px 30px 5px 0; display:inline-block; font-weight:normal; }
+@media only screen and (max-width:1023px) { 
+  #WyszukiwanieZaawansowane p label b:first-child { width:calc(70% - 30px); }
+}
+@media only screen and (min-width:1024px) { 
+  #WyszukiwanieZaawansowane p label b:first-child { width:calc(40% - 30px); }
+}
+@media only screen and (min-width:1280px) { 
+  #WyszukiwanieZaawansowane p label b:first-child { width:calc(30% - 30px); }
+}
+#WyszukiwanieZaawansowane p label b:last-child { white-space:nowrap; }
+#WyszukiwanieZaawansowane p label b select { max-width:80%; }
+
+/* wyszukiwanie w kategoriach artykulow */
+#WyszukiwanieZaawansowane .Lf { margin:0 10px 0 0; }
+#WyszukiwanieZaawansowane strong { font-size:110%; font-weight:normal; margin:0 0 10px 0; display:block; }
+#WyszukiwanieZaawansowane form { display:flex; align-items:center; flex-wrap:wrap; padding:2px 0 2px 0; }
+#WyszukiwanieZaawansowane form .cl { display:none; }
+@media only screen and (max-width:799px) {
+  #InSzukajArtykul { width:90%; }
+  #WyszukiwanieZaawansowane form .Lf:first-child { width:100%; }
+  #WyszukiwanieZaawansowane form .przycisk { margin-top:10px; }
+}
+
+/* wynik wyszukiwania */
+#WynikWyszukiwania { padding:10px 15px 10px 15px; margin:0 0 20px 0; background:var(--tlo-szare); border-radius:var(--zaokraglenie-5-px); }
+@media only screen and (max-width:799px) {
+  #WynikWyszukiwania .Rg { float:none; }
+}
+#WynikWyszukiwania p { display:block; margin:8px 5px 8px 0; }
+#WynikWyszukiwania p span { display:inline-block; font-weight:normal; margin-right:5px; }
+#WynikWyszukiwania p b { display:inline-block; font-size:110%; }
+#WynikWyszukiwania .przycisk { margin:5px 0 5px 0; }
+
+/* tabelka w panelu klienta */
+.TabelaKlient { margin:25px 0 25px 0; padding:0; width:100%; max-width:100%; overflow-x:auto; }
+.TabelaKlient table { width:100%; border-spacing:0; border-collapse:separate; overflow:hidden; border:1px solid var(--kolor-linia); background:var(--kolor-tlo-modul); border-radius:var(--zaokraglenie-5-px); margin-bottom:15px; }
+.TabelaKlient td, .TabelaKlient th { text-align:left; padding:8px 12px 8px 12px; vertical-align:middle; }
+.TabelaKlient th { background:var(--tlo-szare); text-align:center; padding:12px; font-weight:bold; }
+.TabelaKlient span.TabelaOpis { display:none; }
+@media only screen and (max-width:1023px) { 
+  .TabelaKlient table td { display:block; border-bottom:0; padding:8px; }  
+  .TabelaKlient table tr { display:block; margin:10px 0 10px 0; padding-top:10px; border-top:1px solid var(--kolor-linia); }
+  .TabelaKlient table tr:nth-child(2)  { padding-top:0; border:0; }
+  .TabelaKlient table .Naglowek { display:none; }
+  .TabelaKlient span.TabelaOpis { display:inline-block; margin-right:5px; opacity:0.6; }
+  .TabelaKlient table tr td.PoleNiewidoczne { padding:0; border:0; border-bottom:1px solid var(--kolor-linia); }
+  #TabelaZamowienia td .Cena { display:inline-block; }  
+  #TabelaZamowienia tr td:first-child { text-align:center; }
+}
+
+.TabelaKlient .przycisk { padding:7px 10px 7px 10px; font-size:90%; }
+
+.TabelaKlient .Centruj { text-align:center; }
+.TabelaKlient .DoPrawej { text-align:center; }
+@media only screen and (max-width:1023px) { 
+  .TabelaKlient .Centruj, .TabelaKlient .DoPrawej { text-align:left; }
+}
+.TabelaKlient td .Cena { font-style:normal; }
+.TabelaKlient td h3 { color:var(--kolor-glowny-czcionki); font-size:100%; font-weight:normal; }
+.TabelaKlient td h3 a { font-size:140%; }
+
+.PodsumowanieWartosc .Cena { font-weight:bold; }
+.GrafikaBanneru td { padding:15px 0 15px 0; text-align:center; }
+@media only screen and (max-width:479px) { 
+  .GrafikaBanneru td img { max-width:280px !important; }
+}
+@media only screen and (min-width:479px) and (max-width:1023px) {
+  .GrafikaBanneru td img { max-width:650px !important; }
+}
+@media only screen and (min-width:1024px) {
+  .GrafikaBanneru td img { max-width:1000px !important; }
+}
+
+/* select w panelu klienta dotyczacy punktow */
+.SelectPunkty { margin:25px 5px 10px 0; }
+.SelectPunkty select { max-width:60%; margin-top:10px; }
+
+/* wyglad panelu klienta */
+.StrTresc .SekcjaTbl { margin:0 0 25px 0; display:flex; flex-wrap:wrap; align-items:center; justify-content:flex-end; line-height:1.7; }
+.StrTresc .WierszTbl { margin:5px 0 5px 0; display:flex; align-items:center; justify-content:flex-end; width:100%; }
+.StrTresc .Sekcja .TytulSekcji, .StrTresc .SekcjaTbl .TytulSekcji { background:url('../szablony/standardowy-d.rwd.v2/obrazki/szablon/ok.svg') no-repeat left center; background-size:20px 20px; display:block; font-weight:bold; padding-left:30px; margin:15px 0 15px 0; font-size:120%; }
+.StrTresc .Sekcja .TrescSekcji { background:url("../szablony/standardowy-d.rwd.v2/obrazki/szablon/strzalka_prawo.svg") no-repeat left center; background-size:12px 12px; font-weight:normal; margin:15px 0 15px 35px; padding-left:20px; text-decoration:none; line-height:1.8; }
+
+/* szczegoly zamowienia */
+
+@media only screen and (max-width:799px) { 
+  .StrTresc .SekcjaRamka .PozycjaHistoriaZamowienia { margin:10px; }
+  .StrTresc .SekcjaRamka .PozycjaHistoriaZamowienia:last-child .TrescScr { border:0; }
+}
+@media only screen and (min-width:800px) { 
+  .StrTresc .SekcjaRamka .PozycjaHistoriaZamowienia { position:relative; margin:25px 0 25px 0; }
+  .StrTresc .SekcjaRamka .PozycjaHistoriaReklamacja { margin:25px 0 25px 20px; }
+  .StrTresc .SekcjaRamka .PozycjaHistoriaZamowienia::before { content:""; display:inline-block; position:absolute; top:50%; left:5px; width:25px; height:1px; background:var(--kolor-szary-ciemny); }
+  .StrTresc .SekcjaRamka .PozycjaHistoriaZamowienia::after { content:""; display:inline-block; position:absolute; top:0px; left:5px; bottom:0px; width:1px; background:var(--kolor-szary-ciemny); }
+  .StrTresc .SekcjaRamka .PozycjaHistoriaZamowienia .TrescScr::before { z-index:5; content:""; display:inline-block; position:absolute; top:50%; margin-top:-6px; left:-40px; width:10px; height:10px; border-radius:var(--zaokraglenie-50-proc); border:1px solid var(--kolor-szary-ciemny); background:var(--kolor-tlo-modul); }
+  .StrTresc .SekcjaRamka .PozycjaHistoriaZamowienia .TrescScr { position:relative; margin:0px 20px 0px 40px; padding:0px 15px 0px 15px; border:1px solid var(--kolor-linia); border-radius:var(--zaokraglenie-5-px); }
+}
+
+.StrTresc .SekcjaRamka { margin:5px 0 20px 0; border:1px solid var(--kolor-linia); background:var(--kolor-tlo-modul); border-radius:var(--zaokraglenie-5-px); }
+.StrTresc .SekcjaRamka .TytulSekcji { background:transparent; padding-left:20px; }
+.StrTresc .SekcjaRamka .TrescSekcji { background:transparent; padding-left:0px; margin-left:20px; }
+  
+.StrTresc .SekcjaRamka .LinkiElektroniczne { background:url("../szablony/standardowy-d.rwd.v2/obrazki/szablon/pobieranie.svg") no-repeat left center; background-size:25px 25px; padding-left:35px; }
+.StrTresc .SekcjaRamka .ZamowieniaReklamacje { margin:0 0 15px 20px; }
+.StrTresc .SekcjaRamka .ZamowieniaReklamacje .TrescSekcji { background:url("../szablony/standardowy-d.rwd.v2/obrazki/szablon/reklamacja.svg") no-repeat left center; background-size:25px 25px; padding:10px 0 10px 35px; margin:0; }
+.StrTresc .SekcjaRamka .ZamowieniaReklamacje .TrescSekcji:nth-last-child(2) { margin-bottom:15px; }
+
+@media only screen and (max-width:1023px) { 
+  .StrTresc .DaneAdresowe { width:100%; }
+}
+@media only screen and (min-width:1024px) {
+  .StrTresc .DaneAdresowe { width:50%; }
+}
+
+.StrTresc .PozycjaZamowienieLista { margin:5px 0 20px 0; padding:20px; background-clip:content-box; box-sizing:border-box; border:1px solid var(--kolor-linia); background:var(--kolor-tlo-modul); border-radius:var(--zaokraglenie-5-px); }
+.StrTresc .Tytul { text-align:left; margin:0 0 20px 0; display:block; font-weight:bold; font-size:120%; }
+.StrTresc .StatusZamowienia { display:block; margin:10px 0 20px 0; font-style:normal; }
+.StrTresc .DataZlozenia { display:block; background:url('../szablony/standardowy-d.rwd.v2/obrazki/szablon/kalendarz.svg') no-repeat left center; background-size:25px 25px; padding:2px 0 2px 35px; font-style:normal; }
+.StrTresc .DataPlanowanejWysylki { display:block; background:url('../szablony/standardowy-d.rwd.v2/obrazki/szablon/paczka.svg') no-repeat left center; background-size:25px 25px; padding:2px 0 2px 35px; font-style:normal; margin:15px 0 20px 0; }
+.StrTresc .Adresat { width:96%; padding:5px 0 5px 0; }
+.StrTresc .Adresat strong { color:var(--kolor-glowny-czcionki); display:block; margin-bottom:10px; font-weight:normal; font-size:120%; }
+.StrTresc .Szczegoly { width:96%; padding:5px 0 5px 0; }
+.StrTresc .Szczegoly strong { color:var(--kolor-glowny-czcionki); display:block; margin-bottom:10px; font-weight:normal; font-size:120%; }
+.StrTresc .Adresat ul, .StrTresc .RamkaProcent ul, .StrTresc .Szczegoly ul, .StrTresc .Sekcja ul { list-style-type:none; padding:0 5px 5px 0; margin:0; }
+.StrTresc .Adresat li, .StrTresc .Szczegoly li, .StrTresc .Sekcja li { line-height:1.5; padding-bottom:5px; }
+.StrTresc .SzczegolyData { margin:15px 0 10px 0; }
+.StrTresc .SzczegolyDataPunkty { margin:15px 0 10px 0; }
+.StrTresc .SzczegolySzerokie { float:left; padding:5px; width:70%; }
+.StrTresc .SzczegolySzerokie strong { color:var(--kolor-glowny-czcionki); display:block; font-weight:normal; font-size:120%; }
+.StrTresc .SzczegolySzerokie ul { list-style-type:none; padding:15px 5px 15px 0; margin:0; }
+.StrTresc .SzczegolySzerokie li { line-height:1.5; margin-bottom:5px; }
+.StrTresc .StatPp { margin:7px 7px 17px 35px; }
+
+.StrTresc .ZamowieniaLista {  display:flex; flex-direction:column; flex-wrap:nowrap; justify-content:flex-start; align-content:flex-start; align-items:flex-start; }
+
+@media only screen and (min-width:799px) {
+  .StrTresc .ZamowieniaLista { display:flex; flex-direction:row; flex-wrap:nowrap; justify-content:space-between; align-content:space-between; align-items:flex-start; }
+  .StrTresc .Adresat, .StrTresc .Szczegoly { width:35%; }
+}
+
+/* wyswietlanie ikonkek z linkami w sekcji klienta */
+.StrTresc .Ikonki { padding:5px 0 5px 0; margin:0; }
+.StrTresc .Ikonki a { display:inline-block; margin:5px 20px 5px 0; }
+
+/* podsumowanie zamowienia */
+.PodsumowanieOpis { padding-right:8px; text-align:right; }
+.PodsumowanieWartosc { text-align:right; padding-right:8px; }
+.ZamowienieKomentarz { text-align:left; margin:10px 0 10px 0; }
+
+/* sekcja aktualnosci i galerii - wyswietlanie listy artykulow z kategorii oraz zdjec galerii */
+.StrTresc .KomorkaTbl { text-align:center; position:relative; background-clip:content-box; box-sizing:border-box; }
+.StrTresc .KomorkaTbl .ElementListingRamka { position:relative; z-index:2; padding:10px; margin:10px; height:calc(100% - 20px); background-clip:border-box; box-sizing:border-box; display:flex; flex-direction:column; }
+.StrTresc .KomorkaTbl h2 a { text-align:left; padding:0; display:block; margin-bottom:15px; font-size:130%; font-weight:normal; }
+.StrTresc .KomorkaTbl .DaneAktualnosci { float:none; text-align:left; margin-bottom:8px; display:block; }
+.StrTresc .KomorkaTbl .DaneAktualnosci em { display:inline-block; margin:2px 2px 2px 0; padding-right:15px; color:var(--kolor-szary-ciemny); font-style:normal; }
+.StrTresc .KomorkaTbl .TrescAktualnosci { text-align:left; margin:5px 0 5px 0; }
+.StrTresc .KomorkaTbl .TrescAktualnosci .FotoArtykul { padding-bottom:20px; text-align:center; }
+.StrTresc .KomorkaTbl .TrescAktualnosci .FotoArtykul a { font-size:0; display:block; overflow:hidden; }
+.StrTresc .KomorkaTbl .TrescAktualnosci .OpisArtykul { line-height:1.5; }
+.StrTresc .KomorkaTbl .ZdjecieGalerii { overflow:hidden; font-size:0; display:block; text-align:center; margin-bottom:15px; }
+
+/* w aktualosciach data dodania artykulu i licznik wyswietlen - pojedynczy artykul */
+.DaneAktualnosci { display:block; text-align:left; margin-bottom:15px; }
+.DaneAktualnosci em { display:inline-block; margin:2px 30px 2px 0; color:var(--kolor-szary-ciemny); font-style:normal; }
+.DaneAktualnosci .DataDodania { background:url('../szablony/standardowy-d.rwd.v2/obrazki/szablon/kalendarz.svg') no-repeat left center; background-size:16px 16px; padding:2px 0 2px 22px; }
+.DaneAktualnosci .IloscOdslon { padding:0; }
+.DaneAktualnosci em.AutorArtykulu { display:block !important; padding:3px 0 5px 0; }
+.TytulKomentarze { font-size:120%; margin:25px 0 15px 0; padding-top:15px; }
+.KomentarzArtykul { margin:8px 0 8px 0; line-height:1.5; }
+.KomentarzArtykul span { opacity:0.6; }
+.KomentarzArtykul div.KomentarzKlienta { padding:10px 0 10px 0; line-height:1.2; }
+.KomentarzArtykul div.KomentarzOdpowiedz { padding:10px 0 10px 40px; line-height:1.2; font-style:italic; }
+.KomentarzArtykul div.KomentarzOdpowiedz span { display:block; margin-bottom:5px; }
+.KomentarzArtykuluForm { margin:15px 0 5px 0; }
+.KomentarzArtykuluForm b { display:block; margin-bottom:15px; padding-top:15px; }
+
+/* naglowki informacyjne np logowanie, rejestracja */
+.Ramka strong, .Ramka h3 { color:var(--kolor-glowny-czcionki); font-size:120%; margin:10px 0 5px 0; font-weight:bold; }
+
+/* uzywane np przy logowaniu - podzial strony na 2 czesci */
+@media only screen and (max-width:1023px) {
+  .StrTresc .RamkaProcent { width:100%; }
+  .StrTresc .RamkaProcent:last-child { margin-top:15px; }
+}
+@media only screen and (min-width:1024px) {
+  .StrTresc .RamkaProcent { width:calc(50% - 20px); float:left; }
+}
+
+/* podziala na 3 kolumny - np panel klienta */
+@media only screen and (max-width:799px) { 
+  .StrTresc .RamkaProcentTrzy { width:100%; }
+}
+@media only screen and (min-width:800px) and (max-width:1023px) { 
+  .StrTresc .RamkaProcentTrzy { width:50%; }
+}
+@media only screen and (min-width:1024px) {
+  .StrTresc .RamkaProcentTrzy { width:33%; }
+}
+.StrTresc .RamkaProcentTrzy { float:left; }
+
+/* schowek - lista produktow */
+.SchowekWartosc { margin-top:15px; display:flex; align-items:center; }
+.SchowekWartosc .Kom { padding:0 5px 0 0; }
+
+/* koszyk */
+.PrzyciskiKoszyka { display:flex; flex-wrap:wrap; justify-content:flex-start; align-items:center; padding:10px 0 10px 0; }
+.PrzyciskiKoszyka span, .PrzyciskiKoszyka a { display:block; margin:0 20px 0 0; padding:5px 0 5px 17px; cursor:pointer; background:url('../szablony/standardowy-d.rwd.v2/obrazki/szablon/strzalka_prawo.svg') no-repeat left center; background-size:12px 12px; display:block; transition:all 0.30s ease; }
+.PrzyciskiKoszyka span:hover { color:var(--kolor-szablonu); }
+.LinkPobraniaKoszykaPDF a { background:url('../szablony/standardowy-d.rwd.v2/obrazki/szablon/pdf.svg') no-repeat left center; background-size:18px 18px; display:inline-block; padding:5px 0 5px 26px; }
+
+/* informacja o wadze produktow */
+.InformacjaWaga { text-align:left; padding:5px 0 5px 0; }
+
+/* definicja wygladu kolejnych krokow realizacji zamowienia */
+/* podziala na 3 kolumny - np panel klienta */
+@media only screen and (max-width:1023px) { 
+  #KrokiZamowienia { display:none; }
+}
+@media only screen and (min-width:1024px) {
+  #KrokiZamowienia { display:flex; flex-wrap:nowrap; justify-content:space-between; align-items:center; padding:15px; }
+  .KoszykKrok { width:25%; border-right:1px solid var(--kolor-linia); padding:5px 10px 5px 15px; }
+  .KoszykKrok:first-child { padding-left:0; }
+  .KoszykKrok:last-child { border:0; }
+  .KoszykKrok p, .KoszykKrok strong { opacity:0.4; }
+  .KoszykKrok.aktywny p, .KoszykKrok.aktywny strong { opacity:1; }
+  .KoszykKrok.aktywny strong { background:url('../szablony/standardowy-d.rwd.v2/obrazki/szablon/ok.svg') no-repeat left center; background-size:20px 20px; padding:5px 0 5px 30px; color:var(--kolor-glowny-czcionki); }
+  .KoszykKrok strong { display:block; font-size:120%; margin:0 0 5px 5px; padding:5px 0 5px 0; }
+  .KoszykKrok p, .KoszykKrok h2 { margin:0 0 5px 5px; }
+  .KoszykKrok a { font-size:100%; }  
+}
+
+/* koszyk - tabela produktow */
+.Koszyk { width:100%; border-spacing:0; border-collapse:separate; overflow:hidden; border:1px solid var(--kolor-linia); background:var(--kolor-tlo-modul); border-radius:var(--zaokraglenie-5-px); margin-bottom:15px; }
+.Koszyk th { text-align:center; padding:10px 5px 10px 5px; vertical-align:middle; }
+.Koszyk td { text-align:center; padding:5px; vertical-align:middle; word-break:break-word; }
+@media only screen and (min-width:1024px) { 
+  .Koszyk th { padding:15px 10px 15px 10px; }
+  .Koszyk td { padding:10px; }
+}
+.Koszyk .Naglowek th { background:var(--tlo-szare); text-align:center; font-weight:bold; }
+.Koszyk tr td:nth-child(2) h3 { text-align:left; font-size:100%; }
+.Koszyk tr td:nth-child(3), .Koszyk tr td:nth-child(5) { white-space:nowrap; }
+.Koszyk tr:last-child td { border:0; padding:10px 5px 10px 5px; background:var(--tlo-szare); }
+
+@media only screen and (max-width:479px) {
+  .Koszyk { font-size:90%; }
+}
+@media only screen and (max-width:799px) { 
+  .Koszyk .Cena .Brutto small, .Koszyk .Cena .Netto small { display:block; }
+  .Koszyk tr td:nth-child(2) h3 a { font-size:100%; }
+  .Koszyk tr td:nth-last-child(2) { border-left:0; }
+  .Koszyk .Cena { font-size:100%; }
+  .Koszyk .Suma .Cena { font-size:100%; }
+}
+
+/* przyciski plus/minus w koszyku */
+.Koszyk .PoleIlosc { position:relative; display:flex; margin:auto; overflow:visible; border:1px solid var(--kolor-ramka-pola); background:var(--kolor-tlo-pola); border-radius:var(--zaokraglenie-input); transition:all 0.30s ease-in-out; width:fit-content; }
+.Koszyk .PoleIlosc .minus, .Koszyk .PoleIlosc .plus { width:20px; font-size:0; cursor:pointer; transition:all 0.30s ease-in-out; padding:0; display:flex; justify-content:center; align-items:center; }
+.Koszyk .PoleIlosc .minus { background:url('../szablony/standardowy-d.rwd.v2/obrazki/szablon/minus.svg') no-repeat 50% transparent; background-size:12px 12px; }
+.Koszyk .PoleIlosc .plus { background: url('../szablony/standardowy-d.rwd.v2/obrazki/szablon/plus.svg') no-repeat 50% transparent; background-size:12px 12px; }
+@media only screen and (max-width:799px) { 
+  .Koszyk .PoleIlosc .minus, .Koszyk .PoleIlosc .plus { display:none; }
+}
+
+.Koszyk .UsunKoszyk { display:inline-block; cursor:pointer; background:url('../szablony/standardowy-d.rwd.v2/obrazki/szablon/krzyzyk.svg') no-repeat center top; background-size:20px 20px; width:20px; height:20px; }
+.Koszyk input { vertical-align:middle; text-align:center; color:var(--kolor-glowny-czcionki); border:none; background:var(--kolor-tlo-pola); box-shadow:none; border-radius:var(--zaokraglenie-input); transition:all 0.30s ease-in-out; padding:5px; }
+.Koszyk .SumaTekst { text-align:right; font-weight:bold; }
+.Koszyk .Suma { font-weight:bold; padding:5px 10px 5px 10px; text-align:center; white-space:nowrap; }
+.Koszyk .Suma .Cena { font-weight:bold; }
+.Koszyk .Suma em { font-weight:bold; }
+.Koszyk .Suma small { font-weight:normal; }
+.Koszyk .Przelicz { text-align:center; display:block; margin-top:5px; }
+.Koszyk .Przelicz .przycisk { width:18px; height:18px; background:url('../szablony/standardowy-d.rwd.v2/obrazki/szablon/odswiez.svg') no-repeat; background-size:18px 18px; overflow:hidden; line-height:200; padding:0; margin:0; border:0; }
+
+.Koszyk .Cecha, table .Cecha { font-size:90%; display:block; margin-top:2px; font-weight:normal; }
+.Koszyk .Cecha a, table .Cecha a { font-size:100%; font-weight:normal; }
+.Koszyk .Komentarz { font-size:90%; display:block; margin-top:10px; font-weight:normal; }
+.Koszyk .Komentarz b { margin-top:3px; display:block; font-weight:bold; }
+.Koszyk .Komentarz img { float:left; margin:0 5px 5px 0; cursor:pointer; width:25px; height:25px; }
+.Koszyk .Komentarz textarea { width:100%; }
+
+.InformacjaBrakMagazynProdukt { position:relative; text-align:left; color:var(--kolor-czerwony); margin-top:5px; padding:8px 0 8px 30px; font-weight:bold; }
+.InformacjaBrakMagazynProdukt::before { content:""; display:inline-block; position:absolute; transform:translateY(-50%); top:50%; left:0; width:20px; height:20px; background:url('../szablony/standardowy-d.rwd.v2/obrazki/szablon/alert.svg') no-repeat; background-size:20px 20px; filter:var(--filtr-szablonu); }
+
+.InformacjaBrakMagazyn { position:relative; text-align:left; margin:15px 0 20px 0; position:relative; background:var(--kolor-tla-blad); color:var(--kolor-czerwony); padding:20px 15px 20px 55px; font-weight:bold; }
+.InformacjaBrakMagazyn::before { content:""; display:inline-block; position:absolute; transform:translateY(-50%); top:50%; left:15px; width:30px; height:30px; background:url('../szablony/standardowy-d.rwd.v2/obrazki/szablon/alert.svg') no-repeat; background-size:30px 30px; filter:var(--filtr-szablonu); }
+
+.PodsumowanieInformacja { background:url('../szablony/standardowy-d.rwd.v2/obrazki/szablon/info.svg') no-repeat left center; background-size:25px 25px; padding:5px 35px 5px; margin:0 0 10px 5px; }
+.DarmowaWysylkaInformacja { margin-top:15px; border:1px solid var(--kolor-linia); padding:15px; text-align:center; border-radius:var(--zaokraglenie-5-px); }
+.WysylkaSuwak { padding:10px 0 10px 0; }
+.WysylkaSuwakTlo { margin:0 auto; max-width:80%; height:10px; background:var(--kolor-szary-jasny); border-radius:var(--zaokraglenie-5-px); overflow:hidden; position:relative; }
+.WysylkaSuwakWartosc { position:absolute; top:0; left:0; bottom:0; display:block; background:var(--kolor-szablonu); border-radius:var(--zaokraglenie-5-px); animation:suwak-animacja 1s; transform-origin:left center; }
+@keyframes suwak-animacja {
+  0% { transform: scaleX(0); }
+  100% { transform: scaleX(1); }
+}
+
+/* koszyk - box wyboru wysylki i platnosci */
+.KontenerDostawaPlatnosc { margin:15px 0 20px 0; }
+
+/* koszyk - box wyboru wysylki i platnosci */
+.KontenerDostawaPlatnosc { margin-bottom:20px; }
+
+.DostawaWybor { border:1px solid var(--kolor-linia); background:var(--kolor-tlo-modul); padding:0 15px 10px 15px; border-radius:var(--zaokraglenie-5-px); }
+.PlatnoscWybor { border:1px solid var(--kolor-linia); background:var(--kolor-tlo-modul); padding:0 15px 10px 15px; border-radius:var(--zaokraglenie-5-px); }
+.InfoTip { cursor:help; margin-left:8px; width:16px; height:16px; display:inline-block; }
+.InfoTipBezGrafiki { background:url('../szablony/standardowy-d.rwd.v2/obrazki/szablon/info.svg') no-repeat left center; background-size:16px 16px; }
+  
+@media only screen and (max-width:1023px) { 
+  .DostawaWybor, .PlatnoscWybor { display:block; }
+  .DostawaWybor { margin-bottom:25px; }
+}
+@media only screen and (min-width:1024px) {
+  .KontenerDostawaPlatnosc { display:flex; flex-wrap:nowrap; justify-content:space-between; align-content:stretch; }
+  .DostawaWybor, .PlatnoscWybor { width:50%; background:var(--tlo-szare); }
+  .DostawaWybor { margin-right:10px; }
+  .PlatnoscWybor { margin-left:10px; }
+}
+
+.DostawaWybor h3, .PlatnoscWybor h3 { color:var(--kolor-glowny-czcionki); font-size:140%; padding:15px 0 15px 0; font-weight:bold; }
+.PlatnoscListaWyboru { padding:10px 15px 10px 0; }
+.DostawaListaWyboru { padding:10px 15px 10px 0; }
+
+.ListaWyboru { padding:10px 15px 10px 0; }
+.ListaTbl { display:flex; flex-wrap:nowrap; justify-content:space-between; align-content:stretch; align-items:center; }
+@media only screen and (max-width:479px) {
+  .ListaTbl { font-size:90%; }
+}
+
+.ListaTbl .ListaRadio { width:80%; position:relative; padding:10px 10px 10px 0; box-sizing:border-box; }
+.ListaTbl .ListaCena { width:20%; text-align:right; padding:10px 0 10px 0; white-space:nowrap; }
+.ListaWyboru input, .InfoPunkty input { margin:4px; padding:4px; }
+
+.ListaTbl .ListaRadio:hover label { color:var(--kolor-szablonu-2); text-decoration:none; cursor:pointer; }
+.ListaTbl .ListaRadio .WyborMapy { display:block; position:relative; padding-left:35px; }
+.ListaTbl .ListaRadio label { display:flex; flex-direction:row; flex-wrap:nowrap; justify-content:space-between; align-content:stretch; align-items:center; margin:auto; position:relative; padding-left:35px; cursor:pointer; font-size:inherit; font-family:inherit; min-height:20px; line-height:20px; }
+.ListaTbl .ListaRadio label input[type=radio] { position:absolute; left:0; opacity:0; width:0; height:0; }
+
+.ListaTbl .ListaRadio label span.radio, .ListaTbl .ListaRadio label span.check { position:absolute; top:0; left:0; bottom:0; right:0; margin:auto 0; width:20px; height:20px; background-color:var(--kolor-tlo-pola); border:1px solid var(--kolor-ramka-pola); border-radius:var(--zaokraglenie-checkbox); transition:all 0.30s ease-in-out; }
+.ListaTbl .ListaRadio label span.radio::after, .ListaTbl .ListaRadio span.check::after { content:""; position:absolute; display:none; left:6px; top:2px; width:4px; height:10px; border:solid var(--kolor-radio-zaznaczony); border-width:0 3px 3px 0; transform:rotate(45deg); }
+.ListaTbl .ListaRadio label:hover span.radio { border:1px solid var(--kolor-ramka-pola-hover); border-radius:var(--zaokraglenie-checkbox); }
+.ListaTbl .ListaRadio label input:checked ~ span.radio { background-color:var(--kolor-tlo-radio-zaznaczony); border:solid 1px var(--kolor-tlo-radio-zaznaczony); border-radius:var(--zaokraglenie-checkbox); }
+.ListaTbl .ListaRadio label input:checked ~ span.radio::after { display:block; }
+
+.ListaTbl .ListaRadio label .ObrazekLogo { text-align:right; flex-grow:1; order:2;}
+.ListaTbl .ListaRadio label .RodzajNazwa { max-width:calc(100% - 100px); text-align:left; order:0; }
+
+.ListaTbl .ListaRadio label .ObrazekLogo img { max-width:60px !important; }
+@media only screen and (max-width:799px) {
+  .ListaTbl .ListaRadio label .RodzajNazwa { max-width:100%; }
+  .ListaTbl .ListaRadio label .ObrazekLogo { display:none; }
+  .ListaTbl .ListaRadio .InfoTip { display:none; }
+}
+
+.ListaTbl .ListaRadio label .InfoTip { order:1; }
+
+/* wybor punktu dostawy w koszyku */
+.WyborPunktuKoszyk { padding:10px 0 5px 0; display:none; }
+.WybranyPunktMapyKoszyk { padding-bottom:8px; font-style:italic; font-weight:bold; }
+
+/* koszyk - podsumowanie zamowienia */
+@media only screen and (max-width:1023px) {
+  .KontenerKoszykPodsumowanie { margin:30px 0 10px 0; }
+}
+@media only screen and (min-width:1024px) {
+  .KontenerKoszykPodsumowanie { float:right; width:49%; }
+}
+.KontenerKoszykPodsumowanie h3 { font-size:140%; margin:10px 0 0 0; }
+.KontenerKoszykPodsumowanie .ListaWyboru { padding:10px 0 10px 0; }
+.ListaTblPodsumowania { display:flex; flex-wrap:nowrap; justify-content:space-between; align-content:stretch; margin-bottom:4px; }
+.ListaTblPodsumowania div { border-bottom:1px solid var(--kolor-linia); padding:8px 0 8px 0; }
+.ListaTblPodsumowania div:nth-child(1) { width:60%; }
+.ListaTblPodsumowania div:nth-child(2) { width:40%; }
+.ListaPodsumowania { padding:10px 15px 10px; }
+.ListaTblPodsumowania:last-child div { border:0; }
+.ListaPodsumowaniaCena { border-bottom:1px solid var(--kolor-linia); text-align:right; }
+.ListaPodsumowaniaCenaUjemna { color:var(--kolor-czerwony); text-align:right; }
+.ListaPodsumowaniaSumaOpis { color:var(--kolor-glowny-czcionki); }
+.ListaPodsumowaniaSumaCena { color:var(--kolor-glowny-czcionki); font-weight:bold; font-size:140% !important; text-align:right; }
+
+/* koszyk - informacja o punktach */
+.KontenerInfoPunkty { padding:10px 15px 10px 10px; text-align:left; line-height:1.7; }
+.KontenerPunkty { border:1px solid var(--kolor-linia); background:var(--kolor-tlo-modul); }
+.KontenerPunkty h3 { color:var(--kolor-glowny-czcionki); font-size:140%; margin-bottom:0.3em; margin-left:10px; margin-top:1.0em; padding:0 5px; font-weight:bold; }
+.KontenerPunkty p { margin-left:5px; }
+.FormularzPunkty { margin:5px; }
+.FormularzPunkty .UsunPunkty { margin-left:5px; display:inline-block; cursor:pointer; background:url('../szablony/standardowy-d.rwd.v2/obrazki/szablon/krzyzyk.svg') no-repeat center top; background-size:20px 20px; width:20px; height:20px; }
+#PunktyForm label.error { text-align:left; margin-left:3px; margin-top:0; margin-bottom:10px;width:160px !important; }
+#PunktyForm { margin-top:20px; }
+
+@media only screen and (max-width:1023px) {
+  #PunktyForm div { display:block; margin-bottom:15px; }
+}
+@media only screen and (min-width:1024px) {
+  #PunktyForm { display:flex; flex-wrap:nowrap; align-items:center; }
+  #PunktyForm div { margin-right:15px; }
+}
+
+@media only screen and (max-width:1023px) { 
+  .KontenerRaty { border:1px solid var(--kolor-linia); background:var(--kolor-tlo-modul); padding:0 20px 10px 20px; }
+  .KontenerRaty div { display:inline-block; vertical-align:middle; text-align:left; }
+  .KontenerRaty div a { padding:15px 20px 10px 0; display:inline-block; }
+  .KontenerKupon { border:1px solid var(--kolor-linia); background:var(--kolor-tlo-modul); padding:0 20px 10px 20px; margin-top:20px; }
+  .KontenerKoszykButton { text-align:center; margin:35px 0 15px 0; }
+  .KontenerKoszykButtonKontynuuj { text-align:center; margin-bottom:20px; }
+  .KontenerKoszykButtonKontynuuj .Prawy { float:none; }
+}
+@media only screen and (min-width:1024px) {
+  .KontenerKoszykPozostale { display:flex; flex-wrap:nowrap; justify-content:center; align-content:stretch; align-items:stretch; border:1px solid var(--kolor-linia); background:var(--kolor-tlo-modul); border-radius:var(--zaokraglenie-5-px); }
+  .KontenerRaty { border-right:1px solid var(--kolor-linia); padding:10px; width:15%; }
+  .KontenerRaty div { text-align:center; }
+  .KontenerRaty div a { padding:20px 0 5px 0; display:inline-block; }
+  .KontenerRaty h5 { text-align:center; }
+  .KontenerKupon { border-right:1px solid var(--kolor-linia); padding:10px 10px 10px 15px; width:50%; }
+  .KontenerKoszykButton { padding:10px; position:relative; text-align:center; width:50%; }
+}
+
+.KontenerRaty h5 { color:var(--kolor-glowny-czcionki); font-size:120%; font-weight:bold; margin-top:1.0em; }
+.KontenerKupon h5 { color:var(--kolor-glowny-czcionki); font-size:120%; font-weight:bold; margin-top:1.0em; }
+.KontenerOpakowanieOzdobne h5 { color:var(--kolor-glowny-czcionki); font-size:120%; font-weight:bold; margin-top:1.0em; }
+
+.FormularzKupon { margin:10px 10px 10px 0; line-height:1.7; }
+.FormularzKuponUsuniecie { display:flex; align-items:center; }
+.FormularzKupon p { padding-bottom:10px; }
+.FormularzKupon .UsunKupon { margin-left:5px; display:inline-block; cursor:pointer; background:url('../szablony/standardowy-d.rwd.v2/obrazki/szablon/krzyzyk.svg') no-repeat center top; background-size:20px 20px; width:20px; height:20px; }
+#KuponRabatowyForm label.error { text-align:left; margin:4px 0 10px 3px; }
+
+@media only screen and (max-width:1023px) {
+  #KuponRabatowyForm div { display:block; margin-bottom:15px; }
+}
+@media only screen and (min-width:1024px) {
+  #KuponRabatowyForm { display:flex; align-items:center; }
+  #KuponRabatowyForm div { margin-right:15px; }
+}
+
+.KontenerOpakowanieOzdobne { border:1px solid var(--kolor-linia); background:var(--kolor-tlo-modul); padding:0 10px 5px 15px; margin:10px 0 30px 0; }
+.FormularzOpakowanieOzdobne { margin:10px 10px 10px 0; line-height:1.7; }
+.FormularzOpakowanieOzdobneUsuniecie { display:flex; align-items:center; }
+.FormularzOpakowanieOzdobneUsuniecie span { margin-right:10px; }
+.FormularzOpakowanieOzdobne p { margin-bottom:15px; }
+.FormularzOpakowanieOzdobne .UsunOpakowanieOzdobne { display:inline-block; cursor:pointer; background:url('../szablony/standardowy-d.rwd.v2/obrazki/szablon/krzyzyk.svg') no-repeat center top; background-size:20px 20px; width:20px; height:20px; }
+
+/* koszyk - przycisk zamowienia */
+.KontenerKoszykButton strong { text-align:center; display:block; position:relative; margin:10px; padding:45px 0 0 0; color:var(--kolor-szablonu); font-size:110%; font-weight:normal; line-height:1.5; }
+.KontenerKoszykButton strong::before { content:""; display:inline-block; position:absolute; transform:translateX(-50%); top:0; left:50%; width:35px; height:35px; background:url('../szablony/standardowy-d.rwd.v2/obrazki/szablon/alert.svg') no-repeat; background-size:35px 35px; filter:var(--filtr-szablonu); }
+.KontenerKoszykButton strong span { white-space:nowrap; }
+
+/* cennik */
+.PozycjeCennika { border:1px solid var(--kolor-linia); }
+.PozycjeCennika ul { list-style-type:none; padding:0; margin:0; }
+.PozycjeCennika ul > li { font-weight:bold; }
+.PozycjeCennika ul > li > ul > li { font-weight:normal; }
+.PozycjeCennika em { display:inline-block; margin-left:5px; font-weight:normal; font-style:normal; }
+.PozycjeCennika .PobierzIkona { display:inline-block; background:url('../szablony/standardowy-d.rwd.v2/obrazki/cennik/pobierz.svg') no-repeat left center; background-size:25px 25px; width:25px; height:25px; }
+.PozycjeCennika ul li { border-top:1px solid var(--kolor-linia); }
+.PozycjeCennika > ul:first-child > li:first-child { border:0; } 
+.PozycjeCennika ul li div { padding:5px 10px 5px 10px; display:flex; justify-content:space-between; align-content:flex-start; align-items:center; }
+.PozycjeCennika ul li li div { padding:5px 10px 5px 20px; }
+.PozycjeCennika ul li li li div { padding:5px 10px 5px 30px; }
+.PozycjeCennika ul li li li li li div { padding:5px 10px 5px 40px; }
+.PozycjeCennika ul li li li li li li div { padding:5px 10px 5px 50px; }
+
+/* potwierdzenie zamowienia - dane klienta */
+.KontenerDaneKlienta { margin:20px 0 20px 0; }
+.DaneWysylki { border:1px solid var(--kolor-linia); background:var(--kolor-tlo-modul); border-radius:var(--zaokraglenie-5-px); }
+.DaneFaktura { border:1px solid var(--kolor-linia); background:var(--kolor-tlo-modul); border-radius:var(--zaokraglenie-5-px); }
+@media only screen and (max-width:1023px) {
+  .DaneWysylki, .DaneFaktura { padding:15px; margin-bottom:20px; }
+}
+@media only screen and (min-width:1024px) {
+  .KontenerDaneKlienta { display:flex; flex-wrap:nowrap; justify-content:space-between; align-content:stretch; }
+  .DaneWysylki, .DaneFaktura { width:50%; padding:15px; }
+  .DaneWysylki { margin-right:10px; }
+  .DaneFaktura { margin-left:10px; }  
+}
+.DaneWysylki h3, .DaneFaktura h3 { color:var(--kolor-glowny-czcionki); font-size:140%; padding:0 0 10px 0; font-weight:bold; }
+.DaneWysylki .Tekst, .DaneFaktura .Tekst { padding:10px 15px 0 0; line-height:1.5; }
+.DaneFaktura .Tekst div { margin-top:15px; }
+.DaneFaktura ul { list-style-type:none; margin:0; padding:0; }
+.DaneWysylki ul { list-style-type:none; margin:0; padding:0; }
+.InformacjaParagonNip { margin-bottom:8px; font-weight:bold; }
+
+/* potwierdzenie zamowienia - tabela produktow w potwierdzeniu zamowienia */
+.InfoDuze { font-size:110%; line-height:1.3; }
+.KoszykPotwierdzenie { width:100%; border-spacing:0; border-collapse:separate; overflow:hidden; border:1px solid var(--kolor-linia); background:var(--kolor-tlo-modul); border-radius:var(--zaokraglenie-5-px); margin-top:20px; }
+.KoszykPotwierdzenie th { text-align:center; padding:12px 10px 12px 10px; vertical-align:middle; }
+.KoszykPotwierdzenie tr td:nth-child(1) h3 { text-align:left; }
+.KoszykPotwierdzenie td { text-align:center; padding:10px; vertical-align:middle; word-break:break-word; }
+.KoszykPotwierdzenie .Naglowek th { background:var(--tlo-szare); text-align:center; font-weight:bold; }
+.KoszykPotwierdzenie tr td:nth-child(1) { text-align:left; }
+
+@media only screen and (max-width:479px) {
+  .KoszykPotwierdzenie { font-size:90%; }
+}
+@media only screen and (max-width:1023px) { 
+  .KoszykPotwierdzenie .Cena { font-size:100%; }
+  .KoszykPotwierdzenie .Informacja { display:block; }
+}
+@media only screen and (min-width:1024px) {
+  .KoszykPotwierdzenie .Suma { font-size:150%; }
+}
+
+.KoszykPotwierdzenie .Suma { border:0; padding:5px 10px 5px 10px; white-space:nowrap; font-weight:bold; }
+.KoszykPotwierdzenie .Tekst { border:0; font-weight:bold; text-align:right; }
+.KoszykPotwierdzenie .Informacja { display:block; margin:15px 0 5px 0; }
+.KoszykPotwierdzenie .Wartosc { border:0; white-space:nowrap; font-weight:normal; }
+.KoszykPotwierdzenie .WartoscUjemna { color:var(--kolor-czerwony); border:0; white-space:nowrap; font-weight:normal; }
+.KoszykPotwierdzenie .Cecha { font-size:90%; display:block; margin-top:2px; font-weight:normal; }
+.KoszykPotwierdzenie .Cecha  a { font-size:100%; font-weight:normal; }
+.KoszykPotwierdzenie .Komentarz { font-size:90%; display:block; margin-top:2px; font-weight:normal; }
+.KoszykPotwierdzenie .ZmienIlosc { white-space:nowrap; font-weight:normal; }
+
+.KoszykPotwierdzeniePodsumowanie { float:right; width:50%; border:1px solid var(--kolor-linia); margin-bottom:20px; }
+.KoszykPotwierdzeniePodsumowanie td:last-child { text-align:right; }
+@media only screen and (max-width:799px) { 
+  .KoszykPotwierdzeniePodsumowanie { width:100%; font-size:100%; }
+  .KoszykPotwierdzenie .UkryjMobile, .Koszyk .UkryjMobile { width:0 !important; min-width:0 !important; padding:0 !important; border:none !important; background:none !important; font-size:0 !important; }
+  .Koszyk .UkryjMobile > * { display: none !important; }   
+}
+
+.Podsumowanie td:first-child { width:70%; text-align:right; white-space:normal; }
+.Podsumowanie td:last-child { width:30%; text-align:right; }
+
+/* potwierdzenie zamowienia - dane wysylki i platnosci */
+.PotwierdzenieTekst { border:1px solid var(--kolor-linia); border-radius:var(--zaokraglenie-5-px); }
+@media only screen and (max-width:1023px) {
+  .PotwierdzenieTekst { padding:15px; margin-bottom:20px; }
+}
+@media only screen and (min-width:1024px) {
+  .KontenerPotwierdzenieTekst { display:flex; flex-wrap:nowrap; justify-content:space-between; align-content:stretch; margin:10px 0 15px 0; }
+  .PotwierdzenieTekst { width:50%; padding:15px; }
+  .KontenerPotwierdzenieTekst .PotwierdzenieTekst:nth-child(1) { margin-right:10px; }
+  .KontenerPotwierdzenieTekst .PotwierdzenieTekst:nth-child(3) { margin-left:10px; }
+}
+.PotwierdzenieTekst h3 { color:var(--kolor-glowny-czcionki); font-size:140%; padding:0 0 20px 0; font-weight:bold; }
+.PotwierdzenieTekst .FormaWysylkiPlatnosci b { font-size:110%; }
+.PotwierdzenieTekst .OpisInfo { margin-bottom:8px; margin-top:10px; }
+.PotwierdzenieTekst .OpisInfoItalic { font-style:italic; margin-top:15px; }
+.PotwierdzenieTekst span { margin:0; }
+
+.ZmienDane { margin:0; float:right; }
+.UwagiZamowienie { margin:20px 0 10px 0; text-align:center; }
+.UwagiZamowienie textarea { width:100%; box-sizing:border-box; }
+.UwagiZamowienie b { display:block; margin:5px 0 10px 0; text-align:left; }
+
+.PolaZamowienie { margin:15px 0 10px 0; }
+.PolaZamowienie span { margin-bottom:15px; }
+.PolaZamowienie br { display:none; }
+.PotwierdzenieAkceptacje { text-align:left; }
+.PotwierdzenieAkceptacje .PotwierdzenieOpis { margin-left:35px; }
+.PrzyciskiPotwierdzenie { margin:20px 0 10px 0; }
+
+/* podziekowanie za zlozone zamowienie */
+.Podziekowanie { margin:0 5px 20px 5px; font-size:150%; font-weight:bold !important; }
+
+/* podsumowanie zamowienia - szczegoly */
+.KontenerSzczegoly { line-height:1.5; margin-bottom:35px; }
+.KontenerSzczegoly #podsumowanieZamowienia { list-style-type:none; padding:0; margin:10px 0 0 0; border:1px solid var(--kolor-linia); background:var(--kolor-tlo-modul); }
+.KontenerSzczegoly #podsumowanieZamowienia li { padding:7px 10px 7px 10px; border-bottom:1px solid var(--kolor-linia); display:flex; justify-content:space-between; align-items:center; }
+.KontenerSzczegoly #podsumowanieZamowienia li:last-child { border-bottom:0; }
+.KontenerSzczegoly #podsumowanieZamowienia li > strong { font-weight:normal; padding:0 10px 0 0; width:calc(50% - 11px); border-right:1px solid var(--kolor-linia); text-align:right; } 
+.KontenerSzczegoly #podsumowanieZamowienia li > span { font-weight:bold; padding:0 0 0 10px; width:calc(50% - 10px); text-align:left;  } 
+.PlatnoscInfo { margin:10px 0 20px 0; border:1px solid var(--kolor-linia); background:var(--kolor-tlo-modul); padding:15px; }
+
+/* zegar odliczania czasu do platnosci */
+.OdliczajPlatnoscKontener { padding:20px 0 30px 0; text-align:center; }
+.OdliczajPlatnoscKontener > strong { display:block; font-size:130%; padding-bottom:20px; }
+.OdliczajPlatnosc { margin:0 auto; width:120px; height:120px; border-radius:50%; display:flex; justify-content:center; align-items:center; border:3px solid var(--kolor-linia); overflow:hidden; cursor:pointer; position:relative; }
+.OdliczajPlatnoscPostep { position:absolute; bottom:0; left:0; right:0; background:var(--tlo-szare); transition:all 0.30s ease-in-out; }
+.OdliczajPlatnosc div.LicznikZegara { font-family:Tahoma; }
+.OdliczajPlatnosc div.LicznikZegara b { font-size:60px; line-height:60px; width:100%; position:relative; z-index:1; }
+.OdliczajPlatnosc div.LicznikZegara small { width:100%; display:block; font-size:15px; position:relative; z-index:1; }
+.ZatrzymajZegar { text-align:center; padding-top:15px; }
+
+/* podsumowanie zamowienia - zgoda do systemow ratalnych */
+.WyrazamZgode { padding:8px; font-style:normal; }
+
+/* strona bledu platnosci elektronicznych */
+.KomunikatBledu { color:var(--kolor-czerwony); font-weight:bold; padding:7px 7px 7px 7px; border:1px solid var(--kolor-linia); }
+
+/* logowanie i integracja z facebook */
+.AkcjaFacebook { display:inline-block; vertical-align:top; background:url("../szablony/standardowy-d.rwd.v2/obrazki/przyciski/facebook.svg") no-repeat left center; background-size:25px 25px; padding:5px 0 5px 35px; }
+/* logowanie i integracja z google */
+.AkcjaGooglePlus { display:inline-block; vertical-align:top; background:url("../szablony/standardowy-d.rwd.v2/obrazki/przyciski/google.svg") no-repeat left center; background-size:25px 25px; padding:5px 0 5px 35px; }
+
+/* wysuwane ikonki podziel sie - dla aktualnosci */
+#PodzielSieAktualnosci { list-style-type:none; padding:0; margin:15px 0 15px 0; display:flex; justify-content:flex-start; }
+#PodzielSieAktualnosci li { margin:4px 4px 4px 0; transition:all 0.30s ease-in-out; }
+#PodzielSieAktualnosci li:hover { margin:0 4px 8px 0; }
+#PodzielSieAktualnosci a { display:inline-block; width:32px; height:32px; }
+
+#PodzielSieAktualnosci .facebook { background:url('../szablony/standardowy-d.rwd.v2/obrazki/podziel_ikony/podziel_sie.png') no-repeat 0 0; }
+#PodzielSieAktualnosci .twitter { background:url('../szablony/standardowy-d.rwd.v2/obrazki/podziel_ikony/podziel_sie.png') no-repeat 0 -32px; }
+#PodzielSieAktualnosci .pinterest { background:url('../szablony/standardowy-d.rwd.v2/obrazki/podziel_ikony/podziel_sie.png') no-repeat 0 -64px; }
+#PodzielSieAktualnosci .linkedin { background:url('../szablony/standardowy-d.rwd.v2/obrazki/podziel_ikony/podziel_sie.png') no-repeat 0 -96px; }
+#PodzielSieAktualnosci .wykop { background:url('../szablony/standardowy-d.rwd.v2/obrazki/podziel_ikony/podziel_sie.png') no-repeat 0 -128px; }
+
+/* formularze */
+.OpisPolaFormularza { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:flex-start; }
+.OpisFormularza, .TrescPolaFormularza { margin-bottom:25px; width:100%; }
+.OpisFormularza { line-height:1.5; }
+.OpisFormularzaPusty .OpisFormularza { display:none; }
+.TrescPolaFormularza input[type=text], .TrescPolaFormularza select, .TrescPolaFormularza textarea { max-width:calc(100% - 20px); }
+
+/* opis formularza na dole */
+.FormularzOpis-Dol .OpisFormularza { order:2; }
+.FormularzOpis-Dol .TrescPolaFormularza { order:1; }
+
+/* opis formularza po lewej stronie */
+@media only screen and (min-width:800px) {
+  .FormularzOpis-Lewa .OpisFormularza { width:calc(50% - 15px); padding-right:15px; }
+  .FormularzOpis-Lewa .TrescPolaFormularza { width:calc(50% - 15px); padding-left:15px; }
+}
+
+/* opis formularza po prawej stronie */
+@media only screen and (min-width:800px) {
+  .FormularzOpis-Prawa .OpisFormularza { order:2; width:calc(50% - 15px); padding-left:15px; }
+  .FormularzOpis-Prawa .TrescPolaFormularza { order:1; width:calc(50% - 15px); padding-right:15px; }
+}
+
+/* wyglad zabezpieczenia captcha */
+.ZabezpieczenieFormularz { display:flex; flex-wrap:wrap; align-items:center; }
+.ZabezpieczenieFormularz div { margin:5px 8px 5px 0; }
+.ZabezpieczenieFormularz div img { display:inline-block; vertical-align:top; font-size:0; }
+.ZabezpieczenieFormularz .OdswiezGrafike { cursor:pointer; display:inline-block; width:22px; height:22px; background:url('../szablony/standardowy-d.rwd.v2/obrazki/szablon/odswiez.svg') no-repeat; background-size:22px 22px; }
+.ZabezpieczenieFormularz .OdswiezGrafike img { display:none; }
+.ZabezpieczenieFormularz .OknoGrafikiFormularz { padding:5px; border:1px solid var(--kolor-linia); background:var(--kolor-tlo-modul); border-radius:var(--zaokraglenie-5-px); }
+

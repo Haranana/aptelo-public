@@ -1,0 +1,4 @@
+/* informacja o darmowej dostawie */
+#InfoTopDarmowaDostawa { background:#56b907; text-align:center; color:#ffffff; padding:10px; }
+#InfoTopDarmowaDostawa span { color:#ffffff; display:inline-block; font-size:140%; font-weight:bold; }
+#InfoTopDarmowaDostawa small { display:block; padding-top:5px; }

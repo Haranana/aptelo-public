@@ -1,0 +1,112 @@
+<!-- wyglad naglowka strony -->
+
+<h1 class="StrNaglowek">
+    <span>{__TLUMACZ:NAGLOWEK_PRZYPOMNIENIE_HASLA}</span>
+</h1>
+
+<!-- tresc strony -->
+
+<section class="StrTresc">
+
+    <?php 
+    $Zalogowany = $__pA; 
+    $ZgodnoscCzasu = $__pB; 
+    ?>
+    
+    <!-- sprawdza czy jest zgodny czas linku -->
+    
+    <?php if ( $ZgodnoscCzasu == 'tak' ) { ?>
+
+        <!-- sprawdza czy klient jest zalogowany - jezeli nie wyswietli okno zmiany hasla -->
+
+        <?php if ( $Zalogowany == 'nie' ) { ?>
+        
+        <div class="TabelaTbl">
+        
+            <div class="error">
+                <span id="span_<?php echo uniqid(); ?>"></span>
+            </div>
+
+            <!-- ramka z formularzem zmiany hasla -->
+
+            <div class="Ramka">
+
+                <p class="Informacja">{__TLUMACZ:KLIENT_ZMIANA_HASLA_INFORMACJA}</p>
+                
+                <br /><br />
+                
+                <form action="{__SSL:przypomnienie-hasla.html}" method="post" id="przypomnienie" class="cmxform"> 
+                
+                    <input type="hidden" value="{__KLIENT}" name="klient" id="klient" />
+                
+                    <p>
+                        <span>{__TLUMACZ:ADRES_EMAIL_PRZYPOMNIENIE} <em class="required" id="em_<?php echo uniqid(); ?>"></em></span>
+                        <input type="text" size="35" style="width:70%; max-width:250px" name="email" id="email" />
+                    </p>
+                    
+                    <p>
+                        <span>{__TLUMACZ:KLIENT_NOWE_HASLO} <em class="required" id="em_<?php echo uniqid(); ?>"></em></span>
+                        <input type="password" size="35" style="width:70%; max-width:250px" name="nowe_haslo" id="nowe_haslo" />
+                    </p>
+                    
+                    <p>
+                        <span>{__TLUMACZ:KLIENT_POWTORZ_HASLO} <em class="required" id="em_<?php echo uniqid(); ?>"></em></span>
+                        <input type="password" size="35" style="width:70%; max-width:250px" name="powtorz_haslo" id="powtorz_haslo" />
+                    </p>                
+
+                    <p>
+                    
+                        <!-- przycisk wyslania formularza -->
+                        <input type="submit" id="submitButton" class="przyciskWylaczony" value="{__TLUMACZ:PRZYCISK_DALEJ}" disabled="disabled" />
+                        
+                    </p>
+
+                </form>
+
+            </div> 
+
+        </div>
+        
+        <?php } ?>
+        
+        <!-- jezeli klient jest zalogowany i uruchomi modul to wyswietli sie komunikat -->
+
+        <?php if ( $Zalogowany == 'tak' ) { ?>
+        
+            <p class="Informacja">
+                {__TLUMACZ:ZALOGOWANY_OPIS}
+            </p>
+            
+            <!-- przycisk wylogowania -->
+            
+            <a href="wylogowanie.html" class="przycisk MargPrzycisk">{__TLUMACZ:WYLOGUJ_SIE}</a> 
+            
+            <div class="cl"></div>
+            
+            <!-- przycisk powrotu do strony glownej -->
+            
+            <a href="/" class="przycisk Prawy">{__TLUMACZ:PRZYCISK_DO_STRONY_GLOWNEJ}</a>   
+            
+            <div class="cl"></div>
+        
+        <?php } ?>
+        
+    <?php } else { ?>
+    
+        <p class="Informacja">
+            {__TLUMACZ:WAZNOSC_LINKU_HASLA}
+        </p>
+
+        <!-- przycisk powrotu do strony glownej -->
+        
+        <a href="/" class="przycisk Prawy">{__TLUMACZ:PRZYCISK_DO_STRONY_GLOWNEJ}</a>   
+        
+        <div class="cl"></div>    
+    
+    <?php } ?>
+        
+    <?php unset($Zalogowany, $ZgodnoscCzasu); ?>
+    
+</section>
+
+

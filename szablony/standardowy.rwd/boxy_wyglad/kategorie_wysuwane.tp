@@ -1,0 +1,17 @@
+<!-- wyglad boxu kategorii wysuwanych -->
+
+<!-- wyglad naglowka boxu - sprawdza czy box ma miec naglowek -->
+
+<div class="CalyBoxKategorie">
+
+    <?php if ($__pA['box_header'] == '1') { ?>
+        <div class="BoxNaglowekKategorie">{__NAGLOWEK_BOXU}</div>
+    <?php } ?>
+
+    <!-- tresc boxu kategorii -->
+
+    <div class="BoxKategorieWysuwane BoxZawartosc">
+        {__TRESC_BOXU}
+    </div>
+    
+</div>

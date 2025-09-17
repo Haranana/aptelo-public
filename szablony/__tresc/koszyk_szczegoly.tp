@@ -1,0 +1,73 @@
+<!-- wyglad naglowka strony -->
+
+<h1 class="StrNaglowek">
+    <span>{__TLUMACZ:NAGLOWEK_ZAPISANY_KOSZYK} - {__NAZWA_KOSZYKA}</span>
+</h1>
+
+<!-- tresc strony -->
+
+<section class="StrTresc">
+
+    <?php
+    $Produkty = $__pA;
+    ?>
+    
+    <p class="Informacja" style="margin-bottom:15px;{__CSS_INFO_ZAPISANY_KOSZYK}">
+          {__TLUMACZ:INFO_ZAPISANY_KOSZYK}
+    </p>
+    
+    <!-- produkty w zapisanym koszyku -->
+
+    <div class="TabelaKlient">
+
+        <table id="TabelaZamowienia">
+
+            <tr class="Naglowek">
+                <th style="width:50px" class="Centruj">{__TLUMACZ:INFO_FOTO}</th>
+                <th>{__TLUMACZ:NAZWA_PRODUKTU}</th>
+                <th class="Centruj">{__TLUMACZ:ILOSC_PRODUKTOW}</th>
+                <th class="Centruj">{__TLUMACZ:CENA_BRUTTO}</th>
+                <th class="Centruj">{__TLUMACZ:WARTOSC_BRUTTO}</th>
+                <th></th>
+            </tr>
+
+            <?php
+            foreach ( $Produkty as $Produkt ) {
+            
+                echo '<tr>
+                          <td class="Centruj">' . $Produkt['zdjecie_produktu'] . '</td>
+                          <td><span class="TabelaOpis">{__TLUMACZ:NAZWA_PRODUKTU}:</span><h3>' . $Produkt['link'] . '</h3>' . $Produkt['cechy'] . $Produkt['pola_txt'] . $Produkt['komentarz'] . '</td>
+                          <td class="Centruj"><span class="TabelaOpis">{__TLUMACZ:ILOSC_PRODUKTOW}:</span>' . $Produkt['ilosc'] . '</td>
+                          <td class="Centruj"><span class="TabelaOpis">{__TLUMACZ:CENA}:</span>' . $Produkt['cena'] . '</td>
+                          <td class="Centruj"><span class="TabelaOpis">{__TLUMACZ:WARTOSC_BRUTTO}:</span>' . $Produkt['wartosc'] . '</td>
+                          <td class="Centruj"><span onclick="UsunZapisanyKoszykProdukt(' . $Produkt['id'] . ')" class="przycisk">{__TLUMACZ:PRZYCISK_USUN}</span></td>
+                      </tr>';
+
+            }
+            ?>
+
+        </table>
+
+    </div>
+    
+    <br />
+    
+    <div class="SekcjaTbl">
+
+          <div class="PodsumowanieOpis">{__TLUMACZ:WARTOSC_PRODUKTOW}</div>
+          <div class="PodsumowanieWartosc">{__SUMA_KOSZYKA}</div>
+                
+    </div>    
+            
+    <br />
+    
+    <!-- przyciski -->
+
+    <a class="przycisk Lewy" onclick="history.go(-1)">{__TLUMACZ:PRZYCISK_COFNIJ}</a>
+    <a href="{__SSL:panel-klienta.html}" class="przycisk Prawy">{__TLUMACZ:PRZYCISK_PANEL_KLIENTA}</a>
+
+    <div class="cl"></div>
+
+</section>
+
+

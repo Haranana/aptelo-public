@@ -1,0 +1,76 @@
+<!-- wyglad naglowka strony -->
+
+<?php
+$OdpowiedzSklepu = $__pA;
+?>
+
+<h1 class="StrNaglowek">
+    <span>{__TLUMACZ:OPINIA_O_PRODUKCIE} {__NAZWA_PRODUKTU}</span>  
+</h1>
+
+<!-- tresc strony -->
+
+<section class="StrTresc">
+
+    <div class="Recenzja">
+            
+        {__POTWIERDZONY_ZAKUP}            
+           
+        <!-- tresc recenzji -->
+        
+        <div class="OpisTekst">
+        
+            <p>
+                {__TLUMACZ:DATA_NAPISANIA_RECENZJI}: <strong>{__DATA_DODANIA}</strong>
+            </p>        
+            
+            <p>
+                {__TLUMACZ:OPINIA_O_PRODUKCIE}: <strong>{__TRESC_RECENZJI}</strong>
+            </p>
+            
+            <?php if (!empty($OdpowiedzSklepu)) { ?>
+            
+            <p>
+                {__TLUMACZ:ODPOWIEDZ_SKLEPU} <strong>{__TRESC_ODPOWIEDZI_SKLEPU}</strong>
+            </p>            
+            
+            <?php } ?>
+            
+            <p>
+                {__TLUMACZ:AUTOR_RECENZJI}: <strong>{__AUTOR_RECENZJI}</strong>
+            </p>
+            
+            <p>
+                {__TLUMACZ:OCENA_PRODUKTU}: {__OCENA_RECENZJI_GWIAZDKI}
+            </p>
+ 
+            <p>
+                {__TLUMACZ:SREDNIA_OCENA_PRODUKTU} ({__OCENA_RECENZJI_TEKST}): {__SREDNIA_OCENA_RECENZJI_GWIAZDKI} <br /><br />
+                {__TLUMACZ:ILOSC_WSZYSTKICH_RECENZJI}: <a href="{__LINK_DO_PRODUKTU}"><strong> {__ILOSC_WSZYSTKICH_RECENZJI}</strong></a> 
+            </p>
+
+            <!-- przyciski -->
+
+            <p class="Przyciski">
+                <a href="{__LINK_DO_PRODUKTU}" class="przycisk">{__TLUMACZ:PRZYCISK_ZOBACZ_SZCZEGOLY_PRODUKTU}</a> 
+            </p>
+            
+            <p class="Informacja" style="margin-top:20px">
+                {__TLUMACZ:RECENZJE_WERYFIKACJA}
+            </p>               
+
+        </div>
+        
+    </div>
+    
+    <div class="cl"></div>
+    
+    <!-- przycisk powrotu do strony glownej -->
+    
+    <a href="/" class="przycisk Prawy">{__TLUMACZ:PRZYCISK_DO_STRONY_GLOWNEJ}</a>   
+    
+    <div class="cl"></div>
+
+</section>
+
+

@@ -1,0 +1,99 @@
+(function($) {
+
+    $.ZaladujObrazki = function( ikony ) {
+    
+        $(".Reload").css({ opacity : 0.3 });
+        
+        setTimeout( function(){ $.ZaladujObrazkiAkcja(ikony) }, 200 );
+        
+    }
+
+    $.ZaladujObrazkiAkcja = function( ikony ) {
+
+        // pobiera wysokosc ekranu
+        var ct = screen.height;
+        
+        if ( ikony == false ) {
+            // ukrywa ikony na obrazkach
+            $(".IkonkiProduktu").hide();
+        }
+        
+        $.PokazWidoczneObrazki( ct + $(window).scrollTop() + 300 );
+        
+        // po przesunieciu ekranu
+        $(window).scroll( function(){
+            //
+            // aktualnosc wysokosc strony po przesunieciu
+            var ak = ct + $(this).scrollTop();
+            //
+            $.PokazWidoczneObrazki( ak );
+            
+        });  
+
+        $(window).resize(function() {
+            //
+            // aktualnosc wysokosc strony po przesunieciu
+            var ak = ct + $(this).scrollTop();
+            //
+            $.PokazWidoczneObrazki( ak );
+            //
+        });        
+        
+    }
+    
+    $.PokazWidoczneObrazki = function( ctd ) {
+    
+        // szuka wszystkich obrazkow z klasa Reload
+        $(".Reload").each(function() {
+
+            // polozenie obrazka od gory
+            var pol = $(this).offset().top;
+            
+            // jezeli polozenie obrazka od gory jest mniejsze niz wysokosc ekranu to pokaze obrazek
+            if ( pol < ctd ) {
+            
+                // jezeli obrazek ma atrybut src-oryginal
+                if ( $(this).attr('data-src-original') != null ) {
+                
+                     // efekt fade dla preloadera
+                     $(this).fadeOut( 'fast', function() {
+                     
+                        // funkcja ladowania oryginalnego obrazu
+                        $.PokazObrazek(this);
+                         
+                     });
+                }
+                 
+            }
+
+        });    
+    
+    }
+    
+    $.PokazObrazek = function( foto ) {
+    
+        // pobiera atrybut
+        var atr = $(foto).attr('data-src-original');
+        
+        // podmienia obrazek
+        $(foto).attr('src',atr);
+
+        // pokazuje obrazek efektem fade
+        $(foto).css({ opacity : 1 }).fadeIn('fast');
+        
+        // usuwa atrybut 
+        $(foto).removeAttr('data-src-original');
+
+        // jezeli produkt ma ikonke to ja takze pokaze
+        a = $(foto).prev();
+        if ( $(a[0]).length ) {
+            if ( a[0].nodeName.toLowerCase() == 'span' ) {
+                if ($(a[0]).attr("class").indexOf("IkonkiProduktu") > -1) {
+                  $(a[0]).show();
+                }
+            }
+        }      
+
+    }
+    
+})(jQuery);

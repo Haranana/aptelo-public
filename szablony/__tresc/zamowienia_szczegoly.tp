@@ -1,0 +1,512 @@
+<!-- wyglad naglowka strony -->
+
+<h1 class="StrNaglowek">
+    <span>{__TLUMACZ:NAGLOWEK_HISTORIA_ZAMOWIENIA} - {__NUMER_ZAMOWIENIA}</span>
+</h1>
+
+<!-- tresc strony -->
+
+<section class="StrTresc">
+
+    <?php
+    $Zamowienie = $__pA;
+    $AktywnyHash = $__pC;
+    $WpisanaDataWysylki = $__pD;
+    $InformacjaPopup = $__pE;
+    ?>
+    
+    <!-- data zamowienia i status oraz przewidywana dostawa -->
+
+    <div class="SzczegolyData">
+
+        <em class="DataZlozenia"><b>{__DATA_ZAMOWIENIA}</b></em> 
+        
+        <?php if ( $WpisanaDataWysylki == 'tak' ) { ?>
+        <em class="DataPlanowanejWysylki">{__TLUMACZ:PRZEWIDYWANY_TERMIN_WYSYLKI}: <b>{__DATA_WYSYLKI}</b></em>
+        <?php } ?>
+          
+        <em class="StatusZamowienia">{__TLUMACZ:KLIENT_STATUS_ZAMOWIENIA}: <b>{__STATUS_ZAMOWIENIA}</b></em>
+
+    </div>
+
+    <!-- platnosc, wysylka, opiekun zamowienia -->
+
+    <div class="Sekcja">
+
+        <ul id="podsumowanie_zamowienia">
+            <li>{__TLUMACZ:KLIENT_RODZAJ_PLATNOSCI}: <strong>{__METODA_PLATNOSCI}</strong></li>
+            <li>{__TLUMACZ:KLIENT_RODZAJ_DOSTAWY}: <strong>{__WYSYLKA_MODUL}</strong></li>   
+            <?php if ( KOSZYK_WYBOR_DOKUMENTU_SPRZEDAZY == 'tak' ) { ?>
+            <li>{__TLUMACZ:DOKUMENT_SPRZEDAZY}: <strong>{__DOKUMENT_SPRZEDAZY_NAZWA}</strong></li>     
+            <?php } ?>
+        </ul>
+        
+        <ul>
+            <?php
+
+            if ( count($Zamowienie->dostawy) > 0 ) {
+                foreach ( $Zamowienie->dostawy as $Dostawa) {
+                    if ( $Dostawa['numer_przesylki'] != '' ) {
+                        ?>
+                        <li>{__TLUMACZ:NUMER_PRZESYLKI} <strong><?php echo $Dostawa['numer_przesylki']; ?></strong></li>
+                        <?php
+                    }
+                    if ( $Dostawa['link_sledzenia'] != '' ) {
+                        ?>
+                        <li>{__TLUMACZ:SLEDZENIE_PRZESYLKI} <?php echo $Dostawa['link_sledzenia']; ?></li>
+                        <?php
+                     }
+                }
+            }
+            ?>
+        </ul>
+        
+        <?php if ( $Zamowienie->info['opiekun'] > 0 ) { ?>
+        
+        <ul>
+            <li>{__TLUMACZ:KLIENT_OPIEKUN_ZAMOWIENIA}: <strong>{__OPIEKUN_ZAMOWIENIA}</strong></li>
+        </ul>
+        
+        <?php } ?>
+        
+    </div>
+        
+    <!-- pdf zamowienia i faktura -->
+
+    <div class="Ikonki">
+    
+        {__PDF_ZAMOWIENIE}
+        {__PDF_FAKTURA}
+        
+    </div>
+
+    <!-- informacje o platnosci -->
+
+    <div class="PlatnoscInfo" id="PlatnoscInformacjaPodsumowanie">{__PLATNOSC_INFO}</div>
+
+    <div class="KontenerDaneKlienta">
+    
+        <!-- dane do wysylki -->
+
+        <div class="DaneWysylki">
+
+            <h3>{__TLUMACZ:ADRES_WYSYLKI}</h3>
+
+            <div class="Tekst">
+
+                <ul>
+                    <li>{__DOSTAWA_NAZWA}</li>
+                    <li>{__DOSTAWA_FIRMA}</li>
+                    <li>{__DOSTAWA_ULICA}</li>
+                    <li>{__DOSTAWA_KOD_POCZTOWY} {__DOSTAWA_MIASTO}</li>
+                    <li>{__DOSTAWA_KRAJ}</li>
+                </ul>
+
+            </div>
+        </div>
+
+        <div class="Odstep"></div>
+        
+        <?php if ( $Zamowienie->info['dokument_zakupu'] == '1' || KOSZYK_WYBOR_DOKUMENTU_SPRZEDAZY == 'nie' ) { ?>
+        
+        <!-- dane do faktury -->
+
+        <div class="DaneFaktura">
+
+            <h3>{__TLUMACZ:DANE_PLATNIKA}</h3>
+
+            <div class="Tekst">
+
+                <ul>
+                   <li>{__PLATNIK_NAZWA}</li>
+                   <li>{__PLATNIK_FIRMA}</li>
+                   <li>{__PLATNIK_NIP}</li>
+                   <li>{__PLATNIK_ULICA}</li>
+                   <li>{__PLATNIK_KOD_POCZTOWY} {__PLATNIK_MIASTO}</li>
+                   <li>{__PLATNIK_KRAJ}</li>
+                </ul>
+
+            </div>
+
+        </div>
+        
+        <?php } ?>
+
+    </div>
+
+    <div class="Ramka Sekcja SekcjaRamka">
+
+        <div class="TytulSekcji">{__TLUMACZ:HISTORIA_REALIZACJI_ZAMOWIENIA}</div>
+        
+        <!-- generowanie historii statusow zamowienia -->
+
+        <?php foreach ( $Zamowienie->statusy as $Status ) { ?>
+            
+            <div class="TrescSekcji PozycjaHistoriaZamowienia">
+            
+                <div class="TrescScr LiniaPoziom">
+
+                    <div class="SzczegolyData">
+
+                        <em class="DataZlozenia"><b><?php echo $Status['data_dodania']; ?></b></em> 
+                        <em class="StatusZamowienia">{__TLUMACZ:KLIENT_STATUS_ZAMOWIENIA}: <b><?php echo $Status['status_nazwa']; ?></b></em>
+
+                    </div>
+
+                    <div class="ZamowienieKomentarz"><?php echo $Status['komentarz']; ?></div>
+
+                </div>
+            
+            </div>
+        
+        <?php } ?>
+
+    </div>
+        
+    <!-- produkty zamowienia -->
+
+    <div class="TabelaKlient">
+
+        <table id="TabelaZamowienia">
+
+            <tr class="Naglowek">
+                <th style="width:50px" class="Centruj">{__TLUMACZ:INFO_FOTO}</th>
+                <th>{__TLUMACZ:NAZWA_PRODUKTU}</th>
+                <?php if ( ZAMOWIENIE_POKAZ_NUMER_KATALOGOWY == 'tak' ) { ?>
+                    <th class="Centruj">{__TLUMACZ:NUMER_KATALOGOWY}</th>
+                <?php } ?>
+                <th class="Centruj">{__TLUMACZ:ILOSC_PRODUKTOW}</th>
+                <th class="Centruj">{__TLUMACZ:CENA_BRUTTO}</th>
+                <th class="Centruj">{__TLUMACZ:WARTOSC_BRUTTO}</th>
+            </tr>
+
+            <?php
+            foreach ( $Zamowienie->produkty as $Produkt ) {
+            
+                $ParametryProduktu = '';
+
+                if ( $Produkt['czas_wysylki'] != '' && ZAMOWIENIE_POKAZ_CZAS_WYSYLKI == 'tak' ) {
+                    $ParametryProduktu .= '<span class="Cecha">'.$GLOBALS['tlumacz']['CZAS_WYSYLKI'].': <b>'.$Produkt['czas_wysylki'].'</b></span>';
+                }
+                if ( $Produkt['gwarancja'] != '' && ZAMOWIENIE_POKAZ_GWARANCJA == 'tak' ) {
+                    $ParametryProduktu .= '<span class="Cecha">'.$GLOBALS['tlumacz']['GWARANCJA'].': <b>'.$Produkt['gwarancja'].'</b></span>';
+                }
+                if ( $Produkt['stan'] != '' && ZAMOWIENIE_POKAZ_STAN_PRODUKTU == 'tak' ) {
+                    $ParametryProduktu .= '<span class="Cecha">'.$GLOBALS['tlumacz']['STAN_PRODUKTU'].': <b>'.$Produkt['stan'].'</b></span>';
+                }
+
+                $CechaProduktu = '';
+                if ( isset($Produkt['attributes']) && count($Produkt['attributes']) > 0 ) {
+                
+                    foreach ( $Produkt['attributes'] as $cecha ) {
+                        $CechaProduktu .= '<span class="Cecha">' . $cecha['cecha'] . ':  <b>'. $cecha['wartosc'] . '</b></span>';
+                    }
+                    
+                }
+                
+                $KomentarzProduktu = '';
+                if ( $Produkt['komentarz'] != '' ) $KomentarzProduktu .= '<span class="Cecha">{__TLUMACZ:KOMENTARZ_PRODUKTU} <b>'.$Produkt['komentarz'] . '</b></span>';
+                
+                $PolaTekstowe = '';
+                if (!empty($Produkt['pola_txt'])) {
+                  //
+                  $PoleTxt = Funkcje::serialCiag($Produkt['pola_txt']);
+                  if ( count($PoleTxt) > 0 ) {
+                      foreach ( $PoleTxt as $WartoscTxt ) {
+                          // jezeli pole to plik
+                          if ( $WartoscTxt['typ'] == 'plik' ) {
+                              $PolaTekstowe .= '<span class="Cecha">' . $WartoscTxt['nazwa'] . ': <a href="inne/wgranie.php?src=' . base64_encode(str_replace('.', ';', (string)$WartoscTxt['tekst'])) . '"><b>' . $GLOBALS['tlumacz']['WGRYWANIE_PLIKU_PLIK'] . '</b></a></span>';
+                            } else {
+                              $PolaTekstowe .= '<span class="Cecha">' . $WartoscTxt['nazwa'] . ': <b>' . $WartoscTxt['tekst'] . '</b></span>';
+                          }                                          
+                      }
+                  }
+                  unset($PoleTxt);
+                  //
+                }
+                
+                // czy produkt jest aktywny
+                $AktywnyProdukt = true;
+                
+                if ( (int)$Produkt['id_produktu'] > 0 ) {
+                     //                
+                     $ProduktSklep = new Produkt((int)$Produkt['id_produktu']);
+                     //
+                     if ( $ProduktSklep->CzyJestProdukt == false ) {
+                          //
+                          $AktywnyProdukt = false;
+                          //
+                     }
+                     //
+                     unset($ProduktSklep);
+                     //
+                  } else {
+                     //
+                     $AktywnyProdukt = false;
+                     //
+                }
+
+                echo '<tr>
+                    <td class="Centruj">'.$Produkt['zdjecie_produktu'].'</td>
+                    <td><h3>' . (($AktywnyProdukt == true) ? $Produkt['link'] : '<a>' . $Produkt['nazwa'] . '</a>') . '</h3>' . $CechaProduktu . $PolaTekstowe . $KomentarzProduktu .  $ParametryProduktu; 
+                        
+                        if ( RECENZJE_STATUS == 'tak' && (int)$Produkt['id_produktu'] > 0 && $AktywnyProdukt == true ) {
+                        
+                            $zapytanieRec = "SELECT reviews_id FROM reviews WHERE products_id = '" . (int)$Produkt['id_produktu'] . "' AND customers_id = '" . (int)$Zamowienie->klient['id'] . "'";
+                            $sqlRec = $GLOBALS['db']->open_query($zapytanieRec);
+
+                            if ((int)$GLOBALS['db']->ile_rekordow($sqlRec) < 1) {
+                                //
+                                $hashKod = '/nr=' . $Zamowienie->info['id_zamowienia'] . '/zamowienie=' . hash("sha1", $Zamowienie->info['id_zamowienia'] . ';' . $Zamowienie->info['data_zamowienia'] . ';' . $Zamowienie->klient['adres_email'] . ';' . $Zamowienie->klient['id']);
+                                //
+                                $Wroc = '/wroc=zamowienie';
+                                if ( isset($_GET['zamowienie']) ) {
+                                     $Wroc = '';
+                                }
+                                echo '<a target="_blank" href="napisz-recenzje-rw-' . $Produkt['id_produktu'] . '.html/recenzja=' . $Zamowienie->link_recenzji[$Produkt['id_produktu']] . $hashKod . $Wroc . '" class="przycisk" style="margin-top:10px;font-size:90%;padding:5px 8px 5px 8px;">{__TLUMACZ:PRZYCISK_NAPISZ_RECENZJE}</a>';
+                                //
+                                unset($hashKod);
+                                //
+                            }
+                            $GLOBALS['db']->close_query($sqlRec);
+                            unset($zapytanieRec);
+                            
+                        }
+
+                    echo '</td>';
+                    if ( ZAMOWIENIE_POKAZ_NUMER_KATALOGOWY == 'tak' ) {
+                        echo '<td class="Centruj"><span class="TabelaOpis">{__TLUMACZ:NUMER_KATALOGOWY}:</span>'.$Produkt['model'].'</td>';
+                    }
+                    echo '<td class="Centruj"><span class="TabelaOpis">{__TLUMACZ:ILOSC_PRODUKTOW}:</span>'.$Produkt['ilosc'].'</td>
+                    <td class="Centruj"><span class="TabelaOpis">{__TLUMACZ:CENA_BRUTTO}:</span>';
+
+                    // jezeli produkt byl za punkty
+                    if ( $Produkt['cena_punkty'] > 0 ) {
+                         //
+                         echo $GLOBALS['waluty']->PokazCenePunkty( $Produkt['cena_punkty'], $Produkt['cena_koncowa_brutto'] );
+                         //
+                       } else {
+                         //
+                         echo $GLOBALS['waluty']->WyswietlFormatCeny($Produkt['cena_koncowa_brutto'], $GLOBALS['waluty']->waluty[$Zamowienie->info['waluta']]['id'], true);
+                         //
+                    }
+
+                    echo '</td>
+                    <td class="Centruj"><span class="TabelaOpis">{__TLUMACZ:WARTOSC_BRUTTO}:</span>';
+                    
+                    // jezeli produkt byl za punkty
+                    if ( $Produkt['cena_punkty'] > 0 ) {
+                         //
+                         echo $GLOBALS['waluty']->PokazCenePunkty( $Produkt['cena_punkty'] * $Produkt['ilosc'], $Produkt['cena_koncowa_brutto'] * $Produkt['ilosc'] );
+                         //
+                       } else {
+                         //
+                         echo $GLOBALS['waluty']->WyswietlFormatCeny($Produkt['cena_koncowa_brutto'] * $Produkt['ilosc'], $GLOBALS['waluty']->waluty[$Zamowienie->info['waluta']]['id'], true);
+                         //
+                    }                    
+                    
+                    echo '</td>
+                </tr>';
+                
+                unset($CechaProduktu, $KomentarzProduktu, $PolaTekstowe, $ParametryProduktu, $AktywnyProdukt);
+                
+            }
+            ?>
+        </table>
+
+    </div>
+            
+    <!-- podsumowanie zamowienia -->
+
+    <div class="SekcjaTbl">
+
+        <?php foreach ( $Zamowienie->podsumowanie as $Podsumowanie ) { ?>
+        
+            <div class="WierszTbl">
+
+                <div class="PodsumowanieOpis"><?php echo $Podsumowanie['tytul']; ?></div>
+                <div class="PodsumowanieWartosc"><span class="Cena"><?php echo ((($Podsumowanie['prefix']) == 0) ? '-' : '') . ' ' . $Podsumowanie['tekst']; ?></span></div>
+
+            </div>
+            
+        <?php } ?>
+
+    </div>
+
+    <!-- sprzedaz elektroniczna - link do przejscia do strony pobierania plikow -->
+    
+    <?php if ( $Zamowienie->sprzedaz_online ) { ?>
+    
+    <div class="Ramka Sekcja SekcjaRamka">
+    
+        <div class="TytulSekcji">{__TLUMACZ:PLIKI_ONLINE}</div>
+        
+        <div class="TrescSekcji LinkiElektroniczne">
+        
+            <a href="{__LINK_POBRANIA_PLIKOW}">{__TLUMACZ:LINK_PLIKOW_ONLINE}</a>
+            
+        </div>
+        
+    </div>
+    
+    <?php } ?>
+    
+    <!-- sprzedaz elektroniczna - kody aktywacyjne -->
+    
+    <?php if ( $Zamowienie->sprzedaz_online_kody ) { ?>
+    
+    <div class="Ramka Sekcja SekcjaRamka">
+    
+        <div class="TytulSekcji">{__TLUMACZ:KODY_DO_POBRANIA}</div>
+        
+        <?php foreach ( $Zamowienie->sprzedaz_online_kody_lista as $Kody ) { ?>
+        
+        <div class="TrescSekcji LinkiElektroniczne KodyElektroniczne">
+        
+            <a href="<?php echo $Kody['adres_url']; ?>"><?php echo $Kody['nazwa_produktu']; ?></a>
+            
+            <div style="font-weight:bold; padding:8px 0px 8px 0px">
+                <?php echo $Kody['kody']; ?>
+            </div>
+            
+        </div>    
+        
+        <?php } ?>
+        
+    </div>
+    
+    <?php } ?>    
+    
+    <!-- dodatkowe informacje dla klienta -->
+    
+    <?php     
+    $DodatkoweInformacje = $__pB; 
+    //
+    if ( count($DodatkoweInformacje) ) {
+    ?>
+    
+        <div class="Sekcja SekcjaRamka">
+        
+            <div class="TytulSekcji">
+                {__TLUMACZ:DODATKOWE_INFORMACJE}
+            </div>
+            
+            <?php foreach ( $DodatkoweInformacje as $Informacja ) { ?>
+            
+            <div class="TrescSekcji">
+                
+                <?php
+                if ( $Informacja['tytul'] != '' ) {
+                     //
+                     echo $Informacja['tytul'] . '<div>' . $Informacja['wartosc'] . '</div>';
+                     //
+                  } else {
+                     //
+                     echo $Informacja['wartosc'];
+                     //
+                }
+                ?>
+                
+            </div>
+            
+            <?php } ?>
+
+        </div> 
+
+    <?php     
+    }     
+    unset($DodatkoweInformacje);
+    ?>    
+
+    <?php if ( REKLAMACJE_STATUS == 'tak' ) { ?>
+
+    <div class="Sekcja SekcjaRamka">
+    
+        <div class="TytulSekcji">
+            {__TLUMACZ:NAGLOWEK_PRZEGLADANIE_REKLAMACJI}
+        </div>
+
+        <div class="ZamowieniaReklamacje">
+        
+            {__LISTA_REKLAMACJI}
+ 
+            {__NAPISANIE_REKLAMACJI}
+            
+        </div>
+
+    </div>     
+    
+    <?php } ?>
+    
+    <?php if ( ZWROTY_STATUS == 'tak' ) { ?>
+
+    <div class="Sekcja SekcjaRamka">
+    
+        <div class="TytulSekcji">
+            {__TLUMACZ:NAGLOWEK_PRZEGLADANIE_ZWROTOW}
+        </div>
+
+        <div class="ZamowieniaReklamacje">
+        
+            {__LISTA_ZWROTOW}
+ 
+            {__NAPISANIE_ZWROTU}
+            
+        </div>
+
+    </div>     
+    
+    <?php } ?>    
+    
+    <!-- ponowne dodanie produktow do koszyka -->
+    
+    <div class="Ramka Sekcja SekcjaRamka">
+    
+        <div class="TytulSekcji">
+            {__TLUMACZ:NAGLOWEK_DODANIE_PRODUKTOW}
+        </div>
+        
+        <div class="TrescSekcji">
+        
+            <div class="Informacja">
+            
+                {__TLUMACZ:DODANIE_PRODUKTOW_INFO}
+                
+            </div>
+        
+            {__DODANIE_DO_KOSZYKA}
+        
+        </div>
+        
+        <?php if ( $InformacjaPopup != '' ) { ?>
+        
+            <script>
+            $(document).ready(function() {
+              var myModal = new jBox('Modal',{ 
+                  content : '<div class="message"><div id="PopUpInfo"><?php echo $InformacjaPopup; ?></div><div id="PopUpPrzyciski"><a class="przycisk" href="<?php echo ((WLACZENIE_SSL == 'tak') ? ADRES_URL_SKLEPU_SSL . '/' : ''); ?>koszyk.html">{__TLUMACZ:PRZYCISK_PRZEJDZ_DO_KOSZYKA}</a></div></div>',
+              });
+              myModal.open();         
+            });
+            </script>   
+
+        <?php } ?>
+
+    </div>
+    
+    <!-- przyciski -->
+    <?php if (!isset($_GET['zamowienie'])) { ?>
+
+    <a class="przycisk Lewy" onclick="history.go(-1)">{__TLUMACZ:PRZYCISK_COFNIJ}</a>
+    <a href="{__SSL:panel-klienta.html}" class="przycisk Prawy">{__TLUMACZ:PRZYCISK_PANEL_KLIENTA}</a>
+    
+    <?php } ?>
+
+    <div class="cl"></div>
+    
+    <?php
+    unset($Zamowienie, $AktywnyHash);
+    ?>
+    
+</section>
+
+

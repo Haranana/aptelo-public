@@ -1,0 +1,93 @@
+/* obsluga okna kategorii */
+.OknoKategoriiKontener { margin-bottom:10px; border:1px solid #c1c1c1; padding:2px; -moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px; -khtml-border-radius:4px; }
+.OknoNaglowek { background:url('../obrazki/tlo.png') repeat-x left bottom; text-shadow:#fff 1px 1px 1px; font-weight:bold; color:#2b595b; }
+@media only screen and (max-width:1023px) { 
+ .OknoNaglowek { padding:5px 7px 5px 7px; }
+ .OknoNaglowek .RozwinKategorie { cursor:pointer; padding:5px 0px 5px 0px; display:block; background:url('../obrazki/menu_rozwijane_ciemne.png') no-repeat right center; font-size:130%; text-transform:uppercase; letter-spacing:2px; }
+ .OknoKategoriiKontener .OknoKategorii { display:none; }
+}
+@media only screen and (min-width:1024px) { 
+ .OknoNaglowek { padding:10px 7px 10px 7px; }
+}
+
+/* lista kategorii do jakich jest przypisany produkt */
+.MaleInfoKat { display:block; padding:9px 0px 9px 25px; font-weight:normal; background:url('../obrazki/kategoria.png') no-repeat left center; }
+
+/* nr katalogowy */
+.MaleNrKatalogowy { display:block; padding-top:3px; padding-bottom:2px; font-weight:normal; color:#5b5a5a; }
+
+/* producent */
+.MaleProducent { display:block; padding-top:3px; padding-bottom:2px; font-weight:normal; color:#29682c; }
+
+/* do listingu */
+.DataDodania { display:block; padding-bottom:8px; font-weight:normal; }
+.DataDodania span { font-weight:bold; }
+.Wystawil { display:block; padding-bottom:8px; font-weight:normal; }
+.Wystawil span { font-weight:bold; }
+.Wystawil a, .Wystawil a:hover { background: url("../obrazki/klient.png") no-repeat left center; padding:2px; padding-left:20px; font-weight:bold; }
+.Ocena { display:block; padding-bottom:8px; font-weight:normal; }
+.Komentarz { display:block; font-weight:normal; color:#838383; }
+.FotoRecenzji { margin-top:10px; }
+.FotoRecenzji img { max-width:150px; max-height:100px; width:auto; height:auto; }
+
+.WynikProduktowRecenzje { margin:0px 0px 20px 10px; }
+.WynikProduktowRecenzje span { display:block; padding-bottom:10px; font-weight:bold; }
+
+@media only screen and (max-width:1023px) { 
+  .GlownyListingKategorieEdycja { margin-right:10px; }
+}
+@media only screen and (min-width:1024px) { 
+  .GlownyListingKategorieEdycja { display:table-cell; width:30%; vertical-align:top; }
+  .GlownyListingProduktyEdycja { display:table-cell; width:70%; vertical-align:top; }
+}
+
+/* lista produktow */
+.WynikNaglowek { display:block; padding-top:4px; font-weight:bold; padding-left:3px; }
+.WynikNaglowekDodanie { font-family:Inder, Arial; font-size:130%; display:block; padding:10px; color:#ff0000; }
+.WynikNaglowekBrak { display:block; }
+.WynikNaglowekBrak span { background:url('../obrazki/awaria_maly.png') no-repeat left center; padding:5px 0px 5px 30px !important; font-weight:bold; margin:5px 0px 0px 10px; }
+#WynikPrzewijany { max-height:300px; overflow-y:scroll; border:1px solid #c1c1c1; margin-right:10px; -moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px; -khtml-border-radius:4px; }
+.TabelaProdukt { color: #3f5d6b; width:100%; border:0px; }
+.TabelaProdukt td { border:3px solid #fff; text-align:center; }
+.TabelaProdukt .prot td { background:#f4f2f2; padding:4px; text-decoration:none; }
+.TabelaProdukt span { white-space:nowrap; display:block; padding:5px; background:#e5e5e5; font-weight:normal; color:#3f5d6b; text-decoration:none; }
+
+/* status jezeli kategoria jest wylaczona */
+.wylKat { background: url("../obrazki/uwaga_mala.png") no-repeat top center; display:inline-block; padding:2px; padding-top:15px; }
+
+.OcenaTabela { padding-left:12px; }
+.OcenaTabela td { line-height:2; }
+
+/* legenda ikon */
+#Legenda { margin-right:0px; text-align:right; }
+#Legenda span { line-height:1.5; }
+#Legenda .Klient { margin-left:20px; display:inline-block; background: url("../obrazki/klient.png") no-repeat left center; padding:2px; padding-left:22px; }
+
+#Legenda .ExportXml { background:url('../obrazki/xml_maly.png') no-repeat left center; line-height:1.5; display:inline-block; padding-left:22px; font-weight:bold; color:#016f24; text-decoration:none; margin-right:5px; }
+#Legenda .ExportXml:hover { color:#ff0000; text-decoration:none; }
+
+#Legenda .Import { background:url('../obrazki/import.png') no-repeat left center; line-height:1.5; display:inline-block; padding-left:22px; font-weight:bold; color:#016f24; text-decoration:none; }
+#Legenda .Import:hover { color:#ff0000; text-decoration:none; }
+
+.RecenzjaOdpowiedz { margin:10px 30px 0px 0px; position:relative; overflow:visible; }
+.OdpowiedzSkasuj { display:inline-block; cursor:pointer; position:absolute; top:0px; right:-25px; }
+
+.RamkaRecenzje { border:1px solid #c1c1c1; padding:2px; -moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px; -khtml-border-radius:4px; display:inline-block; margin-left:10px; }
+
+.NaglowekEksport { font-weight:bold; text-decoration:none; padding:10px; font-size:110%; }
+
+.RamkaWarunki { border-top:1px dotted #ccc; border-bottom:1px dotted #ccc; padding:8px 0px 8px 0px; margin:8px 10px 8px 10px; } 
+.RamkaWarunki p { padding-left:0px !important; }
+.RamkaWarunki b { font-weight:bold; color:#3f5d6b; text-decoration:none; display:block; margin-top:5px; margin-bottom:10px; }
+.RamkaWarunki strong { padding:5px 5px 9px 2px; display:inline-block; font-size:110%; }
+
+.LegnedaRecenzje { padding:12px; }
+.LegnedaRecenzje .ostrzezenie { padding-top:5px; padding-bottom:2px; }
+
+#sukcesAktualizacji { margin:10px; margin-left:15px; background:url('../obrazki/newsletter_wyslano.png') no-repeat left center; padding:5px; padding-left:40px; line-height:2; display:inline-block; font-weight:bold; color:#04a001; text-decoration:none; }
+#sukcesAktualizacji strong { color:#ff0000; font-size:14px; }
+
+.RecenzjaBezZakupu { background:url('../obrazki/tak_off.png') no-repeat left center; padding:0 0 0 25px; }
+.RecenzjaZakup { background:url('../obrazki/tak.png') no-repeat left center; padding:0 0 0 25px; }
+
+.KlientKupowal { background:url('../obrazki/tip.png') no-repeat left center; padding:0 0 0 25px; margin-top:10px; }

@@ -1,0 +1,27 @@
+<!-- plik uzywany do potwierdzenia i wypisania z newslettera - wyswietla komunikat -->
+
+<!-- wyglad naglowka strony -->
+
+<h1 class="StrNaglowek">
+    <span>{__TLUMACZ:NAGLOWEK_NEWSLETTER}</span>
+</h1>
+
+<!-- tresc strony -->
+
+<section class="StrTresc">
+
+    <!-- tresc strony -->
+
+    <p class="Informacja">
+        {__TEKST_DO_WYSWIETLENIA}
+    </p>
+    
+    <!-- przycisk powrotu do strony glownej -->
+
+    <a href="/" class="przycisk Prawy">{__TLUMACZ:PRZYCISK_DO_STRONY_GLOWNEJ}</a>   
+    
+    <div class="cl"></div>
+
+</section>
+
+

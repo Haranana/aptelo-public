@@ -1,0 +1,65 @@
+.NaglowekKategorie { font-size:110%; font-weight:bold; }
+
+/* okno dodatkowych pol */
+.DodatkowePola { margin:0px 0px 10px 22px; border:1px solid #c1c1c1; padding-bottom:10px; padding-top:5px; background:#f6f7f6; -moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px; -khtml-border-radius:4px; }
+.DodatkowePola .pkc { margin-left:13px; }
+.DodatkowePola td { padding:3px 0px 3px 0px !important; }
+
+.catSelect { width:150px; }
+
+#Mapowanie table { width:100%; }
+#Mapowanie td { padding:3px 8px 3px 8px; border-bottom:1px solid #dbdbdb; line-height:1.6; }
+#Mapowanie td:first-child { text-align:left; border-right:1px dotted #dbdbdb; white-space: nowrap; }
+#Mapowanie td:last-child { text-align:center; border-left:1px dotted #dbdbdb; white-space:nowrap; }
+#Mapowanie tr:last-child td { border-bottom:0px; }
+#Mapowanie td img { padding-top:3px; }
+#Mapowanie td span { float:left; display:inline-block; width:10px; height:18px; margin-right:8px; }
+#Mapowanie td span:last-child { background:url('../obrazki/kat.png') no-repeat left center; }
+
+#UkrytaSciezka { display:none; }
+
+#OknaKategoriiGoogle { padding:20px 0px 10px 0px; }
+#OknaKategoriiGoogle .OknoGoogle div { border:1px solid #ccc; line-height:1.5; padding:5px; margin-right:10px; display:none; -moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px; -khtml-border-radius:4px; }
+#OknaKategoriiGoogle .OknoGoogle:first-child div { display:block; }
+#OknaKategoriiGoogle .OknoGoogle:last-child div { margin-right:0px; }
+
+@media only screen and (max-width:1023px) { 
+  #OknaKategoriiGoogle .OknoGoogle { margin-bottom:10px; }
+  #OknaKategoriiGoogle .OknoGoogle div { margin-right:0px; max-height:200px; overflow-x:auto; }
+  .GoogleShop { width:650px; }
+  #OknaKategoriiGoogle { width:640px; padding-right:10px; height:500px; overflow-y:scroll; }
+}
+@media only screen and (min-width:1024px) and (max-width:1279px) {
+  #OknaKategoriiGoogle .OknoGoogle { float:left; width:20%; }
+  #OknaKategoriiGoogle .OknoGoogle div { max-height:400px; overflow-y:auto; }
+  .GoogleShop { width:900px; }
+  #OknaKategoriiGoogle { width:900px; }
+}
+@media only screen and (min-width:1280px) {
+  #OknaKategoriiGoogle .OknoGoogle { float:left; width:20%; }
+  #OknaKategoriiGoogle .OknoGoogle div { max-height:500px; overflow-y:auto; }
+  .GoogleShop { width:1100px; }
+  #OknaKategoriiGoogle { width:1100px; }
+}
+.GoogleShop input { margin-right:7px; }
+
+#WybranaKategoria { color:#ff0000; font-weight:bold; }
+#WybranaKategoria .lf { padding-top:5px; }
+#WybranaKategoria #Wynik { margin-left:15px !important; }
+
+@media only screen and (max-width:1023px) { 
+  #WybranaKategoria #Wynik { width:250px; }
+}
+@media only screen and (min-width:1024px) and (max-width:1279px) { 
+  #WybranaKategoria #Wynik { width:400px; }
+}
+@media only screen and (min-width:1280px) {
+  #WybranaKategoria #Wynik { width:600px; }
+}
+
+.WycofanaIkona { margin-top:5px; }
+.WycofanaKratka td { background:url('../obrazki/kratka.jpg') !important; color:#b0b0b0 !important; display:none; }
+.WycofanaKratka td:nth-child(2) img { opacity:0.4; filter:alpha(opacity=40) }
+
+.EksportCron { border-top:1px dashed #c0d9e6; border-bottom:1px dashed #c0d9e6; padding:10px 0px 10px 0px; margin:10px 0px 20px 0px; }
+

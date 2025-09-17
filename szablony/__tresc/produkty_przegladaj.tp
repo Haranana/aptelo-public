@@ -1,0 +1,141 @@
+<!-- wyglad naglowka strony -->
+
+<h1 class="StrNaglowek">
+    <span>{__TLUMACZ:NAGLOWEK_KUPIONE_PRODUKTY}</span>
+</h1>
+
+<!-- tresc strony -->
+
+<section class="StrTresc">
+
+    <!-- tablica z zamowieniami - sprawdzi czy sa jakies zamowienia klienta -->
+
+    <?php
+    $TablicaProduktow = $__pA;
+    $RozmiarImg = 60;
+
+    if ( count($TablicaProduktow) > 0 ) {
+        ?>
+
+        <div class="TabelaKlient">
+
+            <table id="TabelaZamowienia">
+
+                <tr class="Naglowek">
+                    <th class="Centruj">{__TLUMACZ:INFO_FOTO}</th>
+                    <th>{__TLUMACZ:NAZWA_PRODUKTU}</th>
+                    <th class="Centruj">{__TLUMACZ:LISTING_DODAJ_DO_KOSZYKA}</th>
+                    <?php if ( RECENZJE_STATUS == 'tak' ) { ?><th style="text-align:center">{__TLUMACZ:PRZYCISK_NAPISZ_RECENZJE}</th><?php } ?>
+                </tr>
+
+                <?php
+                foreach ( $TablicaProduktow as $ProduktZamowienia ) {
+                
+                    $ProduktAktywny = false;
+
+                    $zapytanie = "SELECT products_status, products_image FROM products WHERE products_id = '".$ProduktZamowienia['id_produktu']."' AND products_status = '1'";
+                    $sql = $GLOBALS['db']->open_query($zapytanie);
+
+                    if ((int)$GLOBALS['db']->ile_rekordow($sql) > 0) {
+                        $ProduktAktywny = true;
+                    }
+                    $GLOBALS['db']->close_query($sql);
+                    unset($zapytanie, $info, $sql);
+
+                    if ( $ProduktAktywny ) {
+
+                        $ProduktInfo = new Produkt($ProduktZamowienia['id_produktu'], $RozmiarImg, $RozmiarImg);
+                        
+                        if ($ProduktInfo->CzyJestProdukt == true) {
+
+                            // elementy kupowania
+                            $ProduktInfo->ProduktKupowanie();
+
+                            echo '<tr>
+                                <td class="Centruj">'.$ProduktInfo->fotoGlowne['zdjecie_link'].'</td>
+                                <td><h3>'.$ProduktInfo->info['link'].'</h3></td>
+                                <td class="Centruj"><div class="Zakup">';
+                                    if ($ProduktInfo->zakupy['mozliwe_kupowanie'] == 'tak' || $ProduktInfo->zakupy['pokaz_koszyk'] == 'tak') {
+                                        echo $ProduktInfo->zakupy['input_ilosci'] . '<em>' . $ProduktInfo->zakupy['jednostka_miary'] . '</em> ' . $ProduktInfo->zakupy['przycisk_kup'];
+                                    }            
+                                echo '</div></td>';
+                                
+                                if ( RECENZJE_STATUS == 'tak' ) {
+                                
+                                    echo '';
+                                
+                                    $zapytanieRec = "SELECT reviews_id FROM reviews WHERE products_id = '" . (int)$ProduktZamowienia['id_produktu'] . "' AND customers_id = '" . (int)$ProduktZamowienia['id_klienta'] . "'";
+                                    $sqlRec = $GLOBALS['db']->open_query($zapytanieRec);
+
+                                    if ((int)$GLOBALS['db']->ile_rekordow($sqlRec) < 1) {
+                                        //
+                                        $Zamowienie = new Zamowienie((int)$ProduktZamowienia['numer_zamowienia']);
+                                        //
+                                        $hashKod = '/nr=' . $Zamowienie->info['id_zamowienia'] . '/zamowienie=' . hash("sha1", $Zamowienie->info['id_zamowienia'] . ';' . $Zamowienie->info['data_zamowienia'] . ';' . $Zamowienie->klient['adres_email'] . ';' . $Zamowienie->klient['id']);
+                                        //
+                                        echo '<td class="Centruj"><a target="_blank" href="napisz-recenzje-rw-' . $ProduktZamowienia['id_produktu'] . '.html/recenzja=' . $Zamowienie->link_recenzji[$ProduktZamowienia['id_produktu']] . $hashKod . '/wroc=produkty" class="przycisk">{__TLUMACZ:PRZYCISK_NAPISZ_RECENZJE}</a></div>';
+                                        //
+                                        unset($hashKod, $Zamowienie);
+                                        //
+                                    } else {
+                                        //
+                                        echo '<td class="PoleNiewidoczne"></div>';
+                                        //
+                                    }
+                                    $GLOBALS['db']->close_query($sqlRec);
+                                    unset($zapytanieRec);
+                                    
+                                }                            
+
+                            echo '</tr>';
+                            
+                        }
+                        
+                    } else {
+
+                        echo '<tr class="Wycofany">
+                        
+                              <td class="Centruj">'.Funkcje::pokazObrazek('domyslny.webp', $ProduktZamowienia['nazwa_produktu'], $RozmiarImg, $RozmiarImg, array(), '', 'maly', true, false, false).'</td>
+                              <td><h3><a>'.$ProduktZamowienia['nazwa_produktu'].'</a></h3></td>
+                              <td class="Centruj">{__TLUMACZ:PRODUKT_NIEDOSTEPNY}</td>
+                              ' . (( RECENZJE_STATUS == 'tak' ) ? '<td class="PoleNiewidoczne"></td>' : '');
+
+                        echo '</tr>';
+                        
+                    }
+
+                    unset($ProduktInfo);
+
+
+                }
+                ?>
+            </table>
+
+        </div>
+
+        <?php
+
+    } else { ?>
+    
+        <!-- jezeli nie ma zamowien wyswietli komunikat -->
+    
+        <p class="Informacja">
+            {__TLUMACZ:BRAK_DANYCH_DO_WYSWIETLENIA}
+        </p>
+        
+    <?php }
+    
+    unset($TablicaProduktow);
+    ?>
+        
+    <div class="cl"></div>
+    
+    <!-- przycisk powrotu do panelu klienta -->
+
+    <a href="{__SSL:panel-klienta.html}" class="przycisk Lewy">{__TLUMACZ:PRZYCISK_PANEL_KLIENTA}</a>   
+    
+    <div class="cl"></div>
+
+</section>
+
+

@@ -1,0 +1,7 @@
+CZY_WLACZONA_LEWA_KOLUMNA:tak;
+CZY_WLACZONA_PRAWA_KOLUMNA:nie;
+SZEROKOSC_LEWEJ_KOLUMNY:220;
+TLO_SKLEPU:FFFFFF;
+TLO_SKLEPU_RODZAJ:kolor;
+NAGLOWEK_RODZAJ:obraz;
+NAGLOWEK:../szablony/standardowy.rwd/obrazki/szablon/naglowek_rwd.jpg;

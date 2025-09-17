@@ -1,0 +1,70 @@
+/* informacje o cookie - modul staly - przyklejony - z wyborem integracji */
+#InfoCookieTlo { content:''; position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.3); z-index:10002; }
+#InfoCookieIntegracje { position:fixed; left:0; bottom:0; right:0; padding:10px 0 10px 0; background:rgba(0,0,0,0.82); color:#dbdbdb; border-top:1px solid #555; z-index:10003; }
+#InfoCookieIntegracje a { color:#dbdbdb; text-decoration:underline; }
+
+#InfoCookieIntegracje .CookieTekstIntegracje { text-align:left; line-height:1.5; }
+
+@media only screen and (max-width:1023px) {
+  #InfoCookieIntegracje .Strona { width:95%; }
+  #InfoCookieIntegracje .CookieTekstIntegracje { padding-bottom:15px; }  
+  #InfoCookieIntegracje .CookieIntegracjePrzyciski { display:flex; flex-wrap:wrap; justify-content:space-between; align-content:flex-start; align-items:center; }
+  #InfoCookieIntegracje .CookieIntegracjePrzyciski > div { width:calc(33% - 10px); }
+  #InfoCookieIntegracje .CookieIntegracjePrzyciski > div span { display:block !important; } 
+}
+@media only screen and (max-width:479px) { 
+  #InfoCookieIntegracje .CookieIntegracjePrzyciski > div { width:100%; }
+  #InfoCookieIntegracje .CookiePrzyciskUstawien { margin-bottom:15px; }  
+}
+@media only screen and (min-width:1024px) {
+  #InfoCookieIntegracje .CookieTekstIntegracje { float:left; width:60%; }
+  #InfoCookieIntegracje .CookieIntegracjePrzyciski { float:right; width:35%; text-align:right; }
+  #InfoCookieIntegracje .CookiePrzyciskUstawien, #InfoCookieIntegracje .CookiePrzyciskAkceptacja { display:inline-block; vertical-align:top; }
+  #InfoCookieIntegracje .CookieIntegracjePrzyciski span { margin:5px 0px 5px 15px; }
+}
+
+#InfoCookieIntegracje .CookieIntegracjePrzyciski span { text-align:center; padding:8px 15px 8px 15px; cursor:pointer; display:inline-block; vertical-align:top; text-transform:uppercase; 
+    transition: all 0.20s ease-in-out;
+	-moz-transition: all 0.20s ease-in-out;
+	-webkit-transition: all 0.20s ease-in-out;
+}
+
+#InfoUstawieniaIntegracje, #InfoTylkoNiezbedneIntegracje { color:#dbdbdb; border:2px solid #4d4d4d; margin:0px; }
+#InfoUstawieniaIntegracje:hover, #InfoTylkoNiezbedneIntegracje:hover { color:#dbdbdb; border:2px solid #dbdbdb; }
+  
+#InfoAkceptIntegracje { color:#000000; border:2px solid #cacaca; background:#cacaca; font-weight:bold; }
+#InfoAkceptIntegracje:hover { color:#000000; border:2px solid #dbdbdb; background:#dbdbdb; } 
+  
+/* okno ustawien cookie */
+  
+#CookieOknoUstawien { position:fixed; left:0px; bottom:0px; right:0px; top:0px; background-color:rgba(0, 0, 0, 0.8); z-index:10003; display:none; }
+#CookieOknoUstawien #CookieOknoZamknij { cursor:pointer; position:absolute; right:-15px; top:-15px; }
+#CookieOknoUstawien #CookieOknoZamknij span { width:30px; height:30px; background:url('../obrazki/nawigacja/zamknij_banner_popup.png'); display:inline-block; }
+
+@media only screen and (max-width:799px) { 
+  #CookieOknoUstawien .CookieOkno { width:80%; }
+}
+@media only screen and (min-width:800px) {
+  #CookieOknoUstawien .CookieOkno { width:560px; }
+}
+
+#CookieOknoUstawien .CookieOkno { position:fixed; left:50%; top:50%; background:#ffffff; z-index:1003; border:4px solid #242424; -moz-border-radius:12px; -webkit-border-radius:12px; border-radius:12px; -khtml-border-radius:12px; 
+  -webkit-transform: translate(-50%, -50%); transform: translate(-50%, -50%);
+}
+
+#CookieOknoUstawien .CookieOknoKont { padding:30px 20px 30px 30px; text-align:left; }
+
+#CookieOknoUstawien .CookieOknoKont .CookieZgody { max-height:300px; padding-right:10px; overflow-y:scroll; }
+
+#CookieOknoUstawien .NaglowekCookieOkno { font-size:130%; font-weight:bold; margin-bottom:10px; }
+#CookieOknoUstawien .GotoweCookieOkno { padding-top:15px; text-align:center; }
+#CookieOknoUstawien .GotoweCookieOkno span { display:inline-block; }
+
+#CookieOknoUstawien .CookieOknoUstawienia { padding:10px 0px 10px 0px; }
+#CookieOknoUstawien .CookieOknoUstawieniaInput { font-size:120%; }
+#CookieOknoUstawien .CookieOknoUstawieniaInput input { padding:0px; float:left; margin:5px 10px 0px 0px; }
+#CookieOknoUstawien .CookieOknoUstawieniaInput label { float:left; }
+
+#CookieOknoUstawien .CookieOknoUstawieniaOpis { padding-top:10px; clear:both; }
+
+

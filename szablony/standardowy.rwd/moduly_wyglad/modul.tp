@@ -1,0 +1,15 @@
+<!-- ogolny wyglad modulu na stronie glownej -->
+
+<!-- wyglad naglowka modulu - sprawdza czy modul ma miec naglowek -->
+
+<?php if ($__pA['modul_header'] == '1') { ?>
+    <h2 class="StrNaglowek">
+        <span>{__NAGLOWEK_MODULU}</span>
+    </h2>
+<?php } ?>
+
+<!-- tresc modulu -->
+
+<div class="StrTresc">
+    {__TRESC_MODULU}
+</div>

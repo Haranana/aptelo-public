@@ -1,0 +1,39 @@
+<!-- wyglad naglowka strony -->
+
+<h1 class="StrNaglowek">
+    <span>{__TLUMACZ:NAGLOWEK_PLATNOSCI_BLAD}</span>
+</h1>
+
+<!-- tresc strony -->
+
+<section class="StrTresc">
+    
+    <div class="Informacja">
+        {__KOMUNIKAT}
+    </div>
+
+    <div style="padding:7px 5px 7px 0px;" id="PlatnoscBladInfo">
+        {__TLUMACZ:PLATNOSCI_KOMUNIKAT_BLEDU}:
+    </div>
+
+    <div class="KomunikatBledu" id="PlatnoscBladTresc">{__KOMUNIKAT_BLEDU}</div>
+
+    <br />
+    
+    <!-- jezeli jest klient z rejestracja -->
+    
+    <?php if ( $_SESSION['gosc'] == '0' ) { ?>
+    
+        <a href="{__SSL:zamowienia-szczegoly-zs-<?php echo (int)$_SESSION['platnoscElektroniczna']['zamowienie_id']; ?>.html}" class="przycisk Lewy">{__TLUMACZ:PRZYCISK_PRZEJDZ_DO_SZCZEGOLOW_ZAMOWIENIA}</a>
+        
+    <?php } ?>
+    
+    <!-- przycisk powrotu do strony glownej -->
+    
+    <a href="/" class="przycisk Prawy">{__TLUMACZ:PRZYCISK_DO_STRONY_GLOWNEJ}</a>   
+    
+    <div class="cl"></div>
+
+</section>
+
+

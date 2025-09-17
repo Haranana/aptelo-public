@@ -1,0 +1,173 @@
+/* ------------ okno przegladarki ------------ */
+#Przegladarka { position:fixed; width:100%; height:100%; top:0px; left:0px; z-index:9996; display:none; }
+#PrzegladarkaTlo { z-index:9997; position:fixed; top:0px; left:0px; width:100%; height:100%; background:url('../obrazki/tlo_strony.png'); filter:alpha(opacity=90); -moz-opacity:0.9; opacity:0.9; }
+#ListPlikstrona { z-index:9998; top:10%; margin:0px auto; -moz-border-radius:15px; -webkit-border-radius:15px; -khtml-border-radius:15px; border-radius:15px; background:#fff; border:8px solid #0e0e0e; 
+  -webkit-transform-origin:0 0; -moz-transform-origin:0 0; -o-transform-origin:0 0; -ms-transform-origin:0 0;
+}
+
+@media only screen and (max-width:1023px) {
+  .ListaPrzegladarki { width:710px; height:480px; }
+}
+@media only screen and (min-width:1024px) and (max-width:1279px) {
+  .ListaPrzegladarki { width:920px; height:480px; }
+}
+@media only screen and (min-width:1280px) {
+  .ListaPrzegladarki { width:1120px; height:580px; }
+}
+
+#ckPrzeg #Przegladarka { display:block; }
+#ListPlikckedit { z-index:9998; background:#fff; border:0px; margin:0px auto; }
+
+.LewaListaPlikow, .PraweOknaPlikow { vertical-align:top; position:relative; }
+.LewaListaPlikow { padding-right:20px; }
+
+.OknoPrzegladarki { margin:10px 10px 0px 10px; }
+@media only screen and (max-width:1023px) {
+  .OknoPrzegladarki { width:690px; }
+  .LewaListaPlikow { width:370px; }
+  .PraweOknaPlikow { width:280px; }
+}
+@media only screen and (min-width:1024px) and (max-width:1279px) {
+  .OknoPrzegladarki { width:900px; }
+  .LewaListaPlikow { width:577px; }
+  .PraweOknaPlikow { width:280px; }  
+}
+@media only screen and (min-width:1280px) {
+  .OknoPrzegladarki { width:1100px; }
+  .LewaListaPlikow { width:777px; }
+  .PraweOknaPlikow { width:280px; }  
+}
+
+/* ------------ wyglad listy plikow ------------ */
+.ListaPlikowAjax { margin:10px; margin-top:5px; overflow-y:scroll; border:1px solid #e0e0e0; position:absolute; }
+@media only screen and (max-width:1023px) {
+  .ListaPlikowAjax { width:688px; height:420px; }
+}
+@media only screen and (min-width:1024px) and (max-width:1279px) {
+  .ListaPlikowAjax { width:898px; height:420px; }
+}
+@media only screen and (min-width:1280px) {
+  .ListaPlikowAjax { width:1098px; height:520px; }
+}
+
+@media only screen and (max-width:1023px) {
+  .NazwaPliku { width:100%; }
+  .RozmiarPliku, .TablicaLista .Rozmiar  { display:none; }
+  .DataPliku, .TablicaLista .DataUtworzenia { display:none; }
+}
+@media only screen and (min-width:1024px) {
+  .NazwaPliku { width:60%; }
+  .RozmiarPliku { width:20%; text-align:right; }
+  .DataPliku { width:20%; text-align:center; }
+}
+
+.ListaPlikow { margin:10px; }
+.TablicaLista { margin-left:10px; margin-top:10px; width:100%; }
+.TablicaLista td { padding:3px; border-bottom:1px dotted #c0d9e6; }
+.BrakLinii td { border:0px !important; }
+.TablicaLista span { display:inline-block; background:url('../obrazki/plik.png') no-repeat left center; padding:5px; padding-left:25px; margin-left:5px; color:#1a6d88; font-weight:normal; text-decoration:none; }
+.TablicaLista .PogladImg { cursor:pointer; background:url('../obrazki/image_cechy.png') no-repeat left center; }
+.TablicaLista .PogladImg:hover { color:#ff0000; cursor:pointer; }
+.TablicaLista .PogladNoImg { cursor:pointer; background:url('../obrazki/plik.png') no-repeat left center; }
+.TablicaLista .PogladNoImg:hover { color:#ff0000; cursor:pointer; }
+.TablicaLista .Folder a, .TablicaLista .Folder span { cursor:pointer; display:inline-block; background:url('../obrazki/folder.png') no-repeat left center; padding:5px; padding-left:22px; margin-left:5px; color:#3a3a3a; font-weight:normal; text-decoration:none; }
+.TablicaLista .Folder a:hover, .TablicaLista .Folder span:hover { color:#ff0000; text-decoration:none; }
+.TablicaLista .Powrot a, .TablicaLista .Powrot span { cursor:pointer; display:inline-block; background:url('../obrazki/folder_powrot.png') no-repeat left center; padding:5px; padding-left:22px; margin-left:5px; color:#3a3a3a; font-weight:normal; text-decoration:none; }
+.TablicaLista .Powrot a:hover, .TablicaLista .Powrot span:hover { color:#ff0000; text-decoration:none; }
+.TablicaLista .Rozmiar { text-align:right; color:#3a3a3a; font-weight:normal; text-decoration:none; }
+.TablicaLista .DataUtworzenia { text-align:center; color:#3a3a3a; font-weight:normal; text-decoration:none; }
+.TyNaglowek td { white-space:nowrap; background:#f1f1f1; padding:8px; padding-right:4px; font-weight:bold; color:#ca0000; text-decoration:none; }
+.TyNaglowek td div { white-space:nowrap; line-height:16px; display:inline-block; }
+.TyNaglowek td b { float:left; margin-top:4px; }
+.TyNaglowek td b.Malejaco { cursor:pointer; display:inline-block; background:url('../obrazki/strzalka_dol.png') no-repeat left center; width:16px; height:16px; filter:alpha(opacity=30); -moz-opacity:0.3; opacity:0.3; }
+.TyNaglowek td b.Rosnaco { cursor:pointer; display:inline-block; background:url('../obrazki/strzalka_gora.png') no-repeat left center; width:16px; height:16px; filter:alpha(opacity=30); -moz-opacity:0.3; opacity:0.3; }
+.TyNaglowek td b.Wl, .TyNaglowek td b:hover { filter:alpha(opacity=100); -moz-opacity:1; opacity:1; }
+.TyNaglowek td b:first-child { margin-right:5px;  }
+.TyNaglowek td b:last-child { margin-left:5px;  }
+.TablicaLista .Kasowanie { text-align:center; white-space:nowrap; }
+.TablicaLista .Kasowanie a { display:inline-block; vertical-align:top; margin:2px; }
+.TabelaPodglad { width:270px; border:1px solid #eaeaea; }
+.TabelaPodgladAjax { width:270px; border:1px solid #eaeaea; }
+.WidokOkno, .WidokLista { filter:alpha(opacity=30); -moz-opacity:0.3; opacity:0.3; margin:2px 8px 0px 0px; float:right; cursor:pointer; display:inline-block; width:30px; height:26px; 
+  transition:all 0.20s ease-in-out;
+  -moz-transition:all 0.20s ease-in-out;
+  -webkit-transition:all 0.20s ease-in-out;
+  -o-transition:all 0.20s ease-in-out; 
+}
+.WidokOkno:hover, .WidokLista:hover, .WidokWl { filter:alpha(opacity=100); -moz-opacity:1; opacity:1; }
+.WidokOkno { background:url('../obrazki/listing_okna.png') no-repeat center center; }
+.WidokLista { background:url('../obrazki/listing_prosty.png') no-repeat center center; }
+.Zamknij { float:right; cursor:pointer; display:inline-block; background:url('../obrazki/zamknij.png') no-repeat left center; padding:7px 0px 7px 35px; margin:0px 0px 0px 5px; color:#11878e; font-weight:normal; text-decoration:none; }
+.Zamknij:hover { color:#ff0000; }
+
+.TablicaLista .Edycja { cursor:pointer; background:url('../obrazki/edytuj.png') no-repeat left center; margin-left:5px; padding: 5px 5px 5px 22px; color:#1A6D88;}
+.TablicaLista .Edycja:hover { color:#ff0000; cursor:pointer; }
+
+/* ------------ podglad ------------ */
+.PodgladObrazkaPrzegladarka { padding:10px; text-align:center; color:#c9c9c9; }
+.PodgladObrazkaPrzegladarka span { font-weight:normal; color:#3a3a3a; text-decoration:none; display:block; padding:4px; text-align:center }
+
+#SciezkaPlikow { margin:17px; color:#1a6d88; font-weight:bold; text-decoration:none; }
+#SciezkaPlikow span { color:#1a8843; font-weight:bold; display:inline-block; padding-right:3px; }
+#SciezkaPlikowAjax { padding:5px; color:#1a6d88; font-weight:bold; text-decoration:none; }
+#SciezkaPlikowAjax span { color:#1a8843; font-weight:bold; display:inline-block; padding-right:3px; }
+.SzukajPliki { margin:17px 0px 0px 17px; text-decoration:none; }
+  
+.TablicaLista .infe { padding:0px; float:left; margin:6px 5px 0px 5px; margin-right:7px; cursor:pointer; background:url('../obrazki/info_male.png') no-repeat; width:16px; height:16px; }
+.TablicaLista input { padding:0px; float:left; margin:6px; cursor:pointer; }
+.ZaznaczZdjecie { float:left; margin:3px 8px 0px 5px !important; }
+
+#NowyFolder, #NowyPlik, #SzukaniePliku { margin:0px auto; }
+#NowyFolder td, #NowyPlik td, #SzukaniePliku td { padding:8px; text-align:center; vertical-align:middle; }
+#NowyFolder button, #NowyPlik button, #SzukaniePliku button { margin:0px; margin-right:12px; padding:4px; }
+#NowyFolder input, #SzukaniePliku input { margin-left:12px; padding:5px; border:1px solid #d2d0d0; background:#f7f6f6; font-weight:normal; -moz-border-radius:4px; -webkit-border-radius:4px; -khtml-border-radius:4px; border-radius:4px; }
+
+#AjaxFix { position:absolute; margin-top:10px; margin-left:0px; overflow:hidden; }
+@media only screen and (max-width:1023px) {
+  #AjaxFix { height:400px; }
+}
+@media only screen and (min-width:1024px) {
+  #AjaxFix { height:500px; }
+}
+
+#WgrywanyPlik td { text-align:left; padding-left:12px; }
+#WgrywanyPlik #upload_wrap { width:200px; margin-left:0px; margin-top:5px; }
+#WgrywanyPlik #ladowanie { margin-top:5px; }
+#WgrywanyPlik input { padding:4px; border:1px solid #d2d0d0; background:#f7f6f6; }
+#WgrywanyPlik .ostrzezenie { margin-bottom:5px; }
+
+#WybierzZdjecia { cursor:pointer; text-align:center; background:#ebebeb; color:#ffffff; padding:10px; font-size:11px; display:none; margin-bottom:10px; }
+#WybierzZdjecia span { color:#ff0000; }
+#WybierzZdjecia:hover { background:#e8e8e8; }
+
+.PodgladOkna { text-align:center; padding:10px 0px 5px 0px !important; }
+.FotoOkno { position:relative; cursor:pointer; background:#eaeaea; padding:8px; margin:4px; vertical-align:top; display:inline-block; -moz-border-radius:5px; -webkit-border-radius:5px; -khtml-border-radius:5px; border-radius:5px; min-width:85px;
+  transition: all 0.20s ease-in-out;
+	-moz-transition: all 0.20s ease-in-out;
+	-webkit-transition: all 0.20s ease-in-out;
+	-o-transition: all 0.20s ease-in-out;
+}
+.FotoOkno:hover { background:#dfdfdf; }
+.FotoOkno img { width:60px; height:60px; }
+.OknoRozmiar, .OknoData { margin:3px 0px 3px 0px; font-size:90%; text-align:center; white-space:nowrap; }
+.FotoBrak { display:inline-block; width:60px; height:60px; background:url('../obrazki/plik.png') #eaeaea no-repeat center center; }
+.FotoFolder { display:inline-block; width:60px; height:60px; background:url('../obrazki/folder_sredni.png') #eaeaea no-repeat center center; }
+.FotoFolderPowrot { display:inline-block; width:60px; height:60px; background:url('../obrazki/folder_powrot_sredni.png') #eaeaea no-repeat center center; }
+.Zaznaczenie { height:25px; }
+.Zaznaczenie .ZaznaczZdjecie { margin-left:0px !important; }
+
+.FotoOkno::before { content:attr(data-title); font-size:11px; position:absolute; z-index:999; white-space:nowrap; left:5px; background:#8a8a8a; color:#ffffff; padding:4px 10px 4px 10px; filter:alpha(opacity=0); -moz-opacity:0; opacity:0; top:5px;
+  transition:all 0.20s ease-in-out;
+  -moz-transition:all 0.20s ease-in-out;
+  -webkit-transition:all 0.20s ease-in-out;
+  -o-transition:all 0.20s ease-in-out; 
+  -webkit-border-radius:3px; 
+  -o-border-radius:3px;
+  -moz-border-radius:3px; 
+  border-radius:3px;
+} 
+.FotoOkno:hover::before { filter:alpha(opacity=100); -moz-opacity:1; opacity:1; }
+
+.PrzyciskiPrzegladarka { padding:15px 0px 15px 0px; }
+.PrzyciskiPrzegladarka .IlePozycjiPrzegladarka { color:#6e6e6e; margin-top:5px; }
+.PrzyciskiPrzegladarka a:hover { color:#ffffff; }

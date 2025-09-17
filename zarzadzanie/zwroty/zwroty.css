@@ -1,0 +1,55 @@
+/* kolor statusu */
+.StatusZwrotuKolor { width:17px; height:17px; display:inline-block; }
+
+.ListaProduktowZwrot { padding:10px 0px 10px 0px; display:flex; justify-content:flex-start; align-items:flex-start; }
+.WyborProduktuZwrot { display:flex; justify-content:flex-start; align-items:center; flex-wrap:wrap; margin:5px 0px 10px 0px; }
+.WyborProduktuZwrot div { margin-right:10px; }
+.ZwrotLabel { padding:3px 2px 4px 10px; }
+.ZwrotWybrany { width:100%; padding-top:10px; display:none; }
+.ZwrotWybrany > div { display:flex; justify-content:flex-start; align-items:center; padding:2px 0px 2px 0px; }
+.ZwrotWybrany > div > div:first-child { width:100px; }
+
+.ProduktZwrotu { display:flex; justify-content:flex-start; align-items:flex-start; }
+.ProduktZwrotu > div { padding:5px 5px 5px 0px; }
+.ListaCechZwrotu div { display:block; padding:2px 0px 2px 0px; font-weight:normal; color:#5b5a5a; }
+.SumaZwrotuListing { margin-top:10px; color:#ff0000; font-weight:bold; }
+
+/* oznaczenie klienta firmy */
+.Firma { display:block; padding-bottom:2px; font-weight:bold; color:#098206; }
+
+/* wyglad opiekuna */
+.Opiekun { font-weight: bold; color:#445b6e; text-decoration: none; display:block; text-align:center; }
+
+.PozycjaBold { font-weight: bold !important; } 
+
+.LinEdytuj { float:right; }
+.LinEdytuj a { font-weight:normal; color:#7a7b7a; text-decoration:none; padding:4px 0px 4px 20px; background: url('../obrazki/edytuj.png') center left no-repeat;  }
+.LinEdytuj a:hover { font-weight:normal; color:#ff0000; text-decoration:none; }
+
+.MalyMail { background: url('../obrazki/maly_mail.gif') left center no-repeat; padding:2px; padding-left:15px; color:#064661; display:block; }
+
+#StatRekl td { text-align:center; }
+
+@media only screen and (max-width:1023px) { 
+  #LadujKomentarz { margin:-33px 0px 5px 460px; }
+}
+@media only screen and (min-width:1024px) { 
+  #LadujKomentarz { margin:-27px 0px 5px 510px; }
+}
+#LadujKomentarz { display:none; position:absolute; }
+
+.KlientInfoZwrot { color:#066f91; font-weight:bold; display:inline-block; background:url('../obrazki/klient.png') no-repeat left center; padding:0px 0px 0px 20px; }
+.TloInfoKlienta td { background:#e5e5e5; }
+.KolorInfoKlienta { color:#417028; }
+
+/* wyglad opiekuna */
+.Opiekun { font-weight: normal; color:#51c95a; text-decoration: none; font-size:10px; display:block; text-align:center; padding-top:8px; }
+.Opiekun span { font-weight: bold; color:#445b6e; text-decoration: none; font-size:10px; display:block; text-align:center; padding-top:3px; }
+
+.KomentarzeZwroty { display:inline-block; background:url('../obrazki/ochrona.png') no-repeat left center; padding:0px 0px 0px 30px; font-weight:bold; color:#ff0000; }
+
+.ZdjeciaReklamacji { margin:10px 10px 10px 0px; }
+.ZdjeciaReklamacji img { max-width:150px; max-height:100px; width:auto; height:auto; }
+
+/* nr katalogowy */
+.MaleNrKatalogowy { display:block; padding-top:2px; padding-bottom:2px; font-weight:normal; color:#5b5a5a; }

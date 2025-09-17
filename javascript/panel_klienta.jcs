@@ -1,0 +1,86 @@
+Array.prototype.SzukajTbl = function(val){
+  for (var i in this) {
+    if (this[i] == val) return i;
+  }
+}
+
+$(document).ready(function() {
+    $('#SelPkt').change( function() {
+    
+        var wartosc = $(this).val();
+        var klasy = wartosc.split(',');
+        
+        $("#TabelaPkt tr").show();
+        
+        var ileWylaczonych = 0;
+        var ileWszystkich = 0;       
+
+        if ( wartosc != '' ) {
+
+            $("#TabelaPkt tr").each(function() {
+            
+                var pierwszaKlasa = $(this).attr("class").split(" ")[0];
+
+                if ( pierwszaKlasa != 'Naglowek' && !klasy.SzukajTbl( pierwszaKlasa ) ) {
+                     $(this).hide();
+                     ileWylaczonych++;
+                }
+                
+                ileWszystkich++;
+                
+            });
+
+        }
+        
+        if ( ileWszystkich - ileWylaczonych == 1 ) {
+             $('#Brak').show();
+           } else {
+             $('#Brak').hide();
+        }
+
+    });
+});
+
+// funkcja odczytu koszyka
+function WczytajKoszyk(id) {
+    //
+    PreloadWlacz();
+    //
+    $.post("inne/koszyk_wczytaj.php?tok={__TOKEN_WCZYTAJ_KOSZYK}", { id: id }, function(data) {
+        //
+        PreloadWylaczSzybko();
+        //
+        if ( data == '' ) {
+            $(location).attr('href','koszyk.html');
+        } else {           
+            var myModal = new jBox('Modal',{ 
+                content : '<div class="message">'+data+'</div>',
+                closeButton: false,
+                closeOnEsc: false,
+                closeOnMouseleave: false,
+                closeOnClick: false,
+                onOpen: function () {
+                    const popupElement = this.wrapper;
+                    setTimeout(function () {
+                        initFocusTrap(popupElement);
+                    }, 50);
+                }      
+            });
+            myModal.open();
+
+	}  
+    });
+
+}
+
+// funkcja usuniecia zapisanego koszyka
+function UsunZapisanyKoszyk(id) {
+
+    PreloadWlacz();
+    $.post("inne/koszyk_usun.php?tok={__TOKEN_WCZYTAJ_KOSZYK}", { id: id }, function(data) { 
+        //
+        window.location.reload();
+        //
+    });
+
+}

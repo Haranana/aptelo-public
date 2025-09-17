@@ -1,0 +1,33 @@
+<!-- ogolny wyglad jednej kolumny modulu z kreatora -->
+
+<!-- wyglad naglowka kolumny modulu - sprawdza czy ma miec naglowek -->
+
+<?php if ( $__Parametr['WyswietlajKolumne'] == 'tak' ) { ?>
+
+<div class="KolumnaKreator KolumnaNumer-{__NR_KOLUMNY}">
+
+    <div class="ModulCssMarginesy KolumnaCssMarginesyNumer-{__NR_KOLUMNY}-{__ID_MODULU}">
+
+        <?php if ($__pA['NaglowekKolumny'] == 'tak') { ?>
+
+            <h2 class="StrNaglowek{__ANIMACJA_STRZALKI}">
+                <span>{__NAGLOWEK_KOLUMNY}</span>
+            </h2>
+            
+        <?php } ?>
+        
+        <!-- tresc kolumny -->
+
+        <div class="StrTresc">
+          
+            {__OPIS_KOLUMNY}
+            
+            {__TRESC_KOLUMNY}
+            
+        </div> 
+        
+    </div> 
+
+</div>
+
+<?php } ?>

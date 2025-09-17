@@ -1,0 +1,13 @@
+/* wyglad rodzaju boxu w liscie */
+.Link { background:url('../obrazki/link.png') no-repeat left center; display:inline-block; padding:2px; padding-left:24px; color:#087000; font-weight:normal; text-decoration:none; }
+.Strona { background:url('../obrazki/info_klient.png') no-repeat left center; display:inline-block; padding:2px; padding-left:24px; font-weight:normal; text-decoration:none; }
+
+/* leganda ikon */
+#Legenda { margin:10px; margin-right:0px; text-align:right; }
+#Legenda span { margin-left:20px; }
+
+/* grupa klientow */
+.grupa_klientow { display:inline-block; padding:5px; }
+
+.EdytorSkrypt { margin:15px 10px 10px 10px; display:none; }
+.EdytorSkrypt textarea { width:98%; font-family:Courier, Arial !important; }

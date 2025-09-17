@@ -1,0 +1,80 @@
+/* wyglad listy plikow */
+.ListaPlikow { margin:10px; }
+.ListaPlikow ul { list-style-type: none; margin:0px; padding:0px; }
+.ListaPlikow li { margin:0px; padding:0px; }
+.ListaPlikow span { display:inline-block; background:url('../obrazki/csv.gif') no-repeat left center; padding:5px; padding-left:22px; margin-left:5px; font-weight:normal; text-decoration:none; }
+
+.ListaPlikowXml { margin:10px; }
+.ListaPlikowXml table { width:100%; }
+.ListaPlikowXml span { display:inline-block; background:url('../obrazki/xml.gif') no-repeat left center; padding:5px; padding-left:22px; margin-left:5px; font-weight:normal; text-decoration:none; }
+.ListaPlikowXml td { padding:2px 15px 2px 0px; border-bottom:1px dotted #c0d9e6; }
+.ListaPlikowXml .TyNaglowek td { white-space:nowrap;  background:#f1f1f1; padding:8px 15px 8px 15px; font-weight:bold; color:#ca0000; text-decoration:none; }
+.ListaPlikowXml td:nth-child(2), .ListaPlikowXml td:nth-child(3) { text-align:right; padding-left:15px; }
+.ListaPlikowXml td:nth-child(4) { text-align:center; padding-left:15px; padding-right:15px; }
+
+.NaglowekCsv { text-decoration:none; padding:8px; padding-top:14px; padding-bottom:4px; font-family:Inder,Arial; font-size:120%; }
+.PolaWyboru { margin:10px; margin-top:5px; }
+.WybierzStrukture select { font-size:12px !important; font-weight:bold !important; padding:8px !important; }
+
+#opisImportu { margin:10px; }
+#opisImportu span { display:block; margin-bottom:3px; font-weight:bold; color:#ff0000; }
+#opisImportu input { margin-left:15px; }
+#opisImportu ul { list-style-type:none; padding:0px; margin:0px; }
+#opisImportu ul li { display:inline-block; margin:8px 0px 8px 0px; }
+
+@media only screen and (max-width:1023px) {
+  .TabelaCsv { padding:10px; }
+  .OknoImportu { margin-bottom:15px; }
+}
+@media only screen and (min-width:1024px) {
+  .TabelaCsv { display:table; width:100%; }
+  .OknoImportu { display:table-cell; width:50%; vertical-align:top; padding:10px; }  
+}
+
+.TabelaPlikow { width:100%; margin:0px; padding:0px; }
+.TabelaPlikow .Naglowek td { white-space:nowrap; background:#f1f1f1; padding:5px !important; font-family: Tahoma, Verdana, Arial, sans-serif; font-size: 11px; font-weight:bold; color:#ca0000; text-decoration:none; }
+.TabelaPlikow td { padding:1px 5px 1px 0px; vertical-align:middle; text-align:center; border-bottom:1px dotted #c0d9e6 }
+.TabelaPlikow td:first-child { text-align:left; }
+.TabelaPlikow .plikZew td { padding:10px 0px 10px 0px; border:0px; }
+
+.InputExport { margin:5px; }
+.InputExport td { vertical-align: middle; padding:3px; padding-left:5px; line-height:1.5; }
+
+.ListaExport { margin-top:15px; margin-left:5px; }
+.ListaExport span { margin:6px; margin-top:5px; background:url('../obrazki/csv.png') no-repeat left center; display:inline-block; padding:10px; padding-left:50px; padding-right:0px; font-weight:normal; text-decoration:none; }
+
+.ListaExportXml { margin-top:15px; margin-left:5px; }
+.ListaExportXml span { margin:6px; margin-top:5px; background:url('../obrazki/xml.png') no-repeat left center; display:inline-block; padding:10px; padding-left:50px; padding-right:0px; font-weight:normal; text-decoration:none; }
+
+.WyborProducenta { padding:15px; padding-top:8px; }
+.pkc td { padding:1px; }
+
+.ListaWgraj { margin-top:15px; margin-left:15px; }
+.ListaWgraj span { display:block; margin-bottom:10px; }
+.ListaWgraj div { margin-bottom:10px; }
+.ListaWgraj .przyciskNon { margin-bottom:10px; }
+
+#raport li span { color:#8a8a8a; }
+
+.Export { padding:10px; }
+.Export input { margin-right:5px; display:inline-block; }
+@media only screen and (max-width:1023px) {
+  .Export .lf { width:90%; }
+}
+@media only screen and (min-width:1024px) {
+  .Export .lf { width:48%; }
+}
+.Export ul { list-style-type:none; padding:0px; margin:0px; }
+.Export ul li { margin:5px 0px 5px 0px; }
+
+.cmxform label {
+  padding: 4px 10px 4px 0px !important; 
+}
+
+.cmxform .BezDlugosci {
+  width:auto !important; 
+}
+
+.EksportCron { border-bottom:1px dashed #c0d9e6; padding:0px; margin:0 0 20px 0px; }
+.cmxform label.error, label.error { padding-left:20px !important; }
+.EksportCronInfo p { padding-left:0 !important; }

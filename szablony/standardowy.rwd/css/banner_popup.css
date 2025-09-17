@@ -1,0 +1,13 @@
+#TloPopUp { display:none; position:fixed; top:0px; left:0px; right:0px; bottom:0px; z-index:10001; }
+.TloPopUpCiemne { background-color:rgba(0, 0, 0, 0.8); }
+  
+#OknoPopUp { top:5%; left:5%; right:5%; bottom:5%; position:absolute; color:#504f4f; }
+
+#PopUpZawartosc { position:absolute; top:50%; left:0px; right:0px; text-align:center; transform:translateY(-50%); }
+
+#PopUpTylkoZdjecie { display:inline-block; vertical-align:top; position:relative; overflow:visible; }
+#PopUpTylkoZdjecie img { display:inline-block; vertical-align:top; font-size:0px; max-width:100%; height:auto; }
+
+#PopUpTylkoTekst { display:inline-block; vertical-align:top; position:relative; overflow:visible; background:#ffffff; color:#111111; padding:20px; line-height:1.5; }
+
+#PopUpZamknij { cursor:pointer; position:absolute; top:-13px; right:-13px; width:30px; height:30px; background:url('../obrazki/nawigacja/zamknij_banner_popup.png'); display:inline-block; }

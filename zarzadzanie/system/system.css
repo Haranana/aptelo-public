@@ -1,0 +1,6 @@
+.RamkaNaglowek { font-family:Inder,Arial; padding:8px 8px 8px 10px; font-weight:bold; color:#323232; background:#eaeaea; font-size:130%; border:1px solid #ccc; text-shadow:1px 1px #fff; }
+.RamkaSystem { width:50%; padding:8px; border:1px solid #ccc; padding-left:20px; }
+.RamkaEdycji { width:50%; padding:8px; border:1px solid #ccc; }
+.RamkaEdycji span:first-child { display:inline; float:left; margin-left:5px; }
+.RamkaEdycji span:last-child, .InfoSpan span:last-child { float:right; cursor:pointer; margin-right:15px; margin-top:2px; display:inline-block; }
+.RamkaEdycji span form { display:inline-block; margin-top:-12px; }

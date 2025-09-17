@@ -1,0 +1,17 @@
+<!-- sama tresc - bez naglowka i innych elementow html -->
+
+<?php if ( $__Parametr['WyswietlajKolumne'] == 'tak' ) { ?>
+
+<div class="KolumnaKreator KolumnaNumer-{__NR_KOLUMNY} KolumnaKreatorSamaTresc">
+
+    <div class="KolumnaCssMarginesy KolumnaCssMarginesyNumer-{__NR_KOLUMNY}-{__ID_MODULU}">
+    
+        {__OPIS_KOLUMNY}
+    
+        {__TRESC_KOLUMNY}  
+        
+    </div>
+    
+</div>
+
+<?php } ?>

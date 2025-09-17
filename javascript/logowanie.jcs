@@ -1,0 +1,113 @@
+$(document).ready(function() {
+
+    $("#logowanie, #przypomnienie").on("keyup keypress", function(e) {
+      var code = e.keyCode || e.which; 
+      if (code === 13) {               
+          e.preventDefault();
+          return false;
+      }
+    });
+
+    $("#email").keyup(function () {
+        $("#haslo").val('');
+    });
+
+    $("#logowanie").validate({
+      onkeyup: false,
+      onfocusout: false,
+      onclick: false,
+      focusInvalid: false,
+      focusCleanup: true,
+      rules: {
+        email: {
+          required: true,          
+          minlength: 4 
+        },
+        haslo: { required: true,
+                 remote: {
+                    url: "{__SSL:inne/logowanie.php?spr}&tok={__TOKEN_SPRAWDZENIE}",
+                    type: 'POST',
+                    data: {
+                      email: function() { return $("#email").val(); },
+                      haslo: function() { return $("#haslo").val(); }      
+                    }              
+                 }
+        }                     
+      },
+      messages: {
+        email: { required: '{__TLUMACZ:BLAD_WYMAGANE_POLE}' },
+        haslo: { required: '{__TLUMACZ:BLAD_WYMAGANE_POLE}', remote: '{__TLUMACZ:BLAD_LOGIN_HASLO}' }                       
+      },
+      submitHandler: function() {
+        var sear = $('#logowanie').serialize(); 
+        //
+        PreloadWlacz();
+        //
+        $.post("{__SSL:inne/do_logowania.php}?tok={__TOKEN_LOGOWANIE_OKNO}", { data: sear }, function(data) { 
+            //
+            PreloadWylaczSzybko();
+            //
+            var myModal = new jBox('Modal',{ 
+                content : '<div class="message">'+data+'</div>',
+                closeButton: false,
+                closeOnEsc: false,
+                closeOnMouseleave: false,
+                closeOnClick: false,
+                onOpen: function () {
+                    const popupElement = this.wrapper;
+                    setTimeout(function () {
+                        initFocusTrap(popupElement);
+                    }, 50);
+                }      
+            });
+            myModal.open();
+        });
+      },
+      
+    });
+
+    $("#przypomnienie").validate({
+      onkeyup: false,
+      focusInvalid: false,
+      focusCleanup: true,
+      rules: {
+        emailprzypomnienie: { 
+            email: true, 
+            required: true
+        }
+      },
+      messages: {
+        emailprzypomnienie: { email: '{__TLUMACZ:BLAD_ZLY_EMAIL}', required: '{__TLUMACZ:BLAD_WYMAGANE_POLE}' },
+      },
+      submitHandler: function() {
+        var sear = $('#przypomnienie').serialize(); 
+        //
+        PreloadWlacz();
+        //        
+        $.post("{__SSL:inne/do_przypomnienie.php}?tok={__TOKEN_PRZYPOMNIENIE_OKNO}", { data: sear }, function(data) { 
+            //
+            PreloadWylaczSzybko();
+            //
+            if ( data.length > 10 ) {  
+                var myModal = new jBox('Modal',{ 
+                    content : '<div class="message">'+data+'</div>',
+                    closeButton: false,
+                    closeOnEsc: false,
+                    closeOnMouseleave: false,
+                    closeOnClick: false
+                });
+                myModal.open();
+            }
+        });
+        return false;
+      }          
+    });
+    
+    //wlacza przycisk submit jesli dziala u klienta javascript
+    $('#submitButton').removeAttr('disabled');
+    $("#submitButton").attr('class', 'przycisk');  
+
+    $('#submitButtonHaslo').removeAttr('disabled');
+    $("#submitButtonHaslo").attr('class', 'przycisk');
+
+});

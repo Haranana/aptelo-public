@@ -1,0 +1,16 @@
+<!-- indywidualny wyglad naglowka modulu promocje z zegarem - sprawdza czy modul ma miec naglowek -->
+
+<?php if ($__pA['modul_header'] == '1') { ?>
+    <h2 class="StrNaglowek">
+        <span>
+            <!-- dodatkowo dodany jest link do wszystkich promocji -->
+            <a href="promocje.html">{__NAGLOWEK_MODULU}</a>
+        </span>   
+    </h2>
+<?php } ?>
+
+<!-- tresc modulu - dodatkowo dodany padding 0px - nie moze byc odstepow w tym module poniewaz jest wstawiany do naroznika obrazek -->
+
+<div class="StrTresc" style="padding:0px">
+    {__TRESC_MODULU}
+</div>

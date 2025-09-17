@@ -1,0 +1,27 @@
+@font-face {
+  font-display: swap;
+  font-family: 'Rubik';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../szablony/standardowy-e.rwd.v2/font/rubik-v28-latin_latin-ext-regular.woff2') format('woff2'), 
+       url('../szablony/standardowy-e.rwd.v2/font/rubik-v28-latin_latin-ext-regular.ttf') format('truetype'); 
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'Rubik';
+  font-style: normal;
+  font-weight: 700;
+  src: url('../szablony/standardowy-e.rwd.v2/font/rubik-v28-latin_latin-ext-600.woff2') format('woff2'), 
+       url('../szablony/standardowy-e.rwd.v2/font/rubik-v28-latin_latin-ext-600.ttf') format('truetype');
+}
+
+
+@font-face {
+  font-family: fallback-font;
+  src: local('Arial');
+    size-adjust: 104%;
+    ascent-override: 90%;
+    descent-override: 20%;
+    line-gap-override: normal;
+}

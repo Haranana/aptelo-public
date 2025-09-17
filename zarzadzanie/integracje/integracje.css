@@ -1,0 +1,149 @@
+.ObramowanieForm { border:1px solid #c1c1c1; padding:2px; margin-bottom:15px; -moz-border-radius:4px; -webkit-border-radius:4px; -khtml-border-radius:4px; border-radius:4px; }
+.ObramowanieForm table, .Sledzenie table { width:100%; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
+
+.SledzeniePozycja > td { padding:5px; background:#f4f4f4; font-weight:normal; border-left:2px solid #fff; border-bottom:2px solid #fff; }
+.SledzeniePozycja > td:last-child { padding-left:15px; }
+
+@media only screen and (max-width:1023px) { 
+  .SledzeniePozycja > td:first-child { width:165px; }
+  #ImgZakladkGG, #ImgFbPixel { width:400px; height:auto; }
+}
+@media only screen and (min-width:1024px) { 
+  .SledzeniePozycja > td:first-child { width:185px; }
+}
+
+.cmxform label.error, label.error {
+  margin-top:4px !important;
+	margin-left:0px !important;    
+	width:400px !important;
+}
+
+.cmxform td.allegro { padding:3px; border:1px solid #e7e7e7;}
+
+.cmxform .jqueryFileTree label { margin: 0px; padding: 0px; }
+
+.cmxform optgroup { font-style:normal; font-size: 11px; font-weight: bold; color: #3f5d6b }
+
+.ObramowanieForm .DivNaglowek { text-shadow:#fff 1px 1px 1px; font-weight:bold; color:#2b595b; }
+.ObramowanieForm .DivNaglowek td { padding:10px 7px 10px 7px; background:url('../obrazki/tlo.png') #f5f5f5 repeat-x left bottom; }
+
+.SledzenieOpis div { float:left; padding:8px; width:70%; }
+.SledzenieOpis img { float:right; padding:8px; }
+.SledzenieOpis a { font-weight:bold; text-decoration:none; }
+.SledzenieOpis a:hover { font-weight:bold; color:#ff0000; text-decoration:none; }
+.Sledzenie .maleInfo { margin-left:0px; color:#7a7a7a; }
+
+.PobierzKomentarze { color:#ff0000; margin:0px 0px 0px 3px; background:url('../obrazki/export.png') no-repeat left center; padding:2px 0px 2px 20px; display:inline-block; }
+.PobierzKomentarze:hover { color:#000 !important; }
+.DataKomentarzy { margin:8px 0px 3px 0px; background:url('../obrazki/kalendarz.png') no-repeat left center; margin-left:2px; padding:6px 0px 2px 20px; display:block; color:#777777; }
+#pobranieAllegro { margin-left:20px; display:inline-block; }
+
+.NaglowekAfiliacja { padding:15px 10px 15px 20px; background:#f4f4f4; border-bottom:2px solid #fff; border-left:2px solid #fff; }
+.NaglowekAfiliacja strong { font-family:Inder, Arial; font-size:130%; color:#2b595b; display:block; font-weight:normal; }
+
+.IntegracjaKod { padding:20px 10px 10px 10px; text-align:center; }
+.IntegracjaKod textarea { width:98%; text-align:left; font-family:Courier, Arial !important; }
+
+.SledzeniKonfiguracja { margin:15px 10px 5px 10px; }
+
+.SledzenieNaglowki { margin-top:10px; }
+@media only screen and (max-width:1023px) {
+  .SledzenieOkno { float:left; width:50%; }
+  .SledzenieOkno:nth-child(2n+1) { clear:both; }
+}
+@media only screen and (min-width:1024px) and (max-width:1279px) {
+  .SledzenieOkno { float:left; width:33.3333%; }
+  .SledzenieOkno:nth-child(3n+1) { clear:both; }
+}
+@media only screen and (min-width:1280px) and (max-width:1599px) {
+  .SledzenieOkno { float:left; width:33.3333%; }
+  .SledzenieOkno:nth-child(3n+1) { clear:both; }
+}
+@media only screen and (min-width:1600px) {
+  .SledzenieOkno { float:left; width:25%; }
+  .SledzenieOkno:nth-child(4n+1) { clear:both; }
+}
+.SledzenieOkno div.SledzenieDiv { border:1px solid #c1c1c1; margin:9px; -moz-border-radius:4px; -webkit-border-radius:4px; -khtml-border-radius:4px; border-radius:4px; text-align:center; overflow:hidden; cursor:pointer; position:relative;
+  transition:all 0.20s ease-in-out;
+	-moz-transition:all 0.20s ease-in-out;
+	-webkit-transition:all 0.20s ease-in-out;
+}
+.SledzenieOkno div.SledzenieDiv:before { content:""; left:-5px; top:-5px; right:-5px; bottom:-5px; border:3px solid #268dab; position:absolute; display:block; z-index:5; 
+  transition:all 0.20s ease-in-out;
+	-moz-transition:all 0.20s ease-in-out;
+	-webkit-transition:all 0.20s ease-in-out;
+}
+.SledzenieOkno div.SledzenieDiv:hover { border:1px solid #268dab; }
+.SledzenieOkno div.SledzenieDiv:hover:before, .SledzenieOkno div.OknoAktywne:before { content:""; left:-1px; top:-1px; right:-1px; bottom:-1px; border:3px solid #268dab; position:absolute; display:block; z-index:5; 
+  -moz-border-radius:4px; -webkit-border-radius:4px; -khtml-border-radius:4px; border-radius:4px
+}
+.SledzenieOkno div.SledzenieDiv:hover span { color:#ff0000; }
+.SledzenieOkno div.SledzenieDiv div.Foto { height:35px; margin:10px; }
+.SledzenieOkno div.SledzenieDiv img { max-height:35px; width:auto; font-size:0px; display:inline-block; }
+.SledzenieOkno span { background:#f1f1f1; border-top:1px solid #c1c1c1; padding:10px; display:block; font-size:120%; font-weight:normal; color:#2b595b; font-family:Inder, Arial; 
+  transition:all 0.20s ease-in-out;
+	-moz-transition:all 0.20s ease-in-out;
+	-webkit-transition:all 0.20s ease-in-out;
+}
+
+.SledzenieUkryte form { display:none; }
+
+.przyciskPaczkomatu { background:url('../obrazki/tlo.gif') repeat-x center top; color:#000; padding: 3px 5px;margin:0 10px 0 0; font-weight:normal; position: relative; top:0px; cursor:pointer; width:120px; text-align:center; }
+
+.pac-container { display:none !important; }
+
+#MapaWidocznaTlo { position:fixed; top:0; left:0; bottom:0; right:0; z-index:999; background:#000000; opacity:0.6; filter:alpha(opacity=60); overflow:hidden; overflow-x:hidden;
+overflow-y:auto;}
+#WybierzMape { position:relative; margin:0px auto; z-index:99998; }
+
+#WyborMapaWysylka { position:absolute; z-index:99999; margin:auto; }
+
+.MapaUkryta { position:absolute; left:0px; width:100%; top:-1000px; opacity:0; filter:alpha(opacity=0); visibility:hidden; }
+
+.MapaWidoczna { height:100%; z-index:99997; 
+    transition: all 0.50s ease-in-out; -moz-transition: all 0.50s ease-in-out; -webkit-transition: all 0.50s ease-in-out;
+}
+
+#MapaKontener { position:relative; overflow:visible; margin:0px auto; }
+#WidokMapy { position:relative; overflow:hidden; background:#fff; border:2px solid #fff;
+    -webkit-border-radius:5px; -moz-border-radius:5px; border-radius:5px; -khtml-border-radius:5px;
+    -webkit-background-clip:content-box; -moz-background-clip:content-box; background-clip:content-box;  
+    -webkit-box-sizing:border-box; -moz-box-sizing:border-box; box-sizing:border-box;                           
+}
+
+#MapaZamknij { cursor:pointer; position:absolute; z-index:100000; border:2px solid #fff; background:#000; color:#fff; font-weight:bold; font-style:normal; font-size:14px; font-family:Arial; width:26px; height:26px; line-height:26px; display:inline-block; text-align:center; -webkit-border-radius:50%; -moz-border-radius:50%; border-radius:50%; -khtml-border-radius:50%; }
+                      
+@media only screen and (max-width:1023px) {
+    #MapaZamknij { right:0px; top:-40px; }
+    #WidokMapy { width:524px; height:650px; overflow-x:scroll; }
+}
+@media only screen and (max-width:1023px) and (max-height:460px) {
+    #MapaZamknij { right:-5px; top:-13px; }
+    #WidokMapy { width:524px; height:650px; overflow-y:scroll; } 
+}                      
+@media only screen and (min-width:1024px) {
+    #MapaZamknij { right:-15px; top:-15px; }
+    #WidokMapy { width:992px; height:650px; }
+}    
+@media only screen and (min-width:1024px) and (max-height:460px) {
+    #MapaZamknij { right:-13px; top:-13px; }
+    #WidokMapy { width:992px; height:650px; overflow-y:scroll; }
+}       
+
+/* kategorie do easyprotect */
+@media only screen and (max-width:1023px) {
+  .SledzeniePozycja .pkc { width:96%; }
+}
+@media only screen and (min-width:1024px) {
+  .SledzeniePozycja .pkc { width:96%; }
+}
+.SledzeniePozycja .pkc { border:0px; margin:0px auto; margin-top:5px; margin-bottom:7px; }
+
+@media only screen and (max-width:1279px) {
+  .SledzeniePozycja .WybieranieKategorii #drzewo { max-width:98%; }
+}
+@media only screen and (min-width:1280px) { 
+  .SledzeniePozycja .WybieranieKategorii #drzewo { max-width:50%; }
+}
+
+.przyciskLink { display:inline-block; color:#ff0000; font-family:Arial, Tahoma, sans-serif; margin-top:10px; margin-left:0px; background:url('../obrazki/tlo.gif') repeat-x center top; cursor:pointer; border:1px solid #ccc; font-size:100%; border-radius:4px; line-height:1.5; box-shadow:0 0 10px #eee inset; padding:6px; }

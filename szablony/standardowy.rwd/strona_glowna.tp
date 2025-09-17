@@ -1,0 +1,298 @@
+<!DOCTYPE HTML>
+<html lang="{__JEZYK_STRONY}">
+<head>
+    <meta charset="utf-8" />
+    <title>{__META_TYTUL}</title>
+    <meta name="keywords" content="{__META_SLOWA_KLUCZOWE}" />
+    <meta name="description" content="{__META_OPIS}" />
+    <meta name="robots" content="index,follow" />  
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css" />
+    
+    {__TAGI_OPEN_GRAPH}
+
+    <base href="{__DOMENA}" />	
+    <link rel="stylesheet" type="text/css" href="szablony/standardowy.rwd/css/style.php?{__KOMPRESJA_CSS}=style,boxy,moduly{__CSS_PLIK_GLOWNY}{__CSS_PLIK}{__CSS_POPUP}{__CSS_OPINIE}{__CSS_MODULY_STALE}" />
+    <script src="javascript/jquery.js"></script>
+    <script src="javascript/skrypty.php"></script>
+    
+    <!--[if lt IE 10]>
+    <script src="javascript/html5shiv.js"></script>
+    <![endif]-->
+            
+    {__GOOGLE_ZGODA}
+    {__GOOGLE_GTM_DATALAYER}
+    {__GOOGLE_GTM_HEAD}
+    {__JS_PLIK}
+    {__JS_POPUP}
+    {__GOOGLE_WERYFIKACJA}
+    {__GOOGLE_ANALYTICS}
+    {__PIKSEL_FB}
+    {__EDRONE}
+    {__LINK_CANONICAL}
+    {__INTEGRACJE_WLASNE_HEAD}
+    {__CRITEO}
+    {__NOKAUT_SLEDZENIE}
+    {__CENEO_OPINIE}
+    {__ALLANIDOMODI_SLEDZENIE}
+    {__WP_PIXEL}
+    {__TRUSTISTO}
+    {__TRUSTPILOT}
+    {__SHOPENEO_NETWORK}
+    {__GOOGLE_TAG_MANAGER}
+    {__CALLBACK24}
+    {__PINTEREST_TAG}
+    {__KLAVIYO}
+</head>
+
+<body {__TLO_SKLEPU}>
+{__GOOGLE_GTM_NOSCRIPT}
+
+{__GOOGLE_KONWERSJA}
+
+<header id="NaglowekSklepu">
+
+    <div id="GornaNawigacja">
+    
+        <div class="Strona">
+        
+            <div id="ZmianaJezyka">
+    
+                {__ZMIANA_JEZYKA}
+                              
+            </div>
+            
+            <?php if (PRODUKT_SCHOWEK_STATUS == 'tak') { ?>
+        
+            <div id="Schowek">
+
+                <a href="schowek.html">{__TLUMACZ:SCHOWEK_NAGLOWEK} ({__ILOSC_PRODUKTOW_SCHOWKA})</a>
+
+            </div>  
+
+            <?php } ?>       
+
+            <?php 
+            if (isset($_SESSION['customer_id']) && (int)$_SESSION['customer_id'] > 0 && $_SESSION['gosc'] == '0' ) {
+                ?>
+                
+                <div id="Logowanie">
+                
+                    <a href="wylogowanie.html" rel="nofollow">{__TLUMACZ:WYLOGUJ_SIE}</a>
+                    <a href="{__SSL:panel-klienta.html}" rel="nofollow">{__TLUMACZ:PANEL_KLIENTA}</a> 
+                    
+                </div>
+                
+                <?php 
+            } else {
+                if ( !isset($_SESSION['customer_id']) || (int)$_SESSION['customer_id'] == 0 ) {
+                    ?>
+                    
+                    <div id="Logowanie">
+                    
+                        <a href="{__SSL:logowanie.html}" rel="nofollow">{__TLUMACZ:ZALOGUJ_SIE}</a>
+                        <a href="{__SSL:rejestracja.html}" rel="nofollow">{__TLUMACZ:ZALOZ_KONTO}</a>
+                        
+                    </div>
+                    
+                    <?php 
+                }
+            } 
+            ?>            
+
+        </div>
+    
+    </div>
+    
+</header>
+
+<div id="Strona">
+
+    {__LOGO_SKLEPU}
+    
+    <div id="SzukanieKoszyk">
+    
+        <form onsubmit="return sprSzukaj(this,'InSzukaj')" method="post" action="szukaj.html" id="Wyszukiwanie">
+        
+            <div>
+                <input id="ButSzukaj" type="image" src="szablony/standardowy.rwd/obrazki/szablon/szukaj.png" alt="{__TLUMACZ:PRZYCISK_SZUKAJ}" />
+                <input id="InSzukaj" type="text" name="szukaj" size="30" value="{__TLUMACZ:WPISZ_SZUKANA_FRAZE}" />
+                <input type="hidden" name="postget" value="tak" />
+            </div>
+
+            <a href="wyszukiwanie-zaawansowane.html">{__TLUMACZ:WYSZUKIWANIE_ZAAWANSOWANE}</a>
+            
+            <div class="cl"></div>
+                
+        </form> 
+
+        <div id="Koszyk">
+        
+            <a href="koszyk.html">
+            
+                <span><img src="szablony/standardowy.rwd/obrazki/szablon/koszyk.png" alt="{__TLUMACZ:KOSZYK}" /></span>
+                
+                <span>
+        
+                    <strong>{__TLUMACZ:KOSZYK}</strong>
+                
+                    <?php if ($GLOBALS['koszykKlienta']->KoszykIloscProduktow() > 0) { ?>
+                    
+                    {__TLUMACZ:ILOSC_PRODUKTOW}: <b>{__ILOSC_PRODUKTOW_KOSZYKA}</b>, {__TLUMACZ:WARTOSC_PRODUKTOW}: <b>{__WARTOSC_KOSZYKA_BRUTTO}</b>
+
+                    <?php } else { ?>
+                    
+                    {__TLUMACZ:KOSZYK_JEST_PUSTY}
+                    
+                    <?php } ?>
+                    
+                </span>
+                
+            </a>
+            
+        </div>         
+
+        <div class="cl"></div>
+    
+    </div>
+    
+    <div id="GorneMenu" class="Rozwiniete">
+    
+        {__GORNE_MENU}
+        
+    </div>
+    
+    <?php if ($GLOBALS['stronaGlowna'] != true) { ?>
+
+    <div id="Nawigacja" itemscope itemtype="http://schema.org/BreadcrumbList">
+    
+        {__BREADCRUMB}
+        
+    </div>
+    
+    <?php } ?>
+
+    {__MODULY_SRODKOWE_GORA}
+    
+    <div class="cl"></div>
+
+    <?php if (CZY_WLACZONA_LEWA_KOLUMNA == 'tak' && ($GLOBALS['kolumny'] == 'wszystkie' || $GLOBALS['kolumny'] == 'wszystkie_lewa')) { ?>
+    <div id="LewaKolumna" style="width:{__SZEROKOSC_LEWEJ_KOLUMNY}px">
+    
+        <div id="LewaKolumnaPrzerwa">
+            {__LEWA_KOLUMNA}
+        </div>
+        
+    </div>
+    <?php } ?>
+    
+    <div id="SrodekKolumna">
+    
+        {__MODULY_SRODKOWE_PODSTRONA_GORA}
+
+        {__SRODKOWA_KOLUMNA}
+        
+        {__MODULY_SRODKOWE_PODSTRONA_DOL}
+        
+    </div>      
+    
+    <?php if (CZY_WLACZONA_PRAWA_KOLUMNA == 'tak' && ($GLOBALS['kolumny'] == 'wszystkie' || $GLOBALS['kolumny'] == 'wszystkie_prawa')) { ?>
+    <div id="PrawaKolumna" style="width:{__SZEROKOSC_PRAWEJ_KOLUMNY}px">
+    
+        <div id="PrawaKolumnaPrzerwa">
+            {__PRAWA_KOLUMNA}
+        </div>
+        
+    </div>    
+    <?php } ?>
+    
+    <div class="cl"></div>
+    
+    {__MODULY_SRODKOWE_DOL}
+    
+    <footer id="Stopka">
+    
+        <div class="KolumnaStopki">
+            
+            <strong>
+                {__PIERWSZA_KOLUMNA_STOPKI_NAGLOWEK}
+                <span class="StopkaRozwin"></span>
+            </strong>
+            
+            {__PIERWSZA_KOLUMNA_STOPKI_LINKI}
+
+        </div>
+        
+        <div class="KolumnaStopki">
+
+            <strong>
+                {__DRUGA_KOLUMNA_STOPKI_NAGLOWEK}
+                <span class="StopkaRozwin"></span>
+            </strong>
+            
+            {__DRUGA_KOLUMNA_STOPKI_LINKI}
+            
+        </div>
+
+        <div class="KolumnaStopki">
+            
+            <strong>
+                {__TRZECIA_KOLUMNA_STOPKI_NAGLOWEK}
+                <span class="StopkaRozwin"></span>
+            </strong>
+            
+            {__TRZECIA_KOLUMNA_STOPKI_LINKI}
+            
+        </div>
+
+        <div class="KolumnaStopki">
+            
+            <strong>
+                {__CZWARTA_KOLUMNA_STOPKI_NAGLOWEK}
+                <span class="StopkaRozwin"></span>
+            </strong>
+            
+            {__CZWARTA_KOLUMNA_STOPKI_LINKI}
+        
+        </div>
+
+        <div class="cl"></div>
+           
+    </footer>
+    
+    <div class="Copy">
+        {__ZMIANA_COOKIES}{__INFO_SG}
+    </div>    
+
+</div>
+
+<!-- nie usuwac - wyswietla dodatkowe moduly stale - np informacje o cookie -->
+{__MODULY_STALE}
+
+<!-- nie usuwac - laduje preloader obrazkow -->
+{__FUNKCJA_PRELOADERA}
+
+<!-- nie usuwac - wyswietla bannery popup -->
+{__TRESC_POPUP}
+<!-- nie usuwac - wyswietla widgety -->
+{__WIDGET_CENEO}
+{__WIDGET_OKAZJE_INFO}
+{__WIDGET_OPINEO}
+{__WIDGET_TRUSTEDSHOPS}
+{__WIDGET_GOOGLE_OPINIE}
+{__SALESMANAGO}
+{__WIDGET_TRUSTMATE}
+
+<!-- nie usuwac -->
+<div id="RwdWersja"></div>
+
+<!-- nie usuwac - wyswietla kod integracji wlasnych dla sekcji body -->
+{__INTEGRACJE_WLASNE_BODY}
+
+<!-- zmiana meta tytulu po opuszczeniu przez klienta zakladki sklepu -->
+{__META_TYTUL_WROC_DO_NAS}
+
+</body>
+</html>

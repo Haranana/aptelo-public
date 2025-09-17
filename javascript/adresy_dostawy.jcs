@@ -1,0 +1,53 @@
+$(document).ready(function() {
+
+    $('#kod_pocztowy').keyup(function() {
+        $(this).val($(this).val().toUpperCase());
+    });
+
+    $.validator.addMethod(
+        "cyfryMyslnikRegex", function(value, element) {
+        return this.optional(element) || /^[0-9\A-Z\-\s]+$/i.test(value);
+    }, "{__TLUMACZ:BLAD_TYLKO_CYFRY_MYSLNIK}");
+    $.validator.addMethod("cyfryMyslnikPlusRegex", function(value, element) {
+        return this.optional(element) || /^[0-9\-+\s]+$/i.test(value);
+    }, "{__TLUMACZ:BLAD_TYLKO_CYFRY_MYSLNIK}");
+
+    $.validator.addMethod("cyfryliteryRegex", function(value, element) {
+        return this.optional(element) || /[a-zа-яΑ-Ωα-ωίϊΐόάέύϋΰήώ].*[0-9]|[0-9].*[a-zа-яΑ-Ωα-ωίϊΐόάέύϋΰήώ]/i.test(value);
+    }, "{__TLUMACZ:BLAD_LITERY_CYFRY}");
+
+    $("#daneAdresowe").validate({
+      rules: {
+        kod_pocztowy: { cyfryMyslnikRegex: true },
+        telefon: { cyfryMyslnikPlusRegex: true },
+        ulica: { cyfryliteryRegex: true }
+      },
+      messages: {
+        imie: { required: '{__TLUMACZ:BLAD_WYMAGANE_POLE}' },
+        nazwisko: { required: '{__TLUMACZ:BLAD_WYMAGANE_POLE}' },
+        ulica: { required: '{__TLUMACZ:BLAD_WYMAGANE_POLE}' },
+        kod_pocztowy: { required: '{__TLUMACZ:BLAD_WYMAGANE_POLE}' },
+        miasto: { required: '{__TLUMACZ:BLAD_WYMAGANE_POLE}' }
+      }
+    });
+    
+    // sprawdza czy jest pole wojewodztwo
+    if ($('#wybor_panstwo').length) {
+        $("#wybor_panstwo").change( function() {
+          PreloadWlacz();
+          $.ajax({
+            type: "POST",
+            data: "data=" + $(this).val(),
+            url: "{__SSL:inne/wybor_wojewodztwa.php}?tok={__TOKEN_ADRESY_DOSTAWY}",
+            success: function(msg){
+              PreloadWylaczSzybko();
+              $("#wybor_wojewodztwo_wynik").html(msg).show(); 
+            }
+          });
+        });
+    }
+
+    //wlacza przycisk submit jesli dziala u klienta javascript
+    $('#submitButton').removeAttr('disabled');
+    $("#submitButton").attr('class', 'przycisk');
+});

@@ -1,0 +1,235 @@
+<!-- wyglad naglowka strony -->
+
+<h1 class="StrNaglowek">
+    <span>{__TLUMACZ:NAGLOWEK_WYSZUKIWANIE_ZAAWANSOWANE}</span>
+</h1>
+
+<!-- tresc strony -->
+
+<section class="StrTresc">
+
+    <?php
+    $Pola = $__pA;
+    ?>
+
+    <form onsubmit="return sprSzukajZaawansowane()" action="szukaj.html" method="post" id="WyszukiwanieZaawansowane" class="cmxform"> 
+
+        <p class="Wybor WyszukajFraze">
+        
+            <label for="SzukanaFraza">
+        
+                <b>{__TLUMACZ:WYSZUKIWANIE_SZUKANY_PRODUKT}</b>
+            
+                <b class="OpcjaSzukania">
+                    <input id="SzukanaFraza" type="text" name="szukaj" size="30" value="" />
+                    <input type="hidden" name="postget" value="tak" />        
+                </b>
+                
+            </label>
+            
+        </p>
+        
+        <?php
+        if ( count($Pola) > 0 ) {
+        
+            foreach ($Pola as $key => $val) { ?>
+            
+                <p class="Wybor">
+                
+                    <label class="formSpan" for="dodatkowe_<?php echo $key; ?>">
+                    
+                        <b><?php echo $val; ?>:</b>
+                        
+                        <b class="OpcjaSzukania">
+                            <input type="checkbox" name="dodatkowe_<?php echo $key; ?>" id="dodatkowe_<?php echo $key; ?>" value="tak" />
+                            <span class="check" id="check_dodatkowe_<?php echo $key; ?>"></span>
+                        </b>
+                    
+                    </label>
+                    
+                </p>
+                
+                <?php
+            }
+            
+        }
+        ?>
+        <p>
+        
+            <label class="formSpan" for="opis">
+            
+                <b>{__TLUMACZ:WYSZUKIWANIE_W_OPISACH}</b> 
+                
+                <b class="OpcjaSzukania">
+                    <input type="checkbox" name="opis" id="opis" value="tak" <?php echo ((WYSZUKIWANIE_OPIS == 'tak') ? 'checked="checked"' : ''); ?> />
+                    <span class="check" id="check_opis"></span>
+                </b>   
+                 
+            </label>
+            
+        </p> 
+
+        <p>
+        
+            <label class="formSpan" for="fraza">
+            
+                <b>{__TLUMACZ:WYSZUKIWANIE_FRAZY}</b> 
+                
+                <b class="OpcjaSzukania">
+                    <input type="checkbox" name="fraza" id="fraza" value="tak" <?php echo ((WYSZUKIWANIE_DOKLADNA_FRAZA == 'tak') ? 'checked="checked"' : ''); ?> />
+                    <span class="check" id="check_fraza"></span>
+                </b>
+                        
+            </label>
+            
+        </p> 
+
+        <p>
+        
+            <label class="formSpan" for="nrkat">
+            
+                <b>{__TLUMACZ:WYSZUKIWANIE_NR_KATALOGOWY}</b> 
+                
+                <b class="OpcjaSzukania">
+                    <input type="checkbox" name="nrkat" id="nrkat" value="tak" <?php echo ((WYSZUKIWANIE_NR_KAT == 'tak') ? 'checked="checked"' : ''); ?>  />
+                    <span class="check" id="check_nrkat"></span>
+                </b>
+                
+            </label>
+            
+        </p>          
+        
+        <p>
+        
+            <label class="formSpan" for="kodprod">
+            
+                <b>{__TLUMACZ:WYSZUKIWANIE_KOD_PRODUCENTA}</b> 
+                
+                <b class="OpcjaSzukania">
+                    <input type="checkbox" name="kodprod" id="kodprod" value="tak" <?php echo ((WYSZUKIWANIE_KOD_PRODUCENTA == 'tak') ? 'checked="checked"' : ''); ?>  />
+                    <span class="check" id="check_kodprod"></span>
+                </b>
+                
+            </label>
+            
+        </p>  
+
+        <p>
+          
+            <label class="formSpan" for="ean">
+            
+                <b>{__TLUMACZ:WYSZUKIWANIE_W_EAN}</b> 
+                
+                <b class="OpcjaSzukania">
+                    <input type="checkbox" name="ean" id="ean" value="tak" <?php echo ((WYSZUKIWANIE_KOD_EAN == 'tak') ? 'checked="checked"' : ''); ?>  />
+                    <span class="check" id="check_ean"></span>
+                </b>
+                
+            </label>
+            
+        </p>         
+        
+        <p class="Wybor" style="margin-top:30px">
+        
+            <label class="formSpan" for="ceno">
+            
+                <b>{__TLUMACZ:WYSZUKIWANIE_ZAKRES_CEN}</b> 
+                
+                <b class="OpcjaSzukania">
+                    <input type="text" size="4" value="" class="ulamek" name="ceno" id="ceno" /> {__TLUMACZ:LISTING_ZAKRES_CEN_DO} <input type="text" size="4" value="" class="ulamek" name="cend" />
+                </b>
+                
+            </label>
+            
+        </p>   
+
+        <?php if ( WYSZUKIWANIE_ZAAWANSOWANE_KATEGORIE == 'tak' ) { ?>
+
+        <p class="Wybor" style="margin-top:30px">
+        
+            <label class="formSpan" for="kategoria">
+            
+                <b>{__TLUMACZ:WYSZUKIWANIE_KATEGORIA}</b> 
+                
+                <b class="OpcjaSzukania">{__WYBOR_KATEGORIA}</b>
+                
+            </label>
+            
+        </p> 
+
+        <p>
+        
+            <label class="formSpan" for="podkat">
+            
+                <b>{__TLUMACZ:WYSZUKIWANIE_W_PODKATEGORIACH}</b> 
+                
+                <b class="OpcjaSzukania">
+                    <input type="checkbox" name="podkat" id="podkat" value="tak" />
+                    <span class="check" id="check_podkat"></span>
+                </b>
+                
+            </label>
+            
+        </p>        
+        
+        <?php } ?>
+        
+        <?php if ( WYSZUKIWANIE_ZAAWANSOWANE_PRODUCENCI == 'tak' ) { ?>
+
+        <p class="Wybor" style="margin-top:30px">
+        
+            <label class="formSpan" for="producent">
+            
+                <b>{__TLUMACZ:WYSZUKIWANIE_PRODUCENT}</b> 
+                
+                <b class="OpcjaSzukania">
+                    {__WYBOR_PRODUCENTA}
+                </b>
+                
+            </label>
+            
+        </p>   
+        
+        <?php } ?>
+
+        <p>
+        
+            <label class="formSpan" for="nowosci">
+            
+                <b>{__TLUMACZ:WYSZUKIWANIE_NOWOSCI}</b> 
+                
+                <b class="OpcjaSzukania">
+                    <input type="checkbox" name="nowosci" id="nowosci" value="tak" />
+                    <span class="check" id="check_nowosci"></span>
+                </b>
+                
+            </label>
+            
+        </p>  
+        
+        <p>
+        
+            <label class="formSpan" for="promocje">
+            
+                <b>{__TLUMACZ:WYSZUKIWANIE_PROMOCJE}</b> 
+                
+                <b class="OpcjaSzukania">
+                    <input type="checkbox" name="promocje" id="promocje" value="tak" />
+                    <span class="check" id="check_promocje"></span>
+                </b>
+                
+            </label>
+            
+        </p> 
+        
+        <!-- przycisk szukania -->
+
+        <p>
+            <input type="submit" style="margin-top:15px" id="submitButton" class="przyciskWylaczony" value="{__TLUMACZ:PRZYCISK_SZUKAJ}" disabled="disabled" />
+        </p>        
+
+    </form>
+
+</section>
+
+

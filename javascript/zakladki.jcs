@@ -1,0 +1,536 @@
+$(document).ready(function() {
+
+    var marginesGora = {__WYSUWANE_ZAKLADKI_ODLEGLOSC_PX};
+    var iloscZakladekLewa = 0;
+    var iloscZakladekPrawa = 0;
+    var wysokoscLewa = 0;
+    var wysokoscPrawa = 0;
+    var szerokoscZakladek = 80;
+
+    // jezeli sa suwaki strony to obnizy zakladki
+    if ( parseInt($('#doGory').css('top')) > marginesGora ) {
+         marginesGora = parseInt($('#doGory').css('top')) + $('#doGory').height() + 15;
+    }
+
+    $("body").append('<div id="wysZakladki" style="z-index:1001;top:' + marginesGora + 'px;"></div>');
+
+    var stronaLewa = new Array();
+    var stronaPrawa = new Array();
+    
+    var fb_tryb = '{__ZAKLADKA_FACEBOOK_WLACZONA}';
+    if ( fb_tryb == 'tak' ) {
+        //
+        var fb_strona = '{__ZAKLADKA_FACEBOOK_STRONA}';
+        var fb_sort = '{__ZAKLADKA_FACEBOOK_SORT}';
+        //
+        if ( parseInt(fb_sort) < 10 ) {
+             fb_sort = '0' + fb_sort;
+        }
+        //
+        if ( fb_strona == 'lewa' ) {
+             stronaLewa.push( fb_sort + '_facebook' );
+           } else {
+             stronaPrawa.push( fb_sort + '_facebook' );
+        }
+        //
+    }
+    
+    var gg_tryb =  '{__ZAKLADKA_GG_WLACZONA}';
+    if ( gg_tryb == 'tak' ) {
+        //
+        var gg_strona = '{__ZAKLADKA_GG_STRONA}';
+        var gg_sort = '{__ZAKLADKA_GG_SORT}';
+        //
+        if ( parseInt(gg_sort) < 10 ) {
+             gg_sort = '0' + gg_sort;
+        }        
+        //
+        if ( gg_strona == 'lewa' ) {
+             stronaLewa.push( gg_sort + '_gg' );
+           } else {
+             stronaPrawa.push( gg_sort + '_gg' );
+        }
+        //
+    }
+
+    var yt_tryb = '{__ZAKLADKA_YOUTUBE_WLACZONA}';
+    if ( yt_tryb == 'tak' ) {
+        //
+        var yt_strona = '{__ZAKLADKA_YOUTUBE_STRONA}';
+        var yt_sort = '{__ZAKLADKA_YOUTUBE_SORT}';
+        //
+        if ( parseInt(yt_sort) < 10 ) {
+             yt_sort = '0' + yt_sort;
+        }        
+        //        
+        if ( yt_strona == 'lewa' ) {
+             stronaLewa.push( yt_sort + '_youtube' );
+           } else {
+             stronaPrawa.push( yt_sort + '_youtube' );
+        }
+        //
+    }
+
+    var tw_tryb = '{__ZAKLADKA_TWITTER_WLACZONA}';
+    if ( tw_tryb == 'tak' ) {
+        //
+        var tw_strona = '{__ZAKLADKA_TWITTER_STRONA}';
+        var tw_sort = '{__ZAKLADKA_TWITTER_SORT}';
+        //
+        if ( parseInt(tw_sort) < 10 ) {
+             tw_sort = '0' + tw_sort;
+        }        
+        // 
+        if ( tw_strona == 'lewa' ) {
+             stronaLewa.push( tw_sort + '_twitter' );
+           } else {
+             stronaPrawa.push( tw_sort + '_twitter' );
+        }
+        //
+    }    
+    
+    var in_tryb = '{__ZAKLADKA_INSTAGRAM_WLACZONA}';
+    if ( in_tryb == 'tak' ) {
+        //
+        var in_strona = '{__ZAKLADKA_INSTAGRAM_STRONA}';
+        var in_sort = '{__ZAKLADKA_INSTAGRAM_SORT}';
+        //
+        if ( parseInt(in_sort) < 10 ) {
+             in_sort = '0' + in_sort;
+        }        
+        // 
+        if ( in_strona == 'lewa' ) {
+             stronaLewa.push( in_sort + '_instagram' );
+           } else {
+             stronaPrawa.push( in_sort + '_instagram' );
+        }
+        //
+    }    
+
+    var pinte_tryb = '{__ZAKLADKA_PINTEREST_WLACZONA}';
+    if ( pinte_tryb == 'tak' ) {
+        //
+        var pinte_strona = '{__ZAKLADKA_PINTEREST_STRONA}';
+        var pinte_sort = '{__ZAKLADKA_PINTEREST_SORT}';
+        //
+        if ( parseInt(pinte_sort) < 10 ) {
+             pinte_sort = '0' + pinte_sort;
+        }        
+        // 
+        if ( pinte_strona == 'lewa' ) {
+             stronaLewa.push( pinte_sort + '_pinterest' );
+           } else {
+             stronaPrawa.push( pinte_sort + '_pinterest' );
+        }
+        //
+    }       
+    
+    var allegro_opinie_tryb = '{__ZAKLADKA_ALLEGRO_OPINIE_WLACZONA}';
+    if ( allegro_opinie_tryb == 'tak' ) {
+        //
+        var allegro_opinie_strona = '{__ZAKLADKA_ALLEGRO_OPINIE_STRONA}';
+        var allegro_opinie_sort = '{__ZAKLADKA_ALLEGRO_OPINIE_SORT}';
+        //
+        if ( parseInt(allegro_opinie_sort) < 10 ) {
+             allegro_opinie_sort = '0' + allegro_opinie_sort;
+        }        
+        // 
+        if ( allegro_opinie_strona == 'lewa' ) {
+             stronaLewa.push( allegro_opinie_sort + '_opinieallegro' );
+           } else {
+             stronaPrawa.push( allegro_opinie_sort + '_opinieallegro' );
+        }
+        //
+    }    
+    
+    var pierwsza_tryb = '{__ZAKLADKA_PIERWSZA_WLACZONA}';
+    if ( pierwsza_tryb == 'tak' && ( '{__DOMYSLNY_JEZYK}' == '{__ZAKLADKA_PIERWSZA_JEZYK}' || '{__ZAKLADKA_PIERWSZA_JEZYK}' == 0 ) ) {
+        //
+        var pierwsza_strona = '{__ZAKLADKA_PIERWSZA_STRONA}';
+        var pierwsza_ikona = '<img src="{__KATALOG_ZDJEC}/{__ZAKLADKA_PIERWSZA_IKONA}" alt="" width="{__ZAKLADKA_PIERWSZA_IKONA_SZEROKOSC}" height="{__ZAKLADKA_PIERWSZA_IKONA_WYSOKOSC}" />';
+        var pierwsza_tresc = '{__ZAKLADKA_PIERWSZA_TRESC}';
+        var pierwsza_szerokosc = '{__ZAKLADKA_PIERWSZA_SZEROKOSC}';
+        var pierwsza_sort = '{__ZAKLADKA_PIERWSZA_SORT}';
+        //
+        if ( parseInt(pierwsza_sort) < 10 ) {
+             pierwsza_sort = '0' + pierwsza_sort;
+        }        
+        // 
+        if ( pierwsza_strona == 'lewa' ) {
+             stronaLewa.push( pierwsza_sort + '_pierwsza' );
+           } else {
+             stronaPrawa.push( pierwsza_sort + '_pierwsza' );
+        }
+        //
+    }      
+
+    var druga_tryb = '{__ZAKLADKA_DRUGA_WLACZONA}';
+    if ( druga_tryb == 'tak' && ( '{__DOMYSLNY_JEZYK}' == '{__ZAKLADKA_DRUGA_JEZYK}' || '{__ZAKLADKA_DRUGA_JEZYK}' == 0 ) ) {
+        //
+        var druga_strona = '{__ZAKLADKA_DRUGA_STRONA}';
+        var druga_ikona = '<img src="{__KATALOG_ZDJEC}/{__ZAKLADKA_DRUGA_IKONA}" alt="" width="{__ZAKLADKA_DRUGA_IKONA_SZEROKOSC}" height="{__ZAKLADKA_DRUGA_IKONA_WYSOKOSC}" />';
+        var druga_tresc = '{__ZAKLADKA_DRUGA_TRESC}';
+        var druga_szerokosc = '{__ZAKLADKA_DRUGA_SZEROKOSC}';
+        var druga_sort = '{__ZAKLADKA_DRUGA_SORT}';
+        //
+        if ( parseInt(druga_sort) < 10 ) {
+             druga_sort = '0' + druga_sort;
+        }        
+        // 
+        if ( druga_strona == 'lewa' ) {
+             stronaLewa.push( druga_sort + '_druga' );
+           } else {
+             stronaPrawa.push( druga_sort + '_druga' );
+        }
+        //
+    } 
+
+    var trzecia_tryb = '{__ZAKLADKA_TRZECIA_WLACZONA}';
+    if ( trzecia_tryb == 'tak' && ( '{__DOMYSLNY_JEZYK}' == '{__ZAKLADKA_TRZECIA_JEZYK}' || '{__ZAKLADKA_TRZECIA_JEZYK}' == 0 ) ) {
+        //
+        var trzecia_strona = '{__ZAKLADKA_TRZECIA_STRONA}';
+        var trzecia_ikona = '<img src="{__KATALOG_ZDJEC}/{__ZAKLADKA_TRZECIA_IKONA}" alt="" width="{__ZAKLADKA_TRZECIA_IKONA_SZEROKOSC}" height="{__ZAKLADKA_TRZECIA_IKONA_WYSOKOSC}" />';
+        var trzecia_tresc = '{__ZAKLADKA_TRZECIA_TRESC}';
+        var trzecia_szerokosc = '{__ZAKLADKA_TRZECIA_SZEROKOSC}';
+        var trzecia_sort = '{__ZAKLADKA_TRZECIA_SORT}';
+        //
+        if ( parseInt(trzecia_sort) < 10 ) {
+             trzecia_sort = '0' + trzecia_sort;
+        }        
+        // 
+        if ( trzecia_strona == 'lewa' ) {
+             stronaLewa.push( trzecia_sort + '_trzecia' );
+           } else {
+             stronaPrawa.push( trzecia_sort + '_trzecia' );
+        }
+        //
+    }     
+    
+    var opinie_tryb = '{__ZAKLADKA_OPINIE_WLACZONA}';
+    var opinie_status = '{__OPINIE_STATUS}';
+    if ( opinie_tryb == 'tak' && opinie_status == 'tak' ) {
+        //
+        var opinie_strona = '{__ZAKLADKA_OPINIE_STRONA}';
+        var opinie_sort = '{__ZAKLADKA_OPINIE_SORT}';
+        //
+        if ( parseInt(opinie_sort) < 10 ) {
+             opinie_sort = '0' + opinie_sort;
+        }        
+        //
+        if ( opinie_strona == 'lewa' ) {
+             stronaLewa.push( opinie_sort + '_opinie' );
+           } else {
+             stronaPrawa.push( opinie_sort + '_opinie' );
+        }
+        //
+    }    
+    
+    stronaLewa.sort(); 
+    stronaPrawa.sort(); 
+    
+    if ( stronaLewa.length > 0 ) {
+        //
+        for (c = 0; c < stronaLewa.length; c++) {
+            var elem = stronaLewa[c].split('_');
+            eval('zakladka_' + elem[1] + '();');
+        }
+        //
+    }
+    
+    if ( stronaPrawa.length > 0 ) {
+        //
+        for (c = 0; c < stronaPrawa.length; c++) {
+            var elem = stronaPrawa[c].split('_');
+            eval('zakladka_' + elem[1] + '();');
+        }
+        //
+    }    
+    
+    // maksymalna szerokosc zakladki
+    $('#wysZakladki .zaklwys').each(function() {
+        idWys = $(this).attr('id');
+        if ( $('#' + idWys + '_ikona').width() > szerokoscZakladek ) {
+             szerokoscZakladek = $('#' + idWys + '_ikona').width();
+        }
+        //
+        szerokoscZakladek = szerokoscZakladek ;
+        delete idWys;
+    });
+
+    if ( pokazujZakladki == 'nie' ) {
+    
+        if ( $(window).width() > $('#Strona').width() + (szerokoscZakladek * 2) + 20 ) {    
+            $('#wysZakladki').show();
+           } else {
+            $('#wysZakladki').hide();          
+        }
+
+    }
+    
+    var pokazujZakladki = '{__WYSUWANE_ZAKLADKI_WYSWIETLANIE}';
+    
+    // usuwanie jezeli nie zmieszcza sie na ekranie
+    if ( pokazujZakladki == 'nie' ) {
+      
+        if ( $(window).width() > $('#Strona').width() + (szerokoscZakladek * 2) + 20 ) {
+            $('#wysZakladki').show();
+           } else {
+            $('#wysZakladki').hide();          
+        }
+
+        $(window).resize(function() {
+            if ( $(window).width() > $('#Strona').width() + (szerokoscZakladek * 2) + 20 ) {
+                $('#wysZakladki').show();
+               } else {
+                $('#wysZakladki').hide();          
+            }
+        });  
+
+    }
+    
+    if ( pokazujZakladki == 'mobile' ) { 
+    
+        if ( $('#Strona').width() < 900 ) {
+            $('#wysZakladki').hide();
+           } else {
+            $('#wysZakladki').show();          
+        }
+
+        $(window).resize(function() {
+            if ( $('#Strona').width() < 900 ) {
+                $('#wysZakladki').hide();
+               } else {
+                $('#wysZakladki').show();          
+            }
+        });     
+    
+    }
+    
+    /* -------------- funkcje wyswietlania zakladek ------------------ */
+
+    /* facebook */
+    function zakladka_facebook() {
+
+        var fb_kod = '<div id="ramkaFb" style="min-width:200px;min-height:110px"><div style="text-align:center;padding:15px"><img src="{__KATALOG_ZDJEC}/_loader_small.gif" alt="" /></div></div>';
+
+        $("#wysZakladki").append('<div class="zaklwys" data-zakladka="ramkaFb" id="fb"></div>');
+        $("#fb").html('<div id="fb_ikona"></div>' + fb_kod);  
+
+        konfig_zakladki( "#fb", "#fb_ikona", fb_strona );
+        
+    }
+    
+    /* gg */
+    function zakladka_gg() {
+      
+        var gg_kod = '<div id="ramkaGg" style="min-width:200px;min-height:110px"><div style="text-align:center;padding:15px"><img src="{__KATALOG_ZDJEC}/_loader_small.gif" alt="" /></div></div>';
+        
+        $("#wysZakladki").append('<div class="zaklwys" data-zakladka="ramkaGg" id="gg"></div>');
+        $("#gg").html('<div id="gg_ikona"></div>' + gg_kod); 
+
+        konfig_zakladki( "#gg", "#gg_ikona", gg_strona );
+        
+    }
+    
+    /* youtube */
+    function zakladka_youtube() {
+   
+        var youtube_kod = '<div id="ramkaYt" style="min-height:50px"><div style="text-align:center;padding:15px"><img src="{__KATALOG_ZDJEC}/_loader_small.gif" alt="" /></div></div>';
+        
+        $("#wysZakladki").append('<div class="zaklwys" data-zakladka="ramkaYt" id="yt"></div>');
+        $("#yt").html('<div id="yt_ikona"></div>' + youtube_kod);
+        $("#yt").css({ 'width' : '{__ZAKLADKA_YOUTUBE_SZEROKOSC}px' });
+        
+        konfig_zakladki( "#yt", "#yt_ikona", yt_strona );        
+
+    }
+
+    /* twitter */
+    function zakladka_twitter() {
+      
+        var twitter_kod = '<div id="ramkaTw" style="min-width:200px;min-height:110px"><div style="text-align:center;padding:15px"><img src="{__KATALOG_ZDJEC}/_loader_small.gif" alt="" /></div></div>';
+
+        $("#wysZakladki").append('<div class="zaklwys" data-zakladka="ramkaTw" id="tw"></div>');
+        $("#tw").html('<div id="tw_ikona"></div>' + twitter_kod); 
+
+        konfig_zakladki( "#tw", "#tw_ikona", tw_strona ); 
+
+    }
+    
+    /* instagram */
+    function zakladka_instagram() {
+      
+        var instagram_kod = '<div id="ramkaIn" style="min-width:200px;min-height:110px"><div style="text-align:center;padding:15px"><img src="{__KATALOG_ZDJEC}/_loader_small.gif" alt="" /></div></div>';
+
+        $("#wysZakladki").append('<div class="zaklwys" data-zakladka="ramkaIn" id="in"></div>');
+        $("#in").html('<div id="in_ikona"></div>' + instagram_kod); 
+
+        konfig_zakladki( "#in", "#in_ikona", in_strona ); 
+
+    }  
+
+    /* pinterest */
+    function zakladka_pinterest() {
+      
+        var pinterest_kod = '<div id="ramkaPinte" style="min-width:200px;min-height:110px"><div style="text-align:center;padding:15px"><img src="{__KATALOG_ZDJEC}/_loader_small.gif" alt="" /></div></div>';
+
+        $("#wysZakladki").append('<div class="zaklwys" data-zakladka="ramkaPinte" id="pinte"></div>');
+        $("#pinte").html('<div id="pinte_ikona"></div>' + pinterest_kod); 
+
+        konfig_zakladki( "#pinte", "#pinte_ikona", pinte_strona ); 
+
+    }    
+
+    /* allegro opinie */
+    function zakladka_opinieallegro() {
+    
+        var allegro_opinie_kod = '<div id="ramkaAgOpinie">Brak połączenia ...</div>';
+
+        $("#wysZakladki").append('<div class="zaklwys" id="allegro_opinie"></div>');
+        $("#allegro_opinie").html('<div id="allegro_opinie_ikona"></div>' + allegro_opinie_kod); 
+
+        konfig_zakladki( "#allegro_opinie", "#allegro_opinie_ikona", allegro_opinie_strona ); 
+
+        var idAl = '{__ZAKLADKA_ALLEGRO_OPINIE_NAZWA}';
+        if ( idAl == '' ) {
+            idAl = 0;
+        }
+
+        $.post("inne/allegro_opinie.php", { id: idAl }, function(data) { 
+            $('#ramkaAgOpinie').html(data);
+        });        
+
+    }        
+    
+    function zakladka_pierwsza() {
+
+        $("#wysZakladki").append('<div class="zaklwys" id="pierwsza" style="position:fixed"></div>');
+        $("#pierwsza").html('<div id="pierwsza_ikona" style="position:absolute;width:{__ZAKLADKA_PIERWSZA_IKONA_SZEROKOSC}px;height:{__ZAKLADKA_PIERWSZA_IKONA_WYSOKOSC}px">' + pierwsza_ikona + '</div><div style="width:' + pierwsza_szerokosc + 'px;overflow:hidden">' + pierwsza_tresc + '</div>');  
+        
+        konfig_zakladki( "#pierwsza", "#pierwsza_ikona", pierwsza_strona );
+        
+    }   
+
+    function zakladka_druga() {
+
+        $("#wysZakladki").append('<div class="zaklwys" id="druga" style="position:fixed"></div>');
+        $("#druga").html('<div id="druga_ikona" style="position:absolute;width:{__ZAKLADKA_DRUGA_IKONA_SZEROKOSC}px;height:{__ZAKLADKA_DRUGA_IKONA_WYSOKOSC}px">' + druga_ikona + '</div><div style="width:' + druga_szerokosc + 'px;overflow:hidden">' + druga_tresc + '</div>');  
+        
+        konfig_zakladki( "#druga", "#druga_ikona", druga_strona );
+        
+    }
+
+    function zakladka_trzecia() {
+
+        $("#wysZakladki").append('<div class="zaklwys" id="trzecia" style="position:fixed"></div>');
+        $("#trzecia").html('<div id="trzecia_ikona" style="position:absolute;width:{__ZAKLADKA_TRZECIA_IKONA_SZEROKOSC}px;height:{__ZAKLADKA_TRZECIA_IKONA_WYSOKOSC}px">' + trzecia_ikona + '</div><div style="width:' + trzecia_szerokosc + 'px;overflow:hidden">' + trzecia_tresc + '</div>');  
+ 
+        konfig_zakladki( "#trzecia", "#trzecia_ikona", trzecia_strona );
+        
+    }    
+    
+    /* opinie o sklepie */
+    function zakladka_opinie() {
+
+        var opinie_kod = '<div id="opinieSklepu"></div>';
+
+        $("#wysZakladki").append('<div class="zaklwys" id="opinie"></div>');
+        $("#opinie").html('<div id="opinieIkona"><span>{__TLUMACZ:NAGLOWEK_OPINIE}</span></div>' + opinie_kod); 
+
+        konfig_zakladki( "#opinie", "#opinieIkona", opinie_strona ); 
+
+        $.post("inne/opinie_sklepu.php?tok={__TOKEN_OPINIE}", function(data) { 
+            $('#opinieSklepu').html(data);
+        });       
+
+    }        
+    
+    function konfig_zakladki( idElementu, idIkony, strona ) {
+    
+        if ( strona == 'lewa' ) {        
+            var wysokoscZakladek = wysokoscLewa;
+            var iloscZakladek = iloscZakladekLewa;
+           } else {
+            var wysokoscZakladek = wysokoscPrawa;
+            var iloscZakladek = iloscZakladekPrawa;
+        }    
+    
+        var wysZakladki = parseInt($(idIkony).height());
+        var szeZakladki = parseInt($(idIkony).width());
+
+        $(idElementu).css({ 'top' : (marginesGora + wysokoscZakladek) });
+
+        if ( strona == 'lewa' ) {
+        
+            var szerElementu = $(idElementu).width();
+            $(idElementu).css( { 'left' : '-' + szerElementu + 'px' } );
+            $(idIkony).css( { 'margin-left' : szerElementu + 'px', 'background-position' : 'left bottom' } ); 
+            
+            $(idElementu).hover(function(){             
+                $(this).animate( { left: "0px" } , 600);          
+                //
+                var data_zakladki = $(this).attr('data-zakladka');
+                //
+                if (typeof data_zakladki !== typeof undefined && data_zakladki !== false) {
+                    //
+                    if ( !$('#' + data_zakladki).hasClass('PobranyAjax') && data_zakladki != 'ramkaNk' ) {
+                         //
+                         $.post("inne/zakladki.php", { zakladka: data_zakladki }, function(data) {
+                             //
+                             $('#' + data_zakladki).html(data);
+                             $('#' + data_zakladki).addClass('PobranyAjax');
+                             //
+                         });   
+                         //
+                    }
+                    // 
+                }
+            },
+            function(){ 
+                $(this).stop(true,false).animate( { left: '-' + szerElementu + 'px' } , 600 );
+            });        
+
+            wysokoscLewa += wysZakladki;   
+            iloscZakladekLewa++;
+            
+          } else {
+          
+            var szerElementu = $(idElementu).width();
+            $(idElementu).css( { 'right' : '-' + szerElementu + 'px' } );
+            $(idIkony).css( { 'margin-left' : '-' + szeZakladki + 'px', 'background-position' : 'left top' } );
+            
+            $(idElementu).hover(function(){             
+                $(this).animate( { right: "0px" } , 600);       
+                //
+                var data_zakladki = $(this).attr('data-zakladka');
+                //
+                if (typeof data_zakladki !== typeof undefined && data_zakladki !== false) {
+                    //
+                    if ( !$('#' + data_zakladki).hasClass('PobranyAjax') && data_zakladki != 'ramkaNk' ) {
+                         //
+                         $.post("inne/zakladki.php", { zakladka: data_zakladki }, function(data) {
+                             //
+                             $('#' + data_zakladki).html(data);
+                             $('#' + data_zakladki).addClass('PobranyAjax');
+                             //
+                         });   
+                         //
+                    }
+                    // 
+                }
+            },
+            function(){ 
+                $(this).stop(true,false).animate( { right: '-' + szerElementu + 'px' } , 600 );
+            });  
+
+            wysokoscPrawa += wysZakladki;
+            iloscZakladekPrawa++;
+ 
+        }
+        
+        $(idElementu).css( { 'z-index' : 10000 - (iloscZakladek * 1000) } );
+        $(idIkony).css( { 'z-index' : 10001 - (iloscZakladek * 1000) } );     
+    
+    }    
+    
+}); 
