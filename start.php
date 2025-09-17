@@ -12,7 +12,11 @@ if (isset($WywolanyPlik) && $WywolanyPlik == 'strona_glowna') {
     $GLOBALS['stronaGlowna'] = true;
 }
 
-// !new! wpisywanie jaki szablon jest uzywany w error logach oraz w naglowku
+// !new! wpisywanie jaki szablon jest uzywany w error logach oraz w naglowku, oraz debug czy start
+//poprawnie sie uruchomil
+
+error_log("Start was opened succesfuly");
+
 if (defined('DOMYSLNY_SZABLON')) {
     error_log('DOMYSLNY_SZABLON=' . DOMYSLNY_SZABLON);
 }else{
