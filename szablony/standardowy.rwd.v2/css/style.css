@@ -53,7 +53,7 @@
   --tlo-szare: #282828;
   
   /* kolor ramek */
-  --kolor-linia:#dbdbdb;
+  --kolor-linia:var(--kolor-tla-2);
   
   /* moduly */
   --kolor-tlo-naglowek-modul:transparent;
