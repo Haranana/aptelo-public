@@ -2,8 +2,9 @@
   /* kolor glowny szablonu */  
   --filtr-szablonu:invert(18%) sepia(63%) saturate(4257%) hue-rotate(353deg) brightness(91%) contrast(129%);
   --filtr-czerwony:invert(17%) sepia(69%) saturate(6076%) hue-rotate(356deg) brightness(105%) contrast(122%);
-  --kolor-szablonu:#e10101;
-  
+  /*--kolor-szablonu:#e10101;*/
+  --kolor-szablonu:rgb(151, 91, 220);
+
   /* kolor gwiazdek recenzji */
   --gwiazdka-wielkosc:20px;
   --gwiazdka-kolor:#dbdbdb;
