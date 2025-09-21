@@ -62,7 +62,7 @@
   --kolor-tlo-modul: var(--kolor-tla-2);
     
   /* boxy */
-  --kolor-tlo-naglowek-box:var(--kolor-tla-2);
+  --kolor-tlo-naglowek-box:var(--kolor-tla-3);
   --kolor-czcionka-naglowek-box:#303030;
   /*--kolor-tlo-box:#ffffff*/;
   --kolor-tlo-box: var(--kolor-tla-2);
