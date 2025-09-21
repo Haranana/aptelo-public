@@ -72,8 +72,10 @@
   --ikonka-hit:#ff7413;
   --ikonka-dostawa:#1584b7;
   --ikonka-wyprzedaz:#e200e3;
-  --ikonka-rabat:#ff0000;
-  --ikonka-cena-specjalna:#ff0000;
+  /*--ikonka-rabat:#ff0000;*/
+  /*--ikonka-cena-specjalna:#ff0000;*/
+  --ikonka-rabat: rgb(151, 91, 220);
+  --ikonka-cena-specjalna:rgb(151, 91, 220);
   
   /* porownywarka produktow */
   --kolor-wiersze-porownywarki:#f6f6f6;
