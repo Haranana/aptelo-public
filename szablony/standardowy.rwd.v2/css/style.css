@@ -2,9 +2,15 @@
   /* kolor glowny szablonu */  
   --filtr-szablonu:invert(18%) sepia(63%) saturate(4257%) hue-rotate(353deg) brightness(91%) contrast(129%);
   --filtr-czerwony:invert(17%) sepia(69%) saturate(6076%) hue-rotate(356deg) brightness(105%) contrast(122%);
-  /*--kolor-szablonu:#e10101;*/
-  --kolor-szablonu:rgb(151, 91, 220);
+  
   --kolor-specjalny-1: rgb(151, 91, 220);
+  --kolor-tla-1: #848484;
+  --kolor-tla-2: #5c5c5c;
+  --kolor-tla-3: #282828; 
+  --kolor-tla-4: #151515; 
+
+  /*--kolor-szablonu:#e10101;*/
+  --kolor-szablonu:var(--kolor-specjalny-1);
 
   /* kolor gwiazdek recenzji */
   --gwiazdka-wielkosc:20px;
@@ -19,7 +25,6 @@
   --filtr-bialy:invert(98%) sepia(100%) saturate(8%) hue-rotate(193deg) brightness(104%) contrast(102%);
   /*--kolor-glowny-czcionki:#303030;*/
   --kolor-glowny-czcionki: #f0f0f0;
-
 
   --kolor-bialy:#ffffff;
   --kolor-czerwony:#ff0000;
@@ -54,13 +59,13 @@
   --kolor-tlo-naglowek-modul:transparent;
   --kolor-czcionka-naglowek-modul:#303030;
   /*--kolor-tlo-modul:#ffffff*/;  
-  --kolor-tlo-modul: #282828;
+  --kolor-tlo-modul: var(--kolor-tla-2);
     
   /* boxy */
   --kolor-tlo-naglowek-box:#ebebeb;
   --kolor-czcionka-naglowek-box:#303030;
   /*--kolor-tlo-box:#ffffff*/;
-  --kolor-tlo-box: #282828;
+  --kolor-tlo-box: var(--kolor-tla-2);
   
   /* box kategorie */
   --kolor-tlo-naglowek-box-kategorie: var(--kolor-specjalny-1);
@@ -83,7 +88,7 @@
   /* porownywarka produktow */
   --kolor-wiersze-porownywarki:#f6f6f6;
   /*--kolor-tla-porownywarki:#ffffff;*/
-  --kolor-tla-porownywarki:#282828;
+  --kolor-tla-porownywarki:var(--kolor-tla-2);
   
   
   /* kolory indywidualne szablonu */
@@ -91,13 +96,13 @@
   
   /* kolor zegara odliczania promocji i produkt dnia */
   --kolor-czcionki-odliczania:#6b6b6b;
-  --kolor-czcionki-odliczania-pozostalo:#e10101;
+  --kolor-czcionki-odliczania-pozostalo:var(--kolor-specjalny-1);
   --kolor-tla-zegara:#6b6b6b;
   --kolor-czcionki-zegara:#ffffff;
 
   /* kolory formularzy */
   /*--kolor-tlo-pola:#ffffff;*/
-  --kolor-tlo-pola:#282828;
+  --kolor-tlo-pola:var(--kolor-tla-2);
   --kolor-ramka-pola:#dbdbdb;
   --kolor-ramka-pola-hover:#ababab;
   --kolor-radio-zaznaczony:#ffffff;
