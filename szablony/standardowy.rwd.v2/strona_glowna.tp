@@ -2,7 +2,7 @@
 <html lang="{__JEZYK_STRONY}">
 <head>
     <meta charset="utf-8" />
-    <title>{__META_TYTUL}</title>
+    <title>Aptelo</title>
     <meta name="keywords" content="{__META_SLOWA_KLUCZOWE}" />
     <meta name="description" content="{__META_OPIS}" />
     <meta name="robots" content="index,follow" />  
