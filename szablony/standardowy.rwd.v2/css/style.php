@@ -89,26 +89,41 @@ if ( ( ZAKLADKA_FACEBOOK_WLACZONA == 'tak' ||
 }
 
 // jezeli sa pliki
-if ( count($CssDoZaladowania) > 0 ) {
+if (count($CssDoZaladowania) > 0) {
 
-    if ( !file_exists($NazwaPlikuCache) ) {
-         //
-         SzablonZapiszCacheCss($NazwaPlikuCache, $CssDoZaladowania, $DaneSzablonu = $tpl);
-         //
-    } else {
-         //
-         if ( file_exists($NazwaPlikuCache) ) {                 
-              //
-              if ( filemtime($NazwaPlikuCache) < (time() - (30 * 86400)) ) {
-                   //
-                   SzablonZapiszCacheCss($NazwaPlikuCache, $CssDoZaladowania, $DaneSzablonu = $tpl);
-                   //
-              }
-              //
-         }
-         //
+    $cacheFile    = $NazwaPlikuCache;
+    $cacheMissing = !file_exists($cacheFile);
+    $cacheMTime   = $cacheMissing ? 0 : filemtime($cacheFile);
+
+    // Zbuduj listę wszystkich plików, które trafiają do cache
+    $srcPaths = [];
+
+    // 1) CSS szablonu
+    foreach ($CssDoZaladowania as $Plik) {
+        $p = 'szablony/' . DOMYSLNY_SZABLON . '/css/' . $Plik;
+        $srcPaths[] = $p;
     }
 
+    // 2) CSS-y zewnętrzne dołączane w funkcji (też muszą wpływać na rebuild)
+    $srcPaths[] = 'programy/zebraDatePicker/css/zebra_datepicker.css';
+    $srcPaths[] = 'programy/slickSlider/slick.css';
+    $srcPaths[] = 'programy/slickSlider/slick-theme.css';
+    $srcPaths[] = 'programy/jBox/jBox.all.css';
+
+    // Najnowsza modyfikacja wśród źródeł
+    $latestSrcMTime = 0;
+    foreach ($srcPaths as $p) {
+        if (file_exists($p)) {
+            $latestSrcMTime = max($latestSrcMTime, filemtime($p));
+        }
+    }
+
+    // Rebuild, gdy cache nie istnieje lub jest starszy niż którykolwiek plik źródłowy
+    $needsRebuild = $cacheMissing || ($cacheMTime < $latestSrcMTime);
+
+    if ($needsRebuild) {
+        SzablonZapiszCacheCss($cacheFile, $CssDoZaladowania, $tpl);
+    }
 }
 
 function SzablonZapiszCacheCss($NazwaPlikuCache, $CssDoZaladowania, $DaneSzablonu) {
