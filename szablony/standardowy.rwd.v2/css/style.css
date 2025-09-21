@@ -15,7 +15,10 @@
   
   /* ogolne ustawienia kolorow */
   --filtr-bialy:invert(98%) sepia(100%) saturate(8%) hue-rotate(193deg) brightness(104%) contrast(102%);
-  --kolor-glowny-czcionki:#303030;
+  /*--kolor-glowny-czcionki:#303030;*/
+  --kolor-glowny-czcionki: #f0f0f0;
+
+
   --kolor-bialy:#ffffff;
   --kolor-czerwony:#ff0000;
   --kolor-czarny:#000000;
@@ -39,7 +42,8 @@
   --filtr-tla-przycisk-aktywny:invert(36%) sepia(16%) saturate(0%) hue-rotate(112deg) brightness(99%) contrast(95%);
   
   /* tlo porownywanie, wyszukiwanie, naglowki tabel np koszyk */
-  --tlo-szare:#f5f5f5;
+  /*--tlo-szare:#f5f5f5;*/
+  --tlo-szare: #282828;
   
   /* kolor ramek */
   --kolor-linia:#dbdbdb;
