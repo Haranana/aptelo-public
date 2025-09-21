@@ -52,12 +52,14 @@
   /* moduly */
   --kolor-tlo-naglowek-modul:transparent;
   --kolor-czcionka-naglowek-modul:#303030;
-  --kolor-tlo-modul:#ffffff;  
+  /*--kolor-tlo-modul:#ffffff*/;  
+  --kolor-tlo-modul: #282828;
     
   /* boxy */
   --kolor-tlo-naglowek-box:#ebebeb;
   --kolor-czcionka-naglowek-box:#303030;
-  --kolor-tlo-box:#ffffff;
+  /*--kolor-tlo-box:#ffffff*/;
+  --kolor-tlo-box: #282828;
   
   /* box kategorie */
   --kolor-tlo-naglowek-box-kategorie:#e10101;
@@ -79,7 +81,9 @@
   
   /* porownywarka produktow */
   --kolor-wiersze-porownywarki:#f6f6f6;
-  --kolor-tla-porownywarki:#ffffff;
+  /*--kolor-tla-porownywarki:#ffffff;*/
+  --kolor-tla-porownywarki:#282828;
+  
   
   /* kolory indywidualne szablonu */
   --kolor-paska-naglowka:#f7f8f9;
@@ -91,7 +95,8 @@
   --kolor-czcionki-zegara:#ffffff;
 
   /* kolory formularzy */
-  --kolor-tlo-pola:#ffffff;
+  /*--kolor-tlo-pola:#ffffff;*/
+  --kolor-tlo-pola:#282828;
   --kolor-ramka-pola:#dbdbdb;
   --kolor-ramka-pola-hover:#ababab;
   --kolor-radio-zaznaczony:#ffffff;
