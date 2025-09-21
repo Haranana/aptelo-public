@@ -4,11 +4,12 @@
   --filtr-czerwony:invert(17%) sepia(69%) saturate(6076%) hue-rotate(356deg) brightness(105%) contrast(122%);
   /*--kolor-szablonu:#e10101;*/
   --kolor-szablonu:rgb(151, 91, 220);
+  --kolor-specjalny-1: rgb(151, 91, 220);
 
   /* kolor gwiazdek recenzji */
   --gwiazdka-wielkosc:20px;
   --gwiazdka-kolor:#dbdbdb;
-  --gwiazdka-tlo:#e10101;
+  --gwiazdka-tlo:var(--kolor-specjalny-1);
   
   /* kolor paska stanu magazynowego */
   --magazyn-kolor:#dbdbdb;
@@ -62,7 +63,7 @@
   --kolor-tlo-box: #282828;
   
   /* box kategorie */
-  --kolor-tlo-naglowek-box-kategorie:#e10101;
+  --kolor-tlo-naglowek-box-kategorie: var(--kolor-specjalny-1);
   --kolor-czcionka-naglowek-box-kategorie:#ffffff;
   --kolor-tlo-box-kategorie:#ffffff;
   --kolor-box-kategorie-najechanie-kursorem:#f3f3f3;
