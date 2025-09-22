@@ -17,6 +17,30 @@
     <base href="{__DOMENA}" />	
 
     {__LINK_CSS}
+
+    <?php
+        // wylicz wersję na bazie fingerprintu z pkt 1
+        $cacheFile = $GLOBALS['stronaGlowna'] 
+            ? 'cache/Cache_CssSzablonGlowna.css' 
+            : 'cache/Cache_CssSzablonPodstrony.css';
+        $fpFile = $cacheFile . '.fp';
+        $ver = file_exists($fpFile) 
+            ? trim(@file_get_contents($fpFile)) 
+            : (file_exists($cacheFile) ? filemtime($cacheFile) : time());
+        $verShort = substr($ver, 0, 12);
+        ?>
+
+        <script>
+        (function(){
+        // znajdź link do głównego CSS-a z {__LINK_CSS}
+        var sel = 'link[rel="stylesheet"][href*="cache/<?= $GLOBALS['stronaGlowna'] ? 'Cache_CssSzablonGlowna.css' : 'Cache_CssSzablonPodstrony.css' ?>"]';
+        var ln = document.querySelector(sel);
+        if (!ln) return;
+        // podmień HREF na wersjonowany (bez dokładania drugiego <link>)
+        var base = ln.getAttribute('href').split('?')[0];
+        ln.setAttribute('href', base + '?v=<?= $verShort ?>');
+        })();
+    </script>
     
     <script src="javascript/jquery.js"></script>
     <script src="javascript/skrypty.php"></script>    
