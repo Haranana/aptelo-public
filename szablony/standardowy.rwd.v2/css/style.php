@@ -143,6 +143,7 @@ function SzablonZapiszCacheCss($NazwaPlikuCache, $CssDoZaladowania, $tpl) {
         'programy/slickSlider/slick-theme.css',
         'programy/jBox/jBox.all.css',
     ];
+    //sd/
     foreach ($ext as $p) {
         if (file_exists($p)) {
             $parts[] = "/* === $p === */\n" . file_get_contents($p);
