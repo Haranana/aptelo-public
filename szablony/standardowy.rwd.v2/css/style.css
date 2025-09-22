@@ -222,8 +222,25 @@ img:not(.tm-carousel img, .tm-grade-label img, .tm-dialog img, .tm-hornet-contai
 }
 
 /* kontener calej strony */
-.CalaStrona { position:relative; overflow:hidden; width:100%; }
-.CalaStronaTlo::before { content:""; position:absolute; top:0; left:0; right:0; bottom:0; display:block; background-color:rgba(0,0,0,0.5); z-index:102; }
+.CalaStrona { 
+  background-color: var(--kolor-tla-2);
+  position:relative; 
+  overflow:hidden; 
+  width:100%;
+ }
+
+
+.CalaStronaTlo::before { 
+  content:"";
+   position:absolute;
+    top:0;
+     left:0;
+      right:0;
+       bottom:0;
+        display:block;
+         background-color:rgba(0,0,0,0.5);
+          z-index:102;
+         }
 
 .Strona .Strona { width:auto; }
 
