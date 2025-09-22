@@ -6,11 +6,12 @@
   --kolor-specjalny-1: rgb(151, 91, 220);
   --kolor-specjalny-2: rgb(143, 112, 178);
   --kolor-tla-0: #ffffff;
-  --kolor-tla-0: #9c9c9c;
-  --kolor-tla-1: #848484;
-  --kolor-tla-2: #5c5c5c;
-  --kolor-tla-3: #282828; 
-  --kolor-tla-4: #151515; 
+  --kolor-tla-1: #dfdfdf;
+  --kolor-tla-2: #b9b9b9;
+  --kolor-tla-3: #848484;
+  --kolor-tla-4: #5c5c5c;
+  --kolor-tla-5: #282828; 
+  --kolor-tla-6: #151515; 
 
   /*--kolor-szablonu:#e10101;*/
   --kolor-szablonu:var(--kolor-specjalny-1);
@@ -338,7 +339,7 @@ img:not(.tm-carousel img, .tm-grade-label img, .tm-dialog img, .tm-hornet-contai
 }
 
 /* tlo naglowka */
-.LogoSzukanieIkony { background:var(--kolor-specjalny-2); }
+.LogoSzukanieIkony { background:var(--kolor-tla-2); }
 
 /* link z logo sklepu */
 #LinkLogo { font-size:0; display:inline-block; }
