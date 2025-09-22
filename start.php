@@ -302,9 +302,9 @@ if ( SZEROKOSC_SKLEPU != '' ) {
 }
 
 // moduly srodkowe nad czescia glowna sklepu z boxami   
-//$tpl->dodaj('__MODULY_SRODKOWE_GORA', $Wyglad->SrodekSklepu( 'gora', (( $GLOBALS['stronaGlowna'] == true ) ? array(1,2) : array(1,3,4) ) ));
+$tpl->dodaj('__MODULY_SRODKOWE_GORA', $Wyglad->SrodekSklepu( 'gora', (( $GLOBALS['stronaGlowna'] == true ) ? array(1,2) : array(1,3,4) ) ));
 //!new!
-$tpl->dodaj('__MODULY_SRODKOWE_GORA', 'A');
+//$tpl->dodaj('__MODULY_SRODKOWE_GORA', 'A');
 
 // moduly srodkowe pod czescia glowna sklepu z boxami  
 $tpl->dodaj('__MODULY_SRODKOWE_DOL', $Wyglad->SrodekSklepu( 'dol', (( $GLOBALS['stronaGlowna'] == true ) ? array(1,2) : array(1,3,4) ) ));
