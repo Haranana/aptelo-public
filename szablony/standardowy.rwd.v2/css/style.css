@@ -4,7 +4,7 @@
   --filtr-czerwony:invert(17%) sepia(69%) saturate(6076%) hue-rotate(356deg) brightness(105%) contrast(122%);
   
   --kolor-specjalny-1: rgb(151, 91, 220);
-  --kolor-specjalny-1: rgb(136, 102, 174);
+  --kolor-specjalny-2: rgb(143, 112, 178);
   --kolor-tla-0: #ffffff;
   --kolor-tla-0: #9c9c9c;
   --kolor-tla-1: #848484;
@@ -338,7 +338,7 @@ img:not(.tm-carousel img, .tm-grade-label img, .tm-dialog img, .tm-hornet-contai
 }
 
 /* tlo naglowka */
-.LogoSzukanieIkony { background:var(--kolor-bialy); }
+.LogoSzukanieIkony { background:var(--kolor-specjalny-2); }
 
 /* link z logo sklepu */
 #LinkLogo { font-size:0; display:inline-block; }
