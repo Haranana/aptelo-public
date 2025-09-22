@@ -13,7 +13,7 @@
   --kolor-szablonu:var(--kolor-specjalny-1);
 
   /* kolor gwiazdek recenzji */
-  --gwiazdka-wielkosc:20px;
+  --gwiazdka-wielkosc:18px;
   --gwiazdka-kolor:#dbdbdb;
   --gwiazdka-tlo:var(--kolor-specjalny-1);
   
