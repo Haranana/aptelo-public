@@ -4,7 +4,9 @@
   --filtr-czerwony:invert(17%) sepia(69%) saturate(6076%) hue-rotate(356deg) brightness(105%) contrast(122%);
   
   --kolor-specjalny-1: rgb(151, 91, 220);
-  --kolor-tla-0: #bbbbbb;
+  --kolor-specjalny-1: rgb(136, 102, 174);
+  --kolor-tla-0: #ffffff;
+  --kolor-tla-0: #9c9c9c;
   --kolor-tla-1: #848484;
   --kolor-tla-2: #5c5c5c;
   --kolor-tla-3: #282828; 
@@ -25,7 +27,12 @@
   /* ogolne ustawienia kolorow */
   --filtr-bialy:invert(98%) sepia(100%) saturate(8%) hue-rotate(193deg) brightness(104%) contrast(102%);
   /*--kolor-glowny-czcionki:#303030;*/
-  --kolor-glowny-czcionki: #f0f0f0;
+  /*--kolor-glowny-czcionki: #f0f0f0*/;
+
+  --kolor-czcionki-1 : #f0f0f0;
+   --kolor-czcionki-2 : #676767;
+  --kolor-czcionki-3: #1d1d1d;
+  --kolor-glowny-czcionki: var(--kolor-czcionki-3);
 
   --kolor-bialy:#ffffff;
   --kolor-czerwony:#ff0000;
