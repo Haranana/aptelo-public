@@ -90,39 +90,43 @@ if ( ( ZAKLADKA_FACEBOOK_WLACZONA == 'tak' ||
 
 // jezeli sa pliki
 if (count($CssDoZaladowania) > 0) {
+    $cacheFile = $NazwaPlikuCache;
 
-    $cacheFile    = $NazwaPlikuCache;
-    $cacheMissing = !file_exists($cacheFile);
-    $cacheMTime   = $cacheMissing ? 0 : filemtime($cacheFile);
-
-    // Zbuduj listę wszystkich plików, które trafiają do cache
+    // Zbuduj pełną listę źródeł
     $srcPaths = [];
-
-    // 1) CSS szablonu
     foreach ($CssDoZaladowania as $Plik) {
-        $p = 'szablony/' . DOMYSLNY_SZABLON . '/css/' . $Plik;
-        $srcPaths[] = $p;
+        $srcPaths[] = 'szablony/' . DOMYSLNY_SZABLON . '/css/' . $Plik;
     }
+    $srcPaths = array_merge($srcPaths, [
+        'programy/zebraDatePicker/css/zebra_datepicker.css',
+        'programy/slickSlider/slick.css',
+        'programy/slickSlider/slick-theme.css',
+        'programy/jBox/jBox.all.css',
+    ]);
 
-    // 2) CSS-y zewnętrzne dołączane w funkcji (też muszą wpływać na rebuild)
-    $srcPaths[] = 'programy/zebraDatePicker/css/zebra_datepicker.css';
-    $srcPaths[] = 'programy/slickSlider/slick.css';
-    $srcPaths[] = 'programy/slickSlider/slick-theme.css';
-    $srcPaths[] = 'programy/jBox/jBox.all.css';
-
-    // Najnowsza modyfikacja wśród źródeł
-    $latestSrcMTime = 0;
+    // Fingerprint TREŚCI (hash wszystkich plików; brak pliku = "NA")
+    $partsHashes = [];
     foreach ($srcPaths as $p) {
         if (file_exists($p)) {
-            $latestSrcMTime = max($latestSrcMTime, filemtime($p));
+            // md5_file = hash treści; najpewniejszy wskaźnik zmiany
+            $partsHashes[] = md5_file($p) . ' ' . $p;
+        } else {
+            $partsHashes[] = 'NA ' . $p;
         }
     }
+    $fingerprint = md5(implode('|', $partsHashes));
 
-    // Rebuild, gdy cache nie istnieje lub jest starszy niż którykolwiek plik źródłowy
-    $needsRebuild = $cacheMissing || ($cacheMTime < $latestSrcMTime);
+    // Odczytaj poprzedni fingerprint (jeśli był)
+    $fpFile = $cacheFile . '.fp';
+    $oldFp  = @file_get_contents($fpFile);
+
+    $needsRebuild = (!file_exists($cacheFile)) || ($oldFp !== $fingerprint);
 
     if ($needsRebuild) {
         SzablonZapiszCacheCss($cacheFile, $CssDoZaladowania, $tpl);
+        // zapisz aktualny fingerprint, żeby kolejne żądanie wiedziało, że cache świeży
+        @file_put_contents($fpFile, $fingerprint, LOCK_EX);
+        clearstatcache(true, $cacheFile);
     }
 }
 
