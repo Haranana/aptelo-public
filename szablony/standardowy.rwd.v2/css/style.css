@@ -4,6 +4,7 @@
   --filtr-czerwony:invert(17%) sepia(69%) saturate(6076%) hue-rotate(356deg) brightness(105%) contrast(122%);
   
   --kolor-specjalny-1: rgb(151, 91, 220);
+  --kolor-tla-0: #bbbbbb;
   --kolor-tla-1: #848484;
   --kolor-tla-2: #5c5c5c;
   --kolor-tla-3: #282828; 
@@ -92,7 +93,7 @@
   
   
   /* kolory indywidualne szablonu */
-  --kolor-paska-naglowka:#f7f8f9;
+  --kolor-paska-naglowka:var(--kolor-specjalny-1);
   
   /* kolor zegara odliczania promocji i produkt dnia */
   --kolor-czcionki-odliczania:#6b6b6b;
@@ -223,7 +224,7 @@ img:not(.tm-carousel img, .tm-grade-label img, .tm-dialog img, .tm-hornet-contai
 
 /* kontener calej strony */
 .CalaStrona { 
-  background-color: var(--kolor-tla-2);
+  background-color: var(--kolor-tla-0);
   position:relative; 
   overflow:hidden; 
   width:100%;
