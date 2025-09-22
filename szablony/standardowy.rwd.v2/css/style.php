@@ -89,45 +89,25 @@ if ( ( ZAKLADKA_FACEBOOK_WLACZONA == 'tak' ||
 }
 
 // jezeli sa pliki
-if (count($CssDoZaladowania) > 0) {
-    $cacheFile = $NazwaPlikuCache;
+if ( count($CssDoZaladowania) > 0 ) {
 
-    // Zbuduj pełną listę źródeł
-    $srcPaths = [];
-    foreach ($CssDoZaladowania as $Plik) {
-        $srcPaths[] = 'szablony/' . DOMYSLNY_SZABLON . '/css/' . $Plik;
-    }
-    $srcPaths = array_merge($srcPaths, [
-        'programy/zebraDatePicker/css/zebra_datepicker.css',
-        'programy/slickSlider/slick.css',
-        'programy/slickSlider/slick-theme.css',
-        'programy/jBox/jBox.all.css',
-    ]);
-
-    // Fingerprint TREŚCI (hash wszystkich plików; brak pliku = "NA")
-    $partsHashes = [];
-    foreach ($srcPaths as $p) {
-        if (file_exists($p)) {
-            // md5_file = hash treści; najpewniejszy wskaźnik zmiany
-            $partsHashes[] = md5_file($p) . ' ' . $p;
-        } else {
-            $partsHashes[] = 'NA ' . $p;
-        }
-    }
-    $fingerprint = md5(implode('|', $partsHashes));
-
-    // Odczytaj poprzedni fingerprint (jeśli był)
-    $fpFile = $cacheFile . '.fp';
-    $oldFp  = @file_get_contents($fpFile);
-
-    $needsRebuild = (!file_exists($cacheFile)) || ($oldFp !== $fingerprint);
-
-    if ($needsRebuild) {
-        SzablonZapiszCacheCss($cacheFile, $CssDoZaladowania, $tpl);
-        // zapisz aktualny fingerprint, żeby kolejne żądanie wiedziało, że cache świeży
-        @file_put_contents($fpFile, $fingerprint, LOCK_EX);
-        clearstatcache(true, $cacheFile);
-    }
+    if ( !file_exists($NazwaPlikuCache) ) {
+         //
+         SzablonZapiszCacheCss($NazwaPlikuCache, $CssDoZaladowania, $DaneSzablonu = $tpl);
+         //
+    } else {
+         //
+         if ( file_exists($NazwaPlikuCache) ) {                 
+              //
+              if ( filemtime($NazwaPlikuCache) < (time() - (60)) ) {
+                   //
+                   SzablonZapiszCacheCss($NazwaPlikuCache, $CssDoZaladowania, $DaneSzablonu = $tpl);
+                   //
+              }
+              //
+         }
+         //
+     }
 }
 
 function SzablonZapiszCacheCss($NazwaPlikuCache, $CssDoZaladowania, $DaneSzablonu) {
