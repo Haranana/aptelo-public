@@ -126,44 +126,39 @@ if (count($CssDoZaladowania) > 0) {
     }
 }
 
-function SzablonZapiszCacheCss($NazwaPlikuCache, $CssDoZaladowania, $DaneSzablonu) {
-    //
-    $NazwaPlikuCache = fopen($NazwaPlikuCache,'a+');
-    flock($NazwaPlikuCache, LOCK_EX);
-    //
-    fseek($NazwaPlikuCache, 0);
-    //
-    ftruncate($NazwaPlikuCache,0);
-    //
-    ob_start();
-    //
-    foreach ( $CssDoZaladowania as $Plik ) {
-       //
-       include( 'szablony/' . DOMYSLNY_SZABLON . '/css/' . $Plik );
-       //
+function SzablonZapiszCacheCss($NazwaPlikuCache, $CssDoZaladowania, $tpl) {
+    $parts = [];
+
+    foreach ($CssDoZaladowania as $Plik) {
+        $p = 'szablony/' . DOMYSLNY_SZABLON . '/css/' . $Plik;
+        if (file_exists($p)) {
+            $parts[] = "/* === $Plik === */\n" . file_get_contents($p);
+        }
     }
-    
-    include('programy/zebraDatePicker/css/zebra_datepicker.css');
-    
-    include('programy/slickSlider/slick.css');
-    include('programy/slickSlider/slick-theme.css');
-    include('programy/jBox/jBox.all.css');
 
-    $WynikCss = ob_get_contents();
-
-    ob_end_clean(); 
-
-    // jezeli jest wlaczona kompresja
-    $WynikCss = $DaneSzablonu->cssCompress($WynikCss, ((KOMPRESJA_CSS == 'tak') ? true : false));         
-    //
-    if ( fwrite($NazwaPlikuCache, $WynikCss) === false ) {
-        //
-        throw new Exception('Nie moge zapisac cache');
-        //
+    // zewnętrzne CSS-y
+    $ext = [
+        'programy/zebraDatePicker/css/zebra_datepicker.css',
+        'programy/slickSlider/slick.css',
+        'programy/slickSlider/slick-theme.css',
+        'programy/jBox/jBox.all.css',
+    ];
+    foreach ($ext as $p) {
+        if (file_exists($p)) {
+            $parts[] = "/* === $p === */\n" . file_get_contents($p);
+        }
     }
-    //
-    fclose($NazwaPlikuCache);               
-    //
-}               
+
+    $WynikCss = implode("\n\n", $parts);
+
+    // kompresja
+    $WynikCss = $tpl->cssCompress($WynikCss, (KOMPRESJA_CSS === 'tak'));
+
+    // ZAPIS ATOMOWY (bez 'a+'):
+    $tmp = $NazwaPlikuCache . '.tmp.' . uniqid('', true);
+    file_put_contents($tmp, $WynikCss, LOCK_EX);
+    rename($tmp, $NazwaPlikuCache);
+    clearstatcache(true, $NazwaPlikuCache);
+}       
 
 ?>
