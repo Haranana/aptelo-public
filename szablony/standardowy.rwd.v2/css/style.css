@@ -5,9 +5,11 @@
   
   --kolor-specjalny-1: rgb(151, 91, 220);
   --kolor-specjalny-2: rgb(224, 199, 255);
-   --kolor-specjalny-3: rgb(105, 134, 235);
-    --kolor-specjalny-4: rgb(255, 153, 235);
-     --kolor-specjalny-5: rgb(204, 196, 255);
+  --kolor-specjalny-3: rgb(105, 134, 235);
+  --kolor-specjalny-4: rgb(255, 153, 235);
+    --kolor-specjalny-5: rgb(204, 196, 255);
+     --kolor-specjalny-6: rgb(222, 116, 116);
+
   --kolor-tla-0: #ffffff;
   --kolor-tla-1: #dfdfdf;
   --kolor-tla-2: #b9b9b9;
