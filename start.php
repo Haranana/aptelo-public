@@ -862,4 +862,9 @@ if ( isset($_SESSION['cookie_rozszerzone']) && $_SESSION['cookie_rozszerzone'] =
      //
 }
 
+if ($GLOBALS['stronaGlowna'] == true) {
+    $tpl->dodaj('__MODULY_SRODKOWE_GORA', '');
+    $tpl->dodaj('__MODULY_SRODKOWE_DOL', '');
+}
+
 ?>
