@@ -174,7 +174,7 @@ img:not(.tm-carousel img, .tm-grade-label img, .tm-dialog img, .tm-hornet-contai
 /* domyslny kolor zmiany plikow svg */
 .KolorSvg { transition:all 0.20s ease-in-out; }
 @media only screen and (min-width:1024px) {
-  .KolorSvg:hover, .KolorSvg:focus { filter:var(--filtr-szablonu); }
+  .KolorSvg:hover, .KolorSvg:focus { filter:var(--filtr-invert); }
 }
 
 /* gwiazdki do ocen i recenzji */
@@ -782,7 +782,7 @@ ul.MenuSzerokie .Scroller::-webkit-scrollbar-thumb { background-color:var(--kolo
 .KontaktStopka li .DaneFirmaNipKontakt, .KontaktStopka li .DaneFirmaRegonKontakt, .KontaktStopka li .DaneFirmaBdoKontakt { display:block; padding:5px 0 0 0; font-weight:normal; }
 .KontaktStopka li.KontaktStopkaLinia > span { display:block; margin-bottom:2px; }
 .KontaktStopka li.KontaktStopkaLinia > a { display:block; margin-bottom:2px;  }
-.KontaktStopka li.KontaktStopkaLinia > a:hover { color:var(--kolor-szablonu); }
+.KontaktStopka li.KontaktStopkaLinia > a:hover { color:var(--kolor-specjalny-2); }
 
 /* ikony kontaktu */
 .KontaktStopka li.Mail, .KontaktStopka li.Firma, .KontaktStopka li.Bank, .KontaktStopka li.Tel, .KontaktStopka li.Fax, .KontaktStopka li.Gg, .KontaktStopka li.Skype, .KontaktStopka li.Godziny { position:relative; background:none; }
@@ -835,7 +835,7 @@ ul.MenuSzerokie .Scroller::-webkit-scrollbar-thumb { background-color:var(--kolo
 
 /* ogolny wyglad linkow */
 a { text-decoration:none; color:var(--kolor-glowny-czcionki); font-weight:normal; transition:all 0.30s ease-in-out; }
-a:hover { text-decoration:none; color:var(--kolor-szablonu); }
+a:hover { text-decoration:none; color:var(--kolor-specjalny-2); }
 
 /* linki produktow */
 h3 a { font-weight:bold; color:var(--kolor-glowny-czcionki); font-size:110%; }
@@ -911,7 +911,7 @@ span.Informacja { display:inline-block; }
 .StrNaglowek { font-size:170%; margin-bottom:20px; font-weight:normal; background:var(--kolor-tlo-naglowek-modul); }
 .StrNaglowek > span { display:inline-block; font-weight:bold; vertical-align:top; color:var(--kolor-czcionka-naglowek-modul); }
 .StrNaglowek > span a { color:var(--kolor-czcionka-naglowek-modul); font-weight:bold; }
-.StrNaglowek > span a:hover { text-decoration:none; color:var(--kolor-szablonu); }
+.StrNaglowek > span a:hover { text-decoration:none; color:var(--kolor-specjalny-2); }
 
 /* dodatkowy odstep jezeli sa strzalki obok tytylu */
 .AnimacjaStrzalki { padding-right:100px; }
