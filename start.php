@@ -867,8 +867,12 @@ if ( isset($_SESSION['cookie_rozszerzone']) && $_SESSION['cookie_rozszerzone'] =
 }
 
 if ($GLOBALS['stronaGlowna'] == true) {
-    $tpl->dodaj('__MODULY_SRODKOWE_GORA', '');
-    $tpl->dodaj('__MODULY_SRODKOWE_DOL', '');
+    // moduły środka (już masz puste, ale zostawiamy marker)
+    $tpl->dodaj('__MODULY_SRODKOWE_GORA', '<!-- SG: GORA OFF -->');
+    $tpl->dodaj('__MODULY_SRODKOWE_DOL',  '<!-- SG: DOL  OFF -->');
+
+    // moduły stałe – zwykle tu siedzi „kreator”
+    $tpl->dodaj('__MODULY_STALE', '<!-- SG: STALE OFF -->');
 }
 
 ?>
