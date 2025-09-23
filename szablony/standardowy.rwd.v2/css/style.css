@@ -2,13 +2,14 @@
   /* kolor glowny szablonu */  
   --filtr-szablonu:invert(18%) sepia(63%) saturate(4257%) hue-rotate(353deg) brightness(91%) contrast(129%);
   --filtr-czerwony:invert(17%) sepia(69%) saturate(6076%) hue-rotate(356deg) brightness(105%) contrast(122%);
-  
+  --filtr-invert: invert(100%);
+
   --kolor-specjalny-1: rgb(151, 91, 220);
   --kolor-specjalny-2: rgb(224, 199, 255);
   --kolor-specjalny-3: rgb(105, 134, 235);
   --kolor-specjalny-4: rgb(255, 153, 235);
-    --kolor-specjalny-5: rgb(204, 196, 255);
-     --kolor-specjalny-6: rgb(222, 116, 116);
+  --kolor-specjalny-5: rgb(204, 196, 255);
+  --kolor-specjalny-6: rgb(222, 116, 116);
 
   --kolor-tla-0: #ffffff;
   --kolor-tla-1: #dfdfdf;
@@ -740,7 +741,7 @@ ul.MenuSzerokie .Scroller::-webkit-scrollbar-thumb { background-color:var(--kolo
   
 /* reset pozycji do okna z dowolnym tekstem */
 .GorneMenu .FormatEdytor a { all:unset; display:inline; text-decoration:none; cursor:pointer; padding:0 !important; margin:0 !important; color:var(--kolor-glowny-czcionki); transition:all 0.30s ease-in-out; }
-.GorneMenu .FormatEdytor a:hover { color:var(--kolor-szablonu); }   
+.GorneMenu .FormatEdytor a:hover { color:var(--kolor-specjalny-2); }   
 .GorneMenu .FormatEdytor a::before, .GorneMenu .FormatEdytor a::after { display:none !important; }
 .GorneMenu .FormatEdytor ul { all:unset; list-style:none; margin:20px 0 20px 0; list-style-position:inside; padding:0; display:block; list-style-type:disc; }
 .GorneMenu .FormatEdytor ol { all:unset; list-style:none; margin:20px 0 20px 0; padding:0; display:block; list-style-type:decimal; }
