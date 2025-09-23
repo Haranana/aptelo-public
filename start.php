@@ -29,6 +29,9 @@ if (defined('DOMYSLNY_SZABLON')) {
 
 header('X-Debug-File-Source: ' . __FILE__);
 
+if (function_exists('opcache_invalidate')) { opcache_invalidate(__FILE__, true); }
+header('X-Is-Home: '. (!empty($GLOBALS['stronaGlowna']) ? '1' : '0'));
+
 
 // sprawdzi czy nie zmienil sie stan magazynowy produktu lub produkt nie jest wylaczony - musi wtedy zmienic wartosc koszyka
 if ( isset($_SESSION['koszyk']) && count($_SESSION['koszyk']) > 0 && $WywolanyPlik != 'zamowienie_podsumowanie' && $WywolanyPlik != 'zamowienia_szczegoly' ) {
