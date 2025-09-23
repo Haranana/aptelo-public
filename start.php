@@ -313,37 +313,29 @@ if ( SZEROKOSC_SKLEPU != '' ) {
 
 // moduly srodkowe nad czescia glowna sklepu z boxami   
 //$tpl->dodaj('__MODULY_SRODKOWE_GORA', $Wyglad->SrodekSklepu( 'gora', (( $GLOBALS['stronaGlowna'] == true ) ? array(1,2) : array(1,3,4) ) ));
-if($GLOBALS['stronaGlowna'] == true){
-    $tpl->dodaj('__MODULY_SRODKOWE_GORA', '');
-    /*
-    $ids = []; // wybierz które chcesz i w jakiej KOLEJNOŚCI
-    $html = '';
-    foreach ($ids as $id) {
-        // Status=true -> tylko jeśli w bazie włączony; daj false, jeśli chcesz wymusić
-        $html .= $Wyglad->SrodekSklepu('gora', array(2), '', $id, true);
+if (!empty($GLOBALS['stronaGlowna'])) {
+    $idsGora = [];   // <- KOLEJNOŚĆ jak chcesz (ModulId-XX z DOM)
+    $out = '';
+    foreach ($idsGora as $id) {
+        // 5. parametr = $Status: true -> tylko jeśli włączony w bazie; false -> wymuś nawet wyłączony
+        $out .= $Wyglad->SrodekSklepu('gora', [2], '', $id, true);
     }
-    $tpl->dodaj('__MODULY_SRODKOWE_GORA', $html);
-     */
-}else{
-     $tpl->dodaj('__MODULY_SRODKOWE_GORA', '');
-     //$tpl->dodaj('__MODULY_SRODKOWE_GORA', $Wyglad->SrodekSklepu( 'gora' , array(1,3,4)));
+    $tpl->dodaj('__MODULY_SRODKOWE_GORA', $out);
+} else {
+    $tpl->dodaj('__MODULY_SRODKOWE_GORA', $Wyglad->SrodekSklepu('gora', [1,3,4]));
 }
 
 
 // moduly srodkowe pod czescia glowna sklepu z boxami  
-if($GLOBALS['stronaGlowna'] == true){
-     $tpl->dodaj('__MODULY_SRODKOWE_DOL', '');
-     /*
-    $ids = []; 
-    $html = '';
-    foreach ($ids as $id) {
-        // Status=true -> tylko jeśli w bazie włączony; daj false, jeśli chcesz wymusić
-        $html .= $Wyglad->SrodekSklepu('dol', array(2), '', $id, true);
+if (!empty($GLOBALS['stronaGlowna'])) {
+    $idsDol = [35];        // <- to, co chcesz mieć na dole
+    $out = '';
+    foreach ($idsDol as $id) {
+        $out .= $Wyglad->SrodekSklepu('dol', [2], '', $id, true);
     }
-    $tpl->dodaj('__MODULY_SRODKOWE_DOL', $html);*/
-}else{
-      $tpl->dodaj('__MODULY_SRODKOWE_DOL', '');
-     //$tpl->dodaj('__MODULY_SRODKOWE_DOL', $Wyglad->SrodekSklepu( 'dol' , array(1,3,4)));
+    $tpl->dodaj('__MODULY_SRODKOWE_DOL', $out);
+} else {
+    $tpl->dodaj('__MODULY_SRODKOWE_DOL', $Wyglad->SrodekSklepu('dol', [1,3,4]));
 }
 //$tpl->dodaj('__MODULY_SRODKOWE_DOL', $Wyglad->SrodekSklepu( 'dol', (( $GLOBALS['stronaGlowna'] == true ) ? array(1,2) : array(1,3,4) ) ));
 
@@ -515,16 +507,6 @@ if ( WIADOMOSCI_POPUP == 'tak') {
 
 $tpl->dodaj('__MODULY_STALE', $ModulyStale);
 unset($ModulyStale);
-
-if ($GLOBALS['stronaGlowna'] == true) {
-   
-    $tpl->dodaj('__MODULY_SRODKOWE_GORA', '<!-- SG: GORA OFF -->');
-    $tpl->dodaj('__MODULY_SRODKOWE_DOL',  '<!-- SG: DOL  OFF -->');
-
-
-    $tpl->dodaj('__MODULY_STALE', '<!-- SG: STALE OFF -->');
-}
-
 
 // logo/naglowek
 if (NAGLOWEK_RODZAJ == 'kod') {
