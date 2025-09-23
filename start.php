@@ -304,7 +304,21 @@ if ( SZEROKOSC_SKLEPU != '' ) {
 // moduly srodkowe nad czescia glowna sklepu z boxami   
 //$tpl->dodaj('__MODULY_SRODKOWE_GORA', $Wyglad->SrodekSklepu( 'gora', (( $GLOBALS['stronaGlowna'] == true ) ? array(1,2) : array(1,3,4) ) ));
 //!new!
-$tpl->dodaj('__MODULY_SRODKOWE_GORA', '');
+//$tpl->dodaj('__MODULY_SRODKOWE_GORA', '');
+if($GLOBALS['stronaGlowna'] == true){
+    // $tpl->dodaj('__MODULY_SRODKOWE_GORA', '');
+     $ids = [39, 37, 33]; // wybierz które chcesz i w jakiej KOLEJNOŚCI
+    $html = '';
+    foreach ($ids as $id) {
+        // Status=true -> tylko jeśli w bazie włączony; daj false, jeśli chcesz wymusić
+        $html .= $Wyglad->SrodekSklepu('gora', array(2), '', $id, true);
+        // ewentualnie 'srodek' lub 'dol' zamiast 'gora'
+    }
+    $tpl->dodaj('__MODULY_SRODKOWE_GORA', $html);
+}else{
+    // $tpl->dodaj('__MODULY_SRODKOWE_GORA', $Wyglad->SrodekSklepu( 'gora' , array(1,3,4)));
+}
+
 
 // moduly srodkowe pod czescia glowna sklepu z boxami  
 $tpl->dodaj('__MODULY_SRODKOWE_DOL', $Wyglad->SrodekSklepu( 'dol', (( $GLOBALS['stronaGlowna'] == true ) ? array(1,2) : array(1,3,4) ) ));
