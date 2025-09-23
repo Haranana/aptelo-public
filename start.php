@@ -15,6 +15,10 @@ if (isset($WywolanyPlik) && $WywolanyPlik == 'strona_glowna') {
 // !new! wpisywanie jaki szablon jest uzywany w error logach oraz w naglowku, oraz debug czy start
 //poprawnie sie uruchomil
 
+if (!defined('SG_BEZ_MODULOW')) {
+    define('SG_BEZ_MODULOW', true);
+}
+
 error_log("Start was opened succesfuly");
 
 if (defined('DOMYSLNY_SZABLON')) {

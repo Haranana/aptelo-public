@@ -368,6 +368,13 @@ class Wyglad {
     // 3 - tylko podstrony
     public function SrodekSklepu( $pozycjaModulow = 'srodek', $miejsceWyswietlania = array(2), $podstrony = '', $TylkoModulId = 0, $Status = true, $TylkoKreator = false ) {
         global $SzerokoscSrodek, $WywolanyPlik;
+
+        //!new!
+        if (!empty($GLOBALS['stronaGlowna']) && defined('SG_BEZ_MODULOW') && SG_BEZ_MODULOW === true && (int)$TylkoModulId === 0) {
+          // opcjonalny ślad w logu, żeby mieć potwierdzenie:
+          if (function_exists('error_log')) { error_log('SG_GUARD: blokuje SrodekSklepu na SG'); }
+          return ''; // nic nie renderuj na SG
+          }
         
         // cache zapytania
         $WynikCache = $GLOBALS['cache']->odczytaj('SrodekSklepu_' . $_SESSION['domyslnyJezyk']['kod'], CACHE_WYGLAD); 
