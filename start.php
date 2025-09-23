@@ -512,6 +512,16 @@ if ( WIADOMOSCI_POPUP == 'tak') {
 $tpl->dodaj('__MODULY_STALE', $ModulyStale);
 unset($ModulyStale);
 
+if ($GLOBALS['stronaGlowna'] == true) {
+   
+    $tpl->dodaj('__MODULY_SRODKOWE_GORA', '<!-- SG: GORA OFF -->');
+    $tpl->dodaj('__MODULY_SRODKOWE_DOL',  '<!-- SG: DOL  OFF -->');
+
+
+    $tpl->dodaj('__MODULY_STALE', '<!-- SG: STALE OFF -->');
+}
+
+
 // logo/naglowek
 if (NAGLOWEK_RODZAJ == 'kod') {
     $tpl->dodaj('__LOGO_SKLEPU', htmlspecialchars_decode(NAGLOWEK));
@@ -865,14 +875,4 @@ if ( isset($_SESSION['cookie_rozszerzone']) && $_SESSION['cookie_rozszerzone'] =
      $tpl->dodaj('__ZMIANA_COOKIES', '<div style="padding:10px"><a href="ustawienia-cookies.html" title="' . $GLOBALS['tlumacz']['ZARZADZAJ_COOKIES'] . '">' . $GLOBALS['tlumacz']['ZARZADZAJ_COOKIES'] . '</a></div>');
      //
 }
-
-if ($GLOBALS['stronaGlowna'] == true) {
-    // moduły środka (już masz puste, ale zostawiamy marker)
-    $tpl->dodaj('__MODULY_SRODKOWE_GORA', '<!-- SG: GORA OFF -->');
-    $tpl->dodaj('__MODULY_SRODKOWE_DOL',  '<!-- SG: DOL  OFF -->');
-
-    // moduły stałe – zwykle tu siedzi „kreator”
-    $tpl->dodaj('__MODULY_STALE', '<!-- SG: STALE OFF -->');
-}
-
 ?>
