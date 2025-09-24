@@ -754,7 +754,32 @@ body.force-hamburger ul.GlowneGorneMenu li.AktywnaPozycjaMenu ul.MenuRozwijaneKo
   visibility:visible; transform:none; opacity:1; filter:none;
 }
 
+/* Desktop: pokaż ikonę menu i lupkę */
+@media (min-width:1024px) {
+  body.force-hamburger .MenuNaglowek,
+  body.force-hamburger .SzukajNaglowek {
+    display:block !important; /* przebija desktopowe display:none */
+  }
 
+  /* Nadaj ROZMIAR tylko ikonom hamburgera i lupki */
+  body.force-hamburger .MenuNaglowek .PozycjaIkonka,
+  body.force-hamburger .SzukajNaglowek .PozycjaIkonka {
+    width:35px;
+    height:35px;
+    padding:0;        /* wyłącz desktopowy padding-top:42px */
+    display:block;
+  }
+
+  /* Usuń podpisy tekstowe przy ikonach – trzymają layout w ryzach */
+  body.force-hamburger .PozycjaOpisIkony { 
+    display:none !important; 
+  }
+
+  /* kosmetyka wyrównania */
+  body.force-hamburger .IkonyNawigacja { 
+    align-items:center; 
+  }
+}
 
 /* ukrywanie checkbox menu mobilnego */
 .MenuMobilneCheckbox { display:none; }
@@ -1725,22 +1750,3 @@ body.Kontrast .PozycjeLogowanie, body.Kontrast .SchowekRozwijany, body.Kontrast 
   body.Kontrast .MenuNaglowek span.PozycjaIkonka { filter:none !important; }
 }
 
-/*!new! ensures that menu icon on sg is visible also on desktop devices*/
-@media (min-width:1024px) {
-  body.force-hamburger .MenuNaglowek,
-  body.force-hamburger .SzukajNaglowek {
-    display:block !important;      /* przebija desktopowe display:none */
-  }
-
-  /* Daj realne wymiary „kafelkowi” z ikoną */
-  body.force-hamburger .IkonyNawigacja .IkonaNawigacjiMenu {
-    width:40px; height:40px;
-  }
-  body.force-hamburger .IkonaNaglowek,
-  body.force-hamburger .PozycjaIkonka {
-    display:block;
-    width:100%;
-    height:100%;
-    padding:0;                      /* zamiast padding-top z desktopu */
-  }
-}
