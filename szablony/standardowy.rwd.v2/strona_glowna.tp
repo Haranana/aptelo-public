@@ -47,7 +47,7 @@
     {__KLAVIYO}
 </head>
 
-<body {__TLO_SKLEPU}>
+<body class="force-hamburger" {__TLO_SKLEPU}>
 {__GOOGLE_GTM_NOSCRIPT}
 
 <div class="CalaStrona">

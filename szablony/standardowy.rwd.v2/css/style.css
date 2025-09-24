@@ -707,6 +707,55 @@ img:not(.tm-carousel img, .tm-grade-label img, .tm-dialog img, .tm-hornet-contai
   
 }
 
+
+/*!new! w stronie glownej jesli tego chcemu mozemy miec gorneMenu zawsze zwiniete w hamburger*/
+
+body.force-hamburger .MenuNaglowek,
+body.force-hamburger .SzukajNaglowek { display:block; }           /* pokaż ikonę menu/szukania */
+body.force-hamburger #IkonaZwinieciaMenu { display:block; }       /* pokaż krzyżyk/zamknięcie */
+
+body.force-hamburger ul.GlowneGorneMenu {
+  display:block;            /* zamiast desktopowego flex-bara */
+  text-align:left;
+  padding:15px; margin:0;
+}
+
+/* off-canvas jak w mobilce */
+body.force-hamburger .GorneMenuTlo {
+  background:var(--kolor-bialy);
+  opacity:0; visibility:hidden;
+  position:fixed; top:0; bottom:0; left:-1000px;
+  width:80%; z-index:150; border-right:1px solid var(--kolor-linia);
+  transition:all .50s ease-in-out;
+}
+body.force-hamburger .MenuMobilneCheckbox:checked ~ .GorneMenuKontener .GorneMenuTlo {
+  left:0; opacity:1; visibility:visible;
+}
+body.force-hamburger .MenuMobilneCheckbox:checked ~ .GorneMenuKontener {
+  position:fixed; top:0; left:0; right:0; bottom:0;
+  background-color:rgba(0,0,0,.5); z-index:150;
+}
+
+/* podmenu rozwiń/ zwiń na klik (checkbox), nie na :hover */
+body.force-hamburger .CheckboxRozwinGorneMenu,
+body.force-hamburger .IkonaSubMenu { display:block; }
+
+body.force-hamburger ul.GlowneGorneMenu > li {
+  display:block; border-bottom:1px solid var(--kolor-linia);
+}
+body.force-hamburger ul.GlowneGorneMenu li ul.MenuRozwijaneKolumny {
+  position:relative; visibility:visible; left:auto; right:auto;
+  max-width:none; border:0; padding:10px 0; box-shadow:none;
+}
+
+/* zneutralizuj desktopowe efekty hover/animacje otwierania */
+body.force-hamburger ul.GlowneGorneMenu li:hover ul.MenuRozwijaneKolumny,
+body.force-hamburger ul.GlowneGorneMenu li.AktywnaPozycjaMenu ul.MenuRozwijaneKolumny {
+  visibility:visible; transform:none; opacity:1; filter:none;
+}
+
+
+
 /* ukrywanie checkbox menu mobilnego */
 .MenuMobilneCheckbox { display:none; }
 
