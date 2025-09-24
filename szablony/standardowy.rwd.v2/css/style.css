@@ -432,7 +432,6 @@ img:not(.tm-carousel img, .tm-grade-label img, .tm-dialog img, .tm-hornet-contai
 
   .SzukajNaglowek { display:none; }
   span.PozycjaIkonka {padding-top: 42px;}
-  /*span.PozycjaIkonka { min-width:35px; min-height:35px; }*/
 
   .MenuNaglowek { order:4; width: 35px ; height: 35px;}
 }
@@ -586,130 +585,87 @@ img:not(.tm-carousel img, .tm-grade-label img, .tm-dialog img, .tm-hornet-contai
 
 /* wersja dla menu w pelnej wersji - glowne menu --- nie zmieniac nazwy styli, nie usuwac --- */
 
+
 @media only screen and (min-width:1024px) {
-
   /* tlo gornego menu */
-  .GorneMenuTlo { background:var(--kolor-bialy); border-top:1px solid var(--kolor-linia); border-bottom:1px solid var(--kolor-linia); }
+  .GorneMenuTlo { background:var(--kolor-bialy); opacity:0; visibility:hidden; position:fixed; top:0; bottom:0; left:-1000px; width:80%; z-index:150; border-right:1px solid var(--kolor-linia); overflow:visible; transition:all 0.50s ease-in-out; }
+    
+  /* wysuwanie menu glownego */
+  .MenuMobilneCheckbox:checked ~ .GorneMenuKontener .GorneMenuTlo { left:0; opacity:1; visibility:visible; }
+  .MenuMobilneCheckbox:checked ~ .GorneMenuKontener { position:fixed; top:0; left:0; right:0; bottom:0; display:block; background-color:rgba(0,0,0,0.5); z-index:150; }
+  .MenuMobilneCheckbox:checked ~ .GorneMenuKontener .GorneMenuTlo .TloZwinieciaMenu { position:fixed; top:0; right:0; width:20%; bottom:0; display:block; cursor:pointer; }
   
-  /* pozycje glowne menu */
-  ul.GlowneGorneMenu { text-align:center; display:flex; flex-wrap:wrap; justify-content:center; align-items:center; padding:0; margin:0; }
+  .GorneMenuTlo .Strona { position:absolute; top:0; bottom:0; right:0; left:0; width:auto !important; min-width:1px; max-width:100000px; overflow:visible; }
+  
+  /* ikona zamkniecia menu */
+  #IkonaZwinieciaMenu { display:block; background:url('../szablony/standardowy.rwd.v2/obrazki/szablon/krzyzyk.svg') no-repeat center center; background-size:40px 40px; background-color:var(--kolor-szary-jasny-2); width:50px; height:50px; cursor:pointer; position:absolute; top:0; right:-50px; z-index:101; }
+  
+  /* okno przewijane menu */
+  .GorneMenu { position:absolute; top:0; bottom:0; right:0; left:0; overflow-y:scroll; }
+  ul.MenuRozwijaneKolumny, ul.GlowneGorneMenu ol { padding:10px 0 10px 0; }
+  ul.GlowneGorneMenu { padding:15px; margin:0; }
+  
+  .GorneMenu li { position:relative; }
 
-  /* glowne pozycje menu */
-  ul.GlowneGorneMenu > li:hover > div > a, ul.GlowneGorneMenu > li:hover > div > span { background-color:var(--kolor-szary-jasny); color:var(--kolor-szablonu); }
-  
-  /* pozycje menu rozwijanego */
-  ul.MenuRozwijaneKolumny li a { font-size:100%; padding:5px; display:block; font-weight:normal; }
-  
-  ul.MenuRozwijaneKolumny, ul.MenuNormalne li ol { background:var(--kolor-bialy); border:1px solid var(--kolor-linia); padding:15px 25px 15px 25px; box-shadow:0 0 15px 0 rgba(0,0,0,0.05); }
-  
-  #IkonaZwinieciaMenu { display:none; }
-  
-  /* wyglad rozwijanego okna menu */  
-  ul.GlowneGorneMenu li ul.MenuRozwijaneKolumny { visibility:hidden; max-width:300px; display:block; }
-  ul.GlowneGorneMenu li:hover ul.MenuRozwijaneKolumny, ul.GlowneGorneMenu li.AktywnaPozycjaMenu ul.MenuRozwijaneKolumny { visibility:visible; }
-  ul.GlowneGorneMenu li ul.MenuRozwijaneKolumny { position:absolute; text-align:left; }
-  
-  /* efekty rozwijanego menu */
-  ul.GlowneGorneMenu li .EfektMenu-1 { transform-origin:left top; transform:scaleY(0); transition:all 0.40s ease; }
-  ul.GlowneGorneMenu li:hover .EfektMenu-1, ul.GlowneGorneMenu li.AktywnaPozycjaMenu .EfektMenu-1 { transform:scaleY(1); }
+  ul.GlowneGorneMenu > li { display:block; border-bottom:1px solid var(--kolor-linia); }
+  ul.GlowneGorneMenu > li > ul { border-top:1px solid var(--kolor-linia); }
 
-  ul.GlowneGorneMenu li .EfektMenu-2 { transform-origin:left center; transform:scaleY(0); transition:all 0.40s ease; }
-  ul.GlowneGorneMenu li:hover .EfektMenu-2, ul.GlowneGorneMenu li.AktywnaPozycjaMenu .EfektMenu-2 { transform:scaleY(1); }  
+  ul.GlowneGorneMenu li ul li a { padding:5px 0 5px 0; display:block; font-size:100%; font-weight:normal; }
 
-  ul.GlowneGorneMenu li .EfektMenu-3 { transform-origin:center center; transform:translate(0,30%); opacity:0; transition:all 0.50s ease; }
-  ul.GlowneGorneMenu li:hover .EfektMenu-3, ul.GlowneGorneMenu li.AktywnaPozycjaMenu .EfektMenu-3 { transform:translate(0,0); opacity:1; }
-  
-  ul.GlowneGorneMenu li .EfektMenu-4 { transform-origin:left center; transform:scaleX(0.7) translate(-150px,0); filter:blur(25px); opacity:0; transition:all 0.50s ease; }
-  ul.GlowneGorneMenu li:hover .EfektMenu-4, ul.GlowneGorneMenu li.AktywnaPozycjaMenu .EfektMenu-4 { transform:scaleX(1) translate(0,0); filter:blur(0px); opacity:1; }
-  
-  ul.GlowneGorneMenu li .EfektMenu-5 { opacity:0; transition:all 0.40s ease; }
-  ul.GlowneGorneMenu li:hover .EfektMenu-5, ul.GlowneGorneMenu li.AktywnaPozycjaMenu .EfektMenu-5 { opacity:1; }
-  
-  /* menu normalne */
-  ul.GlowneGorneMenu li ul.MenuNormalne { min-width:200px; max-width:250px; }
-  ul.MenuNormalne a.KolejneKategorie { background:url('../szablony/standardowy.rwd.v2/obrazki/szablon/strzalka_prawo.svg') no-repeat right center; background-size:15px 15px; padding-right:35px; }
-  ul.MenuNormalne li ol { visibility:hidden; position:absolute; right:-280px; width:250px; top:5px; box-sizing:border-box; transition:all 0.30s ease; opacity:0; }
-  ul.MenuNormalne li:hover > ol, ul.MenuNormalne li:focus-within > ol { opacity:1; visibility:visible; right:-255px; }
-
-  /* menu szerokie na 100% menu */  
-  ul.GlowneGorneMenu li ul.MenuSzerokie { left:0; right:0; display:flex; flex-wrap:wrap; justify-content:flex-start; max-width:100%; align-items:flex-start; }
-  ul.GlowneGorneMenu li ul.Menu30Procent { width:30%; left:unset; right:unset; }
-  ul.GlowneGorneMenu li ul.Menu50Procent { width:50%; left:unset; right:unset; }
-  ul.GlowneGorneMenu li ul.Menu70Procent { width:70%; left:unset; right:unset; }
-  ul.MenuSzerokie .KolejneKategorie { font-weight:bold; font-size:110%; margin-bottom:15px; position:relative; width:100%; }
-  ul.MenuSzerokie .KolejneKategorie::before { content:""; position:absolute; bottom:-8px; left:0; right:0; height:1px; background:var(--kolor-linia); }
-  ul.MenuSzerokie ol { margin-bottom:25px; }
-  ul.MenuSzerokie ol ol { margin:5px 20px 5px 20px; }
-  ul.MenuSzerokie-1 li.LinkiMenu { width:calc(100% - 20px); padding-right:20px; }
-  ul.MenuSzerokie-2 li.LinkiMenu { width:calc(50% - 20px); padding-right:20px; }
-  ul.MenuSzerokie-3 li.LinkiMenu { width:calc(33.3% - 20px); padding-right:20px; }
-  ul.MenuSzerokie-4 li.LinkiMenu { width:calc(25% - 20px); padding-right:20px; }
-  ul.MenuSzerokie-5 li.LinkiMenu { width:calc(20% - 20px); padding-right:20px; }
-  ul.MenuSzerokie-6 li.LinkiMenu{ width:calc(16.6% - 20px); padding-right:20px; }
-  
-  /* strzalki przy pozycjach menu */
-  ul li.LinkiMenu a, ul.MenuSzerokie ol li a { background:url('../szablony/standardowy.rwd.v2/obrazki/szablon/strzalka_prawo.svg') no-repeat left center; background-size:12px 12px; display:block; padding:5px 0 5px 20px; }
-  ul.MenuSzerokie ol ol li a { background:url('../szablony/standardowy.rwd.v2/obrazki/szablon/strzalka_prawo.svg') no-repeat left center; background-size:8px 8px; padding:5px 0 5px 15px; font-size:85%; }
-  ul.MenuSzerokie li a.KolejneKategorie { background:transparent; padding:0; }
-  ul.MenuWielopoziomoweNormalne li a { background:transparent; padding-left:0; }  
-
-  ul.MenuSzerokie ol { overflow-y:auto; overflow-x:hidden;  }
-
-  /* ikonki menu */
-  .GorneMenu ul li i { display:block; padding-bottom:5px; text-align:center; }
-  .GorneMenu ul li i img { max-width:50px !important; }
-
-  /* strzalki przy pozycjach rozwijanych menu */
-  .PozycjaRozwijanaMenu b { display:block; position:relative; padding-right:25px; }
-  .PozycjaRozwijanaMenu b::before { content:""; position:absolute; top:calc(50% - 7px); right:0; width:15px; height:15px; background:url('../szablony/standardowy.rwd.v2/obrazki/szablon/strzalka_dol.svg') no-repeat; background-size:15px 15px; }
+  ul.GlowneGorneMenu li ul { position:relative; }
+  ul.GlowneGorneMenu li ol li a { margin-left:20px; }
+  ul.GlowneGorneMenu li ol li li a { margin-left:40px; }
+  ul.GlowneGorneMenu li ol li li li a { margin-left:60px; }
+  ul.GlowneGorneMenu li ol li li li li a { margin-left:80px; }
   
   /* ogolny wyglad linku w menu --- nie zmieniac nazwy styli, nie usuwac --- */
-  .GorneMenu div > a, .GorneMenu div > span { padding:15px; display:inline-block; font-size:120%; transition:all 0.30s ease-in-out; }
+  ul.GlowneGorneMenu > li > div > a, ul.GlowneGorneMenu > li  > div > span { padding:15px 0 15px 0; font-size:120%; display:flex; align-items:center; transition:all 0.30s ease-in-out; }  
+  ul.GlowneGorneMenu > li > div { position:relative; }     
+  
+  /* pozycja glownego menu */
+  .GorneMenu .PozycjaRozwijanaMenu { position:relative; margin-right:45px; }
+  
+  /* strzalki przy pozycjach menu */
+  ul.GlowneGorneMenu li.LinkiMenu a, ul.GlowneGorneMenu ul.MenuSzerokie ol li a { background:url('../szablony/standardowy.rwd.v2/obrazki/szablon/strzalka_prawo.svg') no-repeat left center; background-size:12px 12px; display:block; padding-left:20px; }
+  ul.MenuSzerokie ol ol li a { background:url('../szablony/standardowy.rwd.v2/obrazki/szablon/strzalka_prawo.svg') no-repeat left center; background-size:8px 8px; padding:5px 0 5px 15px; font-size:85%; }
+  ul.GlowneGorneMenu ul.MenuWielopoziomoweNormalne > li > a, ul.GlowneGorneMenu ul.MenuWielopoziomoweSzerokie ul > li > a { background:transparent; padding-left:0; font-weight:bold; font-size:110%; }
+  ul.GlowneGorneMenu ul.MenuWielopoziomoweSzerokie li a.KolejneKategorie { background:transparent; padding-left:0; font-weight:bold; }    
 
-  /* grafiki w menu */
+  /* ikonki menu */
+  .GorneMenu ul li i { display:inline-block; padding-right:15px; }
+  .GorneMenu ul li i img { max-width:40px !important; }
 
-  /* szerokosc kontenera z grafikami */  
-  .GrafikiPrawaStrona .GrafikiMenuKontener { width:calc(28% - 20px); padding-left:20px; }
-  .GrafikiLewaStrona .GrafikiMenuKontener { width:calc(28% - 20px); padding-right:20px; }
-  .GrafikiPrawaLewaStrona.Menu30Procent .GrafikiMenuKontener { width:calc(50% - 20px) !important; }
-  .GrafikiPrawaLewaStrona.Menu50Procent .GrafikiMenuKontener { width:calc(40% - 20px) !important; }
-  .GrafikiPrawaLewaStrona.Menu70Procent .GrafikiMenuKontener { width:calc(35% - 20px) !important; }
-  .GrafikiNadPodLinkami .LinkiMenuKontenter, .GorneMenu .GrafikiNadPodLinkami .GrafikiMenuKontener { width:100%; }
-  
-  /* szerokosc kontenera z linkami */
-  .GrafikiPrawaLewaStrona .LinkiMenuKontenter { width:72%; }
-  .GrafikiPrawaLewaStrona.Menu30Procent .LinkiMenuKontenter { width:50% !important; }
-  .GrafikiPrawaLewaStrona.Menu50Procent .LinkiMenuKontenter { width:60% !important; }
-  .GrafikiPrawaLewaStrona.Menu70Procent .LinkiMenuKontenter { width:65% !important; }
-  
-  /* kontener z linkami jako flex */
-  .MenuSzerokie .LinkiMenuKontenter ul { display:flex; flex-wrap:wrap; }
-  
-  /* bannery menu */
-  .GrafikiMenuKontener .GrafikiMenu { text-align:center; }
-  .GrafikiNadLinkami .GrafikiMenu { padding:0 0 20px 0; }  
-  .GrafikiPodLinkami .GrafikiMenu { padding:20px 0 0 0; }  
-  
   /* elementy rozwijania mobilnego menu */
-  .CheckboxRozwinGorneMenu, .IkonaSubMenu { display:none; }
+  .IkonaSubMenu { width:40px; height:40px; cursor:pointer; position:absolute; top:50%; right:0; transform:translate(0%, -50%); z-index:110; background:url('../szablony/standardowy.rwd.v2/obrazki/szablon/plus.svg') no-repeat right center; background-size:35px 35px; }
+  
+  .CheckboxRozwinGorneMenu { display:none; }
+  
+  /* domyslnie bannery niewidoczne w wersji mobilnej */
+  .GrafikiMenuKontener { display:none; }
+  
+  /* jezeli sa wlaczone - sa wyswietlane */
+  .GrafikiMenuMobilePokaz { display:block; }
+  
+  /* rozwiniecie menu po kliknieciu w plus */
+  .MenuRozwijaneKolumny { display:none; }
+  .CheckboxRozwinGorneMenu:checked ~ .MenuRozwijaneKolumny { display:block; }
+  .CheckboxRozwinGorneMenu:checked ~ div .IkonaSubMenu  { background:url('../szablony/standardowy.rwd.v2/obrazki/szablon/minus.svg') no-repeat right center; background-size:35px 35px; }
   
   /* elementy grafiki dla pozycji kategorii - ikonki oraz grafiki */
-  .GrafikaNadNazwa { display:flex; flex-wrap:wrap; justify-content:flex-start; }
-  .GrafikaNadNazwa span { width:100%; }
-  .GrafikaNadNazwa span.GrafikaKategoriiMenu { padding-bottom:5px; text-align:center; }
+  .GrafikaNadNazwa, .GrafikaObokNazwy { display:flex; justify-content:flex-start; align-items:center; }  
   
-  .GrafikaObokNazwy { display:flex; flex-wrap:nowrap; justify-content:flex-start; align-items:center; }  
-  .GrafikaObokNazwy span.GrafikaKategoriiMenu { padding-right:10px; }
+  ul.MenuSzerokie li a.MenuGorneGrafikiPozycjiMobilne, ul.MenuNormalne li a.MenuGorneGrafikiPozycjiMobilne { background:transparent; padding:5px 0 5px 0; } 
   
-  ul.MenuSzerokie li a.LinkDlaGrafikiKategorii { background:transparent; padding:10px; font-weight:bold; font-size:110%; } 
-  ul.MenuNormalne li a.LinkDlaGrafikiKategorii { background:transparent; padding:5px 0 5px 0; } 
-  ul li a.NazwaWysrodkowana { text-align:center; }
+  .MenuGorneGrafikiPozycjiMobilne img { max-width:40px !important; }
+  .MenuGorneGrafikiPozycjiMobilne .MenuGorneGrafikiPozycji span:nth-child(1) { width:60px !important; }
+  .MenuGorneGrafikiPozycjiMobilne .MenuGorneGrafikiPozycji span:nth-child(2) { width:calc(100% - 60px) !important; }
+ 
+  .MenuGorneBezGrafikiPozycjiMobilne .MenuGorneGrafikiPozycji span:nth-child(1) { display:none }
+  .MenuGorneBezGrafikiPozycjiMobilne .MenuGorneGrafikiPozycji span:nth-child(2) { width:100% !important; }
   
-  /* flagi graficzne */
-  .GorneMenu b { position:relative; display:block; }
-  .FlagaMenu { position:absolute; bottom:105%; max-width:150px; left:0; font-style:normal; font-size:11px; padding:3px 5px 12px 5px; clip-path: polygon(0% 0%, 100% 0%, 100% calc(100% - 8px), 45% calc(100% - 8px), 45% 100%, 30% calc(100% - 8px), 0 calc(100% - 8px)); }
-  
+  .FlagaMenu { display:none; }
 }
+
 
 /* ukrywanie checkbox menu mobilnego */
 .MenuMobilneCheckbox { display:none; }
@@ -745,8 +701,8 @@ ul.MenuSzerokie .Scroller::-webkit-scrollbar-thumb { background-color:var(--kolo
   
 /* reset pozycji do okna z dowolnym tekstem */
 .GorneMenu .FormatEdytor a { all:unset; display:inline; text-decoration:none; cursor:pointer; padding:0 !important; margin:0 !important; color:var(--kolor-glowny-czcionki); transition:all 0.30s ease-in-out; }
-.GorneMenu .FormatEdytor a:hover { color:var(--kolor-specjalny-2); }   
-.GorneMenu .FormatEdytor a::before, .GorneMenu .FormatEdytor a::after { display:none !important; }
+.GorGorneMenuneMenu .FormatEdytor a:hover { color:var(--kolor-specjalny-2); }   
+. .FormatEdytor a::before, .GorneMenu .FormatEdytor a::after { display:none !important; }
 .GorneMenu .FormatEdytor ul { all:unset; list-style:none; margin:20px 0 20px 0; list-style-position:inside; padding:0; display:block; list-style-type:disc; }
 .GorneMenu .FormatEdytor ol { all:unset; list-style:none; margin:20px 0 20px 0; padding:0; display:block; list-style-type:decimal; }
 .GorneMenu .FormatEdytor b, .GorneMenu .FormatEdytor span { all:unset; display:inline; color:inherit; margin:0; padding:0; }  
