@@ -1724,3 +1724,23 @@ body.Kontrast .PozycjeLogowanie, body.Kontrast .SchowekRozwijany, body.Kontrast 
 @media only screen and (max-width:1023px) {
   body.Kontrast .MenuNaglowek span.PozycjaIkonka { filter:none !important; }
 }
+
+/*!new! ensures that menu icon on sg is visible also on desktop devices*/
+@media (min-width:1024px) {
+  body.force-hamburger .MenuNaglowek,
+  body.force-hamburger .SzukajNaglowek {
+    display:block !important;      /* przebija desktopowe display:none */
+  }
+
+  /* Daj realne wymiary „kafelkowi” z ikoną */
+  body.force-hamburger .IkonyNawigacja .IkonaNawigacjiMenu {
+    width:40px; height:40px;
+  }
+  body.force-hamburger .IkonaNaglowek,
+  body.force-hamburger .PozycjaIkonka {
+    display:block;
+    width:100%;
+    height:100%;
+    padding:0;                      /* zamiast padding-top z desktopu */
+  }
+}
