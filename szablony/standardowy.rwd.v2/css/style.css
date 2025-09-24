@@ -429,8 +429,12 @@ img:not(.tm-carousel img, .tm-grade-label img, .tm-dialog img, .tm-hornet-contai
   .MenuNaglowek { order:1; }
 }
 @media only screen and (min-width:1024px) {
-  .MenuNaglowek, .SzukajNaglowek { display:none; }
-  span.PozycjaIkonka { padding:42px 0 0 0; }
+
+  .SzukajNaglowek { display:none; }
+  span.PozycjaIkonka {padding-top: 42px;}
+  /*span.PozycjaIkonka { min-width:35px; min-height:35px; }*/
+
+  .MenuNaglowek { order:4; width: 35px ; height: 35px;}
 }
 
 /* logowanie w naglowku */
