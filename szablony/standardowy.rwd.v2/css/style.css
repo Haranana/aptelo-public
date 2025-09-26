@@ -588,24 +588,24 @@ img:not(.tm-carousel img, .tm-grade-label img, .tm-dialog img, .tm-hornet-contai
 
 @media only screen and (min-width:1024px) {
   /* tlo gornego menu */
-  .GorneMenuTlo { background:var(--kolor-bialy); opacity:0; visibility:hidden; position:fixed; top:0; bottom:0; left:-1000px; width:80%; z-index:150; border-right:1px solid var(--kolor-linia); overflow:visible; transition:all 0.50s ease-in-out; }
+  .GorneMenuTlo { background:var(--kolor-specjalny-2); opacity:0; visibility:hidden; position:fixed; top:0; bottom:0; left:-1000px; width:30%; z-index:150; border-right:1px solid var(--kolor-linia); overflow:visible; transition:all 0.50s ease-in-out; }
     
   /* wysuwanie menu glownego */
   .MenuMobilneCheckbox:checked ~ .GorneMenuKontener .GorneMenuTlo { left:0; opacity:1; visibility:visible; }
   .MenuMobilneCheckbox:checked ~ .GorneMenuKontener { position:fixed; top:0; left:0; right:0; bottom:0; display:block; background-color:rgba(0,0,0,0.5); z-index:150; }
   .MenuMobilneCheckbox:checked ~ .GorneMenuKontener .GorneMenuTlo .TloZwinieciaMenu { position:fixed; top:0; right:0; width:20%; bottom:0; display:block; cursor:pointer; }
   
-  .GorneMenuTlo .Strona { position:absolute; top:0; bottom:0; right:0; left:0; width:auto !important; min-width:1px; max-width:100000px; overflow:visible; }
+  .GorneMenuTlo .Strona { position:absolute; top:0; bottom:0; right:0; left:0; width:auto !important; min-width:1px; overflow:visible; }
   
   /* ikona zamkniecia menu */
   #IkonaZwinieciaMenu { display:block; background:url('../szablony/standardowy.rwd.v2/obrazki/szablon/krzyzyk.svg') no-repeat center center; background-size:40px 40px; background-color:var(--kolor-szary-jasny-2); width:50px; height:50px; cursor:pointer; position:absolute; top:0; right:-50px; z-index:101; }
   
   /* okno przewijane menu */
-  .GorneMenu { position:absolute; top:0; bottom:0; right:0; left:0; overflow-y:scroll; }
+  .GorneMenu { position:absolute; top:0; bottom:0; right:0; left:0; overflow-y:scroll;}
   ul.MenuRozwijaneKolumny, ul.GlowneGorneMenu ol { padding:10px 0 10px 0; }
   ul.GlowneGorneMenu { padding:15px; margin:0; }
   
-  .GorneMenu li { position:relative; }
+  .GorneMenu li { position:relative;}
 
   ul.GlowneGorneMenu > li { display:block; border-bottom:1px solid var(--kolor-linia); }
   ul.GlowneGorneMenu > li > ul { border-top:1px solid var(--kolor-linia); }
