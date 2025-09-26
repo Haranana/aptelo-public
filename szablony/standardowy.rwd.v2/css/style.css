@@ -65,22 +65,22 @@
   
   /* tlo porownywanie, wyszukiwanie, naglowki tabel np koszyk */
   /*--tlo-szare:#f5f5f5;*/
-  --tlo-szare: #282828;
+  --tlo-szare: var( --kolor-specjalny-1);
   
   /* kolor ramek */
-  --kolor-linia:var(--kolor-tla-2);
+  --kolor-linia:var(--kolor-specjalny-5);
   
   /* moduly */
   --kolor-tlo-naglowek-modul:transparent;
   --kolor-czcionka-naglowek-modul:#303030;
   /*--kolor-tlo-modul:#ffffff*/;  
-  --kolor-tlo-modul: var(--kolor-tla-2);
+  --kolor-tlo-modul: var(--kolor-specjalny-5);
     
   /* boxy */
-  --kolor-tlo-naglowek-box:var(--kolor-tla-3);
+  --kolor-tlo-naglowek-box:var(--kolor-specjalny-5);
   --kolor-czcionka-naglowek-box:#303030;
   /*--kolor-tlo-box:#ffffff*/;
-  --kolor-tlo-box: var(--kolor-tla-2);
+  --kolor-tlo-box: var(--kolor-specjalny-5);
   
   /* box kategorie */
   --kolor-tlo-naglowek-box-kategorie: var(--kolor-specjalny-1);
